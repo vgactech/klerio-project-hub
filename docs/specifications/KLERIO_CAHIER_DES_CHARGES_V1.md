@@ -1,5 +1,5 @@
 # Klerio — Cahier des charges produit, technique et UI
-Version 1.2 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
+Version 1.3 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
 Dépôt : vgactech/klerio-project-hub. Périmètre de cette livraison : spécifications et maquette UI, sans activation des services IA, voix, OCR ou mémoire.
 
 ## 1. Vision et résultat attendu
@@ -72,7 +72,7 @@ Les domaines annoncés décrivent les capacités utilisées, jamais un diplôme,
 
 ### Contrôle coulissant demandé
 
-Un seul contrôle à trois positions : gauche = Vocal, centre = Texte, droite = Documents.
+Un seul bouton de mode physiquement déplaçable à trois positions : gauche = Vocal, centre = Texte, droite = Documents. L’utilisateur presse le bouton puis le déplace ; une simple barre de progression ou un curseur de plage standard ne satisfait pas cette exigence.
 Le glissement est limité à ce contrôle pour éviter de perturber le défilement du fil. Chaque position possède aussi un bouton cliquable et une commande clavier. Un geste ne donne jamais implicitement permission d’utiliser la caméra ou le micro.
 
 | Position | Comportement | Retour |
@@ -81,11 +81,11 @@ Le glissement est limité à ce contrôle pour éviter de perturber le défileme
 | Centre : Texte | saisie et envoi classiques | toujours disponible |
 | Droite : Documents | ouvrir Scanner / Fichier local / Photos selon plateforme | annuler conserve le brouillon et revient au centre |
 
-Envoyer reste un bouton séparé. Entrée envoie sur bureau ; Maj+Entrée ajoute une ligne. Sur mobile, retour à la ligne dans le clavier et envoi explicite. Le comportement doit être configurable. Une capture en cours n’est pas envoyée accidentellement.
+Le bouton Envoyer est intégré à l’intérieur de la zone de saisie, sur sa droite, et se déplace lui-même vers la gauche sous le doigt ou la souris. Le relâchement au-delà du seuil valide l’envoi. Un geste incomplet ou annulé conserve le brouillon. Clic et clavier demeurent des alternatives accessibles ; ne pas ajouter de bouton Envoyer extérieur. Entrée envoie sur bureau ; Maj+Entrée ajoute une ligne. Sur mobile, retour à la ligne dans le clavier et envoi explicite. Le comportement doit être configurable. Une capture en cours n’est pas envoyée accidentellement.
 
 ### Système visuel
 
-Direction : messagerie calme, fond ivoire, surfaces blanches, texte anthracite, accent vert profond. Variante sombre et contraste renforcé.
+Direction : messagerie minimaliste monochrome uniquement. Thème noir : fond #000, texte #fff. Thème blanc : fond #fff, texte #000. Gris neutres réservés aux bordures, hiérarchie et états secondaires ; aucune couleur d’accent. L’utilisateur bascule entre Noir et Blanc dans l’en-tête.
 Police système, corps 16 px, interligne au moins 1,45 ; espacement sur base 4/8 px ; bulles arrondies 18 px ; contrôles tactiles cibles 44 × 44 px minimum.
 Les états utilisent texte et icône, pas uniquement une couleur. Respect du zoom, de la réduction des animations, des zones sûres et du clavier virtuel. Pas d’animation qui déplace le bouton au moment du toucher.
 
@@ -97,7 +97,7 @@ Les états utilisent texte et icône, pas uniquement une couleur. Respect du zoo
 | UI-02 | Première ouverture | finalité du stockage, dépôt privé, choix voix et permissions au moment utile | GitHub non connecté, dépôt indisponible |
 | UI-03 | Chat vide | « Que souhaites-tu faire ? », exemples facultatifs, saisie | aucun historique, hors ligne |
 | UI-04 | Message texte | auteur, contenu, heure, réponse, copier, corriger, sources | en attente, envoyé, génération, échec |
-| UI-05 | Barre de saisie | brouillon, contrôle coulissant, joindre, envoyer/arrêter | vide, pièces en cours, limite dépassée |
+| UI-05 | Zone de saisie | brouillon, bouton de mode déplaçable, bouton d’envoi intégré glissant à gauche, joindre, arrêter | vide, geste incomplet, geste annulé, pièces en cours, limite dépassée |
 | UI-06 | Vocal temps réel | état écoute/parle, transcription, micro, son, raccrocher | permission refusée, silence, reconnexion |
 | UI-07 | Import | scanner, fichier local, photos, liste de pièces | type interdit, taille, annulation |
 | UI-08 | Scan | cadrage, capture, recadrage, rotation, pages, reprendre, valider | caméra absente, flou, faible lumière |
@@ -426,7 +426,7 @@ GitHub répond en erreur → message reçu durablement → état « archivage en
 | Test | Exigence couverte | Réussite observable |
 |---|---|---|
 | AT-01 | chat minimal | parcours courant réalisé dans le fil sans navigation imposée |
-| AT-02 | contrôle coulissant | gestes, clics et clavier sélectionnent les trois modes |
+| AT-02 | bouton de mode déplaçable | le bouton lui-même suit le geste ; relâcher choisit Vocal/Texte/Documents ; clics et clavier restent disponibles |
 | AT-03 | permission | refus micro/caméra laisse le texte fonctionnel |
 | AT-04 | silence | micro coupé = zéro audio envoyé ; voix coupée = zéro lecture |
 | AT-05 | interruption | parole utilisateur interrompt lecture et reste transcrite |
@@ -562,3 +562,44 @@ Ce parcours est une cible de conception, pas une intégration déjà disponible.
 Ne pas déployer deux orchestrateurs conversationnels concurrents. Si une solution conversationnelle ElevenLabs est évaluée, préserver une responsabilité unique pour les tâches, leurs identifiants et leurs autorisations côté Klerio, et vérifier la compatibilité avec le fournisseur IA retenu.
 Les clés OpenAI et ElevenLabs restent côté serveur ; le navigateur ne reçoit que les autorisations temporaires nécessaires lorsqu’elles sont prises en charge par le service choisi.
 Les abonnements, modèles exacts, prix, régions, durées de conservation et conditions de traitement restent à vérifier avant activation. Aucun abonnement, appel facturable, connexion ou déploiement n’est réalisé par cette mise à jour documentaire.
+
+
+## 31. Révision UX et scénarios administratifs — 27 octobre 2026
+
+### Manipulation directe et simplicité
+Demande utilisateur : déplacer le bouton lui-même, plutôt qu’une barre, et intégrer l’envoi dans le champ de chat. Cette section remplace toute représentation antérieure incompatible.
+- Bouton de mode : pression sur le bouton, capture du pointeur, déplacement horizontal continu, relâchement et ancrage à la position retenue. Le centre correspond au texte.
+- Bouton d’envoi : situé à droite dans le champ ; pression puis déplacement vers la gauche. Dans la V2, course maximale de 120 px adaptée à la largeur, seuil de validation de 80 px ou 70 % d’une course plus courte. Le seuil reste à calibrer sur appareils réels.
+- Un début de geste n’envoie rien. Relâchement avant seuil, pointercancel ou perte de capture : retour visuel et conservation du brouillon. Au-delà du seuil : un seul envoi ; supprimer le clic synthétique associé.
+- Le mouvement agit sur le bouton, sans déplacer le champ ni la conversation. Le geste commence exclusivement sur le bouton ; pas d’interception globale du défilement.
+- Les boutons gardent une cible d’au moins 44 px, le focus visible et des libellés accessibles. Le clic et le clavier offrent une alternative au glissement. Flèches gauche/droite pour le mode ; Entrée ou clic pour envoyer.
+- L’aide « Maintenez puis glissez » reste concise et visible. Une action sensible ne se trouve jamais implicitement approuvée par un envoi de prompt.
+- Noir ou blanc, sans accent vert, bleu ou autre. Ne pas recopier les données privées des captures de référence dans les exemples.
+
+### Scénarios réellement documentés, utilisateurs fictifs
+La V2 contient quatre parcours interactifs : impôts, attestation de droits, feuille de soins et C2S. Les procédures proviennent des références officielles ci-dessous ; les échanges sont des scénarios synthétiques, pas des dossiers réels ni des services administratifs connectés.
+Chaque parcours pose une question pertinente, adapte l’étape suivante, expose la source et propose une liste de vérification, un brouillon non envoyé et un classement simulé.
+Les captures transmises servent à comprendre les préférences visuelles et l’organisation. Les autres projets et les identités visibles ne sont pas intégrés à Klerio.
+
+| Parcours | Question utile | Présentation du résultat |
+|---|---|---|
+| Corriger une déclaration fiscale | dépôt en ligne, papier ou inconnu ? | étapes adaptées et lien DGFiP, sans imposer de calendrier non revérifié |
+| Attestation de droits | accès au compte ameli ou difficulté de connexion ? | parcours officiel et aide, sans demander d’identifiant |
+| Feuille de soins | document signé ou vérification nécessaire ? | contrôles et choix du canal adapté, pas de remboursement promis |
+| Complémentaire santé solidaire | démarche en ligne, papier ou préparation ? | liste adaptée, sans attribuer automatiquement un droit |
+
+Références officielles consultées le 27 octobre 2026 :
+- https://www.impots.gouv.fr/particulier/questions/je-veux-corriger-la-declaration-que-jai-deja-deposee-comment-proceder
+- https://www.ameli.fr/assure/adresses-et-contacts/l-obtention-d-un-document/obtenir-une-attestation/obtenir-une-attestation-de-droits
+- https://www.ameli.fr/assure/remboursements/etre-bien-rembourse/feuille-soins-papier
+- https://www.ameli.fr/assure/droits-demarches/difficultes-acces-droits-soins/complementaire-sante/complementaire-sante-solidaire-demande
+
+La date de consultation n’est pas une surveillance continue. Les conditions, formulaires et calendriers doivent être revérifiés lors d’une démarche réelle. Les liens ouvrent les sources ; la maquette ne soumet aucun dossier, ne lit pas les fichiers choisis et n’active ni micro ni caméra.
+
+### Recette complémentaire des gestes et des scénarios
+- AT-34 : le bouton de mode suit physiquement la souris ou le doigt, puis s’ancre à la bonne position.
+- AT-35 : le bouton d’envoi est dans le champ ; un geste complet produit un seul message.
+- AT-36 : geste court ou annulé conserve intégralement le brouillon.
+- AT-37 : les deux thèmes sont monochromes et toutes les commandes restent lisibles.
+- AT-38 : chaque scénario répond à ses choix, montre une référence officielle et ne prétend pas avoir envoyé un dossier.
+- AT-39 : commandes disponibles au clavier et cibles tactiles utilisables sur petit écran.
