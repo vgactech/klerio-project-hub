@@ -1,5 +1,5 @@
 # Klerio — Cahier des charges produit, technique et UI
-Version 1.1 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
+Version 1.2 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
 Dépôt : vgactech/klerio-project-hub. Périmètre de cette livraison : spécifications et maquette UI, sans activation des services IA, voix, OCR ou mémoire.
 
 ## 1. Vision et résultat attendu
@@ -303,7 +303,7 @@ Une interface spécialisée s’ouvre seulement si elle aide la tâche : aucune 
 Client existant React/TanStack → API authentifiée → orchestrateur durable → exécutants spécialisés (IA, voix, OCR, documents, GitHub).
 Journal durable/outbox → synchroniseur GitHub → référentiel documentaire.
 Index de recherche ← projections validées du référentiel et des événements autorisés.
-Le client reçoit des événements de progression et reprend après son dernier curseur. Les fournisseurs concrets et le choix d’hébergement sont à figer après une preuve de faisabilité.
+Le client reçoit des événements de progression et reprend après son dernier curseur. Lovable, OpenAI et ElevenLabs sont retenus par le propriétaire. Le choix des modèles, des services précis, des transports audio et de l’hébergement des exécutants durables reste à figer après une preuve de faisabilité.
 
 Supabase peut continuer à gérer l’identité et, si retenu, l’état opérationnel et la file durable. Cela ne remplace pas les archives GitHub. Prévoir une migration/export et ne pas supprimer l’existant avant validation.
 Une authentification de l’application ne donne pas automatiquement l’accès au dépôt : association explicite et permissions minimales.
@@ -469,7 +469,7 @@ Rapport de recette exigé : environnement, versions, données synthétiques, ré
 7. Réaliser recette pilote, corriger les écarts et autoriser la production sur preuves.
 
 Pour chaque lot : code, schémas, tests utiles, documentation d’exploitation, migration, retour arrière et risques résiduels.
-Le planning et le budget ne sont pas engagés avant le choix des fournisseurs et la preuve de faisabilité voix/GitHub.
+Le planning et le budget ne sont pas engagés avant le choix des services précis chez les fournisseurs retenus et la preuve de faisabilité voix/GitHub.
 Définition de terminé : fonctionnalité intégrée dans la pile existante, accessible, autorisée côté serveur, observable, restaurable, testée et documentée. Une maquette avec réponses simulées n’est pas une intégration fonctionnelle.
 
 ## 26. Choix à arrêter avant activation réelle
@@ -482,7 +482,7 @@ Définition de terminé : fonctionnalité intégrée dans la pile existante, acc
 | Autonomie | lectures et créations réversibles autorisées | fluidité avec limites explicites |
 | Effets externes | mandat précis ou confirmation ciblée | éviter les actions hors intention |
 | Hébergement | service serveur durable à sélectionner | exécution navigateur fermé |
-| Fournisseurs IA/voix/OCR | adaptateurs interchangeables | coût, qualité, langues et conditions |
+| Fournisseurs | Lovable pour la construction ; OpenAI pour l’IA ; ElevenLabs pour la voix | modèles, transcription, OCR et services précis à valider ; adaptateurs séparés |
 | Gros fichiers | Git classique uniquement ; Git LFS interdit | taille et croissance historique contrôlées ; refus explicite au-delà des limites |
 | Chiffrement applicatif | analyse de sensibilité préalable | clés et accès nécessaires à l’agent |
 | Journalisation | échanges/actions/justifications explicites | interprétation à confirmer, jamais chaîne de pensée privée |
@@ -524,12 +524,12 @@ Git LFS est exclu de toutes les phases, de tous les environnements et du stockag
 | Élément | Statut | Rôle précis |
 |---|---|---|
 | GitHub | demandé par le propriétaire et accessible | code, cahier des charges et futur référentiel documentaire privé en Git classique |
-| Lovable | déjà relié au dépôt | environnement existant d’édition et de synchronisation du code, conservé |
+| Lovable | retenu et déjà relié au dépôt | construction de l’interface et intégration applicative avec synchronisation du code |
 | Supabase | déjà intégré, réutilisation proposée | authentification ; état opérationnel, journal durable et file si la solution est validée |
 | React / TypeScript / TanStack / Vite / Tailwind / Radix | déjà dans le projet | technologies de l’interface, pas des plateformes de stockage supplémentaires |
 | Serveur d’orchestration | nécessaire, fournisseur non choisi | exécuter les tâches après fermeture du navigateur, contrôler les permissions et synchroniser |
-| Service IA | fournisseur non choisi | comprendre la demande, sélectionner des outils et produire les réponses |
-| Service voix | fournisseur non choisi | audio temps réel, transcription et voix |
+| OpenAI | retenu par le propriétaire | compréhension, analyse, réponses structurées et propositions d’actions, contrôlées par le serveur |
+| ElevenLabs | retenu par le propriétaire | voix de l’agent ; architecture de conversation et attribution de la transcription à valider |
 | Service OCR | fournisseur non choisi ; option locale possible | extraire du texte des scans avec provenance |
 | Hébergement et sauvegardes | fournisseur et politique non choisis | exécution durable, restauration et gestion des incidents |
 | Google Drive | écarté selon la demande | aucune dépendance ni copie automatique |
@@ -544,3 +544,21 @@ Aucune de ces nouvelles connexions n’est activée par la présente livraison. 
 - AT-31 : aucune configuration LFS, aucun pointeur LFS et aucun appel LFS dans l’implémentation.
 - AT-32 : un fichier au-delà de la limite est refusé avant transfert vers un service d’analyse ; aucun envoi vers un stockage tiers.
 - AT-33 : la croissance du dépôt et de ses versions déclenche une alerte avant dépassement du budget configuré.
+
+
+## 30. Décision fournisseur — 27 octobre 2026
+
+Instruction du propriétaire : utiliser Lovable, OpenAI et ElevenLabs pour l’instant. Cette décision remplace les mentions antérieures de fournisseurs IA et voix non sélectionnés.
+
+- **Lovable** : environnement de construction de Klerio, de son chat et de ses composants adaptatifs ; conserver l’intégration existante avec le dépôt.
+- **OpenAI** : fournisseur IA retenu pour interpréter les demandes, analyser les contenus, produire les réponses et proposer les actions. Les permissions, le journal durable et les effets réels restent sous contrôle du serveur Klerio.
+- **ElevenLabs** : fournisseur vocal retenu. Priorité à une réponse vocale issue du même contenu que le texte affiché. Le transport temps réel, la transcription et la gestion des interruptions doivent faire l’objet d’une preuve de faisabilité.
+- **GitHub** : référentiel documentaire et code, en Git classique exclusivement ; Git LFS demeure interdit.
+- **Supabase** : intégration existante conservée pour l’authentification ; tout rôle supplémentaire reste une proposition technique, pas un nouveau choix imposé au propriétaire.
+
+Architecture vocale à prototyper : entrée micro autorisée → transcription → traitement OpenAI via serveur Klerio → texte progressif → voix ElevenLabs. L’attribution de la transcription à OpenAI ou ElevenLabs reste ouverte ; ne pas ajouter un quatrième fournisseur vocal sans décision explicite.
+Ce parcours est une cible de conception, pas une intégration déjà disponible. Mesurer la latence de bout en bout, l’interruption et la cohérence texte/voix avant de déclarer le mode temps réel conforme.
+
+Ne pas déployer deux orchestrateurs conversationnels concurrents. Si une solution conversationnelle ElevenLabs est évaluée, préserver une responsabilité unique pour les tâches, leurs identifiants et leurs autorisations côté Klerio, et vérifier la compatibilité avec le fournisseur IA retenu.
+Les clés OpenAI et ElevenLabs restent côté serveur ; le navigateur ne reçoit que les autorisations temporaires nécessaires lorsqu’elles sont prises en charge par le service choisi.
+Les abonnements, modèles exacts, prix, régions, durées de conservation et conditions de traitement restent à vérifier avant activation. Aucun abonnement, appel facturable, connexion ou déploiement n’est réalisé par cette mise à jour documentaire.
