@@ -1,5 +1,5 @@
 # Klerio — Cahier des charges produit, technique et UI
-Version 1.3 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
+Version 1.4 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
 Dépôt : vgactech/klerio-project-hub. Périmètre de cette livraison : spécifications et maquette UI, sans activation des services IA, voix, OCR ou mémoire.
 
 ## 1. Vision et résultat attendu
@@ -603,3 +603,63 @@ La date de consultation n’est pas une surveillance continue. Les conditions, f
 - AT-37 : les deux thèmes sont monochromes et toutes les commandes restent lisibles.
 - AT-38 : chaque scénario répond à ses choix, montre une référence officielle et ne prétend pas avoir envoyé un dossier.
 - AT-39 : commandes disponibles au clavier et cibles tactiles utilisables sur petit écran.
+
+
+## 32. Cas d’usage issus des trois références visuelles Simplio
+
+Les captures fournies par le propriétaire sont des inspirations fonctionnelles. Elles ne prouvent ni les montants, ni les dates, ni l’authenticité d’un courrier, ni l’existence d’une intégration. Klerio conserve le chat unique et les thèmes noir/blanc au lieu de reprendre les tableaux de bord colorés.
+
+### Besoins repris
+1. Comprendre un document : objet, explication simple, passage original, actions demandées, dates, montants, pièces et origine des informations.
+2. Préparer une démarche : une question à la fois, progression, pièces manquantes, brouillon et validation.
+3. Organiser le quotidien : petites étapes, choix de la prochaine action, tâches en attente et historique.
+4. Déléguer dans un cadre explicite : préparation autonome, transmission selon mandat et preuve de résultat.
+5. Accéder à une aide humaine lorsqu’un blocage ne peut pas être résolu par l’application.
+
+### Catalogue V3
+| Parcours | Résultat de démonstration |
+|---|---|
+| Lecture d’un courrier logement | explication d’un extrait reconstitué, informations absentes explicitement marquées |
+| Déclaration d’occupation | vérification du rôle propriétaire et orientation DGFiP |
+| Correction de déclaration de revenus | parcours selon mode de dépôt |
+| Demande CAF / aide au logement | préparation, pièces demandées ou suivi selon le point de blocage |
+| Attestation de droits | parcours d’accès et téléchargement officiel |
+| Feuille de soins | vérification de signature et canal de transmission |
+| Demande de C2S | préparation en ligne, papier ou liste de points à vérifier |
+| Facture d’électricité | lecture des lignes, échéance, montant et preuve de paiement |
+| Absence scolaire | brouillon avec champs à compléter et destinataire à vérifier |
+| Relance mutuelle | pièces utiles, contrat et demande d’état d’avancement |
+| Santé au travail | orientation et modèle officiel de demande à l’employeur |
+| Organisation personnelle | une seule tâche et découpage en actions observables |
+
+### Règles de présentation
+- « Non indiqué » si le document ne fournit pas une date ou un montant ; ne jamais remplacer une absence par 0 €.
+- Séparer données lues, explication et hypothèses. Chaque information extraite doit pouvoir renvoyer au passage source quand l’OCR réel sera intégré.
+- Une date ancienne issue d’une capture n’est pas une échéance courante. Un compte à rebours dépend d’une échéance identifiée et vérifiée.
+- Ne pas afficher « authentique », « cachet vérifié » ou « signature valide » sur la seule base d’une image.
+- Ne pas promettre « aucune amende », « aucune urgence », « droit accepté » ou délai garanti sans base adaptée au dossier.
+- Le langage simple est une cible ; une conformité FALC ne doit pas être revendiquée sans évaluation adaptée avec les publics concernés.
+- Les affirmations de souveraineté, de serveurs en France et de conformité ne sont pas recopiées des captures ; elles nécessitent une vérification de toute la chaîne de traitement.
+- Une case cochée signifie une étape déclarée faite. « Payé », « envoyé », « rendez-vous confirmé » et « document reçu par l’organisme » exigent chacun une preuve correspondant à cet effet.
+- Le numéro de formulaire et son millésime sont vérifiés sur une source officielle ; aucun numéro de Cerfa n’est repris simplement depuis une maquette.
+- Un indicateur mesure les tâches achevées, jamais une réduction médicale ou psychologique quantifiée de la charge mentale.
+- Les rappels proposés par le produit seront créés seulement après choix du moment et des notifications. Aucun rappel personnel réel n’est créé dans cette livraison.
+
+### Références supplémentaires consultées le 27 octobre 2026
+- DGFiP, déclaration d’occupation : https://www.impots.gouv.fr/particulier/la-declaration-doccupation
+- CAF, aides au logement : https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/logement
+- Médiateur national de l’énergie, facture : https://www.energie-info.fr/fiche_pratique/les-differents-elements-de-ma-facture/
+- Service Public, absence scolaire : https://www.service-public.gouv.fr/particuliers/vosdroits/F1899
+- Service Public, complémentaire santé : https://www.service-public.gouv.fr/particuliers/vosdroits/F20314
+- Service Public, demande d’organisation des visites : https://www.service-public.gouv.fr/particuliers/vosdroits/R65238
+
+### Recette complémentaire
+- AT-40 : un document incomplet produit « non indiqué », sans montant, date ni authenticité inventés.
+- AT-41 : un brouillon reste « non envoyé » ; aucune preuve externe n’est créée par une simple case cochée.
+- AT-42 : chaque famille de démarche possède son classement, ses sources et une suite adaptée à la réponse.
+- AT-43 : une date de capture, un pourcentage décoratif ou un numéro de formulaire non vérifié n’est pas présenté comme fait actuel.
+
+### Vérification de la livraison V3
+Syntaxe JavaScript contrôlée. Les fonctions des 12 scénarios ont été exécutées avec un rendu simulé pour leurs 36 branches ; les gestionnaires de pointeur ont passé 8 contrôles unitaires avec géométrie simulée. Ces tests ne constituent ni une recette navigateur ni une validation tactile sur appareil réel.
+Le navigateur de test n’était pas installé et son téléchargement n’a pas abouti ; aucune capture de rendu ni performance réelle n’est revendiquée.
+Les services OpenAI, ElevenLabs, OCR, archivage GitHub automatique et comptes administratifs ne sont pas connectés dans le fichier de démonstration.
