@@ -1,5 +1,5 @@
 # Klerio — Cahier des charges produit, technique et UI
-Version 1.0 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
+Version 1.1 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
 Dépôt : vgactech/klerio-project-hub. Périmètre de cette livraison : spécifications et maquette UI, sans activation des services IA, voix, OCR ou mémoire.
 
 ## 1. Vision et résultat attendu
@@ -204,7 +204,7 @@ Pour éviter de mélanger code applicatif et vie privée, créer ultérieurement
 
 Les noms sont techniques et stables ; les titres affichés peuvent évoluer. Éviter les noms de personnes dans les chemins et messages de commit.
 Un seul exemplaire canonique d’un événement ; les catégories pointent vers son ID. Issues et labels servent au suivi du développement, pas à stocker les conversations privées.
-Les gros binaires nécessitent une politique LFS et des quotas vérifiés ; si elle n’est pas configurée, refuser proprement le fichier ou demander une option explicite. Aucun basculement caché vers Google Drive.
+Git LFS est interdit par décision du propriétaire. Les pièces acceptées sont stockées directement dans Git classique, sans fichiers pointeurs LFS. La limite produit initiale est de 20 Mio par fichier ; un contrôle de volume total et de croissance historique doit précéder chaque admission. Un fichier trop gros est refusé avec une explication et une possibilité de fournir une version plus légère choisie par l’utilisateur. Aucun découpage automatique destiné à contourner les limites de GitHub et aucun stockage externe implicite. À terme, répartir les archives dans plusieurs dépôts privés liés par un registre peut être étudié, sous réserve des limites et conditions de GitHub ; cela ne rend pas le stockage illimité. Aucun basculement caché vers Google Drive.
 
 ### Synchronisation et concurrence
 
@@ -483,14 +483,14 @@ Définition de terminé : fonctionnalité intégrée dans la pile existante, acc
 | Effets externes | mandat précis ou confirmation ciblée | éviter les actions hors intention |
 | Hébergement | service serveur durable à sélectionner | exécution navigateur fermé |
 | Fournisseurs IA/voix/OCR | adaptateurs interchangeables | coût, qualité, langues et conditions |
-| Gros fichiers | LFS après configuration | quotas, stockage, effacement |
+| Gros fichiers | Git classique uniquement ; Git LFS interdit | taille et croissance historique contrôlées ; refus explicite au-delà des limites |
 | Chiffrement applicatif | analyse de sensibilité préalable | clés et accès nécessaires à l’agent |
 | Journalisation | échanges/actions/justifications explicites | interprétation à confirmer, jamais chaîne de pensée privée |
 
 ## 27. Sources techniques et limites vérifiées
 
 Sources officielles consultées le 27 octobre 2026 :
-- [GitHub : fichiers volumineux](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github) : contraintes Git classiques et choix de LFS.
+- [GitHub : fichiers volumineux](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github) : contraintes de Git classique ; Git LFS est explicitement exclu du projet.
 - [GitHub : limites de l’API REST](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api) : quotas, états 403/429 et reprise.
 - [GitHub : bonnes pratiques REST](https://docs.github.com/en/rest/guides/best-practices-for-using-the-rest-api) : sérialisation et gestion des appels.
 - Sources du projet inspectées : AGENTS.md, README.md, package.json, src/routes/README.md, index.tsx, auth.tsx et dashboard.tsx.
@@ -515,3 +515,32 @@ Contrôles transversaux : identité, permissions, temps, versions, coûts et arr
 Mini-exercice de validation : « Le micro est coupé, la voix reste active : l’agent peut-il encore m’écouter ? » Réponse attendue : non, la capture et l’envoi audio sont arrêtés.
 Variante plus difficile : deux appareils corrigent simultanément la catégorie du même document pendant une panne GitHub. Le système doit préserver les deux événements, choisir une résolution explicite, synchroniser sans doublon et afficher la provenance.
 Erreurs typiques à éviter : confondre mémoire et résumé, considérer GitHub comme moteur temps réel, cacher un micro actif, prendre un OCR pour une vérité, exécuter des instructions trouvées dans une pièce, annoncer un archivage non confirmé.
+
+
+## 29. Plateformes et responsabilités — clarification du propriétaire
+
+Git LFS est exclu de toutes les phases, de tous les environnements et du stockage documentaire. Aucun fichier .gitattributes ne doit activer de filtre LFS ; la recette doit vérifier qu’aucun objet documentaire accepté n’est un pointeur LFS.
+
+| Élément | Statut | Rôle précis |
+|---|---|---|
+| GitHub | demandé par le propriétaire et accessible | code, cahier des charges et futur référentiel documentaire privé en Git classique |
+| Lovable | déjà relié au dépôt | environnement existant d’édition et de synchronisation du code, conservé |
+| Supabase | déjà intégré, réutilisation proposée | authentification ; état opérationnel, journal durable et file si la solution est validée |
+| React / TypeScript / TanStack / Vite / Tailwind / Radix | déjà dans le projet | technologies de l’interface, pas des plateformes de stockage supplémentaires |
+| Serveur d’orchestration | nécessaire, fournisseur non choisi | exécuter les tâches après fermeture du navigateur, contrôler les permissions et synchroniser |
+| Service IA | fournisseur non choisi | comprendre la demande, sélectionner des outils et produire les réponses |
+| Service voix | fournisseur non choisi | audio temps réel, transcription et voix |
+| Service OCR | fournisseur non choisi ; option locale possible | extraire du texte des scans avec provenance |
+| Hébergement et sauvegardes | fournisseur et politique non choisis | exécution durable, restauration et gestion des incidents |
+| Google Drive | écarté selon la demande | aucune dépendance ni copie automatique |
+| Git LFS | interdit selon la demande | aucun usage |
+
+Supabase n’est pas proposé comme destination documentaire de substitution : toute utilisation pour les données opérationnelles doit être annoncée et limitée aux besoins d’exécution. Le journal y est durable pendant la synchronisation, avec une durée de conservation opérationnelle à définir. Les archives métier de référence restent GitHub.
+Le fournisseur d’IA pourra recevoir les données utiles à une tâche : ce transfert est un traitement distinct du stockage documentaire et doit être décrit avant activation. Même exigence pour voix et OCR.
+Aucune de ces nouvelles connexions n’est activée par la présente livraison. Ne pas confondre la suggestion d’une architecture avec un abonnement ou un service déjà fonctionnel.
+
+### Recette complémentaire
+
+- AT-31 : aucune configuration LFS, aucun pointeur LFS et aucun appel LFS dans l’implémentation.
+- AT-32 : un fichier au-delà de la limite est refusé avant transfert vers un service d’analyse ; aucun envoi vers un stockage tiers.
+- AT-33 : la croissance du dépôt et de ses versions déclenche une alerte avant dépassement du budget configuré.
