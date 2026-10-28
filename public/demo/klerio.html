@@ -32,35 +32,35 @@ body,.app,.composer,header,.dialoghead,dialog{background:var(--bg);color:var(--i
 .avatar{background:transparent;padding:0;width:54px;height:54px;border-radius:50%;overflow:hidden;flex-shrink:0}.mascot{display:block;background-image:var(--mascot-sheet);background-size:300% 200%;background-repeat:no-repeat;width:100%;height:100%;background-position:0 0}
 .mascot[data-pose="classic"]{background-position:0 0}.mascot[data-pose="joy"]{background-position:50% 0}.mascot[data-pose="curious"]{background-position:100% 0}.mascot[data-pose="cool"]{background-position:0 100%}.mascot[data-pose="sleep"]{background-position:50% 100%}.mascot[data-pose="comfort"]{background-position:100% 100%}
 .brand-welcome{display:flex;align-items:center;gap:16px;margin-bottom:14px}.brand-portrait{width:116px;height:116px;border-radius:24px;overflow:hidden;flex-shrink:0}.brand-welcome strong{font-size:20px;display:block}.brand-welcome p{margin:4px 0;color:var(--muted);font-size:14px}
-.user .bubble,.primary,.sendknob,.modeknob{background:var(--accent);color:#27150c;border-color:var(--accent)}.sendknob:hover,.modeknob:hover,.primary:hover{background:var(--accent);color:#27150c}.dot{background:var(--accent)}
+.user .bubble,.primary,.sendknob,.modeknob{background:var(--accent);color:#ffffff;border-color:var(--accent)}.sendknob:hover,.modeknob:hover,.primary:hover{background:var(--accent);color:#ffffff}.dot{background:var(--accent)}
 button{background:var(--card);color:var(--ink);border-color:var(--line)}button:hover{background:var(--soft)}a,.status{color:var(--ink)}textarea{background:transparent!important;color:var(--ink)}textarea::placeholder{color:var(--muted);opacity:1}.entryhint,.gesturehint,.source-note,.meta,.small,.sub{color:var(--muted)}
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.pose-card{margin:0}.pose-picture{aspect-ratio:1;border-radius:18px;overflow:hidden}.pose-card figcaption{font-size:13px;text-align:center;margin-top:6px}.toast{background:var(--ink);color:var(--bg)}
 @media(max-width:520px){.brand-portrait{width:88px;height:88px}.brand-welcome{gap:10px}.brand-welcome strong{font-size:18px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
 /* Bronze futuriste : la lecture et les commandes restent prioritaires. */
-body{background:radial-gradient(ellipse at 12% 5%,#9b633740,transparent 50%),radial-gradient(ellipse at 90% 90%,#cd7f3226,transparent 45%),#6b4427;background-attachment:fixed}
-.app{background:linear-gradient(160deg,#6b4427f5,#472a19f5);box-shadow:0 0 90px #1d100a40;border-color:#c89b6e66}
-header,.composer{background:#4d2d1edb;backdrop-filter:blur(18px);border-color:#c89b6e80}
-.bubble,.card{background:linear-gradient(135deg,#70472b80,#482b1ecc);border-color:#b38a6080;box-shadow:inset 0 1px 0 #ffdbb31a,0 8px 25px #1f100a1a}
-button{border-radius:14px;transition:background .18s,box-shadow .18s}button:hover{box-shadow:0 0 16px #cd7f3229}
-.entry{background:#352015a6;border-color:#d6a67799;box-shadow:0 0 0 4px #cd7f320a,inset 0 1px 0 #ffdbb31a}
-.sendknob,.modeknob{background:linear-gradient(145deg,#e3aa66,#cd7f32);box-shadow:inset 0 1px 1px #ffe3b899,0 3px 15px #1f100a55}
-.mode-track{background:#35201599;border-color:#bd956f80}.brand-portrait{box-shadow:0 0 0 1px #d4a97766,0 0 32px #cd7f3233}
-h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
+body{background:radial-gradient(ellipse at 12% 5%,#2f888040,transparent 50%),radial-gradient(ellipse at 90% 90%,#1e575426,transparent 45%),#f6f4ee;background-attachment:fixed}
+.app{background:linear-gradient(160deg,#f6f4eef5,#fffffff5);box-shadow:0 0 90px #161c2c40;border-color:#b9c1d466}
+header,.composer{background:#ffffffdb;backdrop-filter:blur(18px);border-color:#b9c1d480}
+.bubble,.card{background:linear-gradient(135deg,#eef7f580,#ffffffcc);border-color:#b9c1d480;box-shadow:inset 0 1px 0 #2f88801a,0 8px 25px #161c2c1a}
+button{border-radius:14px;transition:background .18s,box-shadow .18s}button:hover{box-shadow:0 0 16px #1e575429}
+.entry{background:#eef0f6a6;border-color:#aedbd399;box-shadow:0 0 0 4px #1e57540a,inset 0 1px 0 #2f88801a}
+.sendknob,.modeknob{background:linear-gradient(145deg,#2f8880,#1e5754);box-shadow:inset 0 1px 1px #ffffff99,0 3px 15px #161c2c55}
+.mode-track{background:#eef0f699;border-color:#b9c1d480}.brand-portrait{box-shadow:0 0 0 1px #aedbd366,0 0 32px #1e575433}
+h1{letter-spacing:-.7px}.banner{background:#dce0ea;color:#607095}
 @media(prefers-reduced-motion:reduce){button{transition:none}}
 
 
 /* Tête seule, suspendue au-dessus de l’interface. */
 .app{margin-top:148px;height:calc(100dvh - 148px);border-radius:28px 28px 0 0;overflow:hidden}
 .floating-companion{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:10;display:flex;align-items:center;flex-direction:column;gap:8px;width:210px;pointer-events:none}
-.companion-orb{position:relative;width:96px;height:96px;min-height:96px;border-radius:50%;padding:0;overflow:visible;border:1px solid #edc493aa;background:radial-gradient(circle at 35% 20%,#bd8b56,#5c371e 75%);box-shadow:inset 0 1px 4px #ffe1b75c,0 10px 24px #25140988,0 0 32px #cd7f324d;pointer-events:auto;animation:levitate 4s ease-in-out infinite}
-.companion-orb:hover{background:radial-gradient(circle at 35% 20%,#bd8b56,#5c371e 75%)}
+.companion-orb{position:relative;width:96px;height:96px;min-height:96px;border-radius:50%;padding:0;overflow:visible;border:1px solid #aedbd3aa;background:radial-gradient(circle at 35% 20%,#7cc2b8,#eef0f6 75%);box-shadow:inset 0 1px 4px #ffffff5c,0 10px 24px #161c2c88,0 0 32px #1e57544d;pointer-events:auto;animation:levitate 4s ease-in-out infinite}
+.companion-orb:hover{background:radial-gradient(circle at 35% 20%,#7cc2b8,#eef0f6 75%)}
 .head-only{display:block;position:absolute;inset:4px;border-radius:50%;background-image:var(--mascot-sheet);background-size:430% 285%;background-position:7% 0%;background-repeat:no-repeat;overflow:hidden}
-.companion-mouth{position:absolute;left:54%;top:67%;width:10%;height:7%;border-radius:45% 45% 60% 60%;background:#29100b;border:1px solid #e6a143;transform:translate(-50%,-50%) scaleY(.12);opacity:0;transform-origin:center;pointer-events:none}
+.companion-mouth{position:absolute;left:54%;top:67%;width:10%;height:7%;border-radius:45% 45% 60% 60%;background:var(--ink);border:1px solid var(--accent);transform:translate(-50%,-50%) scaleY(.12);opacity:0;transform-origin:center;pointer-events:none}
 .companion-orb.talking .companion-mouth{opacity:1;animation:talk .38s ease-in-out infinite alternate}
-.companion-orb.talking{box-shadow:inset 0 1px 4px #ffe1b75c,0 10px 24px #25140988,0 0 44px #edaf6680}
-.companion-label{font-size:11px;line-height:1.4;color:#fff3df;background:#432716e8;border:1px solid #b0875d80;border-radius:20px;padding:5px 12px;text-align:center;max-width:210px}
+.companion-orb.talking{box-shadow:inset 0 1px 4px #ffffff5c,0 10px 24px #161c2c88,0 0 44px #7cc2b880}
+.companion-label{font-size:11px;line-height:1.4;color:#161c2c;background:#ffffffe8;border:1px solid #b9c1d480;border-radius:20px;padding:5px 12px;text-align:center;max-width:210px}
 .avatar .mascot{background-size:430% 285%;background-position:7% 0%}
 .brand-portrait{display:none}.brand-welcome{margin-bottom:12px}
 @keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -73,11 +73,11 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 .app{margin-top:0!important;height:100dvh!important;border-radius:0;overflow:hidden}
 .floating-companion{top:18px;left:calc(100% - 120px);transform:none;width:96px;display:block;z-index:40}
 .companion-orb{touch-action:none;cursor:grab;user-select:none;animation:none}
-.companion-orb:active,.companion-orb.orb-dragging{cursor:grabbing}.companion-orb.orb-dragging{box-shadow:0 16px 30px #24130999,0 0 36px #e2a76866}
+.companion-orb:active,.companion-orb.orb-dragging{cursor:grabbing}.companion-orb.orb-dragging{box-shadow:0 16px 30px #161c2c99,0 0 36px #7cc2b866}
 .companion-label{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;clip-path:inset(50%);overflow:hidden;white-space:nowrap;border:0!important}
 .entry textarea{padding-right:136px;min-height:112px}.sendknob{right:70px}.sendcue{right:132px}
-.composer-menu{position:absolute;right:10px;top:12px;width:48px;height:52px;min-height:48px;border:0;border-left:1px solid #b38a6066;border-radius:0 16px 16px 0;background:transparent;font-size:26px;padding:0;z-index:3}
-.composer-menu:hover{background:#cd7f3220}.entryhint{max-width:calc(100% - 24px)}
+.composer-menu{position:absolute;right:10px;top:12px;width:48px;height:52px;min-height:48px;border:0;border-left:1px solid #b9c1d466;border-radius:0 16px 16px 0;background:transparent;font-size:26px;padding:0;z-index:3}
+.composer-menu:hover{background:#1e575420}.entryhint{max-width:calc(100% - 24px)}
 @media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
 
 </style>
@@ -86,10 +86,10 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
 <main class="app">
 <div class="banner">DÉMONSTRATION · démarches officielles sourcées · profils fictifs · aucun envoi externe</div>
-<header><div class="avatar"><span class="mascot" id="header-mascot" data-pose="classic" role="img" aria-label="Mascotte officielle Klerio : chat-pingouin"></span></div><div><h1>Klerio</h1><div class="sub" id="topstatus">Votre espace de conversation</div></div><div class="spacer"></div></header>
+<header><div class="avatar"><span class="mascot" id="header-mascot" data-pose="classic" role="img" aria-label="Mascotte officielle Klerio : chat-pingouin"></span></div><div><h1>Klerio</h1><div class="sub" id="topstatus">Votre espace de conversation</div></div><div class="spacer"></div><a href="/espace" target="_parent" class="dash-btn" aria-label="Ouvrir le dashboard" onclick="try{if(window.parent!==window){window.parent.postMessage({klerioNavigate:'/espace'},location.origin);return false}}catch(e){}">Dashboard</a></header>
 <section class="feed" id="feed" aria-label="Conversation">
 <div class="date">Démarches du quotidien · références vérifiées le 27 octobre 2026</div>
-<article class="message"><div class="bubble"><div class="brand-welcome"><div class="brand-portrait"><span class="mascot" data-pose="classic" role="img" aria-label="Le chat-pingouin vous accueille"></span></div><div><strong>Une chose à la fois.</strong><p>Klerio vous accompagne, à votre rythme.</p></div></div>Bonjour. Qu’est-ce qui vous bloque aujourd’hui ?<p class="small">Choisissez un exemple réel de démarche. Les échanges sont simulés, sans données personnelles.</p><div class="scenario-list"><button class="scenario" data-scenario="document">Comprendre un courrier</button><button class="scenario" data-scenario="apl">Préparer ma demande CAF</button><button class="scenario" data-scenario="energy">Comprendre une facture</button><button class="scenario" data-view="examples">Tous les exemples →</button></div></div><div class="meta">Klerio · démonstration</div></article>
+<article class="message"><div class="bubble"><div class="brand-welcome"><div class="brand-portrait"><span class="mascot" data-pose="classic" role="img" aria-label="Le chat-pingouin vous accueille"></span></div><div><strong>Une chose à la fois.</strong><p>Klerio vous accompagne, à votre rythme.</p></div></div>Bonjour. Qu’est-ce qui vous bloque aujourd’hui ?<p class="small">Choisissez un exemple réel de démarche. Posez votre question librement, ou partez d’un exemple guidé.</p><div class="scenario-list"><button class="scenario" data-scenario="document">Comprendre un courrier</button><button class="scenario" data-scenario="apl">Préparer ma demande CAF</button><button class="scenario" data-scenario="energy">Comprendre une facture</button><button class="scenario" data-view="examples">Tous les exemples →</button></div></div><div class="meta">Klerio · démonstration</div></article>
 </section>
 <footer class="composer">
 <div id="voice" class="voice hidden"><strong id="voicestate">Mode vocal — démonstration</strong><p class="small">Aucun micro utilisé. Les états ci-dessous sont simulés.</p><div class="choices"><button id="mic" aria-pressed="false">Couper mon micro</button><button id="sound" aria-pressed="false">Couper la voix</button><button id="allmute">Tout couper</button><button id="endvoice">Quitter</button></div></div>
