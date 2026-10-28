@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -18,18 +17,16 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const [signedIn, setSignedIn] = useState(false);
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
-    const { data } = supabase.auth.onAuthStateChange((_e, s) => setSignedIn(!!s));
-    return () => data.subscription.unsubscribe();
-  }, []);
+  const session = lovable.auth.getSession();
+  const signedIn = !!session;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background px-4 text-center">
       <h1 className="text-5xl font-semibold tracking-tight text-foreground">Klerio</h1>
       <Button asChild>
-        <Link to={signedIn ? "/dashboard" : "/auth"}>{signedIn ? "Mon espace" : "Se connecter / S'inscrire"}</Link>
+        <Link to={signedIn ? "/dashboard" : "/auth"}>
+          {signedIn ? "Mon espace" : "Se connecter / S'inscrire"}
+        </Link>
       </Button>
     </main>
   );

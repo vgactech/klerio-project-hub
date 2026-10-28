@@ -1,6 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -22,18 +22,29 @@ function Dashboard() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  async function signOut() {
-    await queryClient.cancelQueries();
+  function signOut() {
+    queryClient.cancelQueries();
     queryClient.clear();
-    await supabase.auth.signOut();
+    lovable.auth.signOut();
     navigate({ to: "/auth", replace: true });
   }
 
   return (
-    <main className="mx-auto max-w-2xl space-y-4 px-4 py-16">
+    <main className="mx-auto max-w-2xl space-y-6 px-4 py-16">
       <h1 className="text-3xl font-semibold text-foreground">Bienvenue sur Klerio</h1>
-      <p className="text-muted-foreground">Connecté en tant que {user.email}</p>
-      <Button variant="outline" onClick={signOut}>Se déconnecter</Button>
+      <p className="text-muted-foreground">
+        Connecté en tant que{" "}
+        <span className="font-medium">{user.email ?? user.name ?? user.id}</span>
+      </p>
+      <div className="flex gap-3">
+        <Button asChild>
+          {/* /chat added to route tree — type cast until routeTree.gen.ts is regenerated */}
+          <Link to={"/chat" as "/"}>Ouvrir le chat</Link>
+        </Button>
+        <Button variant="outline" onClick={signOut}>
+          Se déconnecter
+        </Button>
+      </div>
     </main>
   );
 }

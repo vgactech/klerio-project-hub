@@ -16,14 +16,14 @@ Source de la demande : rapport Bob « Audit complet Klerio », avancement annonc
 
 ## 1. Décisions transmises pour les 6 questions
 
-| ID | Décision provisoire | Note |
-|---|---|---|
-| Q-K-01 | Garder le backend Lovable déjà relié au projet. | Uniquement pour comptes, sessions, files de travail, verrous, reprise et index reconstruisibles. |
-| Q-K-02 | Server Functions TanStack Start. | Pas de nouvelles fonctions Supabase Edge. Webhooks externes sous `/api/public/*` avec vérification de signature. |
-| Q-K-03 | SVG composé fidèle à la maquette V4. | Mascotte chat-pingouin bronze, flottante, déplaçable, accessible et non bloquante. |
-| Q-K-04 | Dépôt de mémoire client séparé dès P0. | Le dépôt applicatif `klerio` ne doit jamais contenir les fichiers ou données réelles des clients. |
-| Q-K-05 | OpenAI Vision par défaut, derrière une interface remplaçable. | Résultat OCR incertain marqué « À vérifier » ; aucune confiance inventée. |
-| Q-K-06 | Hébergement Lovable pour l’instant. | Le code doit rester compatible avec un runtime serveur sans module Node chargé dynamiquement. |
+| ID     | Décision provisoire                                           | Note                                                                                                             |
+| ------ | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Q-K-01 | Garder le backend Lovable déjà relié au projet.               | Uniquement pour comptes, sessions, files de travail, verrous, reprise et index reconstruisibles.                 |
+| Q-K-02 | Server Functions TanStack Start.                              | Pas de nouvelles fonctions Supabase Edge. Webhooks externes sous `/api/public/*` avec vérification de signature. |
+| Q-K-03 | SVG composé fidèle à la maquette V4.                          | Mascotte chat-pingouin bronze, flottante, déplaçable, accessible et non bloquante.                               |
+| Q-K-04 | Dépôt de mémoire client séparé dès P0.                        | Le dépôt applicatif `klerio` ne doit jamais contenir les fichiers ou données réelles des clients.                |
+| Q-K-05 | OpenAI Vision par défaut, derrière une interface remplaçable. | Résultat OCR incertain marqué « À vérifier » ; aucune confiance inventée.                                        |
+| Q-K-06 | Hébergement Lovable pour l’instant.                           | Le code doit rester compatible avec un runtime serveur sans module Node chargé dynamiquement.                    |
 
 ## 2. Demande de Gabriel sur les tables et GitHub
 
