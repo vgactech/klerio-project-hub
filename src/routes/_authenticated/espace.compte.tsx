@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Download } from "lucide-react";
+import { Camera, Download } from "lucide-react";
+import { initials } from "@/components/espace/klerio";
 import { api, type Doc, type MemEvent, type Reminder } from "@/lib/espace/api";
 import { Card, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
 
@@ -18,7 +19,27 @@ export const Route = createFileRoute("/_authenticated/espace/compte")({
   component: Compte,
 });
 
-type Profile = { displayName?: string; phone?: string; city?: string };
+type Profile = { displayName?: string; phone?: string; city?: string; photo?: string };
+
+/** Réduit l'image à 256 px (JPEG) pour qu'elle tienne dans le profil. */
+function resizeImage(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const s = 256;
+      const c = document.createElement("canvas");
+      c.width = s; c.height = s;
+      const ctx = c.getContext("2d");
+      if (!ctx) return reject(new Error("Image illisible"));
+      const m = Math.min(img.width, img.height);
+      ctx.drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, s, s);
+      URL.revokeObjectURL(img.src);
+      resolve(c.toDataURL("image/jpeg", 0.85));
+    };
+    img.onerror = () => reject(new Error("Image illisible"));
+    img.src = URL.createObjectURL(file);
+  });
+}
 
 function Compte() {
   const { user } = Route.useRouteContext();
@@ -30,6 +51,19 @@ function Compte() {
   useEffect(() => {
     api<{ data: Profile }>("/api/espace/profile").then((r) => setP(r.data ?? {})).catch((e: Error) => (setError(e.message), setP({})));
   }, []);
+
+  async function savePhoto(file: File | null) {
+    try {
+      const photo = file ? await resizeImage(file) : undefined;
+      const next = { ...(p ?? {}), photo };
+      await api("/api/espace/profile", { method: "PUT", body: JSON.stringify({ data: next }) });
+      setP(next);
+      setMsg(file ? "Photo enregistrée." : "Photo retirée.");
+      window.dispatchEvent(new CustomEvent("klerio-photo", { detail: photo ?? null }));
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
 
   async function exportAll() {
     setBusy(true);
@@ -58,6 +92,18 @@ function Compte() {
       <ErrorNote error={error} />
       <Card className="max-w-xl">
         <h2 className="mb-3 font-bold">Profil</h2>
+        <div className="mb-4 flex items-center gap-4">
+          <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-full bg-brand-700 text-2xl font-bold text-white">
+            {p?.photo ? <img src={p.photo} alt="Photo de profil" className="h-full w-full object-cover" /> : initials(p?.displayName ?? user.name, user.email)}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <label className={`${btnSecondary} cursor-pointer`}>
+              <Camera className="h-4 w-4" aria-hidden="true" /> {p?.photo ? "Changer la photo" : "Ajouter une photo"}
+              <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) void savePhoto(f); }} />
+            </label>
+            {p?.photo && <button type="button" className={btnSecondary} onClick={() => void savePhoto(null)}>Retirer</button>}
+          </div>
+        </div>
         <form className="grid gap-3" onSubmit={(e) => {
           e.preventDefault();
           if (!p) return;
