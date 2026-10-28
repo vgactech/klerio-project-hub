@@ -54,7 +54,7 @@ function Compte() {
 
   return (
     <div className="space-y-6">
-      <PageHeader eyebrow="Compte" title="Mon compte" description={`Connecté en tant que ${user.email ?? user.id}`} />
+      <PageHeader eyebrow="Mon compte" title="Mon compte" description={`Connecté en tant que ${user.email ?? user.id}`} />
       <ErrorNote error={error} />
       <Card className="max-w-xl">
         <h2 className="mb-3 font-bold">Profil</h2>

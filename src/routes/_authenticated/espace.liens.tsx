@@ -23,7 +23,7 @@ function Liens() {
   for (const l of OFFICIAL_LINKS) groups.set(l.category, [...(groups.get(l.category) ?? []), l]);
   return (
     <div className="space-y-4">
-      <PageHeader eyebrow="Sécurité" title="Liens officiels" description="Tapez vous-même ces adresses ou cliquez ici : ce sont les seuls sites officiels vérifiés." />
+      <PageHeader eyebrow="Base vérifiée" title="Les sites officiels, sans détour." description="Klerio ne génère jamais de lien. Cette liste est contrôlée et mise à jour. En cas de doute, tapez l'adresse vous-même dans votre navigateur." />
       <div className="rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm text-brand-900">
         <p className="flex items-start gap-2"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" />Un lien reçu par SMS ou e-mail n'est jamais prioritaire sur cette liste. Ne communiquez jamais vos mots de passe, codes SMS ou coordonnées bancaires complètes.</p>
       </div>

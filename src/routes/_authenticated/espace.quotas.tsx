@@ -31,7 +31,7 @@ function Quotas() {
   ];
   return (
     <div>
-      <PageHeader eyebrow="Quotas" title="Mes quotas" description="Forfait gratuit. Les compteurs sont calculés à partir de votre dossier GitHub." />
+      <PageHeader eyebrow="Transparence" title="Mes quotas, en détail." description="Forfait Gratuit. Les quotas inclus et les crédits sont deux compteurs séparés. Rien ne se déclenche sans votre accord." />
       <ErrorNote error={error} />
       <div className="grid gap-3">
         {rows.map((r) => (
