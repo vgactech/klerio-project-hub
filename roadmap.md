@@ -11,3 +11,7 @@
 - [ ] Publier
 - [ ] Modèle le moins cher pour chaque appel IA
 - [ ] Mémoire des conversations précédentes
+- [ ] Mémoire temps réel sur GitHub (texte, prompts, transcriptions vocales, explications) rechargée à chaque conversation
+- [ ] Jetons utilisés affichés sur chaque message
+- [ ] Mascotte : lueur verte quand Klerio parle, bleue quand le client parle
+- [ ] Relire rapports + cahier des charges
