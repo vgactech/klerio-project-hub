@@ -3,13 +3,15 @@ import { useEffect, useRef } from "react";
 import { lovable } from "@/integrations/lovable";
 import { useLiveVoice, type LiveEvent } from "@/hooks/use-live-voice";
 
-type Turn = { role: "user" | "assistant"; content: string };
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
 type VoiceCaption = (role: "user" | "assistant", text: string) => void;
 
 declare global {
   interface Window {
-    klerioSend?: (messages: Turn[]) => Promise<{ reply?: string; error?: string; model?: string }>;
+    klerioSend?: (text: string) => Promise<{ reply?: string; error?: string; model?: string; tokens?: { input?: number; output?: number; total?: number }; saved?: boolean }>;
+    klerioMemory?: () => Promise<{ events?: { kind: string; content: string; model?: string; at: string; tokens?: { total?: number } }[]; error?: string }>;
+    klerioLogVoice?: (role: "user" | "assistant", text: string) => void;
+    klerioVoiceEvent?: (type: string) => void;
     klerioVoice?: {
       start: () => void;
       stop: () => void;
@@ -51,7 +53,11 @@ function ChatRoute() {
   const voice = useLiveVoice({
     onEvent: (event) => {
       const c = captionFrom(event);
-      if (c) window.klerioVoiceCaption?.(c.role, c.text);
+      window.klerioVoiceEvent?.(event.type);
+      if (c) {
+        window.klerioVoiceCaption?.(c.role, c.text);
+        window.klerioLogVoice?.(c.role, c.text);
+      }
     },
   });
   const voiceRef = useRef(voice);
@@ -74,15 +80,30 @@ function ChatRoute() {
       resume: () => voiceRef.current.resumePlayback(),
       model: LIVE_MODEL,
     };
-    window.klerioSend = async (messages) => {
-      const token = lovable.auth.getSession()?.access_token ?? "";
+    const auth = () => ({ Authorization: `Bearer ${lovable.auth.getSession()?.access_token ?? ""}` });
+    window.klerioMemory = async () => {
+      try {
+        const res = await fetch("/api/memory", { headers: auth() });
+        return (await res.json()) as { events?: never[]; error?: string };
+      } catch {
+        return { events: [], error: "Mémoire injoignable" };
+      }
+    };
+    window.klerioLogVoice = (role, text) => {
+      void fetch("/api/memory", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...auth() },
+        body: JSON.stringify({ role, content: text, model: LIVE_MODEL }),
+      }).catch(() => {});
+    };
+    window.klerioSend = async (text) => {
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-          body: JSON.stringify({ messages }),
+          headers: { "Content-Type": "application/json", ...auth() },
+          body: JSON.stringify({ text }),
         });
-        const data = (await res.json()) as { reply?: string; error?: string; model?: string };
+        const data = (await res.json()) as Awaited<ReturnType<NonNullable<Window["klerioSend"]>>>;
         return res.ok ? data : { error: data.error ?? `Erreur ${res.status}` };
       } catch {
         return { error: "Connexion impossible. Réessaie dans un instant." };
@@ -91,6 +112,8 @@ function ChatRoute() {
     return () => {
       delete window.klerioSend;
       delete window.klerioVoice;
+      delete window.klerioMemory;
+      delete window.klerioLogVoice;
     };
   }, []);
 
