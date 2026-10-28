@@ -138,7 +138,7 @@ export async function appendEvents(ownerId: string, events: MemoryEvent[]) {
 }
 
 /** Recharge les derniers échanges du client, tous sujets confondus, dans l'ordre chronologique. */
-export async function loadRecent(ownerId: string, limit = 40): Promise<MemoryEvent[]> {
+export async function loadRecent(ownerId: string, limit = 40, maxFiles = 6): Promise<MemoryEvent[]> {
   await ensureBranch();
   const tree = await gh(`git/trees/${BRANCH}?recursive=1`);
   if (!tree.ok) throw new Error(`GitHub arbre ${tree.status}: ${await tree.text()}`);
@@ -146,7 +146,7 @@ export async function loadRecent(ownerId: string, limit = 40): Promise<MemoryEve
   const files = ((await tree.json()) as { tree: { path: string; type: string }[] }).tree
     .filter((f) => f.type === "blob" && f.path.startsWith(prefix) && f.path.endsWith(".jsonl"))
     .sort((a, b) => a.path.slice(-16).localeCompare(b.path.slice(-16)))
-    .slice(-6);
+      .slice(-maxFiles);
   const out: MemoryEvent[] = [];
   await Promise.all(
     files.map(async (f) => {

@@ -10,7 +10,8 @@ export const Route = createFileRoute("/api/memory")({
         const uid = await verifyUserId(request);
         if (!uid) return Response.json({ error: "Session expirée, reconnecte-toi." }, { status: 401 });
         try {
-          const events = await loadRecent(safeOwnerId(uid));
+          const all = new URL(request.url).searchParams.get("all") === "1";
+          const events = all ? await loadRecent(safeOwnerId(uid), 1000, 60) : await loadRecent(safeOwnerId(uid));
           return Response.json({ events });
         } catch (e) {
           return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible", events: [] }, { status: 502 });
