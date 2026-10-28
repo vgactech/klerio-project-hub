@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, type FormEvent } from "react";
 import { toast } from "sonner";
 import { lovable } from "@/integrations/lovable";
