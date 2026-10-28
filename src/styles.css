@@ -4,18 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition — Klerio Bronze Theme
- *
- * Palette:
- *   --background   #6B4427  dark walnut brown
- *   --card         #59371F  deeper brown
- *   --foreground   #FFF3DF  warm ivory
- *   --accent       #CD7F32  bronze gold
- *   --muted        #E0C6AA  sand muted
- *
- * All colors use oklch format as required by Tailwind v4.
- */
+/* KLERIO — shared palette from the approved chat and client-space references. */
 
 @theme {
   --color-ink-50: #f7f8fb; --color-ink-100: #eef0f6; --color-ink-200: #dce0ea; --color-ink-300: #b9c1d4; --color-ink-400: #8894b3;
@@ -74,97 +63,42 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* ─── Bronze theme — unique (no dark variant needed, theme is always dark-warm) ─── */
-:root {
+/* Keep the approved light palette, regardless of the device theme. */
+:root, .dark {
   --radius: 0.75rem;
-
-  /* #6B4427 — walnut bg */
-  --background: oklch(0.38 0.075 49);
-  /* #FFF3DF — ivory ink */
-  --foreground: oklch(0.97 0.028 80);
-
-  /* #59371F — deeper card */
-  --card: oklch(0.32 0.075 49);
-  --card-foreground: oklch(0.97 0.028 80);
-
-  --popover: oklch(0.32 0.075 49);
-  --popover-foreground: oklch(0.97 0.028 80);
-
-  /* #CD7F32 — bronze accent as primary */
-  --primary: oklch(0.65 0.12 58);
-  --primary-foreground: oklch(0.18 0.04 49);
-
-  /* slightly lighter brown for secondary surfaces */
-  --secondary: oklch(0.44 0.075 49);
-  --secondary-foreground: oklch(0.97 0.028 80);
-
-  /* #E0C6AA — sandy muted */
-  --muted: oklch(0.44 0.04 60);
-  --muted-foreground: oklch(0.83 0.045 68);
-
-  /* #CD7F32 — bronze accent */
-  --accent: oklch(0.65 0.12 58);
-  --accent-foreground: oklch(0.18 0.04 49);
-
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.97 0.028 80);
-
-  /* subtle warm border */
-  --border: oklch(1 0 0 / 15%);
-  --input: oklch(1 0 0 / 20%);
-  --ring: oklch(0.65 0.12 58);
-
-  --chart-1: oklch(0.65 0.12 58);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  --sidebar: oklch(0.32 0.075 49);
-  --sidebar-foreground: oklch(0.97 0.028 80);
-  --sidebar-primary: oklch(0.65 0.12 58);
-  --sidebar-primary-foreground: oklch(0.18 0.04 49);
-  --sidebar-accent: oklch(0.44 0.075 49);
-  --sidebar-accent-foreground: oklch(0.97 0.028 80);
-  --sidebar-border: oklch(1 0 0 / 15%);
-  --sidebar-ring: oklch(0.65 0.12 58);
-}
-
-/* Keep .dark identical — design is intentionally always warm/dark */
-.dark {
-  --radius: 0.75rem;
-  --background: oklch(0.38 0.075 49);
-  --foreground: oklch(0.97 0.028 80);
-  --card: oklch(0.32 0.075 49);
-  --card-foreground: oklch(0.97 0.028 80);
-  --popover: oklch(0.32 0.075 49);
-  --popover-foreground: oklch(0.97 0.028 80);
-  --primary: oklch(0.65 0.12 58);
-  --primary-foreground: oklch(0.18 0.04 49);
-  --secondary: oklch(0.44 0.075 49);
-  --secondary-foreground: oklch(0.97 0.028 80);
-  --muted: oklch(0.44 0.04 60);
-  --muted-foreground: oklch(0.83 0.045 68);
-  --accent: oklch(0.65 0.12 58);
-  --accent-foreground: oklch(0.18 0.04 49);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.97 0.028 80);
-  --border: oklch(1 0 0 / 15%);
-  --input: oklch(1 0 0 / 20%);
-  --ring: oklch(0.65 0.12 58);
-  --chart-1: oklch(0.65 0.12 58);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.445);
-  --sidebar: oklch(0.32 0.075 49);
-  --sidebar-foreground: oklch(0.97 0.028 80);
-  --sidebar-primary: oklch(0.65 0.12 58);
-  --sidebar-primary-foreground: oklch(0.18 0.04 49);
-  --sidebar-accent: oklch(0.44 0.075 49);
-  --sidebar-accent-foreground: oklch(0.97 0.028 80);
-  --sidebar-border: oklch(1 0 0 / 15%);
-  --sidebar-ring: oklch(0.65 0.12 58);
+  color-scheme: light;
+  --background: var(--color-paper);
+  --foreground: var(--color-ink-900);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--color-ink-900);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: var(--color-brand-700);
+  --primary-foreground: var(--card);
+  --secondary: var(--color-brand-50);
+  --secondary-foreground: var(--color-brand-700);
+  --muted: var(--color-ink-100);
+  --muted-foreground: var(--color-ink-500);
+  --accent: var(--color-accent-500);
+  --accent-foreground: var(--card);
+  --destructive: var(--color-danger-600);
+  --destructive-foreground: var(--card);
+  --border: var(--color-ink-200);
+  --input: var(--color-ink-300);
+  --ring: var(--color-brand-500);
+  --chart-1: var(--color-brand-700);
+  --chart-2: var(--color-brand-400);
+  --chart-3: var(--color-ink-500);
+  --chart-4: var(--color-accent-500);
+  --chart-5: var(--color-accent-300);
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--secondary-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @layer base {
