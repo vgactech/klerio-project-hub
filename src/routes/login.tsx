@@ -39,7 +39,16 @@ function LoginPage() {
 
   useEffect(() => {
     if (lovable.auth.getSession()) return go();
-    void lovable.auth.syncFromSupabase().then((s) => s && go());
+    const hash = new URLSearchParams(window.location.hash.slice(1));
+    const at = hash.get("access_token");
+    const rt = hash.get("refresh_token");
+    if (at && rt) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      void supabase.auth.setSession({ access_token: at, refresh_token: rt }).then(({ error: err }) => {
+        if (err) setError("Connexion Google impossible, réessayez.");
+        else void lovable.auth.syncFromSupabase().then((s) => s && go());
+      });
+    } else void lovable.auth.syncFromSupabase().then((s) => s && go());
     const { data } = supabase.auth.onAuthStateChange((_e, session) => {
       if (session) void lovable.auth.syncFromSupabase().then((s) => s && go());
     });
