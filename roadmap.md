@@ -27,3 +27,4 @@
 - [ ] Quotas et budgets de jetons
 - [x] Vocal : accès à la mémoire GitHub au début de chaque appel
 - [x] Mascotte : lueur selon le son réel
+- [ ] Intégrer le dashboard du dépôt Klerio-26/KLERIO + bouton Dashboard en haut à droite
