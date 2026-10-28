@@ -7,7 +7,7 @@
 - [x] Ajouter la consigne Doppler limitée au projet Klerio.
 - [ ] Confirmer la présence des changements sur GitHub `main` — bloqué : statut de synchronisation non visible depuis cette session.
 - [ ] Vocal réel en direct avec l'IA (panneau visible seulement après glissement sur Vocal)
-- [ ] Diode verte + "Vous · HH:MM · modèle" prouvant la connexion IA réelle
+- [x] Diode verte + "Vous · HH:MM · modèle" prouvant la connexion IA réelle
 - [ ] Publier
 - [x] Modèle le moins cher pour chaque appel IA
 - [x] Mémoire des conversations précédentes
@@ -33,4 +33,6 @@
 - [ ] Espace : notifications push des rappels
 - [x] Afficher dans le chat tout ce qui est dit : déjà en place (transcriptions vocales + texte affichés dans la conversation).
 - [x] Klerio pose une question quand il manque une information (testé : « je veux faire une demande » → question de précision).
-- [ ] Indicateur de connexion (diode verte + nom du modèle) actif pour tous les modèles, vocal et texte.
+- [x] Indicateur de connexion (diode verte + nom du modèle) actif pour tous les modèles, vocal et texte.
+- [x] Recherche internet automatique avec liens (texte) via Firecrawl
+- [ ] Recherche internet en vocal
