@@ -1,5 +1,5 @@
 # Klerio — Cahier des charges produit, technique et UI
-Version 1.5 — 28 octobre 2026 — Statut : proposition de référence pour réalisation.
+Version 1.6 — 28 octobre 2026 — Statut : proposition de référence pour réalisation.
 Dépôt : vgactech/klerio-project-hub. Périmètre de cette livraison : spécifications et maquette UI, sans activation des services IA, voix, OCR ou mémoire.
 
 ## 1. Vision et résultat attendu
@@ -672,7 +672,7 @@ Cette décision du propriétaire remplace toutes les consignes antérieures inco
 ### Identité et présence
 - Mascotte officielle : le chat-pingouin fourni par le propriétaire, conservé visuellement. Les illustrations réalistes constituent la référence principale ; les variantes pixel restent secondaires.
 - Thème de toute l’application : bronze, moderne et futuriste. Palette de base : fond #6B4427, surface #59371F, texte #FFF3DF, texte secondaire #E0C6AA et accent #CD7F32. Les dégradés et transparences doivent faire l’objet d’une vérification de contraste sur le rendu effectif.
-- Afficher uniquement la tête dans une bulle ronde suspendue au-dessus du chat. Une place dédiée évite de masquer l’en-tête, les messages et les commandes.
+- Afficher uniquement la tête dans une bulle ronde en superposition sur l’interface, librement positionnable par l’utilisateur. Aucun emplacement ni bande vide n’est réservé au-dessus du chat.
 - Suspension légère, halo bronze et ombre douce. Les effets restent discrets et respectent la préférence système de réduction des animations.
 - La tête figure aussi comme petit avatar ; le corps complet peut apparaître dans la galerie d’identité, sans devenir un élément permanent du chat.
 
@@ -691,7 +691,28 @@ La syntaxe JavaScript a été vérifiée ; la validation visuelle du cadrage de 
 
 ### Recette complémentaire
 - AT-44 : la mascotte et le bronze sont cohérents dans les surfaces principales et secondaires.
-- AT-45 : la tête seule flotte au-dessus du chat et ne masque aucune action essentielle.
+- AT-45 : la tête seule flotte en superposition sur l’interface, se déplace librement et peut être repositionnée pour dégager les commandes.
 - AT-46 : le test d’animation est explicitement sans audio et s’arrête sur demande.
 - AT-47 : une fois la voix branchée, bouche et état de parole s’arrêtent avec l’audio, notamment lors d’une interruption.
 - AT-48 : réduction des animations, navigation clavier et petits écrans restent utilisables.
+
+
+## 34. Bulle libre et commandes dans la saisie — 28 octobre 2026
+
+Cette révision remplace la position fixe en haut et le bouton Mascotte dans l’en-tête.
+- Supprimer le bouton Mascotte de l’écran principal. La galerie et les réglages de la mascotte se trouvent dans le menu.
+- Déplacer le bouton menu dans la zone de saisie, au bord droit ; le bouton d’envoi intégré se situe immédiatement à sa gauche et conserve son geste d’envoi vers la gauche.
+- Le bouton menu est de type non soumission : cliquer dessus ne doit jamais envoyer le brouillon.
+- La boule est une couche flottante au-dessus de l’interface, sans bande supérieure réservée. L’utilisateur la positionne à la souris ou au doigt, horizontalement et verticalement.
+- Distinguer déplacement et clic : déplacer la boule ne déclenche pas le test vocal. Un glissement interrompu restaure sa position précédente.
+- Borner la position à la fenêtre visible. Conserver la position en coordonnées relatives sur cet appareil, puis l’adapter à un redimensionnement.
+- Au clavier : flèches pour déplacer, Maj pour affiner, touche Début pour réinitialiser. Le menu Mascotte propose aussi une réinitialisation.
+- Retirer le badge de démonstration permanent sous la boule ; conserver un état accessible et le bouton de test explicite dans le menu. La voix réelle demeure non connectée.
+- Maintenir les préférences de réduction des animations et les libellés accessibles.
+- La maquette possède des contrôles unitaires de déplacement avec géométrie simulée ; un essai visuel et tactile en navigateur reste nécessaire.
+
+Recette :
+- AT-49 : aucun bouton Mascotte isolé dans l’en-tête ; option disponible dans le menu.
+- AT-50 : le menu est au bord droit de la saisie et ne soumet jamais le formulaire.
+- AT-51 : glisser la boule modifie ses coordonnées sur les deux axes sans déclencher la parole.
+- AT-52 : annulation, limites de fenêtre, mémorisation locale et réinitialisation fonctionnent.
