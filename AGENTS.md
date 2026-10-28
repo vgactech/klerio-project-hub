@@ -16,3 +16,4 @@
 - Read `docs/handoff/BOB_IDE_BRIEF_001.md` before changing storage, AI, logging or chat code; it is the current external IDE handoff.
 - Keep real client files and data out of this application repository; client memory belongs in isolated private storage repositories.
 - Log application prompts, actions and available explanations without secrets; never claim private model reasoning was captured.
+- Client memory is stored on the `klerio-memory` orphan branch of the private GitHub repo (one folder per auth user id, append-only JSONL); never write client data to `main`, which is the Lovable-synced code branch.

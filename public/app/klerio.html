@@ -81,7 +81,7 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 @media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
 
 </style>
-<style>.bubble{white-space:pre-line}.live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#2ecc71;box-shadow:0 0 6px #2ecc71;margin-right:6px;vertical-align:middle}.live-dot.off{background:#8a8a8a;box-shadow:none}.live-dot.wait{background:#f1c40f;box-shadow:0 0 6px #f1c40f}</style></head>
+<style>.bubble{white-space:pre-line}.live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#2ecc71;box-shadow:0 0 6px #2ecc71;margin-right:6px;vertical-align:middle}.companion-orb.glow-green{box-shadow:0 0 0 4px #2ecc71aa,0 0 38px 10px #2ecc71cc!important;transition:box-shadow .2s}.companion-orb.glow-blue{box-shadow:0 0 0 4px #3498dbaa,0 0 38px 10px #3498dbcc!important;transition:box-shadow .2s}.live-dot.off{background:#8a8a8a;box-shadow:none}.live-dot.wait{background:#f1c40f;box-shadow:0 0 6px #f1c40f}</style></head>
 <body data-theme="dark">
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
 <main class="app">
@@ -257,47 +257,63 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 (function(){
   var P=window.parent;if(!P||P===window)return;
   var $=function(id){return document.getElementById(id)};
-  var KEY='klerio_hist';var hist=[];try{hist=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){hist=[]}function save(){try{localStorage.setItem(KEY,JSON.stringify(hist.slice(-60)))}catch(e){}}var voiceOn=false,micMuted=false,soundOff=false;
-  function hm(){return new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
-  function say(t,user,model){addText(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last&&model){last.innerHTML='<span class="live-dot" title="IA connectée"></span>'+(user?'Vous':'Klerio')+' · '+hm()+' · '+model;}}
+  var voiceOn=false,micMuted=false,soundOff=false,glowTimer;
+  function hm(d){return (d?new Date(d):new Date()).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
+  function meta(user,model,tokens,at){return '<span class="live-dot" title="IA connectée"></span>'+(user?'Vous':'Klerio')+' · '+hm(at)+' · '+(model||'')+(tokens?' · '+tokens+' jetons':'');}
+  function say(t,user,model,tokens,at){addText(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.innerHTML=meta(user,model,tokens,at);return last;}
   function setStatus(html){var st=$('status');if(st)st.innerHTML=html;}
-  if(hist.length){addCard('<p class="small">Conversation précédente retrouvée · Klerio s’en souvient.</p><button id="forget">Effacer la mémoire</button>');hist.forEach(function(h){say(h.content,h.role==='user',h.model||'mémoire')});document.getElementById('forget').onclick=function(){hist=[];save();location.reload();};}
-  var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · exemples guidés disponibles';
-  setStatus('<span class="live-dot off"></span>IA prête · en attente du premier échange');
-  // Vocal : uniquement en glissant le bouton (pas par simple clic sur le mot « Vocal »)
+  function glow(color,ms){var o=$('companion-orb');if(!o)return;clearTimeout(glowTimer);o.classList.remove('glow-green','glow-blue');if(color)o.classList.add('glow-'+color);if(ms)glowTimer=setTimeout(function(){o.classList.remove('glow-green','glow-blue')},ms);}
+  var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · mémoire sauvegardée sur GitHub';
+  setStatus('<span class="live-dot wait"></span>Récupération de votre mémoire GitHub…');
+  // Contexte précédent rechargé automatiquement depuis GitHub
+  function loadMemory(){if(!P.klerioMemory)return setTimeout(loadMemory,200);P.klerioMemory().then(function(r){
+    var ev=r.events||[];
+    if(r.error){setStatus('<span class="live-dot off"></span>Mémoire GitHub indisponible : '+r.error);return;}
+    if(ev.length){addCard('<p class="small">Conversation précédente retrouvée sur GitHub · Klerio s’en souvient automatiquement.</p>');if(ev.length)P.klerioTopic=ev[ev.length-1].topic;ev.forEach(function(e){say(e.content,/\.user$/.test(e.kind),e.model,e.tokens&&e.tokens.total,e.at)});}
+    setStatus('<span class="live-dot"></span>Mémoire GitHub chargée · '+ev.length+' messages');
+  });}
+  loadMemory();
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.mode-end.left');if(b){e.preventDefault();e.stopImmediatePropagation();notify('Glissez le bouton jusqu’à « Vocal » pour activer le micro.');}},true);
   var vp=document.querySelector('#voice p.small');if(vp)vp.textContent='Le micro s’active quand vous glissez sur Vocal. Parlez naturellement, Klerio vous répond à voix haute.';
   function voiceText(){$('mic').textContent=micMuted?'Réactiver mon micro':'Couper mon micro';$('sound').textContent=soundOff?'Réactiver la voix':'Couper la voix';}
   function audioEl(){return P.document.querySelector('audio')}
   function startVoice(){if(voiceOn||!P.klerioVoice)return;voiceOn=true;micMuted=false;soundOff=false;var a=audioEl();if(a)a.muted=false;voiceText();$('voicestate').innerHTML='<span class="live-dot wait"></span>Connexion au micro et à l’IA…';P.klerioVoice.start();}
-  function stopVoice(){if(!voiceOn)return;voiceOn=false;P.klerioVoice&&P.klerioVoice.stop();}
+  function stopVoice(){if(!voiceOn)return;voiceOn=false;glow(null);P.klerioVoice&&P.klerioVoice.stop();}
   var baseSet=setMode;
   setMode=function(n){baseSet(n);if(n===0)startVoice();else stopVoice();};
   $('mic').onclick=function(){micMuted=!micMuted;P.klerioVoice&&P.klerioVoice.setMuted(micMuted);voiceText();};
   $('sound').onclick=function(){soundOff=!soundOff;var a=audioEl();if(a)a.muted=soundOff;voiceText();};
   $('allmute').onclick=function(){micMuted=true;soundOff=true;P.klerioVoice&&P.klerioVoice.setMuted(true);var a=audioEl();if(a)a.muted=true;voiceText();};
   $('endvoice').onclick=function(){setMode(1);};
+  // Lueur : bleu quand le client parle, vert quand Klerio parle
+  P.klerioVoiceEvent=function(t){
+    if(t==='input_audio_buffer.speech_started')glow('blue');
+    else if(t==='input_audio_buffer.speech_stopped')glow(null);
+    else if(t==='output_audio_buffer.started'||t==='response.output_audio.delta'||t==='response.audio.delta'||t==='response.created')glow('green');
+    else if(t==='output_audio_buffer.stopped'||t==='output_audio_buffer.cleared'||t==='response.done')glow(null,0);
+  };
   P.klerioVoiceUI=function(s){var vs=$('voicestate');if(!vs)return;var model=(P.klerioVoice&&P.klerioVoice.model)||'';
-    if(s.error){vs.innerHTML='<span class="live-dot off"></span>Vocal indisponible : '+s.error;if(voiceOn){voiceOn=false;}return;}
+    if(s.error){vs.innerHTML='<span class="live-dot off"></span>Vocal indisponible : '+s.error;voiceOn=false;glow(null);return;}
     if(s.status==='connecting')vs.innerHTML='<span class="live-dot wait"></span>Connexion au micro et à l’IA…';
-    else if(s.status==='connected'){vs.innerHTML='<span class="live-dot"></span>Vocal en direct · '+model+(s.muted?' · micro coupé':'');setStatus('<span class="live-dot"></span>Vocal connecté · '+model);}
+    else if(s.status==='connected'){vs.innerHTML='<span class="live-dot"></span>Vocal en direct · '+model+(s.muted?' · micro coupé':'');setStatus('<span class="live-dot"></span>Vocal connecté · '+model+' · sauvegarde GitHub');}
     else if(s.status==='stopping')vs.textContent='Fin de l’appel…';
-    else if(s.status==='closed'){vs.innerHTML='<span class="live-dot off"></span>Appel terminé';voiceOn=false;}
+    else if(s.status==='closed'){vs.innerHTML='<span class="live-dot off"></span>Appel terminé';voiceOn=false;glow(null);}
     if(s.playbackBlocked&&!$('playvoice')){var b=document.createElement('button');b.id='playvoice';b.textContent='Activer le son';b.onclick=function(){P.klerioVoice.resume();b.remove();};vs.parentNode.querySelector('.choices').prepend(b);}
   };
-  P.klerioVoiceCaption=function(role,text){var model=(P.klerioVoice&&P.klerioVoice.model)||'';say(text,role==='user',model);hist.push({role:role,content:text,model:model});save();};
+  P.klerioVoiceCaption=function(role,text){say(text,role==='user',(P.klerioVoice&&P.klerioVoice.model)||'');};
   var prev=$('form').onsubmit;
   $('form').onsubmit=function(e){
     e.preventDefault();var ta=$('prompt');var t=ta.value.trim();
     if(!t||!P.klerioSend){return prev&&prev(e);}
-    ta.value='';addText(t,true);var userMeta=[].slice.call(document.querySelectorAll('#feed .meta')).pop();hist.push({role:'user',content:t});save();
+    ta.value='';var userMeta=say(t,true,'');glow('blue');
     var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble">Klerio réfléchit…</div>';$('feed').append(w);
     setStatus('<span class="live-dot wait"></span>Envoi à l’IA…');
-    P.klerioSend(hist.map(function(h){return{role:h.role,content:h.content}})).then(function(r){w.remove();
-      if(r.error){addText('⚠️ '+r.error);hist.pop();save();setStatus('<span class="live-dot off"></span>IA injoignable : '+r.error);return;}
-      if(userMeta)userMeta.innerHTML='<span class="live-dot"></span>Vous · '+hm()+' · '+r.model;hist[hist.length-1].model=r.model;
-      hist.push({role:'assistant',content:r.reply,model:r.model});save();say(r.reply,false,r.model);
-      setStatus('<span class="live-dot"></span>IA connectée · '+r.model);});
+    P.klerioSend(t).then(function(r){w.remove();
+      if(r.error){addText('⚠️ '+r.error);glow(null);setStatus('<span class="live-dot off"></span>IA injoignable : '+r.error);return;}
+      var tk=r.tokens||{};
+      if(userMeta)userMeta.innerHTML=meta(true,r.model,tk.input);
+      say(r.reply,false,r.model,tk.output);glow('green',Math.min(8000,1500+r.reply.length*30));
+      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'sauvegardé sur GitHub':'⚠️ sauvegarde GitHub en échec'));});
   };
 })();
 </script></body></html>

@@ -9,9 +9,19 @@
 - [ ] Vocal réel en direct avec l'IA (panneau visible seulement après glissement sur Vocal)
 - [ ] Diode verte + "Vous · HH:MM · modèle" prouvant la connexion IA réelle
 - [ ] Publier
-- [ ] Modèle le moins cher pour chaque appel IA
-- [ ] Mémoire des conversations précédentes
-- [ ] Mémoire temps réel sur GitHub (texte, prompts, transcriptions vocales, explications) rechargée à chaque conversation
-- [ ] Jetons utilisés affichés sur chaque message
-- [ ] Mascotte : lueur verte quand Klerio parle, bleue quand le client parle
-- [ ] Relire rapports + cahier des charges
+- [x] Modèle le moins cher pour chaque appel IA
+- [x] Mémoire des conversations précédentes
+- [x] Mémoire temps réel sur GitHub (texte, prompts, transcriptions vocales, explications) rechargée à chaque conversation
+- [x] Jetons utilisés affichés sur chaque message
+- [x] Mascotte : lueur verte quand Klerio parle, bleue quand le client parle
+- [x] Relire rapports + cahier des charges
+- [x] Mémoire GitHub classée par sujet (texte + vocal + prompts + explications, horodaté)
+
+## Écarts relevés dans le cahier des charges (à faire)
+- [ ] Contexte précédent transmis aussi au vocal en direct
+- [ ] Consentement avant journalisation ; chiffrement des données sensibles
+- [ ] Journal d'exécution complet (phases, identifiants, preuve de sauvegarde)
+- [ ] Import réel de documents, scanner + lecture de texte, classement persistant
+- [ ] Réponses affichées au fil de l'eau + bouton stop
+- [ ] Recherche dans toute la mémoire ; export / effacement des données
+- [ ] Quotas et budgets de jetons
