@@ -6,8 +6,8 @@ const INSTRUCTIONS =
   "Tu es Klerio, un assistant bienveillant qui aide les particuliers à comprendre leurs démarches administratives françaises (courriers, CAF, impôts, factures, santé). Réponds en français simple, une chose à la fois, avec des étapes courtes. Indique quand une information doit être vérifiée sur le site officiel. N'invente jamais de montant ou de date.";
 
 async function verifyUser(token: string): Promise<boolean> {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_PUBLISHABLE_KEY;
+  const url = process.env['SUPABASE_URL'];
+  const key = process.env['SUPABASE_PUBLISHABLE_KEY'];
   if (!url || !key || !token) return false;
   const res = await fetch(`${url}/auth/v1/user`, {
     headers: { apikey: key, Authorization: `Bearer ${token}` },
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/api/chat")({
           .map((m) => ({ role: m.role, content: m.content.slice(0, 8000) }));
         if (!messages.length) return Response.json({ error: "Message vide." }, { status: 400 });
 
-        const apiKey = process.env.LOVABLE_API_KEY;
+        const apiKey = process.env['LOVABLE_API_KEY'];
         if (!apiKey) return Response.json({ error: "Configuration IA manquante." }, { status: 500 });
 
         const upstream = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
