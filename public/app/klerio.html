@@ -259,7 +259,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   var $=function(id){return document.getElementById(id)};
   var voiceOn=false,micMuted=false,soundOff=false,glowTimer;
   function hm(d){return (d?new Date(d):new Date()).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
-  function meta(user,model,tokens,at){return '<span class="live-dot" title="IA connectée"></span>'+(user?'Vous':'Klerio')+' · '+hm(at)+' · '+(model||'')+(tokens?' · '+tokens+' jetons':'');}
+  function meta(user,model,tokens,at){return '<span class="live-dot" title="IA connectée"></span>'+(user?'Vous':'Klerio')+' · '+hm(at)+' · '+(model||'')+(tokens?' · '+(typeof tokens==='string'?tokens:tokens+' jetons'):'');}
   function say(t,user,model,tokens,at){addText(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.innerHTML=meta(user,model,tokens,at);return last;}
   function setStatus(html){var st=$('status');if(st)st.innerHTML=html;}
   function glow(color,ms){var o=$('companion-orb');if(!o)return;clearTimeout(glowTimer);o.classList.remove('glow-green','glow-blue');if(color)o.classList.add('glow-'+color);if(ms)glowTimer=setTimeout(function(){o.classList.remove('glow-green','glow-blue')},ms);}
@@ -303,7 +303,9 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     else if(s.status==='closed'){vs.innerHTML='<span class="live-dot off"></span>Appel terminé';voiceOn=false;glow(null);}
     if(s.playbackBlocked&&!$('playvoice')){var b=document.createElement('button');b.id='playvoice';b.textContent='Activer le son';b.onclick=function(){P.klerioVoice.resume();b.remove();};vs.parentNode.querySelector('.choices').prepend(b);}
   };
-  P.klerioVoiceCaption=function(role,text){say(text,role==='user',(P.klerioVoice&&P.klerioVoice.model)||'');};
+  P.klerioVoiceCaption=function(role,text){say(text,role==='user',(P.klerioVoice&&P.klerioVoice.model)||'',voiceSec?'vocal '+voiceSec+' s':'');};
+  var voiceSec=0;
+  P.klerioVoiceUsage=function(sec){voiceSec=Math.round(sec);setStatus('<span class="live-dot"></span>Vocal connecté · '+((P.klerioVoice&&P.klerioVoice.model)||'')+' · consommation vocale : '+voiceSec+' s · mémoire active');};
   var prev=$('form').onsubmit;
   $('form').onsubmit=function(e){
     e.preventDefault();var ta=$('prompt');var t=ta.value.trim();

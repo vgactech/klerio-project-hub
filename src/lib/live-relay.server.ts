@@ -537,8 +537,9 @@ export function bindLiveConnection(
       }
       if (event.type === "session.input_transcript.delta" || event.type === "session.output_transcript.delta") {
         const role = event.type === "session.input_transcript.delta" ? "user" : "assistant";
+        // Les espaces seuls comptent aussi : sinon les mots se collent dans le chat.
+        if (event.delta) emit({ type: "app.transcript.delta", role, delta: event.delta });
         if (!event.delta?.trim()) return;
-        emit({ type: "app.transcript.delta", role, delta: event.delta });
         const listeningSound = role === "user" && Boolean(task) && isListeningSound(event.delta);
         transcripts.push({
           role,
