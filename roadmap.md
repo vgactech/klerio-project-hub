@@ -9,3 +9,5 @@
 - [ ] Vocal réel en direct avec l'IA (panneau visible seulement après glissement sur Vocal)
 - [ ] Diode verte + "Vous · HH:MM · modèle" prouvant la connexion IA réelle
 - [ ] Publier
+- [ ] Modèle le moins cher pour chaque appel IA
+- [ ] Mémoire des conversations précédentes

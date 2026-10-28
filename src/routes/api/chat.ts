@@ -42,7 +42,7 @@ export const Route = createFileRoute("/api/chat")({
             "X-Lovable-AIG-SDK": "fetch",
           },
           body: JSON.stringify({
-            model: "openai/gpt-6-astra",
+            model: "openai/gpt-5-nano",
             instructions: INSTRUCTIONS,
             input: messages,
             reasoning: { effort: "low" },
@@ -80,7 +80,7 @@ export const Route = createFileRoute("/api/chat")({
             } catch {}
           }
         }
-        return Response.json({ reply: reply.trim() || "Je n'ai pas pu formuler de réponse.", model: "openai/gpt-6-astra" });
+        return Response.json({ reply: reply.trim() || "Je n'ai pas pu formuler de réponse.", model: "openai/gpt-5-nano" });
       },
     },
   },
