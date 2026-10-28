@@ -15,7 +15,7 @@ export type LiveConfig = {
 const liveSettings = {
   baseURL: "https://ai.gateway.lovable.dev/v1",
   liveModel: "openai/gpt-live-1",
-  backendModel: "openai/gpt-6-astra",
+  backendModel: "openai/gpt-5-nano",
   openingInstructions:
     "Salue brièvement l'utilisateur en français, présente-toi comme Klerio et demande quelle démarche le bloque aujourd'hui.",
 };

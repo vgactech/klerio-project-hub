@@ -257,10 +257,11 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 (function(){
   var P=window.parent;if(!P||P===window)return;
   var $=function(id){return document.getElementById(id)};
-  var hist=[],voiceOn=false,micMuted=false,soundOff=false;
+  var KEY='klerio_hist';var hist=[];try{hist=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){hist=[]}function save(){try{localStorage.setItem(KEY,JSON.stringify(hist.slice(-60)))}catch(e){}}var voiceOn=false,micMuted=false,soundOff=false;
   function hm(){return new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
   function say(t,user,model){addText(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last&&model){last.innerHTML='<span class="live-dot" title="IA connectée"></span>'+(user?'Vous':'Klerio')+' · '+hm()+' · '+model;}}
   function setStatus(html){var st=$('status');if(st)st.innerHTML=html;}
+  if(hist.length){addCard('<p class="small">Conversation précédente retrouvée · Klerio s’en souvient.</p><button id="forget">Effacer la mémoire</button>');hist.forEach(function(h){say(h.content,h.role==='user',h.model||'mémoire')});document.getElementById('forget').onclick=function(){hist=[];save();location.reload();};}
   var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · exemples guidés disponibles';
   setStatus('<span class="live-dot off"></span>IA prête · en attente du premier échange');
   // Vocal : uniquement en glissant le bouton (pas par simple clic sur le mot « Vocal »)
@@ -284,18 +285,18 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     else if(s.status==='closed'){vs.innerHTML='<span class="live-dot off"></span>Appel terminé';voiceOn=false;}
     if(s.playbackBlocked&&!$('playvoice')){var b=document.createElement('button');b.id='playvoice';b.textContent='Activer le son';b.onclick=function(){P.klerioVoice.resume();b.remove();};vs.parentNode.querySelector('.choices').prepend(b);}
   };
-  P.klerioVoiceCaption=function(role,text){var model=(P.klerioVoice&&P.klerioVoice.model)||'';say(text,role==='user',model);hist.push({role:role,content:text});};
+  P.klerioVoiceCaption=function(role,text){var model=(P.klerioVoice&&P.klerioVoice.model)||'';say(text,role==='user',model);hist.push({role:role,content:text,model:model});save();};
   var prev=$('form').onsubmit;
   $('form').onsubmit=function(e){
     e.preventDefault();var ta=$('prompt');var t=ta.value.trim();
     if(!t||!P.klerioSend){return prev&&prev(e);}
-    ta.value='';addText(t,true);var userMeta=[].slice.call(document.querySelectorAll('#feed .meta')).pop();hist.push({role:'user',content:t});
+    ta.value='';addText(t,true);var userMeta=[].slice.call(document.querySelectorAll('#feed .meta')).pop();hist.push({role:'user',content:t});save();
     var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble">Klerio réfléchit…</div>';$('feed').append(w);
     setStatus('<span class="live-dot wait"></span>Envoi à l’IA…');
-    P.klerioSend(hist).then(function(r){w.remove();
-      if(r.error){addText('⚠️ '+r.error);hist.pop();setStatus('<span class="live-dot off"></span>IA injoignable : '+r.error);return;}
-      if(userMeta)userMeta.innerHTML='<span class="live-dot"></span>Vous · '+hm()+' · '+r.model;
-      hist.push({role:'assistant',content:r.reply});say(r.reply,false,r.model);
+    P.klerioSend(hist.map(function(h){return{role:h.role,content:h.content}})).then(function(r){w.remove();
+      if(r.error){addText('⚠️ '+r.error);hist.pop();save();setStatus('<span class="live-dot off"></span>IA injoignable : '+r.error);return;}
+      if(userMeta)userMeta.innerHTML='<span class="live-dot"></span>Vous · '+hm()+' · '+r.model;hist[hist.length-1].model=r.model;
+      hist.push({role:'assistant',content:r.reply,model:r.model});save();say(r.reply,false,r.model);
       setStatus('<span class="live-dot"></span>IA connectée · '+r.model);});
   };
 })();
