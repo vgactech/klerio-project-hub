@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Camera, ImagePlus, Trash2 } from "lucide-react";
 import { api, CATEGORIES, fileToBase64, type Doc } from "@/lib/espace/api";
+import { takePendingScan } from "@/lib/espace/pending-scan";
 import { Card, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
 
 export const Route = createFileRoute("/_authenticated/espace/scanner")({
@@ -38,10 +39,16 @@ function Scanner() {
   const camRef = useRef<HTMLInputElement>(null);
   const galRef = useRef<HTMLInputElement>(null);
 
-  function add(files: FileList | null) {
-    const list = Array.from(files ?? []).filter((f) => f.type.startsWith("image/"));
+  function add(files: FileList | File[] | null) {
+    const list = Array.from(files ?? []).filter((f) => !f.type || f.type.startsWith("image/"));
     setPages((p) => [...p, ...list.map((file) => ({ file, url: URL.createObjectURL(file) }))].slice(0, 10));
   }
+
+  // Photos prises directement depuis le chat.
+  useEffect(() => {
+    const fromChat = takePendingScan();
+    if (fromChat.length) add(fromChat);
+  }, []);
 
   async function send() {
     setBusy(true);
