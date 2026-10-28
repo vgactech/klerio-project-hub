@@ -133,8 +133,17 @@ export const lovable = {
     },
 
     /** Renouvelle la session si elle expire bientôt. Renvoie null si impossible. */
+    /** Récupère la session posée par le retour Google/Lovable (redirection pleine page). */
+    syncFromSupabase: async (): Promise<KlerioSession | null> => {
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) return null;
+      const s = fromSupabase(data.session as SbSession);
+      save(s);
+      return s;
+    },
+
     ensureFresh: async (): Promise<KlerioSession | null> => {
-      const current = lovable.auth.getSession();
+      const current = lovable.auth.getSession() ?? (await lovable.auth.syncFromSupabase());
       if (!current) return null;
       const exp = current.expires_at ?? jwtExp(current.access_token);
       const now = Math.floor(Date.now() / 1000);

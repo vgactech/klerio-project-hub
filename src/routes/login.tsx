@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Loader2, LockKeyhole } from "lucide-react";
 import { lovable } from "@/integrations/lovable";
+import { supabase } from "@/integrations/supabase/client";
 import { AuthLayout, ErrorBox, SocialButtons } from "@/components/espace/auth-layout";
 
 export const Route = createFileRoute("/login")({
@@ -37,7 +38,21 @@ function LoginPage() {
   };
 
   useEffect(() => {
-    if (lovable.auth.getSession()) go();
+    if (lovable.auth.getSession()) return go();
+    const hash = new URLSearchParams(window.location.hash.slice(1));
+    const at = hash.get("access_token");
+    const rt = hash.get("refresh_token");
+    if (at && rt) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      void supabase.auth.setSession({ access_token: at, refresh_token: rt }).then(({ error: err }) => {
+        if (err) setError("Connexion Google impossible, réessayez.");
+        else void lovable.auth.syncFromSupabase().then((s) => s && go());
+      });
+    } else void lovable.auth.syncFromSupabase().then((s) => s && go());
+    const { data } = supabase.auth.onAuthStateChange((_e, session) => {
+      if (session) void lovable.auth.syncFromSupabase().then((s) => s && go());
+    });
+    return () => data.subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
