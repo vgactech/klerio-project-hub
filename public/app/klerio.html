@@ -263,14 +263,14 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   function say(t,user,model,tokens,at){addText(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.innerHTML=meta(user,model,tokens,at);return last;}
   function setStatus(html){var st=$('status');if(st)st.innerHTML=html;}
   function glow(color,ms){var o=$('companion-orb');if(!o)return;clearTimeout(glowTimer);o.classList.remove('glow-green','glow-blue');if(color)o.classList.add('glow-'+color);if(ms)glowTimer=setTimeout(function(){o.classList.remove('glow-green','glow-blue')},ms);}
-  var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · mémoire sauvegardée sur GitHub';
-  setStatus('<span class="live-dot wait"></span>Récupération de votre mémoire GitHub…');
-  // Contexte précédent rechargé automatiquement depuis GitHub
+  var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté';
+  setStatus('<span class="live-dot wait"></span>Récupération de votre mémoire…');
+  // Contexte précédent rechargé automatiquement depuis le stockage sécurisé
   function loadMemory(){if(!P.klerioMemory)return setTimeout(loadMemory,200);P.klerioMemory().then(function(r){
     var ev=r.events||[];
-    if(r.error){setStatus('<span class="live-dot off"></span>Mémoire GitHub indisponible : '+r.error);return;}
-    if(ev.length){addCard('<p class="small">Conversation précédente retrouvée sur GitHub · Klerio s’en souvient automatiquement.</p>');if(ev.length)P.klerioTopic=ev[ev.length-1].topic;ev.forEach(function(e){say(e.content,/\.user$/.test(e.kind),e.model,e.tokens&&e.tokens.total,e.at)});}
-    setStatus('<span class="live-dot"></span>Mémoire GitHub chargée · '+ev.length+' messages');
+    if(r.error){setStatus('<span class="live-dot off"></span>Mémoire indisponible : '+r.error);return;}
+    if(ev.length){addCard('<p class="small">Conversation précédente retrouvée · Klerio s’en souvient automatiquement.</p>');if(ev.length)P.klerioTopic=ev[ev.length-1].topic;ev.forEach(function(e){say(e.content,/\.user$/.test(e.kind),e.model,e.tokens&&e.tokens.total,e.at)});}
+    setStatus('<span class="live-dot"></span>Mémoire chargée · '+ev.length+' messages');
   });}
   loadMemory();
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.mode-end.left');if(b){e.preventDefault();e.stopImmediatePropagation();notify('Glissez le bouton jusqu’à « Vocal » pour activer le micro.');}},true);
@@ -296,7 +296,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   P.klerioVoiceUI=function(s){var vs=$('voicestate');if(!vs)return;var model=(P.klerioVoice&&P.klerioVoice.model)||'';
     if(s.error){vs.innerHTML='<span class="live-dot off"></span>Vocal indisponible : '+s.error;voiceOn=false;glow(null);return;}
     if(s.status==='connecting')vs.innerHTML='<span class="live-dot wait"></span>Connexion au micro et à l’IA…';
-    else if(s.status==='connected'){vs.innerHTML='<span class="live-dot"></span>Vocal en direct · '+model+(s.muted?' · micro coupé':'');setStatus('<span class="live-dot"></span>Vocal connecté · '+model+' · sauvegarde GitHub');}
+    else if(s.status==='connected'){vs.innerHTML='<span class="live-dot"></span>Vocal en direct · '+model+(s.muted?' · micro coupé':'');setStatus('<span class="live-dot"></span>Vocal connecté · '+model+' · mémoire active');}
     else if(s.status==='stopping')vs.textContent='Fin de l’appel…';
     else if(s.status==='closed'){vs.innerHTML='<span class="live-dot off"></span>Appel terminé';voiceOn=false;glow(null);}
     if(s.playbackBlocked&&!$('playvoice')){var b=document.createElement('button');b.id='playvoice';b.textContent='Activer le son';b.onclick=function(){P.klerioVoice.resume();b.remove();};vs.parentNode.querySelector('.choices').prepend(b);}
@@ -314,7 +314,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
       var tk=r.tokens||{};
       if(userMeta)userMeta.innerHTML=meta(true,r.model,tk.input);
       say(r.reply,false,r.model,tk.output);glow('green',Math.min(8000,1500+r.reply.length*30));
-      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'sauvegardé sur GitHub':'⚠️ sauvegarde GitHub en échec'));});
+      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'mémoire sauvegardée':'⚠️ sauvegarde en attente'));});
   };
 })();
 </script></body></html>
