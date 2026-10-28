@@ -177,3 +177,44 @@
     color: var(--color-foreground);
   }
 }
+
+/* ===== Espace client — classes reprises à l'identique du dépôt Klerio-26/KLERIO ===== */
+.klerio-app {
+  font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: #f6f4ee;
+  background-image: radial-gradient(circle at 12% 0%, rgba(47, 136, 128, 0.08), transparent 34%),
+    radial-gradient(circle at 88% 4%, rgba(251, 95, 18, 0.05), transparent 28%);
+  color: var(--color-ink-900);
+  min-height: 100dvh;
+}
+.klerio-app *, .klerio-app ::before, .klerio-app ::after { border-color: var(--color-ink-200); }
+.klerio-app h1, .klerio-app h2, .klerio-app h3 { text-wrap: balance; }
+.klerio-app ::selection { background: var(--color-brand-200); color: var(--color-brand-900); }
+@layer components {
+  .klerio-app .card { @apply rounded-2xl border border-ink-200/80 bg-white shadow-card; }
+  .klerio-app .card-flat { @apply rounded-2xl border border-ink-200/80 bg-white/70; }
+  .klerio-app .btn, .klerio-app .btn-primary, .klerio-app .btn-secondary, .klerio-app .btn-ghost, .klerio-app .btn-accent, .klerio-app .btn-danger {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .klerio-app .btn-primary { @apply bg-brand-700 text-white hover:bg-brand-800 active:bg-brand-900; }
+  .klerio-app .btn-secondary { @apply border border-ink-200 bg-white text-ink-800 hover:bg-ink-50; }
+  .klerio-app .btn-ghost { @apply text-ink-700 hover:bg-ink-100; }
+  .klerio-app .btn-accent { @apply bg-accent-500 text-white hover:bg-accent-600; }
+  .klerio-app .btn-danger { @apply bg-danger-600 text-white hover:bg-danger-700; }
+  .klerio-app .input, .klerio-app .select, .klerio-app .textarea {
+    @apply w-full rounded-xl border border-ink-300 bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-200/60;
+    min-height: 44px;
+  }
+  .klerio-app .textarea { min-height: 120px; }
+  .klerio-app .label { @apply mb-1.5 block text-sm font-semibold text-ink-800; }
+  .klerio-app .hint { @apply text-xs leading-relaxed text-ink-500; }
+  .klerio-app .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-700; }
+  .klerio-app .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold; }
+  .klerio-app .link { @apply font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 hover:text-brand-800; }
+  .klerio-app .section-title { @apply text-xs font-bold uppercase tracking-[0.14em] text-ink-500; }
+  .klerio-app .prose-simple { @apply text-sm leading-7 text-ink-700; }
+  .klerio-app .divider { @apply my-4 h-px w-full bg-ink-100; }
+  .klerio-app .skeleton { @apply animate-pulse rounded-lg bg-ink-100; }
+}
+.klerio-app .skip-link { position: absolute; left: -999px; top: 8px; z-index: 100; background: #fff; color: #161c2c; padding: 8px 12px; border-radius: 8px; }
+.klerio-app .skip-link:focus { left: 8px; }
