@@ -1705,7 +1705,7 @@
   ],
   "Dans": [
     "In",
-    "在",
+    "还有",
     "En",
     "Em"
   ],
@@ -4662,10 +4662,10 @@
     "Excluir «"
   ],
   "Sur": [
-    "On",
-    "在",
-    "En",
-    "Em"
+    "Of",
+    "共",
+    "De",
+    "De"
   ],
   "Sur papier": [
     "On paper",
@@ -4909,9 +4909,9 @@
   ],
   "Trop volumineux (10 Mo max) :": [
     "Too large (10 MB max):",
-    "太大（最大10 MB）：",
+    "文件过大（最大10 MB）：",
     "Demasiado grande (máx. 10 MB):",
-    "Muito volumoso (máx. 10 MB):"
+    "Muito grande (máx. 10 MB):"
   ],
   "Try again": [
     "Try again",
@@ -6466,5 +6466,23 @@
     "B",
     "B",
     "B"
+  ],
+  "jours": [
+    "days",
+    "天",
+    "días",
+    "dias"
+  ],
+  "disponibles.": [
+    "available.",
+    "可用。",
+    "disponibles.",
+    "disponíveis."
+  ],
+  "General": [
+    "General",
+    "一般",
+    "General",
+    "Geral"
   ]
 }
