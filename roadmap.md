@@ -15,3 +15,4 @@
 - [ ] Jetons utilisés affichés sur chaque message
 - [ ] Mascotte : lueur verte quand Klerio parle, bleue quand le client parle
 - [ ] Relire rapports + cahier des charges
+- [ ] Mémoire GitHub classée par sujet (texte + vocal + prompts + explications, horodaté)
