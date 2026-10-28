@@ -3,9 +3,27 @@ import { appendEvents, detectTopic, loadRecent, newEvent, safeOwnerId, topicSlug
 import { verifyUserId } from "@/lib/verify-user.server";
 
 const MODEL = "openai/gpt-5-nano"; // modèle texte le moins cher disponible
-const PROMPT_VERSION = "klerio-text-v4";
+const PROMPT_VERSION = "klerio-text-v5";
+
+// Recherche internet automatique : quelques résultats récents, avec leurs liens.
+async function webSearch(query: string, signal: AbortSignal): Promise<{ title: string; url: string; text: string }[]> {
+  const lk = process.env["LOVABLE_API_KEY"], fk = process.env["FIRECRAWL_API_KEY"];
+  if (!lk || !fk || query.length < 8) return [];
+  try {
+    const r = await fetch("https://connector-gateway.lovable.dev/firecrawl/v2/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${lk}`, "X-Connection-Api-Key": fk },
+      body: JSON.stringify({ query: query.slice(0, 300), limit: 4 }),
+      signal,
+    });
+    if (!r.ok) { console.error("[web]", r.status, await r.text().catch(() => "")); return []; }
+    const j = (await r.json()) as { data?: { web?: { title?: string; url?: string; description?: string }[] } | { title?: string; url?: string; description?: string }[] };
+    const list = Array.isArray(j.data) ? j.data : j.data?.web ?? [];
+    return list.filter((x) => x.url).map((x) => ({ title: x.title ?? "", url: x.url!, text: (x.description ?? "").slice(0, 400) }));
+  } catch (e) { console.error("[web]", e); return []; }
+}
 const INSTRUCTIONS =
-  "Règle absolue : détecte la langue du dernier message de l'utilisateur et réponds toujours dans cette même langue, sans qu'il le demande (s'il change de langue, change aussi). Si tu ne maîtrises pas bien la langue détectée, dis-le clairement (dans cette langue si possible, sinon en anglais et en français) et propose de continuer en anglais ou en français. Tu es Klerio, un assistant bienveillant qui aide les particuliers à comprendre leurs démarches administratives françaises (courriers, CAF, impôts, factures, santé). Réponds simplement, une chose à la fois, avec des étapes courtes. Indique quand une information doit être vérifiée sur le site officiel. N'invente jamais de montant ou de date. Écris en texte brut, sans Markdown (pas d'astérisques ni de crochets), avec des étapes numérotées sur des lignes séparées. Tu as accès à l'historique des conversations précédentes du client (texte et vocal) : utilise-le naturellement sans demander au client de le rappeler. Quand il te manque une information pour bien répondre (situation, âge, département, type de courrier, date, organisme concerné...), pose une question courte et précise pour l'obtenir avant de donner ta réponse, au lieu de deviner. Pose une seule question à la fois. Parle toujours en langage clair, adapté à chaque personne : phrases courtes, mots de tous les jours, pas de jargon ; si un terme administratif est indispensable, explique-le en quelques mots.";
+  "Règle absolue : détecte la langue du dernier message de l'utilisateur et réponds toujours dans cette même langue, sans qu'il le demande (s'il change de langue, change aussi). Si tu ne maîtrises pas bien la langue détectée, dis-le clairement (dans cette langue si possible, sinon en anglais et en français) et propose de continuer en anglais ou en français. Tu es Klerio, un assistant bienveillant qui aide les particuliers à comprendre leurs démarches administratives françaises (courriers, CAF, impôts, factures, santé). Réponds simplement, une chose à la fois, avec des étapes courtes. Indique quand une information doit être vérifiée sur le site officiel. N'invente jamais de montant ou de date. Écris en texte brut, sans Markdown (pas d'astérisques ni de crochets), avec des étapes numérotées sur des lignes séparées. Tu as accès à l'historique des conversations précédentes du client (texte et vocal) : utilise-le naturellement sans demander au client de le rappeler. Quand il te manque une information pour bien répondre (situation, âge, département, type de courrier, date, organisme concerné...), pose une question courte et précise pour l'obtenir avant de donner ta réponse, au lieu de deviner. Pose une seule question à la fois. Parle toujours en langage clair, adapté à chaque personne : phrases courtes, mots de tous les jours, pas de jargon ; si un terme administratif est indispensable, explique-le en quelques mots. Tu as un accès automatique à internet : quand tu parles d'une démarche, d'un formulaire ou d'un site, donne directement le lien complet (https://...) vers la page officielle concernée, sur sa propre ligne.";
 
 export const Route = createFileRoute("/api/chat")({
   server: {
@@ -36,7 +54,11 @@ export const Route = createFileRoute("/api/chat")({
         } catch (e) {
           memoryNote = e instanceof Error ? e.message : "mémoire indisponible";
         }
-        const input = [...past, { role: "user" as const, content: text }];
+        const web = await webSearch(text, request.signal);
+        const webNote = web.length
+          ? "\n\nRésultats de recherche internet trouvés automatiquement pour ce message (utilise-les s'ils sont utiles, et donne les liens complets, en commençant par les sites officiels comme service-public.fr, caf.fr, impots.gouv.fr, ameli.fr) :\n" + web.map((w, i) => `${i + 1}. ${w.title} — ${w.url}\n${w.text}`).join("\n")
+          : "";
+        const input = [...past, { role: "user" as const, content: text + webNote }];
 
         // 2. Journal temps réel : message reçu + prompt exact envoyé (sans secret)
         const topic = await topicP;
@@ -46,7 +68,7 @@ export const Route = createFileRoute("/api/chat")({
           channel: "text",
           topic,
           model: MODEL,
-          content: JSON.stringify({ prompt_version: PROMPT_VERSION, instructions: INSTRUCTIONS, context_messages: past.length, memory_error: memoryNote || undefined }),
+          content: JSON.stringify({ prompt_version: PROMPT_VERSION, instructions: INSTRUCTIONS, context_messages: past.length, web_results: web.map((w) => w.url), memory_error: memoryNote || undefined }),
         });
         const logUser = appendEvents(owner, [userEvent, promptEvent]).catch((e) => console.error("[memory]", e));
 
