@@ -31,6 +31,6 @@
 - [ ] Espace : paiement des forfaits/crédits (prix à fournir)
 - [ ] Espace : partage famille entre comptes
 - [ ] Espace : notifications push des rappels
-- [ ] Afficher dans le chat tout ce qui est dit : paroles du client et de Klerio, en texte comme en vocal (transcriptions vocales visibles dans la conversation).
-- [ ] Vérifier que Klerio pose une question quand il manque une information (consigne ajoutée texte + vocal).
+- [x] Afficher dans le chat tout ce qui est dit : déjà en place (transcriptions vocales + texte affichés dans la conversation).
+- [x] Klerio pose une question quand il manque une information (testé : « je veux faire une demande » → question de précision).
 - [ ] Indicateur de connexion (diode verte + nom du modèle) actif pour tous les modèles, vocal et texte.
