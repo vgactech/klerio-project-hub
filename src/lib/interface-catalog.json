@@ -1020,9 +1020,9 @@
     "Faça login para recuperar seu cofre, lembretes e seu assistente Klerio."
   ],
   "Connecté en tant que": [
-    "Connected as",
+    "Signed in as",
     "已登录为",
-    "Conectado como",
+    "Sesión iniciada como",
     "Conectado como"
   ],
   "Connexion": [
@@ -6484,5 +6484,41 @@
     "一般",
     "General",
     "Geral"
+  ],
+  "Mémoire chargée ·": [
+    "Memory loaded ·",
+    "记忆已加载 ·",
+    "Memoria cargada ·",
+    "Memória carregada ·"
+  ],
+  "messages": [
+    "messages",
+    "条消息",
+    "mensajes",
+    "mensagens"
+  ],
+  "Mémoire chargée": [
+    "Memory loaded",
+    "记忆已加载",
+    "Memoria cargada",
+    "Memória carregada"
+  ],
+  "Vous ·": [
+    "You ·",
+    "您 ·",
+    "Tú ·",
+    "Você ·"
+  ],
+  "Espace personnel — Klerio": [
+    "Personal space — Klerio",
+    "个人空间 — Klerio",
+    "Espacio personal — Klerio",
+    "Espaço pessoal — Klerio"
+  ],
+  "Votre espace Klerio pour vos documents, rappels et démarches.": [
+    "Your Klerio space for documents, reminders and paperwork.",
+    "您的Klerio文档、提醒和行政事务空间。",
+    "Tu espacio Klerio para documentos, recordatorios y trámites.",
+    "Seu espaço Klerio para documentos, lembretes e procedimentos."
   ]
 }
