@@ -81,7 +81,7 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 @media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
 
 </style>
-</head>
+<style>.bubble{white-space:pre-line}</style></head>
 <body data-theme="dark">
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
 <main class="app">
@@ -260,7 +260,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · exemples guidés disponibles';
   var st=document.getElementById('status');if(st)st.textContent='Connecté · réponses générées par l’IA Klerio';
   var orig=addText;
-  addText=function(t,user){orig(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.textContent=last.textContent.replace(' · simulation','');};
+  addText=function(t,user){orig(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.textContent=last.textContent.replace(' ,'');};
   var prev=document.getElementById('form').onsubmit;
   document.getElementById('form').onsubmit=function(e){
     e.preventDefault();var ta=document.getElementById('prompt');var t=ta.value.trim();
