@@ -17,6 +17,7 @@ import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEspaceRouteImport } from './routes/_authenticated/espace'
+import { Route as ApiBillingRouteImport } from './routes/api/billing'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
@@ -71,6 +72,11 @@ const AuthenticatedEspaceRoute = AuthenticatedEspaceRouteImport.update({
   id: '/espace',
   path: '/espace',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiBillingRoute = ApiBillingRouteImport.update({
+  id: '/api/billing',
+  path: '/api/billing',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/espace': typeof AuthenticatedEspaceRouteWithChildren
+  '/api/billing': typeof ApiBillingRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
@@ -189,6 +196,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/billing': typeof ApiBillingRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/espace': typeof AuthenticatedEspaceRouteWithChildren
+  '/api/billing': typeof ApiBillingRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
@@ -241,6 +250,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/dashboard'
     | '/espace'
+    | '/api/billing'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
@@ -264,6 +274,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/chat'
     | '/dashboard'
+    | '/api/billing'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
@@ -289,6 +300,7 @@ export interface FileRouteTypes {
     | '/_authenticated/chat'
     | '/_authenticated/dashboard'
     | '/_authenticated/espace'
+    | '/api/billing'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   DemoRoute: typeof DemoRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
+  ApiBillingRoute: typeof ApiBillingRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiDocumentsRoute: typeof ApiDocumentsRouteWithChildren
   ApiMemoryRoute: typeof ApiMemoryRoute
@@ -375,6 +388,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/espace'
       preLoaderRoute: typeof AuthenticatedEspaceRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/billing': {
+      id: '/api/billing'
+      path: '/api/billing'
+      fullPath: '/api/billing'
+      preLoaderRoute: typeof ApiBillingRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
       id: '/api/chat'
@@ -546,6 +566,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoRoute: DemoRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
+  ApiBillingRoute: ApiBillingRoute,
   ApiChatRoute: ApiChatRoute,
   ApiDocumentsRoute: ApiDocumentsRouteWithChildren,
   ApiMemoryRoute: ApiMemoryRoute,

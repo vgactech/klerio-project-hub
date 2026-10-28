@@ -304,7 +304,7 @@ function LandingPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link to="/register"
+                    <Link to={plan.id === "standard" ? "/register" : "/espace/forfait"}
                       className={`mt-6 ${highlight ? "btn-primary" : "btn-secondary"} w-full`}
                     >
                       {plan.id === "standard" ? "Commencer gratuitement" : `Choisir ${plan.name}`}
