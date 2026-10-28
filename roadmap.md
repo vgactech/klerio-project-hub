@@ -1,9 +1,10 @@
 # Transmission Klerio à Bob IDE
 
 ## Vidéo et post LinkedIn — 28 octobre
-- [ ] Vidéo dynamique de 30 secondes montrant Klerio, avec invitation à tester et signaler les bugs.
-- [ ] Post LinkedIn français de 3 000 caractères maximum, lien de démo et consignes de retour sans données privées.
-- [ ] Contrôler les livrables et les remettre ; aucune publication LinkedIn sans connexion au compte.
+- [x] Vidéo dynamique de 30 secondes montrant Klerio, avec invitation à tester et signaler les bugs (musique, textes, sans voix ; contrôle d'images, pas de lecture continue).
+- [x] Post LinkedIn français de 2 924 caractères / 3 000 maximum, lien de démo et consignes de retour sans données privées.
+- [x] Contrôler les livrables et les remettre ; publication vidéo + post acceptée sur le profil Gabriel Chaves (HTTP 201).
+- [ ] Récupérer le lien et relire la publication LinkedIn — bloqué : la connexion autorise la publication mais refuse la lecture des posts (HTTP 403).
 
 ## Langues et apparence — demande du 28 octobre
 - [x] Présentation uniquement lors de la première conversation ; pas de présentation vocale répétée.
