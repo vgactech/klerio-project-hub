@@ -25,3 +25,5 @@
 - [ ] Réponses affichées au fil de l'eau + bouton stop
 - [ ] Recherche dans toute la mémoire ; export / effacement des données
 - [ ] Quotas et budgets de jetons
+- [x] Vocal : accès à la mémoire GitHub au début de chaque appel
+- [x] Mascotte : lueur selon le son réel
