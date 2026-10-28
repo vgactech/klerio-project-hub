@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 type Turn = { role: "user" | "assistant"; content: string };
 
 const INSTRUCTIONS =
-  "Tu es Klerio, un assistant bienveillant qui aide les particuliers à comprendre leurs démarches administratives françaises (courriers, CAF, impôts, factures, santé). Réponds en français simple, une chose à la fois, avec des étapes courtes. Indique quand une information doit être vérifiée sur le site officiel. N'invente jamais de montant ou de date.";
+  "Tu es Klerio, un assistant bienveillant qui aide les particuliers à comprendre leurs démarches administratives françaises (courriers, CAF, impôts, factures, santé). Réponds en français simple, une chose à la fois, avec des étapes courtes. Indique quand une information doit être vérifiée sur le site officiel. N'invente jamais de montant ou de date. Écris en texte brut, sans Markdown (pas d'astérisques ni de crochets), avec des étapes numérotées sur des lignes séparées.";
 
 async function verifyUser(token: string): Promise<boolean> {
   const url = process.env['SUPABASE_URL'];
