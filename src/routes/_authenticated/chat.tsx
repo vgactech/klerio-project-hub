@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { lovable } from "@/integrations/lovable";
 import { useLiveVoice, type LiveEvent } from "@/hooks/use-live-voice";
@@ -50,7 +50,19 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
+const PAGE_VERSION = "20261028-3";
+
 function ChatRoute() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const onMsg = (e: MessageEvent) => {
+      if (e.origin !== window.location.origin) return;
+      const to = (e.data as { klerioNavigate?: unknown } | null)?.klerioNavigate;
+      if (to === "/espace") navigate({ to: "/espace" });
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, [navigate]);
   const voice = useLiveVoice({
     url: `/api/live?token=${encodeURIComponent(lovable.auth.getSession()?.access_token ?? "")}`,
     onEvent: (event) => {
@@ -190,7 +202,7 @@ function ChatRoute() {
       <audio ref={voice.audioRef} className="hidden" />
       <iframe
         ref={frameRef}
-        src="/app/klerio.html"
+        src={`/app/klerio.html?v=${PAGE_VERSION}`}
         title="Klerio"
         className="fixed inset-0 h-full w-full border-0"
         allow="microphone; camera; autoplay"

@@ -96,7 +96,7 @@ function Dashboard() {
     queryClient.cancelQueries();
     queryClient.clear();
     lovable.auth.signOut();
-    navigate({ to: "/auth", replace: true });
+    navigate({ to: "/login", replace: true });
   }
 
   return (
