@@ -128,6 +128,21 @@ Chaque action doit produire des événements immuables :
 - Alertes en cas d’échec de synchronisation ou de quota atteint.
 - Mode administrateur seulement avec rôles séparés, jamais via le profil utilisateur.
 - Facturation Stripe à brancher seulement après réponse de Gabriel : produit, prix, fréquence.
+- Contrats exécutables manquants : schémas d’événements, transitions de tâches, erreurs, pagination, reprise et retour arrière.
+- Paquet de prompts versionné : prompts système de l’application, configuration modèle, historique des changements et jeux d’évaluation.
+- Matrice d’acceptation consolidée : le thème bronze et la mascotte remplacent les anciennes consignes noir/blanc.
+- Consentement explicite avant la collecte réelle du journal complet.
+- Procédure d’effacement documentée : supprimer un fichier Git ne le retire pas de l’historique.
+- Validation réelle navigateur, mobile, toucher et accessibilité ; les fichiers V2/V3 sont seulement des simulations.
+
+## 7 bis. Doppler et secrets
+
+- Bob installe Doppler CLI uniquement sur sa machine ou son environnement de développement, puis se connecte avec `doppler login`.
+- Accès limité au projet Doppler `lvx` et aux configurations Klerio nécessaires, en lecture seule si possible. Ne pas demander l’accès à tous les projets Doppler.
+- Ne jamais coller un jeton Doppler, une clé API ou le résultat de `doppler secrets` dans le chat, Git, un ticket ou un journal.
+- Produire seulement la liste des **noms** de secrets nécessaires, leur usage et l’environnement concerné.
+- Lovable n’utilise pas un lien d’accès Doppler global : chaque secret requis est ajouté dans le coffre sécurisé Lovable du projet, par formulaire sécurisé. OpenAI et ElevenLabs y sont déjà enregistrés.
+- Si Doppler doit devenir la source automatique des secrets en production, Bob propose une synchronisation dédiée au seul projet Klerio, avec rotation et révocation.
 
 ## 8. Questions à poser à Gabriel avant production
 
