@@ -259,8 +259,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   var hist=[];
   var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · exemples guidés disponibles';
   var st=document.getElementById('status');if(st)st.textContent='Connecté · réponses générées par l’IA Klerio';
-  var orig=addText;
-  addText=function(t,user){orig(t,user);var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.textContent=last.textContent.replace(' ,'');};
+  var orig=function(t,u){addText(t,u);};
   var prev=document.getElementById('form').onsubmit;
   document.getElementById('form').onsubmit=function(e){
     e.preventDefault();var ta=document.getElementById('prompt');var t=ta.value.trim();
