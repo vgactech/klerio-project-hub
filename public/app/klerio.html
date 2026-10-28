@@ -273,14 +273,16 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     setStatus('<span class="live-dot"></span>Mémoire chargée · '+ev.length+' messages');
   });}
   loadMemory();
-  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.mode-end.left');if(b){e.preventDefault();e.stopImmediatePropagation();notify('Glissez le bouton jusqu’à « Vocal » pour activer le micro.');}},true);
+  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.mode-end.left');if(b){e.preventDefault();e.stopImmediatePropagation();if(voiceOn)showPanel(!panelOpen);else notify('Glissez le bouton jusqu’à « Vocal » pour activer le micro.');}},true);
   var vp=document.querySelector('#voice p.small');if(vp)vp.textContent='Le micro s’active quand vous glissez sur Vocal. Parlez naturellement, Klerio vous répond à voix haute.';
   function voiceText(){$('mic').textContent=micMuted?'Réactiver mon micro':'Couper mon micro';$('sound').textContent=soundOff?'Réactiver la voix':'Couper la voix';}
   function audioEl(){return P.document.querySelector('audio')}
   function startVoice(){if(voiceOn||!P.klerioVoice)return;voiceOn=true;micMuted=false;soundOff=false;var a=audioEl();if(a)a.muted=false;voiceText();$('voicestate').innerHTML='<span class="live-dot wait"></span>Connexion au micro et à l’IA…';P.klerioVoice.start();}
   function stopVoice(){if(!voiceOn)return;voiceOn=false;glow(null);P.klerioVoice&&P.klerioVoice.stop();}
-  var baseSet=setMode;
-  setMode=function(n){baseSet(n);if(n===0)startVoice();else stopVoice();};
+  var baseSet=setMode;var panelOpen=false;
+  function showPanel(v){panelOpen=v;$('voice').classList.toggle('hidden',!v);}
+  // Le panneau vocal reste caché : il n'apparaît que si l'on clique sur « Vocal » une fois le vocal activé par glissement.
+  setMode=function(n){var wasOn=voiceOn;baseSet(n);if(n===0){if(wasOn){showPanel(!panelOpen);}else{showPanel(false);startVoice();}}else{showPanel(false);stopVoice();}};
   $('mic').onclick=function(){micMuted=!micMuted;P.klerioVoice&&P.klerioVoice.setMuted(micMuted);voiceText();};
   $('sound').onclick=function(){soundOff=!soundOff;var a=audioEl();if(a)a.muted=soundOff;voiceText();};
   $('allmute').onclick=function(){micMuted=true;soundOff=true;P.klerioVoice&&P.klerioVoice.setMuted(true);var a=audioEl();if(a)a.muted=true;voiceText();};
@@ -294,7 +296,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     else if(t==='output_audio_buffer.stopped'||t==='output_audio_buffer.cleared'||t==='response.done')glow(null,0);
   };
   P.klerioVoiceUI=function(s){var vs=$('voicestate');if(!vs)return;var model=(P.klerioVoice&&P.klerioVoice.model)||'';
-    if(s.error){vs.innerHTML='<span class="live-dot off"></span>Vocal indisponible : '+s.error;voiceOn=false;glow(null);return;}
+    if(s.error){vs.innerHTML='<span class="live-dot off"></span>Vocal indisponible : '+s.error;voiceOn=false;glow(null);notify('Vocal indisponible : '+s.error);return;}
     if(s.status==='connecting')vs.innerHTML='<span class="live-dot wait"></span>Connexion au micro et à l’IA…';
     else if(s.status==='connected'){vs.innerHTML='<span class="live-dot"></span>Vocal en direct · '+model+(s.muted?' · micro coupé':'');setStatus('<span class="live-dot"></span>Vocal connecté · '+model+' · mémoire active');}
     else if(s.status==='stopping')vs.textContent='Fin de l’appel…';
