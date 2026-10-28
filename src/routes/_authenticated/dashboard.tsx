@@ -30,12 +30,12 @@ type Ev = {
 };
 
 const C = {
-  bg: "#4f2c18",
-  card: "#5e3720",
-  line: "#7a4a2c",
-  text: "#fff3df",
-  soft: "#e0c6aa",
-  bronze: "#cd7f32",
+  bg: "#f6f4ee",
+  card: "#ffffff",
+  line: "#d6ede8",
+  text: "#161c2c",
+  soft: "#4a5878",
+  bronze: "#fb5f12",
 };
 
 function fmt(iso: string) {
@@ -104,7 +104,9 @@ function Dashboard() {
       <header
         style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 20px", borderBottom: `1px solid ${C.line}` }}
       >
-        <img src={mascot.url} alt="Mascotte Klerio" width={52} height={52} style={{ borderRadius: "50%", objectFit: "cover", background: C.card }} />
+        <div style={{ width: 52, height: 52, borderRadius: "50%", overflow: "hidden", background: "#d6ede8", flexShrink: 0 }}>
+          <img src={mascot.url} alt="Mascotte Klerio" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 8%", transform: "scale(1.9)", transformOrigin: "50% 12%" }} />
+        </div>
         <div style={{ flex: 1 }}>
           <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800 }}>Klerio</h1>
           <div style={{ color: C.soft, fontSize: 13 }}>Votre dashboard</div>
@@ -115,7 +117,7 @@ function Dashboard() {
 
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: 20, display: "grid", gap: 18 }}>
         <p style={{ margin: 0, color: C.soft }}>Bonjour {user.email ?? user.name ?? ""} · votre mémoire est sauvegardée en continu.</p>
-        {error && <p role="alert" style={{ margin: 0, color: "#f3a3a3" }}>⚠️ {error}</p>}
+        {error && <p role="alert" style={{ margin: 0, color: "#c33109" }}>⚠️ {error}</p>}
 
         <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 12 }}>
           {[
@@ -152,7 +154,7 @@ function Dashboard() {
               {shown.map((e) => {
                 const mine = e.kind.endsWith(".user");
                 return (
-                  <li key={e.event_id} style={{ borderLeft: `3px solid ${mine ? "#3498db" : "#2ecc71"}`, paddingLeft: 10 }}>
+                  <li key={e.event_id} style={{ borderLeft: `3px solid ${mine ? "#fb5f12" : "#226d68"}`, paddingLeft: 10 }}>
                     <div style={{ fontSize: 12, color: C.soft }}>
                       {mine ? "Vous" : "Klerio"} · {fmt(e.at)} · {e.channel === "voice" ? "🎙️ vocal" : "💬 texte"}
                       {e.model ? ` · ${e.model}` : ""}
@@ -181,9 +183,9 @@ function btn(primary: boolean) {
   return {
     padding: "8px 16px",
     borderRadius: 999,
-    border: `1px solid ${primary ? "#edc493aa" : C.line}`,
-    background: primary ? "linear-gradient(135deg,#cd7f32,#8a5226)" : "transparent",
-    color: C.text,
+    border: `1px solid ${primary ? "#fb5f12" : C.line}`,
+    background: primary ? "linear-gradient(135deg,#fb5f12,#ec4408)" : "transparent",
+    color: primary ? "#ffffff" : C.text,
     fontWeight: 700,
     fontSize: 14,
     textDecoration: "none",
@@ -201,7 +203,7 @@ function chip(active: boolean) {
     marginBottom: 6,
     borderRadius: 10,
     border: `1px solid ${active ? C.bronze : C.line}`,
-    background: active ? "#7a4a2c" : "transparent",
+    background: active ? "#d6ede8" : "transparent",
     color: C.text,
     cursor: "pointer",
     fontSize: 14,

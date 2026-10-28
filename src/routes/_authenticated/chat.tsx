@@ -63,11 +63,35 @@ function ChatRoute() {
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, [navigate]);
+  // Transcription en direct : on regroupe les morceaux par tour de parole,
+  // on affiche dans le chat puis on enregistre dans la mémoire.
+  const turnRef = useRef<{ role: "user" | "assistant"; text: string; timer?: ReturnType<typeof setTimeout> } | null>(null);
+  const flushTurn = () => {
+    const t = turnRef.current;
+    turnRef.current = null;
+    if (!t) return;
+    if (t.timer) clearTimeout(t.timer);
+    const text = t.text.replace(/\s+/g, " ").trim();
+    if (!text) return;
+    window.klerioVoiceCaption?.(t.role, text);
+    window.klerioLogVoice?.(t.role, text);
+  };
   const voice = useLiveVoice({
     url: `/api/live?token=${encodeURIComponent(lovable.auth.getSession()?.access_token ?? "")}`,
     onEvent: (event) => {
-      const c = captionFrom(event);
       window.klerioVoiceEvent?.(event.type);
+      if (event.type === "app.transcript.delta") {
+        const role = event["role"] === "user" ? "user" : "assistant";
+        const delta = typeof event["delta"] === "string" ? (event["delta"] as string) : "";
+        if (turnRef.current && turnRef.current.role !== role) flushTurn();
+        const cur = turnRef.current ?? (turnRef.current = { role, text: "" });
+        cur.text += delta;
+        if (cur.timer) clearTimeout(cur.timer);
+        cur.timer = setTimeout(flushTurn, 1500);
+        return;
+      }
+      if (event.type === "app.stopping" || event.type === "app.closed") flushTurn();
+      const c = captionFrom(event);
       if (c) {
         window.klerioVoiceCaption?.(c.role, c.text);
         window.klerioLogVoice?.(c.role, c.text);
