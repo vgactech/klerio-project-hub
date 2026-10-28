@@ -52,6 +52,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
 
 function ChatRoute() {
   const voice = useLiveVoice({
+    url: `/api/live?token=${encodeURIComponent(lovable.auth.getSession()?.access_token ?? "")}`,
     onEvent: (event) => {
       const c = captionFrom(event);
       window.klerioVoiceEvent?.(event.type);

@@ -9,6 +9,7 @@ export type LiveConfig = {
   liveModel: string;
   backendModel: string;
   openingInstructions?: string;
+  memory?: Promise<string>;
 };
 
 // Fill from co-loaded knowledge: the gateway URL, the Live model and the resolved chat model.
@@ -53,10 +54,28 @@ type ProviderEvent = {
   delegation?: { id: string; target: string };
 };
 
-export function getLiveConfig(): LiveConfig {
+/** Mémoire GitHub du client, chargée à l'ouverture de l'appel vocal. */
+async function loadVoiceMemory(request: Request): Promise<string> {
+  const token = new URL(request.url).searchParams.get("token") ?? "";
+  if (!token) return "";
+  const { verifyUserId } = await import("./verify-user.server");
+  const { loadRecent, safeOwnerId } = await import("./github-memory.server");
+  const uid = await verifyUserId(new Request(request.url, { headers: { authorization: `Bearer ${token}` } }));
+  if (!uid) return "";
+  const events = await loadRecent(safeOwnerId(uid), 40);
+  if (!events.length) return "";
+  let text = events
+    .map((e) => `[${e.at.slice(0, 16).replace("T", " ")} · ${e.topic} · ${e.channel}] ${e.kind.endsWith(".user") ? "Client" : "Klerio"} : ${e.content}`)
+    .join("\n");
+  if (text.length > 6000) text = text.slice(-6000);
+  return text;
+}
+
+export function getLiveConfig(request?: Request): LiveConfig {
   const config: LiveConfig = {
     ...liveSettings,
     key: process.env["LOVABLE_API_KEY"] ?? "",
+    ...(request ? { memory: loadVoiceMemory(request).catch(() => "") } : {}),
   };
   if ([config.baseURL, config.key, config.liveModel, config.backendModel].some((value) => !value)) {
     throw new Error("Missing Live relay configuration");
@@ -101,7 +120,7 @@ function workerSocket(socket: WorkerSocket): LiveSocket {
 export function handleLiveRequest(request: Request): Response {
   const waitUntil = (request as Request & Partial<LiveExecutionContext>).waitUntil;
   if (!waitUntil) return new Response("Live runtime unavailable", { status: 503 });
-  const config = getLiveConfig();
+  const config = getLiveConfig(request);
   const rejected = validateLiveUpgrade(request);
   if (rejected) return rejected;
   const pair = new WebSocketPair();
@@ -582,6 +601,14 @@ export function bindLiveConnection(
       close(accepted);
       return;
     }
+    const memory = (await config.memory) ?? "";
+    if (closing || browser.readyState !== 1) {
+      close(accepted);
+      return;
+    }
+    if (memory) {
+      backendMessages.unshift({ role: "user", content: `Historique des conversations précédentes du client (mémoire GitHub) :\n${memory}` });
+    }
     gateway = accepted;
     gateway.onMessage(receiveGateway);
     gateway.onClose(finish);
@@ -594,7 +621,9 @@ export function bindLiveConnection(
         type: "session.start",
         session: {
           model: config.liveModel,
-          instructions: conversationInstructions,
+          instructions: memory
+            ? `${conversationInstructions}\n\nMEMORY: You DO have the client's past conversations below (saved automatically). Use them naturally; never say you cannot see past conversations. Never ask the client to repeat what is already here.\n${memory}`
+            : `${conversationInstructions}\n\nMEMORY: No previous conversation is saved for this client yet.`,
           audio: { output: { voice: "marin" } },
           delegation: { type: "client" },
         },
