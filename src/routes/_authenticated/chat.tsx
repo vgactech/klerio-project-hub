@@ -50,7 +50,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261028-4";
+const PAGE_VERSION = "20261028-5";
 
 function ChatRoute() {
   const navigate = useNavigate();

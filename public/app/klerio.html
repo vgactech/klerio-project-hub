@@ -80,7 +80,7 @@ h1{letter-spacing:-.7px}.banner{background:#dce0ea;color:#607095}
 .composer-menu:hover{background:#1e575420}.entryhint{max-width:calc(100% - 24px)}
 @media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
 
-</style>
+.think{display:flex;align-items:center;gap:8px}.tl{display:inline-flex;gap:4px}.tl i{width:9px;height:9px;border-radius:50%;background:#2e9e5b;animation:tlb 1.2s ease-in-out infinite}.tl i:nth-child(2){animation-delay:.2s}.tl i:nth-child(3){animation-delay:.4s}.slow .tl i{background:#e08a1e}.stuck .tl i{background:#d23b2f}.pct{font-variant-numeric:tabular-nums}.tlt{font-size:13px;color:var(--muted)}@keyframes tlb{0%,80%,100%{opacity:.35;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}</style>
 <style>.bubble{white-space:pre-line}.live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#2ecc71;box-shadow:0 0 6px #2ecc71;margin-right:6px;vertical-align:middle}.dash-btn{margin-left:auto;padding:8px 16px;border-radius:999px;border:1px solid #aedbd3aa;background:linear-gradient(135deg,#1e5754,#183a39);color:#ffffff;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 4px 12px #161c2c66}.dash-btn:hover{filter:brightness(1.1)}.companion-orb.glow-green{box-shadow:0 0 0 4px #2ecc71aa,0 0 38px 10px #2ecc71cc!important;transition:box-shadow .2s}.companion-orb.glow-blue{box-shadow:0 0 0 4px #3498dbaa,0 0 38px 10px #3498dbcc!important;transition:box-shadow .2s}.live-dot.off{background:#8a8a8a;box-shadow:none}.live-dot.wait{background:#f1c40f;box-shadow:0 0 6px #f1c40f}</style></head>
 <body data-theme="dark">
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
@@ -309,9 +309,10 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     e.preventDefault();var ta=$('prompt');var t=ta.value.trim();
     if(!t||!P.klerioSend){return prev&&prev(e);}
     ta.value='';var userMeta=say(t,true,'');glow('blue');
-    var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble">Klerio réfléchit…</div>';$('feed').append(w);
+    var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble think"><span class="tl"><i></i><i></i><i></i></span> <b class="pct">0 %</b> <span class="tlt">Klerio réfléchit</span></div><div class="meta"><span class="live-dot wait"></span>Klerio · '+hm()+' · openai/gpt-5-nano · <span class="pct">0 %</span></div>';$('feed').append(w);w.scrollIntoView({block:'end'});
+    var t0=Date.now(),thk=setInterval(function(){var sec=(Date.now()-t0)/1000,pc=Math.min(95,Math.round(95*(1-Math.exp(-sec/6)))),st=sec<10?'go':sec<25?'slow':'stuck';w.querySelectorAll('.pct').forEach(function(x){x.textContent=pc+' %'});w.querySelector('.bubble').className='bubble think '+st;w.querySelector('.tlt').textContent=st==='go'?'Klerio réfléchit':st==='slow'?'Ça prend un peu plus de temps…':'Ça bloque peut-être, patientez ou réessayez';},300);
     setStatus('<span class="live-dot wait"></span>Envoi à l’IA…');
-    P.klerioSend(t).then(function(r){w.remove();
+    P.klerioSend(t).then(function(r){clearInterval(thk);w.querySelectorAll('.pct').forEach(function(x){x.textContent='100 %'});w.remove();
       if(r.error){addText('⚠️ '+r.error);glow(null);setStatus('<span class="live-dot off"></span>IA injoignable : '+r.error);return;}
       var tk=r.tokens||{};
       if(userMeta)userMeta.innerHTML=meta(true,r.model,tk.input);
