@@ -8,3 +8,9 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Read `docs/handoff/BOB_IDE_BRIEF_001.md` before changing storage, AI, logging or chat code; it is the current external IDE handoff.
+- Keep real client files and data out of this application repository; client memory belongs in isolated private storage repositories.
+- Log application prompts, actions and available explanations without secrets; never claim private model reasoning was captured.
