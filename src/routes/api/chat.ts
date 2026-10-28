@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { appendEvents, loadRecent, newEvent, safeOwnerId } from "@/lib/github-memory.server";
+import { appendEvents, detectTopic, loadRecent, newEvent, safeOwnerId, topicSlug } from "@/lib/github-memory.server";
 import { verifyUserId } from "@/lib/verify-user.server";
 
 const MODEL = "openai/gpt-5-nano"; // modèle texte le moins cher disponible
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/api/chat")({
         const uid = await verifyUserId(request);
         if (!uid) return Response.json({ error: "Session expirée, reconnecte-toi." }, { status: 401 });
         const owner = safeOwnerId(uid);
-        const body = (await request.json().catch(() => null)) as { text?: string } | null;
+        const body = (await request.json().catch(() => null)) as { text?: string; topic?: string } | null;
         const text = typeof body?.text === "string" ? body.text.trim().slice(0, 8000) : "";
         if (!text) return Response.json({ error: "Message vide." }, { status: 400 });
 
@@ -24,8 +24,12 @@ export const Route = createFileRoute("/api/chat")({
         // 1. Contexte précédent récupéré automatiquement sur GitHub
         let memoryNote = "";
         let past: { role: "user" | "assistant"; content: string }[] = [];
+        let prevTopic = typeof body?.topic === "string" ? topicSlug(body.topic) : "";
+        const topicP = detectTopic(text, prevTopic);
         try {
-          past = (await loadRecent(owner, 30)).map((e) => ({
+          const recent = await loadRecent(owner, 30);
+          if (!prevTopic) prevTopic = recent.at(-1)?.topic ?? "";
+          past = recent.map((e) => ({
             role: e.kind.endsWith(".user") ? ("user" as const) : ("assistant" as const),
             content: e.content,
           }));
@@ -35,10 +39,12 @@ export const Route = createFileRoute("/api/chat")({
         const input = [...past, { role: "user" as const, content: text }];
 
         // 2. Journal temps réel : message reçu + prompt exact envoyé (sans secret)
-        const userEvent = newEvent(owner, { kind: "message.user", channel: "text", content: text, model: MODEL });
+        const topic = await topicP;
+        const userEvent = newEvent(owner, { kind: "message.user", channel: "text", topic, content: text, model: MODEL });
         const promptEvent = newEvent(owner, {
           kind: "prompt.sent",
           channel: "text",
+          topic,
           model: MODEL,
           content: JSON.stringify({ prompt_version: PROMPT_VERSION, instructions: INSTRUCTIONS, context_messages: past.length, memory_error: memoryNote || undefined }),
         });
@@ -71,7 +77,7 @@ export const Route = createFileRoute("/api/chat")({
             msg = j.error?.message || j.message || msg;
           } catch {}
           await logUser;
-          await appendEvents(owner, [newEvent(owner, { kind: "error", channel: "text", content: msg, model: MODEL })]).catch(() => {});
+          await appendEvents(owner, [newEvent(owner, { kind: "error", channel: "text", topic, content: msg, model: MODEL })]).catch(() => {});
           return Response.json({ error: msg }, { status: upstream.status || 502 });
         }
 
@@ -105,10 +111,11 @@ export const Route = createFileRoute("/api/chat")({
         // 3. Journal temps réel : réponse, jetons, explication fournie par le modèle
         await logUser;
         const events = [
-          newEvent(owner, { kind: "message.assistant", channel: "text", content: reply, model: MODEL, tokens, duration_ms: Date.now() - started }),
+          newEvent(owner, { kind: "message.assistant", channel: "text", topic, content: reply, model: MODEL, tokens, duration_ms: Date.now() - started }),
           newEvent(owner, {
             kind: "explanation",
             channel: "text",
+            topic,
             model: MODEL,
             content: explanation.trim() || "capture_unavailable : le fournisseur n'a renvoyé aucun résumé d'explication pour cette réponse.",
           }),
@@ -118,7 +125,7 @@ export const Route = createFileRoute("/api/chat")({
           saved = false;
           console.error("[memory]", e);
         });
-        return Response.json({ reply, model: MODEL, tokens, saved });
+        return Response.json({ reply, model: MODEL, tokens, saved, topic });
       },
     },
   },

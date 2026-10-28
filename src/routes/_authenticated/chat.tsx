@@ -8,9 +8,10 @@ type VoiceCaption = (role: "user" | "assistant", text: string) => void;
 
 declare global {
   interface Window {
-    klerioSend?: (text: string) => Promise<{ reply?: string; error?: string; model?: string; tokens?: { input?: number; output?: number; total?: number }; saved?: boolean }>;
-    klerioMemory?: () => Promise<{ events?: { kind: string; content: string; model?: string; at: string; tokens?: { total?: number } }[]; error?: string }>;
+    klerioSend?: (text: string, topic?: string) => Promise<{ reply?: string; error?: string; model?: string; tokens?: { input?: number; output?: number; total?: number }; saved?: boolean; topic?: string }>;
+    klerioMemory?: () => Promise<{ events?: { kind: string; content: string; model?: string; at: string; topic?: string; tokens?: { total?: number } }[]; error?: string }>;
     klerioLogVoice?: (role: "user" | "assistant", text: string) => void;
+    klerioTopic?: string;
     klerioVoiceEvent?: (type: string) => void;
     klerioVoice?: {
       start: () => void;
@@ -93,17 +94,23 @@ function ChatRoute() {
       void fetch("/api/memory", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...auth() },
-        body: JSON.stringify({ role, content: text, model: LIVE_MODEL }),
-      }).catch(() => {});
+        body: JSON.stringify({ role, content: text, model: LIVE_MODEL, topic: window.klerioTopic }),
+      })
+        .then((r) => r.json())
+        .then((j: { topic?: string }) => {
+          if (j.topic) window.klerioTopic = j.topic;
+        })
+        .catch(() => {});
     };
-    window.klerioSend = async (text) => {
+    window.klerioSend = async (text, topic) => {
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json", ...auth() },
-          body: JSON.stringify({ text }),
+          body: JSON.stringify({ text, topic: topic ?? window.klerioTopic }),
         });
         const data = (await res.json()) as Awaited<ReturnType<NonNullable<Window["klerioSend"]>>>;
+        if (res.ok && data.topic) window.klerioTopic = data.topic;
         return res.ok ? data : { error: data.error ?? `Erreur ${res.status}` };
       } catch {
         return { error: "Connexion impossible. Réessaie dans un instant." };

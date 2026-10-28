@@ -269,7 +269,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   function loadMemory(){if(!P.klerioMemory)return setTimeout(loadMemory,200);P.klerioMemory().then(function(r){
     var ev=r.events||[];
     if(r.error){setStatus('<span class="live-dot off"></span>Mémoire GitHub indisponible : '+r.error);return;}
-    if(ev.length){addCard('<p class="small">Conversation précédente retrouvée sur GitHub · Klerio s’en souvient automatiquement.</p>');ev.forEach(function(e){say(e.content,/\.user$/.test(e.kind),e.model,e.tokens&&e.tokens.total,e.at)});}
+    if(ev.length){addCard('<p class="small">Conversation précédente retrouvée sur GitHub · Klerio s’en souvient automatiquement.</p>');if(ev.length)P.klerioTopic=ev[ev.length-1].topic;ev.forEach(function(e){say(e.content,/\.user$/.test(e.kind),e.model,e.tokens&&e.tokens.total,e.at)});}
     setStatus('<span class="live-dot"></span>Mémoire GitHub chargée · '+ev.length+' messages');
   });}
   loadMemory();
@@ -313,7 +313,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
       var tk=r.tokens||{};
       if(userMeta)userMeta.innerHTML=meta(true,r.model,tk.input);
       say(r.reply,false,r.model,tk.output);glow('green',Math.min(8000,1500+r.reply.length*30));
-      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons · '+(r.saved?'sauvegardé sur GitHub':'⚠️ sauvegarde GitHub en échec'));});
+      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons · '+' · sujet : '+(r.topic||'')+' · '+(r.saved?'sauvegardé sur GitHub':'⚠️ sauvegarde GitHub en échec'));});
   };
 })();
 </script></body></html>

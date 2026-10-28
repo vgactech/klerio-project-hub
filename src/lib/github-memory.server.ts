@@ -2,7 +2,7 @@
  * Mémoire Klerio sur GitHub.
  * Dépôt privé vgactech/klerio-project-hub, branche dédiée `klerio-memory`
  * (la branche main reste réservée au code de l'application, synchronisée avec Lovable).
- * Un dossier privé par client : clients/<identifiant-unique>/conversations/<AAAA-MM-JJ>.jsonl
+ * Un dossier privé par client, rangé par sujet : clients/<identifiant-unique>/sujets/<sujet>/<AAAA-MM-JJ>.jsonl
  * Chaque événement (message, prompt envoyé, réponse, transcription vocale, explication
  * fournie par le modèle, jetons) est ajouté en temps réel sous forme d'une ligne JSON horodatée.
  * Le raisonnement interne privé du modèle n'est pas accessible : seul le résumé
@@ -29,6 +29,7 @@ export type MemoryEvent = {
     | "error";
   channel: "text" | "voice";
   content: string;
+  topic: string;
   model?: string;
   tokens?: { input?: number | undefined; output?: number | undefined; total?: number | undefined };
   duration_ms?: number;
@@ -98,15 +99,19 @@ export function safeOwnerId(id: string) {
   return id.toLowerCase();
 }
 
-function dayFile(ownerId: string, iso: string) {
-  return `clients/${ownerId}/conversations/${iso.slice(0, 10)}.jsonl`;
+export function topicSlug(t: string) {
+  const s = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 48);
+  return s || "general";
+}
+function dayFile(ownerId: string, topic: string, iso: string) {
+  return `clients/${ownerId}/sujets/${topicSlug(topic)}/${iso.slice(0, 10)}.jsonl`;
 }
 
 /** Ajoute des événements au journal du jour (un commit par appel). */
 export async function appendEvents(ownerId: string, events: MemoryEvent[]) {
   if (!events.length) return;
   await ensureBranch();
-  const path = dayFile(ownerId, events[0]!.at);
+  const path = dayFile(ownerId, events[0]!.topic, events[0]!.at);
   for (let attempt = 0; attempt < 3; attempt++) {
     const cur = await gh(`contents/${path}?ref=${BRANCH}`);
     let sha: string | undefined;
@@ -132,33 +137,72 @@ export async function appendEvents(ownerId: string, events: MemoryEvent[]) {
   throw new Error("GitHub : conflit d'écriture persistant");
 }
 
-/** Recharge les derniers échanges du client (tous canaux) pour reprendre le contexte. */
+/** Recharge les derniers échanges du client, tous sujets confondus, dans l'ordre chronologique. */
 export async function loadRecent(ownerId: string, limit = 40): Promise<MemoryEvent[]> {
   await ensureBranch();
-  const dir = await gh(`contents/clients/${ownerId}/conversations?ref=${BRANCH}`);
-  if (dir.status === 404) return [];
-  if (!dir.ok) throw new Error(`GitHub dossier ${dir.status}: ${await dir.text()}`);
-  const files = ((await dir.json()) as { name: string; path: string }[])
-    .filter((f) => f.name.endsWith(".jsonl"))
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .slice(-3);
+  const tree = await gh(`git/trees/${BRANCH}?recursive=1`);
+  if (!tree.ok) throw new Error(`GitHub arbre ${tree.status}: ${await tree.text()}`);
+  const prefix = `clients/${ownerId}/sujets/`;
+  const files = ((await tree.json()) as { tree: { path: string; type: string }[] }).tree
+    .filter((f) => f.type === "blob" && f.path.startsWith(prefix) && f.path.endsWith(".jsonl"))
+    .sort((a, b) => a.path.slice(-16).localeCompare(b.path.slice(-16)))
+    .slice(-6);
   const out: MemoryEvent[] = [];
-  for (const f of files) {
-    const r = await gh(`contents/${f.path}?ref=${BRANCH}`);
-    if (!r.ok) continue;
-    const j = (await r.json()) as { content: string };
-    for (const line of b64decode(j.content).split("\n")) {
-      if (!line.trim()) continue;
-      try {
-        out.push(JSON.parse(line) as MemoryEvent);
-      } catch {
-        /* ligne illisible ignorée */
+  await Promise.all(
+    files.map(async (f) => {
+      const r = await gh(`contents/${f.path}?ref=${BRANCH}`);
+      if (!r.ok) return;
+      const j = (await r.json()) as { content: string };
+      for (const line of b64decode(j.content).split("\n")) {
+        if (!line.trim()) continue;
+        try {
+          out.push(JSON.parse(line) as MemoryEvent);
+        } catch {
+          /* ligne illisible ignorée */
+        }
       }
-    }
-  }
+    }),
+  );
+  const seen = new Set<string>();
   return out
+    .filter((e) => (seen.has(e.event_id) ? false : (seen.add(e.event_id), true)))
     .filter((e) => ["message.user", "message.assistant", "voice.user", "voice.assistant"].includes(e.kind))
+    .sort((a, b) => a.at.localeCompare(b.at))
     .slice(-limit);
+}
+
+/** Détermine le sujet en cours (2 à 5 mots) avec le modèle le moins cher. */
+export async function detectTopic(text: string, previous: string): Promise<string> {
+  const apiKey = process.env["LOVABLE_API_KEY"];
+  if (!apiKey) return previous || "general";
+  try {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}`, "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "fetch" },
+      body: JSON.stringify({
+        model: "openai/gpt-5-nano",
+        instructions:
+          "Donne le sujet administratif de ce message en 2 à 5 mots français, sans ponctuation (ex : caf aide au logement, impots declaration revenus). Si le message continue le sujet précédent ou n'en change pas clairement, réponds exactement le sujet précédent. Réponds uniquement par le sujet.",
+        input: `Sujet précédent : ${previous || "aucun"}\nMessage : ${text.slice(0, 1500)}`,
+        reasoning: { effort: "low" },
+        store: false,
+        stream: true,
+      }),
+    });
+    if (!res.ok || !res.body) return previous || "general";
+    const raw = await res.text();
+    let out = "";
+    for (const line of raw.split("\n")) {
+      if (!line.startsWith("data:")) continue;
+      try {
+        const ev = JSON.parse(line.slice(5));
+        if (ev.type === "response.output_text.delta") out += ev.delta ?? "";
+      } catch {}
+    }
+    return topicSlug(out.trim() || previous || "general");
+  } catch {
+    return previous || "general";
+  }
 }
 
 export function newEvent(ownerId: string, e: Omit<MemoryEvent, "event_id" | "schema_version" | "owner_id" | "at">): MemoryEvent {
