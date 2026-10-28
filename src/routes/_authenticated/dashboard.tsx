@@ -114,7 +114,7 @@ function Dashboard() {
       </header>
 
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: 20, display: "grid", gap: 18 }}>
-        <p style={{ margin: 0, color: C.soft }}>Bonjour {user.email ?? user.name ?? ""} · votre mémoire est sauvegardée en continu sur GitHub.</p>
+        <p style={{ margin: 0, color: C.soft }}>Bonjour {user.email ?? user.name ?? ""} · votre mémoire est sauvegardée en continu.</p>
         {error && <p role="alert" style={{ margin: 0, color: "#f3a3a3" }}>⚠️ {error}</p>}
 
         <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 12 }}>

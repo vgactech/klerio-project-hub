@@ -45,7 +45,7 @@ export const Route = createFileRoute("/api/documents")({
         try {
           return Response.json({ documents: await listDocs(safeOwnerId(uid)) });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible", documents: [] }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible", documents: [] }, { status: 502 });
         }
       },
       POST: async ({ request }) => {
@@ -69,7 +69,7 @@ export const Route = createFileRoute("/api/documents")({
           ]).catch(() => {});
           return Response.json({ document: doc });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible" }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible" }, { status: 502 });
         }
       },
     },

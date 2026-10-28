@@ -37,7 +37,7 @@ export const Route = createFileRoute("/api/documents/$id")({
           await removeDoc(safeOwnerId(uid), params.id);
           return Response.json({ ok: true });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible" }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible" }, { status: 502 });
         }
       },
     },
