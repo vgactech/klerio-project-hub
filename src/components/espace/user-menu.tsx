@@ -7,7 +7,7 @@ import { api } from "@/lib/espace/api";
 import { initials } from "@/components/espace/klerio";
 
 /** Pastille de profil en haut à droite : ouvre un menu avec « Mon compte » et « Se déconnecter ». */
-export function UserMenu({ name, email }: { name?: string | null; email?: string | null }) {
+export function UserMenu({ name, email }: { name?: string | null | undefined; email?: string | null | undefined }) {
   const [open, setOpen] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);

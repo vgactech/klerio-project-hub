@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_authenticated/espace/compte")({
   component: Compte,
 });
 
-type Profile = { displayName?: string; phone?: string; city?: string; photo?: string };
+type Profile = { displayName?: string; phone?: string; city?: string; photo?: string | undefined };
 
 /** Réduit l'image à 256 px (JPEG) pour qu'elle tienne dans le profil. */
 function resizeImage(file: File): Promise<string> {
