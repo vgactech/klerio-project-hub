@@ -63,8 +63,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Keep the approved light palette, regardless of the device theme. */
-:root, .dark {
+/* Shared light and explicitly selected dark palettes. */
+:root {
   --radius: 0.75rem;
   color-scheme: light;
   --background: var(--color-paper);
@@ -115,7 +115,7 @@
 /* ===== Espace client — classes reprises à l'identique du dépôt Klerio-26/KLERIO ===== */
 .klerio-app {
   font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
-  background-color: #f6f4ee;
+  background-color: var(--background);
   background-image: radial-gradient(circle at 12% 0%, rgba(47, 136, 128, 0.08), transparent 34%),
     radial-gradient(circle at 88% 4%, rgba(251, 95, 18, 0.05), transparent 28%);
   color: var(--color-ink-900);
@@ -152,3 +152,34 @@
 }
 .klerio-app .skip-link { position: absolute; left: -999px; top: 8px; z-index: 100; background: #fff; color: #161c2c; padding: 8px 12px; border-radius: 8px; }
 .klerio-app .skip-link:focus { left: 8px; }
+
+.dark {
+  color-scheme: dark;
+  --color-paper: #141a1a;
+  --color-ink-50: #202828; --color-ink-100: #283332; --color-ink-200: #3d4b49;
+  --color-ink-300: #52625f; --color-ink-400: #a0b1ac; --color-ink-500: #b3c2bd;
+  --color-ink-600: #c9d4d0; --color-ink-700: #dbe4df; --color-ink-800: #e8eee9; --color-ink-900: #f4f7f3;
+  --color-brand-50: #1c302e; --color-brand-100: #25423e; --color-brand-200: #365e56;
+  --color-brand-600: #80cbbc; --color-brand-700: #9bdccd; --color-brand-800: #bde9df; --color-brand-900: #d9f5ec;
+  --color-accent-50: #38251d; --color-accent-100: #513325; --color-accent-800: #ffb389;
+  --card: #202828; --background: var(--color-paper); --foreground: var(--color-ink-900);
+  --primary: #35786b; --primary-foreground: #ffffff;
+  --secondary: var(--color-brand-50); --secondary-foreground: var(--color-brand-700);
+  --muted: var(--color-ink-100); --muted-foreground: var(--color-ink-500);
+  --border: var(--color-ink-200); --input: var(--color-ink-300);
+}
+.dark .klerio-app { background-image: none; }
+.dark .klerio-app [class*="bg-white"] { background-color: var(--card); }
+.dark .klerio-app [class*="bg-brand-700"], .dark .klerio-app .btn-primary { background-color: var(--primary); }
+.dark .klerio-app [class*="bg-brand-900"] { background-color: var(--color-brand-50); }
+.dark .klerio-app header { background-color: var(--background); }
+.dark .klerio-app [class*="bg-violet"], .dark .klerio-app [class*="bg-sky"], .dark .klerio-app [class*="bg-emerald"], .dark .klerio-app [class*="bg-red"] { background-color: var(--secondary); }
+.dark .klerio-app [class*="text-violet"], .dark .klerio-app [class*="text-sky"], .dark .klerio-app [class*="text-emerald"], .dark .klerio-app [class*="text-red"] { color: var(--foreground); }
+.appearance-controls { position: fixed; z-index: 100; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 4px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--foreground); box-shadow: var(--shadow-card); max-width: calc(100vw - 24px); }
+.appearance-select { width: 128px; min-height: 36px; font-size: 13px; background: var(--card); color: var(--foreground); border: 0; }
+html:has(iframe) .appearance-controls { top: 4px; bottom: auto; right: 8px; }
+html:has(iframe) iframe { top: 48px; height: calc(100% - 48px); }
+html:has(iframe) body { background: var(--background); }
+@media (min-width: 1024px) { .appearance-controls { bottom: 16px; } }
+html[lang="zh-CN"] body { font-family: "Atkinson Hyperlegible", "Microsoft YaHei", sans-serif; }
+button, a, label { overflow-wrap: anywhere; }
