@@ -278,7 +278,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   function loadMemory(){if(!P.klerioMemory)return setTimeout(loadMemory,200);P.klerioMemory().then(function(r){
     var ev=r.events||[];
     var welcome=$('initial-welcome'),uid=(P.klerioUserId||'unknown'),key='klerio-introduced-'+uid;
-    if(welcome){if(!r.error && !ev.length && !localStorage.getItem(key)){welcome.hidden=false;welcome.querySelector('.bubble').textContent='Je suis Klerio. Qu’est-ce qui vous bloque aujourd’hui ?';localStorage.setItem(key,'1');}else welcome.remove();}
+    if(welcome){if(!r.error && P.klerioShouldIntroduce && P.klerioShouldIntroduce(!!ev.length,!!localStorage.getItem(key))){welcome.hidden=false;welcome.querySelector('.bubble').textContent='Je suis Klerio. Qu’est-ce qui vous bloque aujourd’hui ?';localStorage.setItem(key,'1');}else welcome.remove();}
     if(r.error){setStatus('<span class="live-dot off"></span>Mémoire indisponible : '+r.error);return;}
     if(ev.length){addCard('<p class="small">Conversation précédente retrouvée · Klerio s’en souvient automatiquement.</p>');if(ev.length)P.klerioTopic=ev[ev.length-1].topic;ev.forEach(function(e){say(e.content,/\.user$/.test(e.kind),e.model,e.tokens&&e.tokens.total,e.at)});}
     setStatus('<span class="live-dot"></span>Mémoire chargée · '+ev.length+' messages');

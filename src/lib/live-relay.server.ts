@@ -17,8 +17,7 @@ const liveSettings = {
   baseURL: "https://ai.gateway.lovable.dev/v1",
   liveModel: "openai/gpt-live-1",
   backendModel: "openai/gpt-5-nano",
-  openingInstructions:
-    "Do not introduce yourself or repeat your name. The initial introduction is already shown in the chat. Wait for the user to speak, then answer in their detected language.",
+  openingInstructions: "",
 };
 
 export type LiveSocket = {
