@@ -62,7 +62,7 @@ function Coffre() {
 
   return (
     <div>
-      <PageHeader eyebrow="Coffre-fort" title="Vos papiers" description="Chaque document est sauvegardé dans votre dossier privé GitHub, à votre seul nom."
+      <PageHeader eyebrow="Coffre-fort chiffré" title="Mes documents" description="Recherchez par titre, mot-clé ou contenu."
         action={<Link to="/espace/scanner" className={btnSecondary}>Scanner un document</Link>} />
       <ErrorNote error={error} />
       <Card className="mb-6 flex flex-wrap items-center gap-3">

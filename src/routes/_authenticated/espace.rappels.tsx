@@ -53,7 +53,7 @@ function Rappels() {
 
   return (
     <div>
-      <PageHeader eyebrow="Rappels" title="Vos échéances" description="Chaque rappel est sauvegardé dans votre dossier privé GitHub." />
+      <PageHeader eyebrow="Rappels et notifications" title="Ne plus rien oublier." description="Une date, une action, un rappel. Klerio vous prévient dans l'application, par e-mail ou en notification." />
       <ErrorNote error={error} />
       <Card className="mb-6">
         <form

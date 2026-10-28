@@ -39,7 +39,7 @@ function Famille() {
   const members = fam?.members ?? [];
   return (
     <div>
-      <PageHeader eyebrow="Famille" title="Mon foyer" description="Notez les proches qui vous aident ou que vous aidez. Klerio s'en sert pour comprendre vos démarches." />
+      <PageHeader eyebrow="Votre groupe famille" title="Créez votre espace famille." description="Notez les proches qui vous aident ou que vous aidez. Klerio s'en sert pour comprendre vos démarches." />
       <ErrorNote error={error} />
       <div className="mb-4 rounded-2xl border border-ink-200 bg-white/70 p-4 text-sm text-ink-600">
         Le partage de documents avec un autre compte n'est pas encore disponible : chaque compte garde son dossier privé.

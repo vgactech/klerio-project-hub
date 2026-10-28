@@ -68,7 +68,7 @@ function Scanner() {
 
   return (
     <div>
-      <PageHeader eyebrow="Scanner" title="Scanner un document" description="Prenez chaque page en photo, bien à plat et éclairée. Klerio lit le texte et marque « À vérifier » ce qui est incertain." />
+      <PageHeader eyebrow="Scan → PDF" title="Scannez, c'est tout." description="Prenez une ou plusieurs photos. Klerio recadre, améliore, assemble un PDF et le range dans votre coffre chiffré. Le nombre de pages est toujours affiché avant l'enregistrement." />
       <ErrorNote error={error} />
       <Card className="mb-6 flex flex-wrap gap-3">
         <input ref={camRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => (add(e.target.files), (e.target.value = ""))} />

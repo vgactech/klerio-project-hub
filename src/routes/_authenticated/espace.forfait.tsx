@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_authenticated/espace/forfait")({
 function Forfait() {
   return (
     <div>
-      <PageHeader eyebrow="Forfait" title="Forfait et crédits" description="Vous utilisez le forfait gratuit." />
+      <PageHeader eyebrow="Abonnement et crédits" title="Transparent, jusqu'au bout." description="Vous voyez toujours ce qui est inclus, ce qui sera débité, et quand le quota repart. Aucun dépassement payant sans votre accord explicite." />
       <Card className="max-w-lg border-brand-300">
         <p className="text-xs font-semibold uppercase text-brand-700">Forfait actuel</p>
         <p className="mt-1 text-2xl font-black">Gratuit</p>
