@@ -30,7 +30,7 @@ export type MemoryEvent = {
   channel: "text" | "voice";
   content: string;
   model?: string;
-  tokens?: { input?: number; output?: number; total?: number };
+  tokens?: { input?: number | undefined; output?: number | undefined; total?: number | undefined };
   duration_ms?: number;
 };
 
