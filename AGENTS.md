@@ -17,3 +17,4 @@
 - Keep real client files and data out of this application repository; client memory belongs in isolated private storage repositories.
 - Log application prompts, actions and available explanations without secrets; never claim private model reasoning was captured.
 - Client memory is stored on the `klerio-memory` orphan branch of the private GitHub repo (one folder per auth user id, append-only JSONL); never write client data to `main`, which is the Lovable-synced code branch.
+- The client space (/espace/*) stores reminders, family, profile and documents under clients/<id>/espace and clients/<id>/documents on the same memory branch via server routes; never add a database for this data.

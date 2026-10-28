@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/espace/")({
 function Accueil() {
   const { user } = Route.useRouteContext();
   const { docs, reminders, events, error } = useEspaceData();
-  const firstName = (user.name ?? user.email ?? "").split(/[ @]/)[0] || "bonjour";
+  const firstName = (user.name ?? user.email ?? "").split(/[ @.]/)[0] ?? "";
   const today = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
   const month = new Date().toISOString().slice(0, 7);
   const scans = (docs ?? []).filter((d) => d.text !== undefined).length;
@@ -37,7 +37,7 @@ function Accueil() {
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-ink-500 first-letter:uppercase">{today}</p>
-          <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">Bonjour {firstName} <span aria-hidden="true">👋</span></h1>
+          <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">Bonjour{firstName ? ` ${firstName.charAt(0).toUpperCase()}${firstName.slice(1)}` : ""} <span aria-hidden="true">👋</span></h1>
           <p className="mt-2 max-w-xl text-sm text-ink-600">Une chose à la fois. Voici ce qui compte aujourd'hui — le reste peut attendre.</p>
         </div>
         <Link to="/espace/scanner" className={btnPrimary}><ScanLine className="h-4 w-4" /> Scanner un document</Link>
