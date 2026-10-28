@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, type FormEvent } from "react";
 import { toast } from "sonner";
 import { lovable } from "@/integrations/lovable";
@@ -63,6 +63,9 @@ function AuthPage() {
           </Button>
           <Button variant="outline" className="w-full" onClick={() => social("lovable")}>
             Continuer avec Lovable
+          </Button>
+          <Button asChild variant="secondary" className="w-full">
+            <Link to="/demo">Essayer la démo sans inscription</Link>
           </Button>
         </div>
 
