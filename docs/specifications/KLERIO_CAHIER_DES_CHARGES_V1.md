@@ -1,5 +1,5 @@
 # Klerio — Cahier des charges produit, technique et UI
-Version 1.4 — 27 octobre 2026 — Statut : proposition de référence pour réalisation.
+Version 1.5 — 28 octobre 2026 — Statut : proposition de référence pour réalisation.
 Dépôt : vgactech/klerio-project-hub. Périmètre de cette livraison : spécifications et maquette UI, sans activation des services IA, voix, OCR ou mémoire.
 
 ## 1. Vision et résultat attendu
@@ -85,7 +85,7 @@ Le bouton Envoyer est intégré à l’intérieur de la zone de saisie, sur sa d
 
 ### Système visuel
 
-Direction : messagerie minimaliste monochrome uniquement. Thème noir : fond #000, texte #fff. Thème blanc : fond #fff, texte #000. Gris neutres réservés aux bordures, hiérarchie et états secondaires ; aucune couleur d’accent. L’utilisateur bascule entre Noir et Blanc dans l’en-tête.
+Direction en vigueur : messagerie bronze moderne et futuriste avec la mascotte officielle chat-pingouin. Fond bronze profond #6B4427, cartes #59371F, textes crème #FFF3DF et accent bronze métallique #CD7F32. Surfaces translucides et bordures cuivrées discrètes. Cette décision remplace les thèmes noir/blanc des versions antérieures.
 Police système, corps 16 px, interligne au moins 1,45 ; espacement sur base 4/8 px ; bulles arrondies 18 px ; contrôles tactiles cibles 44 × 44 px minimum.
 Les états utilisent texte et icône, pas uniquement une couleur. Respect du zoom, de la réduction des animations, des zones sûres et du clavier virtuel. Pas d’animation qui déplace le bouton au moment du toucher.
 
@@ -663,3 +663,35 @@ Les captures fournies par le propriétaire sont des inspirations fonctionnelles.
 Syntaxe JavaScript contrôlée. Les fonctions des 12 scénarios ont été exécutées avec un rendu simulé pour leurs 36 branches ; les gestionnaires de pointeur ont passé 8 contrôles unitaires avec géométrie simulée. Ces tests ne constituent ni une recette navigateur ni une validation tactile sur appareil réel.
 Le navigateur de test n’était pas installé et son téléchargement n’a pas abouti ; aucune capture de rendu ni performance réelle n’est revendiquée.
 Les services OpenAI, ElevenLabs, OCR, archivage GitHub automatique et comptes administratifs ne sont pas connectés dans le fichier de démonstration.
+
+
+## 33. Identité officielle et compagnon flottant — 28 octobre 2026
+
+Cette décision du propriétaire remplace toutes les consignes antérieures incompatibles de thème noir/blanc et de mascotte.
+
+### Identité et présence
+- Mascotte officielle : le chat-pingouin fourni par le propriétaire, conservé visuellement. Les illustrations réalistes constituent la référence principale ; les variantes pixel restent secondaires.
+- Thème de toute l’application : bronze, moderne et futuriste. Palette de base : fond #6B4427, surface #59371F, texte #FFF3DF, texte secondaire #E0C6AA et accent #CD7F32. Les dégradés et transparences doivent faire l’objet d’une vérification de contraste sur le rendu effectif.
+- Afficher uniquement la tête dans une bulle ronde suspendue au-dessus du chat. Une place dédiée évite de masquer l’en-tête, les messages et les commandes.
+- Suspension légère, halo bronze et ombre douce. Les effets restent discrets et respectent la préférence système de réduction des animations.
+- La tête figure aussi comme petit avatar ; le corps complet peut apparaître dans la galerie d’identité, sans devenir un élément permanent du chat.
+
+### Animation et voix
+- Animer la bouche pendant la parole de l’agent. Dans le produit connecté, l’animation suit la lecture réelle de l’audio ElevenLabs, son arrêt, sa pause et ses interruptions. Utiliser les informations de synchronisation disponibles dans le service retenu ; un mouvement basé sur l’amplitude ne doit pas être présenté comme une synchronisation phonétique exacte.
+- Distinguer lecture audio, écoute micro, attente et silence par des libellés. Une bouche qui bouge n’est jamais une preuve que le micro fonctionne.
+- La maquette propose un bouton de test visuel explicite : « Tester l’animation · sans audio ». Le test dure au plus cinq secondes, s’arrête sur une seconde pression, un changement de mode ou lorsque la page est masquée.
+- Aucun audio ni micro n’est activé par le test. L’animation de démonstration n’est pas présentée comme une intégration ElevenLabs.
+- Le compagnon n’est pas un assistant supplémentaire et ne possède pas une mémoire indépendante : il représente l’agent Klerio existant.
+- Une expression joyeuse n’atteste pas une démarche réussie ; seule une preuve d’exécution peut faire passer la tâche au statut confirmé.
+
+### Intégration fournie
+La maquette autonome inclut une copie WebP optimisée de la référence fournie et affiche les poses par positionnement CSS. L’original utilisateur n’est pas remplacé. La tête et la bouche sont présentées par la composition de l’interface, sans régénération de la mascotte.
+Le chat, les douze parcours administratifs, le bouton de mode déplaçable et l’envoi intégré glissant vers la gauche sont conservés.
+La syntaxe JavaScript a été vérifiée ; la validation visuelle du cadrage de tête, du placement de bouche et du comportement sur téléphone reste à effectuer en navigateur.
+
+### Recette complémentaire
+- AT-44 : la mascotte et le bronze sont cohérents dans les surfaces principales et secondaires.
+- AT-45 : la tête seule flotte au-dessus du chat et ne masque aucune action essentielle.
+- AT-46 : le test d’animation est explicitement sans audio et s’arrête sur demande.
+- AT-47 : une fois la voix branchée, bouche et état de parole s’arrêtent avec l’audio, notamment lors d’une interruption.
+- AT-48 : réduction des animations, navigation clavier et petits écrans restent utilisables.
