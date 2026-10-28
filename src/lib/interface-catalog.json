@@ -1717,8 +1717,8 @@
   ],
   "Dashboard": [
     "Dashboard",
-    "仪表板",
-    "Panel de control",
+    "控制面板",
+    "Panel",
     "Painel"
   ],
   "Dashboard — Klerio": [
@@ -2196,10 +2196,10 @@
     "Klerio, página inicial"
   ],
   "Ko": [
-    "Ko",
-    "Ko",
-    "Ko",
-    "Ko"
+    "KB",
+    "KB",
+    "KB",
+    "KB"
   ],
   "La DGFiP décrit la mise à jour de la situation d’occupation. Le courrier et votre situation déterminent ce qu’il faut vérifier.": [
     "The DGFiP describes updating the occupancy situation. The letter and your situation determine what to check.",
@@ -2666,7 +2666,7 @@
   "Menu du compte —": [
     "Account menu —",
     "账户菜单 —",
-    "Menú de la cuenta —",
+    "Menú de cuenta —",
     "Menu da conta —"
   ],
   "Merci d'accepter les conditions d'utilisation.": [
@@ -3162,10 +3162,10 @@
     "Oferta de sessão de voz ausente"
   ],
   "Mo": [
-    "Mo",
-    "Mo",
-    "Mo",
-    "Mo"
+    "MB",
+    "MB",
+    "MB",
+    "MB"
   ],
   "Mode": [
     "Mode",
@@ -3600,10 +3600,10 @@
     "Deslize o botão até 'Vocal' para ativar o microfone."
   ],
   "Go": [
-    "Go",
-    "去",
-    "Ir",
-    "Ir"
+    "GB",
+    "GB",
+    "GB",
+    "GB"
   ],
   "Go home": [
     "Go home",
@@ -5100,10 +5100,10 @@
     "Visita de saúde ocupacional"
   ],
   "Vocal": [
-    "Vocal",
+    "Voice",
     "语音",
-    "Vocal",
-    "Vocal"
+    "Voz",
+    "Voz"
   ],
   "Vocal indisponible :": [
     "Vocal unavailable:",
@@ -5358,10 +5358,10 @@
     "Seus prazos administrativos, lembrados no momento certo."
   ],
   "Votre administratif,": [
-    "Your administrative,",
-    "您的行政，",
-    "Tu administrativo,",
-    "Seu administrativo,"
+    "Your paperwork,",
+    "您的行政事务，",
+    "Tus trámites,",
+    "Sua papelada,"
   ],
   "Votre assistant Klerio pour les démarches du quotidien.": [
     "Your Klerio assistant for daily tasks.",
@@ -5461,7 +5461,7 @@
   ],
   "Vous": [
     "You",
-    "你",
+    "您",
     "Tú",
     "Você"
   ],
@@ -5711,12 +5711,6 @@
     "burbuja de pensamiento",
     "bolha de pensamento"
   ],
-  "card flex gap-3 p-4": [
-    "card flex gap-3 p-4",
-    "卡片 柔性布局 间距3 内边距4",
-    "tarjeta flex gap-3 p-4",
-    "card flex gap-3 p-4"
-  ],
   "card p-4": [
     "card p-4",
     "卡片 内边距4",
@@ -5806,48 +5800,6 @@
     "每次发送的文件。",
     "archivos por envío.",
     "arquivos por envio"
-  ],
-  "flex items-center gap-1.5": [
-    "flex items-center gap-1.5",
-    "flex  项目居中 间隙1.5",
-    "flex items-center gap-1.5",
-    "flex items-center gap-1.5"
-  ],
-  "flex items-center gap-2": [
-    "flex items-center gap-2",
-    "flex 项目居中 间隙2",
-    "flex items-center gap-2",
-    "flex items-center gap-2"
-  ],
-  "flex items-center gap-3": [
-    "flex items-center gap-3",
-    "flex 项目居中 间隙3",
-    "flex items-center gap-3",
-    "flex items-center gap-3"
-  ],
-  "flex items-center gap-3 lg:hidden": [
-    "flex items-center gap-3 lg:hidden",
-    "flex 项目居中 间隙3 大屏隐藏",
-    "flex items-center gap-3 lg:hidden",
-    "flex items-center gap-3 lg:hidden"
-  ],
-  "flex items-center gap-3 p-4": [
-    "flex items-center gap-3 p-4",
-    "flex 项目居中 间隙3 内边距4",
-    "flex items-center gap-3 p-4",
-    "flex items-center gap-3 p-4"
-  ],
-  "flex items-center justify-between": [
-    "flex items-center justify-between",
-    "flex 项目居中 两端对齐",
-    "flex items-center justify-between",
-    "flex items-center justify-between"
-  ],
-  "flex items-center justify-between gap-2": [
-    "flex items-center justify-between gap-2",
-    "flex 项目居中 两端对齐 间隙2",
-    "flex items-center justify-between gap-2",
-    "flex items-center justify-between gap-2"
   ],
   "votre message a été reçu, mais la synchronisation attend.": [
     "your message has been received, but synchronization is pending.",
@@ -6094,5 +6046,425 @@
     "💬 文字",
     "💬 texto",
     "💬 texto"
+  ],
+  "h-3 w-3": [
+    "h-3 w-3",
+    "h-3 w-3",
+    "h-3 w-3",
+    "h-3 w-3"
+  ],
+  "h-3.5 w-3.5": [
+    "h-3.5 w-3.5",
+    "h-3.5 w-3.5",
+    "h-3.5 w-3.5",
+    "h-3.5 w-3.5"
+  ],
+  "h-4 w-4": [
+    "h-4 w-4",
+    "h-4 w-4",
+    "h-4 w-4",
+    "h-4 w-4"
+  ],
+  "h-4 w-4 animate-spin": [
+    "h-4 w-4 animate-spin",
+    "h-4 w-4 animate-spin",
+    "h-4 w-4 animate-spin",
+    "h-4 w-4 animate-spin"
+  ],
+  "h-5 w-5": [
+    "h-5 w-5",
+    "h-5 w-5",
+    "h-5 w-5",
+    "h-5 w-5"
+  ],
+  "h-5 w-5 shrink-0": [
+    "h-5 w-5 shrink-0",
+    "h-5 w-5 shrink-0",
+    "h-5 w-5 shrink-0",
+    "h-5 w-5 shrink-0"
+  ],
+  "h-6 w-6": [
+    "h-6 w-6",
+    "h-6 w-6",
+    "h-6 w-6",
+    "h-6 w-6"
+  ],
+  "h-7 w-9": [
+    "h-7 w-9",
+    "h-7 w-9",
+    "h-7 w-9",
+    "h-7 w-9"
+  ],
+  "mt-4 flex justify-center": [
+    "mt-4 flex justify-center",
+    "mt-4 flex justify-center",
+    "mt-4 flex justify-center",
+    "mt-4 flex justify-center"
+  ],
+  "mt-6 w-full": [
+    "mt-6 w-full",
+    "mt-6 w-full",
+    "mt-6 w-full",
+    "mt-6 w-full"
+  ],
+  "mt-7 space-y-4": [
+    "mt-7 space-y-4",
+    "mt-7 space-y-4",
+    "mt-7 space-y-4",
+    "mt-7 space-y-4"
+  ],
+  "mémoire sauvegardée": [
+    "memory saved",
+    "内存已保存",
+    "memoria guardada",
+    "memória salva"
+  ],
+  "noopener noreferrer": [
+    "noopener noreferrer",
+    "noopener noreferrer",
+    "noopener noreferrer",
+    "noopener noreferrer"
+  ],
+  "noopener noreferrer nofollow": [
+    "noopener noreferrer nofollow",
+    "noopener noreferrer nofollow",
+    "noopener noreferrer nofollow",
+    "noopener noreferrer nofollow"
+  ],
+  "notifications non lues": [
+    "unread notifications",
+    "未读通知",
+    "notificaciones sin leer",
+    "notificações não lidas"
+  ],
+  "pages de scan par mois et": [
+    "scan pages per month and",
+    "页扫描每月及",
+    "páginas escaneadas al mes y",
+    "páginas digitalizadas por mês e"
+  ],
+  "par mois": [
+    "per month",
+    "每月",
+    "por mes",
+    "por mês"
+  ],
+  "par mois — remis à zéro le 1er du mois": [
+    "per month — reset on the 1st of the month",
+    "每月—在月初重置",
+    "por mes — restablecido en el día 1 del mes",
+    "por mês — redefinido no dia 1 do mês"
+  ],
+  "partager un rapport.": [
+    "share a report.",
+    "分享报告。",
+    "comparta un informe.",
+    "compartilhar um relatório."
+  ],
+  "produit par → Tâche de comparaison": [
+    "product by → Comparison task",
+    "按 → 比较任务的产品",
+    "producto por → Tarea de comparación",
+    "produto por → Tarefa de comparação"
+  ],
+  "produit → liste de vérification et brouillon": [
+    "product → checklist and draft",
+    "产品 → 清单和草稿",
+    "producto → lista de verificación y borrador",
+    "produto → lista de verificação e rascunho"
+  ],
+  "radial-gradient(circle at 35% 20%, #bd8b56, #5c371e 75%)": [
+    "radial-gradient(circle at 35% 20%, #bd8b56, #5c371e 75%)",
+    "radial-gradient(circle at 35% 20%, #bd8b56, #5c371e 75%)",
+    "radial-gradient(circle at 35% 20%, #bd8b56, #5c371e 75%)",
+    "radial-gradient(circle at 35% 20%, #bd8b56, #5c371e 75%)"
+  ],
+  "rangée": [
+    "row",
+    "行",
+    "fila",
+    "linha"
+  ],
+  "rapport fictif, version 1.": [
+    "fictitious report, version 1.",
+    "虚构报告，版本1。",
+    "informe ficticio, versión 1.",
+    "relatório fictício, versão 1."
+  ],
+  "référencé dans → Session « Comparer mes devis »": [
+    "referenced in → Session 'Compare my quotes'",
+    "在引用于 → 会话“比较我的报价”",
+    "referenciado en → Sesión « Comparar mis presupuestos »",
+    "referenciado em → Sessão « Comparar meus orçamentos »"
+  ],
+  "s ease-in-out infinite": [
+    "s ease-in-out infinite",
+    "s ease-in-out infinite",
+    "s ease-in-out infinite",
+    "s ease-in-out infinite"
+  ],
+  "h-full rounded-full transition-all": [
+    "h-full rounded-full transition-all",
+    "h-full rounded-full transition-all",
+    "h-full rounded-full transition-all",
+    "h-full rounded-full transition-all"
+  ],
+  "h-full w-full object-cover": [
+    "h-full w-full object-cover",
+    "h-full w-full object-cover",
+    "h-full w-full object-cover",
+    "h-full w-full object-cover"
+  ],
+  "hint mt-1": [
+    "hint mt-1",
+    "hint mt-1",
+    "hint mt-1",
+    "hint mt-1"
+  ],
+  "impôt": [
+    "tax",
+    "税",
+    "impuesto",
+    "imposto"
+  ],
+  "inset 0 1px 1px #ffe3b899, 0 3px 15px #1f100a55": [
+    "inset 0 1px 1px #ffe3b899, 0 3px 15px #1f100a55",
+    "inset 0 1px 1px #ffe3b899, 0 3px 15px #1f100a55",
+    "inset 0 1px 1px #ffe3b899, 0 3px 15px #1f100a55",
+    "inset 0 1px 1px #ffe3b899, 0 3px 15px #1f100a55"
+  ],
+  "inset 0 1px 4px #ffe1b75c, 0 10px 24px #25140988, 0 0 32px #cd7f324d": [
+    "inset 0 1px 4px #ffe1b75c, 0 10px 24px #25140988, 0 0 32px #cd7f324d",
+    "inset 0 1px 4px #ffe1b75c, 0 10px 24px #25140988, 0 0 32px #cd7f324d",
+    "inset 0 1px 4px #ffe1b75c, 0 10px 24px #25140988, 0 0 32px #cd7f324d",
+    "inset 0 1px 4px #ffe1b75c, 0 10px 24px #25140988, 0 0 32px #cd7f324d"
+  ],
+  "klerio-app min-h-dvh": [
+    "klerio-app min-h-dvh",
+    "klerio-app min-h-dvh",
+    "klerio-app min-h-dvh",
+    "klerio-app min-h-dvh"
+  ],
+  "klerio-bounce 1.2s": [
+    "klerio-bounce 1.2s",
+    "klerio-bounce 1.2s",
+    "klerio-bounce 1.2s",
+    "klerio-bounce 1.2s"
+  ],
+  "klerio-levitate 4s ease-in-out infinite": [
+    "klerio-levitate 4s ease-in-out infinite",
+    "klerio-levitate 4s ease-in-out infinite",
+    "klerio-levitate 4s ease-in-out infinite",
+    "klerio-levitate 4s ease-in-out infinite"
+  ],
+  "klerio-talk 0.38s ease-in-out infinite alternate": [
+    "klerio-talk 0.38s ease-in-out infinite alternate",
+    "klerio-talk 0.38s ease-in-out infinite alternate",
+    "klerio-talk 0.38s ease-in-out infinite alternate",
+    "klerio-talk 0.38s ease-in-out infinite alternate"
+  ],
+  "link whitespace-nowrap": [
+    "link whitespace-nowrap",
+    "link whitespace-nowrap",
+    "link whitespace-nowrap",
+    "link whitespace-nowrap"
+  ],
+  "mentionné dans → conversation d’aide": [
+    "mentioned in → help conversation",
+    "在帮助对话中提及",
+    "mencionado en → conversación de ayuda",
+    "mencionado em → conversa de ajuda"
+  ],
+  "microphone; camera; autoplay": [
+    "microphone; camera; autoplay",
+    "麦克风； 摄像头； 自动播放",
+    "micrófono; cámara; reproducción automática",
+    "microfone; câmera; reprodução automática"
+  ],
+  "mt-0.5 h-3.5 w-3.5 shrink-0": [
+    "mt-0.5 h-3.5 w-3.5 shrink-0",
+    "mt-0.5 h-3.5 w-3.5 shrink-0",
+    "mt-0.5 h-3.5 w-3.5 shrink-0",
+    "mt-0.5 h-3.5 w-3.5 shrink-0"
+  ],
+  "mt-0.5 h-4 w-4 shrink-0": [
+    "mt-0.5 h-4 w-4 shrink-0",
+    "mt-0.5 h-4 w-4 shrink-0",
+    "mt-0.5 h-4 w-4 shrink-0",
+    "mt-0.5 h-4 w-4 shrink-0"
+  ],
+  "mt-3 divide-y divide-ink-100": [
+    "mt-3 divide-y divide-ink-100",
+    "mt-3 divide-y divide-ink-100",
+    "mt-3 divide-y divide-ink-100",
+    "mt-3 divide-y divide-ink-100"
+  ],
+  "s · mémoire active": [
+    "s · active memory",
+    "s · 活动内存",
+    "s · memoria activa",
+    "s · memória ativa"
+  ],
+  "sans stress.": [
+    "without stress.",
+    "轻松无压力。",
+    "sin estrés.",
+    "sem estresse."
+  ],
+  "section-title mb-1": [
+    "section-title mb-1",
+    "section-title mb-1",
+    "section-title mb-1",
+    "section-title mb-1"
+  ],
+  "utilisés sur": [
+    "Used on",
+    "用于",
+    "Usado en",
+    "Usado em"
+  ],
+  "Coffre-fort": [
+    "Document vault",
+    "文件保险箱",
+    "Caja fuerte",
+    "Cofre de documentos"
+  ],
+  "E-mail": [
+    "Email",
+    "电子邮件",
+    "Correo electrónico",
+    "E-mail"
+  ],
+  "Aujourd'hui": [
+    "Today",
+    "今天",
+    "Hoy",
+    "Hoje"
+  ],
+  "Conjoint(e)": [
+    "Partner",
+    "配偶",
+    "Pareja",
+    "Cônjuge"
+  ],
+  "Aidant(e)": [
+    "Caregiver",
+    "照护者",
+    "Cuidador/a",
+    "Cuidador(a)"
+  ],
+  "(facultatif)": [
+    "(optional)",
+    "（可选）",
+    "(opcional)",
+    "(opcional)"
+  ],
+  "CGU": [
+    "Terms of use",
+    "使用条款",
+    "Condiciones de uso",
+    "Termos de uso"
+  ],
+  "CGV": [
+    "Terms of sale",
+    "销售条款",
+    "Condiciones de venta",
+    "Termos de venda"
+  ],
+  "TTC": [
+    "incl. tax",
+    "含税",
+    "IVA incluido",
+    "impostos incluídos"
+  ],
+  "an": [
+    "year",
+    "年",
+    "año",
+    "ano"
+  ],
+  "mois": [
+    "month",
+    "月",
+    "mes",
+    "mês"
+  ],
+  "ou": [
+    "or",
+    "或",
+    "o",
+    "ou"
+  ],
+  "page": [
+    "page",
+    "页",
+    "página",
+    "página"
+  ],
+  "sur": [
+    "of",
+    "共",
+    "de",
+    "de"
+  ],
+  "restantes": [
+    "remaining",
+    "剩余",
+    "restantes",
+    "restantes"
+  ],
+  "renouvellement": [
+    "renews",
+    "续期",
+    "renovación",
+    "renovação"
+  ],
+  "jetons": [
+    "tokens",
+    "词元",
+    "tokens",
+    "tokens"
+  ],
+  "Bonjour. Qu’est-ce qui vous bloque aujourd’hui ?": [
+    "Hello. What do you need help with today?",
+    "你好。今天有什么需要帮助的？",
+    "Hola. ¿Con qué necesitas ayuda hoy?",
+    "Olá. Com o que você precisa de ajuda hoje?"
+  ],
+  "Cotisations sociales, auto-entrepreneurs, attestations.": [
+    "Social contributions, self-employed workers, certificates.",
+    "社会保险缴费、个体经营者、证明。",
+    "Cotizaciones sociales, autónomos, certificados.",
+    "Contribuições sociais, autônomos, comprovantes."
+  ],
+  "Demande de mot de passe ou de code = alerte immédiate": [
+    "Password or code requested = immediate alert",
+    "要求密码或验证码 = 立即警告",
+    "Solicitud de contraseña o código = alerta inmediata",
+    "Pedido de senha ou código = alerta imediata"
+  ],
+  "Lien hors domaine officiel = alerte immédiate": [
+    "Link outside an official domain = immediate alert",
+    "非官方域名链接 = 立即警告",
+    "Enlace fuera del dominio oficial = alerta inmediata",
+    "Link fora do domínio oficial = alerta imediata"
+  ],
+  "vérifié le": [
+    "verified on",
+    "验证日期",
+    "verificado el",
+    "verificado em"
+  ],
+  "IA": [
+    "AI",
+    "人工智能",
+    "IA",
+    "IA"
+  ],
+  "o": [
+    "B",
+    "B",
+    "B",
+    "B"
   ]
 }
