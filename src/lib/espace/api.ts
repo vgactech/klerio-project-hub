@@ -1,4 +1,5 @@
 import { lovable } from "@/integrations/lovable";
+import { interfaceLocale } from "@/lib/use-app-language";
 
 export function authHeaders(): Record<string, string> {
   return { Authorization: `Bearer ${lovable.auth.getSession()?.access_token ?? ""}` };
@@ -36,7 +37,7 @@ export function formatBytes(n: number) {
   return `${Number((n / 1024 ** 3).toFixed(1))} Go`;
 }
 export function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  return new Date(iso).toLocaleDateString(interfaceLocale(), { day: "numeric", month: "long", year: "numeric" });
 }
 export function dueLabel(iso: string) {
   const d = Math.round((new Date(iso).setHours(0, 0, 0, 0) - new Date().setHours(0, 0, 0, 0)) / 86400000);

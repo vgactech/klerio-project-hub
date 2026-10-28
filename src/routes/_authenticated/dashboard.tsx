@@ -3,6 +3,7 @@ import { UserMenu } from "@/components/espace/user-menu";
 import { useEffect, useMemo, useState } from "react";
 import { lovable } from "@/integrations/lovable";
 import mascot from "@/assets/mascotte.png.asset.json";
+import { useAppLanguage, interfaceLocale } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -39,7 +40,7 @@ const C = {
 };
 
 function fmt(iso: string) {
-  return new Date(iso).toLocaleString("fr-FR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+  return new Date(iso).toLocaleString(interfaceLocale(), { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
 }
 function label(t?: string) {
   const s = (t ?? "general").replace(/-/g, " ");
@@ -47,6 +48,7 @@ function label(t?: string) {
 }
 
 function Dashboard() {
+  const language = useAppLanguage();
   const { user } = Route.useRouteContext();
   const [events, setEvents] = useState<Ev[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -118,7 +120,7 @@ function Dashboard() {
             ["Messages mémorisés", stats.messages],
             ["Sujets suivis", stats.topics.length],
             ["Échanges vocaux", stats.voice],
-            ["Jetons utilisés", stats.tokens.toLocaleString("fr-FR")],
+            ["Jetons utilisés", stats.tokens.toLocaleString(language)],
           ].map(([k, v]) => (
             <div key={k} style={card()}>
               <div style={{ color: C.soft, fontSize: 13 }}>{k}</div>

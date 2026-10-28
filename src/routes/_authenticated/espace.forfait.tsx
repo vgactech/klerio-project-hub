@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 import { Card, PageHeader } from "@/components/espace/ui";
 import { authHeaders } from "@/lib/espace/api";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/espace/forfait")({
   head: () => ({
@@ -27,6 +28,7 @@ const PLANS = [
 ];
 
 function Forfait() {
+  const language = useAppLanguage();
   const [status, setStatus] = useState<Status | null>(null);
   const [interval, setInterval_] = useState<"month" | "year">("month");
   const [busy, setBusy] = useState<string | null>(null);
@@ -73,7 +75,7 @@ function Forfait() {
         <Card className="mb-6 max-w-xl border-brand-300">
           <p className="text-xs font-semibold uppercase text-brand-700">Forfait actuel</p>
           <p className="mt-1 text-2xl font-black">{current === "famille" ? "Pro Famille" : "Pro"} · {status.interval === "year" ? "annuel" : "mensuel"}</p>
-          {status.end && <p className="mt-1 text-sm text-ink-600">{status.cancelAtEnd ? "Se termine le " : "Prochain renouvellement le "}{new Date(status.end).toLocaleDateString("fr-FR")}</p>}
+          {status.end && <p className="mt-1 text-sm text-ink-600">{status.cancelAtEnd ? "Se termine le " : "Prochain renouvellement le "}{new Date(status.end).toLocaleDateString(language)}</p>}
           <button className="btn-secondary mt-4" disabled={busy === "portal"} onClick={() => go({ action: "portal" }, "portal")}>
             {busy === "portal" ? "Ouverture…" : "Gérer mon abonnement"}
           </button>

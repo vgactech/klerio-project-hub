@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Download, FileText, Trash2, Upload } from "lucide-react";
 import { api, authHeaders, CATEGORIES, fileToBase64, formatBytes, formatDate, type Doc } from "@/lib/espace/api";
 import { Card, Empty, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/espace/coffre")({
   head: () => ({
@@ -27,6 +28,7 @@ async function openDoc(d: Doc) {
 }
 
 function Coffre() {
+  useAppLanguage();
   const [docs, setDocs] = useState<Doc[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -67,7 +69,7 @@ function Coffre() {
       <ErrorNote error={error} />
       <Card className="mb-6 flex flex-wrap items-center gap-3">
         <select className={`${input} max-w-[200px]`} value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Catégorie du document">
-          {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+          {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         <input ref={fileRef} type="file" multiple accept="image/png,image/jpeg,image/webp,application/pdf,text/plain" className="hidden" onChange={(e) => void upload(e.target.files)} />
         <button className={btnPrimary} disabled={busy} onClick={() => fileRef.current?.click()}><Upload className="h-4 w-4" />{busy ? "Envoi en cours…" : "Importer des fichiers"}</button>
@@ -97,7 +99,7 @@ function Coffre() {
                           .then(() => setDocs((x) => (x ?? []).map((y) => (y.id === d.id ? { ...y, category } : y))))
                           .catch((er: Error) => setError(er.message));
                       }}>
-                      {[...new Set([d.category, ...CATEGORIES])].map((c) => <option key={c}>{c}</option>)}
+                      {[...new Set([d.category, ...CATEGORIES])].map((c) => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
                   <button aria-label={`Ouvrir ${d.name}`} className="grid h-9 w-9 place-items-center rounded-lg hover:bg-ink-100" onClick={() => void openDoc(d).catch((e: Error) => setError(e.message))}><Download className="h-4 w-4" /></button>

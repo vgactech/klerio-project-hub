@@ -5,6 +5,7 @@ import { UserMenu } from "@/components/espace/user-menu";
 import { formatBytes, FREE_PLAN, scansThisMonth } from "@/lib/espace/api";
 import { useEspaceData } from "@/lib/espace/use-data";
 import { cn } from "@/lib/utils";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 // Coquille reprise à l'identique de Klerio-26/KLERIO (components/app-shell.tsx + app-nav.tsx).
 export const Route = createFileRoute("/_authenticated/espace")({
@@ -26,6 +27,7 @@ const items = [
 ] as const;
 
 function EspaceLayout() {
+  useAppLanguage();
   const { user } = Route.useRouteContext() as { user: { email?: string | null; name?: string | null } };
   const { docs, reminders } = useEspaceData();
   const used = (docs ?? []).reduce((s, d) => s + (d.size || 0), 0);

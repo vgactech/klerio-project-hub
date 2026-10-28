@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BellRing, CheckCircle2, Clock3, FileText, FolderLock, ScanLine, ShieldAlert, Sparkles } from "lucide-react";
 import { api, dueLabel, formatBytes, formatDate, FREE_PLAN, scansThisMonth, type Doc } from "@/lib/espace/api";
 import { useEspaceData } from "@/lib/espace/use-data";
+import { useAppLanguage } from "@/lib/use-app-language";
 import { Alert, Badge, Card, EmptyState, Progress, SectionHeader, StatCard } from "@/components/espace/klerio";
 
 // Reprise à l'identique de Klerio-26/KLERIO : src/app/app/page.tsx
@@ -38,11 +39,12 @@ export function DocumentCard({ doc }: { doc: Doc }) {
 }
 
 function DashboardPage() {
+  const language = useAppLanguage();
   const { user } = Route.useRouteContext() as { user: { email?: string | null; name?: string | null } };
   const { docs, reminders, events, error, setReminders } = useEspaceData();
   const raw = (user?.name ?? user?.email ?? "bonjour").split(/[ @.]/)[0] || "bonjour";
   const firstName = raw.charAt(0).toUpperCase() + raw.slice(1);
-  const today = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
+  const today = new Intl.DateTimeFormat(language, { weekday: "long", day: "numeric", month: "long" }).format(new Date());
   const month = new Date().toISOString().slice(0, 7);
   const scanRemaining = Math.max(0, FREE_PLAN.scanPagesPerMonth - scansThisMonth(docs));
   const explRemaining = Math.max(0, FREE_PLAN.explanationsPerMonth - (events ?? []).filter((e) => e.kind === "message.assistant" && e.at.startsWith(month)).length);

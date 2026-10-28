@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { lovable } from "@/integrations/lovable";
 import { useLiveVoice, type LiveEvent } from "@/hooks/use-live-voice";
 import { setPendingScan } from "@/lib/espace/pending-scan";
+import { shouldIntroduce } from "@/lib/appearance";
 
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
 type VoiceCaption = (role: "user" | "assistant", text: string) => void;
@@ -15,6 +16,7 @@ declare global {
     klerioVoiceUsage?: (seconds: number) => void;
     klerioTopic?: string;
     klerioUserId?: string;
+    klerioShouldIntroduce?: typeof shouldIntroduce;
     klerioVoiceEvent?: (type: string) => void;
     klerioVoice?: {
       start: () => void;
@@ -190,6 +192,7 @@ function ChatRoute() {
 
   useEffect(() => {
     window.klerioUserId = user.id;
+    window.klerioShouldIntroduce = shouldIntroduce;
     window.klerioVoice = {
       start: () => voiceRef.current.start(),
       stop: () => voiceRef.current.stop(),

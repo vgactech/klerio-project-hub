@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Check, Clock3, Trash2 } from "lucide-react";
 import { api, dueLabel, formatDate, type Reminder } from "@/lib/espace/api";
 import { Card, Empty, ErrorNote, PageHeader, btnPrimary, input } from "@/components/espace/ui";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/espace/rappels")({
   head: () => ({
@@ -27,6 +28,7 @@ function next(r: Reminder): Reminder | null {
 }
 
 function Rappels() {
+  useAppLanguage();
   const [list, setList] = useState<Reminder[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);

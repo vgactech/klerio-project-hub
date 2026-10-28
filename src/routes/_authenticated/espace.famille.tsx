@@ -54,7 +54,7 @@ function Famille() {
           <input className={input} placeholder="Prénom et nom" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-label="Nom" required />
           <input className={input} type="email" placeholder="E-mail (facultatif)" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-label="E-mail" />
           <select className={input} value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} aria-label="Lien">
-            {["Conjoint(e)", "Enfant", "Parent", "Aidant(e)", "Autre"].map((r) => <option key={r}>{r}</option>)}
+            {["Conjoint(e)", "Enfant", "Parent", "Aidant(e)", "Autre"].map((r) => <option key={r} value={r}>{r}</option>)}
           </select>
           <button className={btnPrimary} disabled={fam === null}>Ajouter</button>
         </form>
