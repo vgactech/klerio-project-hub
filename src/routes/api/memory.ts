@@ -14,7 +14,7 @@ export const Route = createFileRoute("/api/memory")({
           const events = all ? await loadRecent(safeOwnerId(uid), 1000, 60) : await loadRecent(safeOwnerId(uid));
           return Response.json({ events });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible", events: [] }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible", events: [] }, { status: 502 });
         }
       },
       // Journalisation temps réel des transcriptions vocales.
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/api/memory")({
           ]);
           return Response.json({ ok: true, topic });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible" }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible" }, { status: 502 });
         }
       },
     },

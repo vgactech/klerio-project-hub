@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/espace/$collection")({
         try {
           return Response.json({ data: await readCollection(safeOwnerId(uid), c) });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible" }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible" }, { status: 502 });
         }
       },
       PUT: async ({ request, params }) => {
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/api/espace/$collection")({
           await writeCollection(safeOwnerId(uid), c, body.data ?? null);
           return Response.json({ ok: true });
         } catch (e) {
-          return Response.json({ error: e instanceof Error ? e.message : "GitHub indisponible" }, { status: 502 });
+          return Response.json({ error: e instanceof Error ? e.message : "Service indisponible" }, { status: 502 });
         }
       },
     },
