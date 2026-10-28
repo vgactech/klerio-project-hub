@@ -51,7 +51,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261028-7";
+const PAGE_VERSION = "20261028-8";
 
 function ChatRoute() {
   const navigate = useNavigate();
@@ -60,6 +60,7 @@ function ChatRoute() {
       if (e.origin !== window.location.origin) return;
       const to = (e.data as { klerioNavigate?: unknown } | null)?.klerioNavigate;
       if (to === "/espace") navigate({ to: "/espace" });
+      if (to === "/espace/scanner") navigate({ to: "/espace/scanner" });
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
