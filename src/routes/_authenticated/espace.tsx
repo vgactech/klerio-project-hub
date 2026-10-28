@@ -1,6 +1,7 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { Bell, BookOpen, Brain, CreditCard, FolderLock, Home, MessageCircle, ScanLine, ShieldCheck, Sparkles, UserRound, Users } from "lucide-react";
-import { Logo, Progress, initials } from "@/components/espace/klerio";
+import { Logo, Progress } from "@/components/espace/klerio";
+import { UserMenu } from "@/components/espace/user-menu";
 import { formatBytes, FREE_PLAN } from "@/lib/espace/api";
 import { useEspaceData } from "@/lib/espace/use-data";
 import { cn } from "@/lib/utils";
@@ -33,7 +34,6 @@ function EspaceLayout() {
   const scanLimit = FREE_PLAN.scanPages;
   const scanRemaining = Math.max(0, scanLimit - (docs ?? []).length);
   const unread = (reminders ?? []).filter((r) => !r.done && new Date(r.dueAt) <= new Date()).length;
-  const ini = initials(user?.name, user?.email);
 
   return (
     <div className="klerio-app min-h-dvh">
@@ -114,9 +114,7 @@ function EspaceLayout() {
                     </span>
                   )}
                 </Link>
-                <Link to="/espace/compte" className="grid h-10 w-10 place-items-center rounded-full bg-brand-700 text-sm font-bold text-white" aria-label={`Mon compte — ${ini}`}>
-                  {ini}
-                </Link>
+                <UserMenu name={user?.name} email={user?.email} />
               </div>
             </div>
           </header>

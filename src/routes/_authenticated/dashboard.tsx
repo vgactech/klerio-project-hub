@@ -1,5 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useQueryClient } from "@tanstack/react-query";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { UserMenu } from "@/components/espace/user-menu";
 import { useEffect, useMemo, useState } from "react";
 import { lovable } from "@/integrations/lovable";
 import mascot from "@/assets/mascotte.png.asset.json";
@@ -48,8 +48,6 @@ function label(t?: string) {
 
 function Dashboard() {
   const { user } = Route.useRouteContext();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const [events, setEvents] = useState<Ev[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [topic, setTopic] = useState<string | null>(null);
@@ -92,12 +90,6 @@ function Dashboard() {
 
   const shown = (events ?? []).filter((e) => !topic || (e.topic ?? "general") === topic).slice(-30).reverse();
 
-  function signOut() {
-    queryClient.cancelQueries();
-    queryClient.clear();
-    lovable.auth.signOut();
-    navigate({ to: "/login", replace: true });
-  }
 
   return (
     <div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "inherit" }}>
@@ -108,11 +100,13 @@ function Dashboard() {
           <img src={mascot.url} alt="Mascotte Klerio" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 8%", transform: "scale(1.9)", transformOrigin: "50% 12%" }} />
         </div>
         <div style={{ flex: 1 }}>
-          <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800 }}>Klerio</h1>
+          <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800 }}>
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }} aria-label="Klerio, page d'accueil">Klerio</Link>
+          </h1>
           <div style={{ color: C.soft, fontSize: 13 }}>Votre dashboard</div>
         </div>
         <Link to="/chat" style={btn(true)}>Conversation</Link>
-        <button onClick={signOut} style={btn(false)}>Se déconnecter</button>
+        <UserMenu name={user.name} email={user.email} />
       </header>
 
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: 20, display: "grid", gap: 18 }}>
