@@ -30,12 +30,12 @@ type Ev = {
 };
 
 const C = {
-  bg: "#4f2c18",
-  card: "#5e3720",
-  line: "#7a4a2c",
-  text: "#fff3df",
-  soft: "#e0c6aa",
-  bronze: "#cd7f32",
+  bg: "#f6f4ee",
+  card: "#ffffff",
+  line: "#d6ede8",
+  text: "#161c2c",
+  soft: "#4a5878",
+  bronze: "#fb5f12",
 };
 
 function fmt(iso: string) {
@@ -104,7 +104,9 @@ function Dashboard() {
       <header
         style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 20px", borderBottom: `1px solid ${C.line}` }}
       >
-        <img src={mascot.url} alt="Mascotte Klerio" width={52} height={52} style={{ borderRadius: "50%", objectFit: "cover", background: C.card }} />
+        <div style={{ width: 52, height: 52, borderRadius: "50%", overflow: "hidden", background: "#d6ede8", flexShrink: 0 }}>
+          <img src={mascot.url} alt="Mascotte Klerio" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 8%", transform: "scale(1.9)", transformOrigin: "50% 12%" }} />
+        </div>
         <div style={{ flex: 1 }}>
           <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800 }}>Klerio</h1>
           <div style={{ color: C.soft, fontSize: 13 }}>Votre dashboard</div>
