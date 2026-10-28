@@ -1,5 +1,10 @@
 # Transmission Klerio à Bob IDE
 
+## Vidéo et post LinkedIn — 28 octobre
+- [ ] Vidéo dynamique de 30 secondes montrant Klerio, avec invitation à tester et signaler les bugs.
+- [ ] Post LinkedIn français de 3 000 caractères maximum, lien de démo et consignes de retour sans données privées.
+- [ ] Contrôler les livrables et les remettre ; aucune publication LinkedIn sans connexion au compte.
+
 ## Langues et apparence — demande du 28 octobre
 - [x] Présentation uniquement lors de la première conversation ; pas de présentation vocale répétée.
 - [x] Sélecteur français, anglais, chinois, espagnol, portugais brésilien sur toutes les pages.
