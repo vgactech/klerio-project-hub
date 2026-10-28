@@ -19,7 +19,7 @@ function DemoPage() {
     <div className="fixed inset-0 flex flex-col bg-background">
       <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-1 text-xs text-muted-foreground">
         <span>Mode démo · sans inscription</span>
-        <Link to="/auth" className="font-medium text-foreground underline">
+        <Link to="/register" className="font-medium text-foreground underline">
           Créer mon compte
         </Link>
       </div>
