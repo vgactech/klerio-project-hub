@@ -28,7 +28,7 @@ export function AppearanceControls() {
       setTheme(dark ? "dark" : "light");
       document.documentElement.lang = next;
       document.documentElement.classList.toggle("dark", dark);
-      document.documentElement.dataset.theme = dark ? "dark" : "light";
+      document.documentElement.dataset["theme"] = dark ? "dark" : "light";
       window.dispatchEvent(new CustomEvent("klerio-appearance-applied"));
     };
     sync();

@@ -86,8 +86,8 @@ export function mountInterfaceLocalization(root: Document): () => void {
   });
   const sync = () => {
     language = validLanguage(owner.localStorage.getItem("klerio-language"));
-    root.documentElement.dataset.theme = owner.localStorage.getItem("klerio-theme") === "dark" ? "dark" : "light";
-    root.body.dataset.theme = root.documentElement.dataset.theme;
+    root.documentElement.dataset["theme"] = owner.localStorage.getItem("klerio-theme") === "dark" ? "dark" : "light";
+    root.body.dataset["theme"] = root.documentElement.dataset["theme"] ?? "light";
     apply();
   };
   const parent = owner.parent;
