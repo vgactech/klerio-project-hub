@@ -120,6 +120,7 @@
     radial-gradient(circle at 88% 4%, rgba(251, 95, 18, 0.05), transparent 28%);
   color: var(--color-ink-900);
   min-height: 100dvh;
+  overflow-x: clip;
 }
 .klerio-app *, .klerio-app ::before, .klerio-app ::after { border-color: var(--color-ink-200); }
 .klerio-app h1, .klerio-app h2, .klerio-app h3 { text-wrap: balance; }
@@ -183,3 +184,5 @@ html:has(iframe) body { background: var(--background); }
 @media (min-width: 1024px) { .appearance-controls { bottom: 16px; } }
 html[lang="zh-CN"] body { font-family: "Atkinson Hyperlegible", "Microsoft YaHei", sans-serif; }
 button, a, label { overflow-wrap: anywhere; }
+.klerio-app nav a { white-space: normal; min-width: 0; text-align: center; }
+.klerio-app .btn-primary, .klerio-app .btn-secondary { white-space: normal; text-align: center; }

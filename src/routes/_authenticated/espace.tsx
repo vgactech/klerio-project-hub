@@ -9,6 +9,14 @@ import { useAppLanguage } from "@/lib/use-app-language";
 
 // Coquille reprise à l'identique de Klerio-26/KLERIO (components/app-shell.tsx + app-nav.tsx).
 export const Route = createFileRoute("/_authenticated/espace")({
+  head: () => ({ meta: [
+    { title: "Espace personnel — Klerio" },
+    { name: "description", content: "Votre espace Klerio pour vos documents, rappels et démarches." },
+    { property: "og:title", content: "Espace personnel — Klerio" },
+    { property: "og:description", content: "Votre espace Klerio pour vos documents, rappels et démarches." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: EspaceLayout,
 });
 
