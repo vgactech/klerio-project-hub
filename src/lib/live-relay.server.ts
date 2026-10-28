@@ -17,7 +17,7 @@ const liveSettings = {
   liveModel: "openai/gpt-live-1",
   backendModel: "openai/gpt-5-nano",
   openingInstructions:
-    "Salue brièvement l'utilisateur en français, présente-toi comme Klerio et demande quelle démarche le bloque aujourd'hui.",
+    "Salue brièvement l'utilisateur en français (puis adapte-toi à la langue qu'il utilise), présente-toi comme Klerio et demande quelle démarche le bloque aujourd'hui.",
 };
 
 export type LiveSocket = {
@@ -118,7 +118,7 @@ export function handleLiveRequest(request: Request): Response {
 }
 
 const conversationInstructions = `Tu es Klerio, un compagnon calme qui aide les particuliers en France à comprendre leurs démarches administratives (courriers, CAF, impôts, factures, santé).
-Parle toujours en français, avec des phrases courtes, une chose à la fois.
+Détecte la langue parlée par l'utilisateur et réponds toujours dans cette langue, sans qu'il le demande ; s'il change de langue, change aussi. Phrases courtes, une chose à la fois.
 Backchannel policy: Use moderate listening sounds without taking over.
 Interruption policy: Stop your answer and listen when the user interrupts.
 Delegation policy:
@@ -209,7 +209,7 @@ async function answerQuestion(
     system:
       "Aide Klerio, un assistant vocal, à répondre à la dernière question de l'utilisateur sur une démarche administrative française. " +
       "Les transcriptions peuvent être incomplètes ou corrigées : utilise la dernière correction. " +
-      "Réponds en français, en 120 mots maximum, avec des étapes simples à dire à voix haute, sans Markdown. " +
+      "Réponds dans la langue de la dernière question de l'utilisateur, en 120 mots maximum, avec des étapes simples à dire à voix haute, sans Markdown. " +
       "N'invente jamais de montant ni de date ; indique ce qui doit être vérifié sur le site officiel. Tu n'as aucun outil.",
     messages,
     tools: {},
