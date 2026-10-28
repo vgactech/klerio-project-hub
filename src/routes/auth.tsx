@@ -64,6 +64,9 @@ function AuthPage() {
           <Button variant="outline" className="w-full" onClick={() => social("lovable")}>
             Continuer avec Lovable
           </Button>
+          <Button asChild variant="secondary" className="w-full">
+            <Link to="/demo">Essayer la démo sans inscription</Link>
+          </Button>
         </div>
 
         <form onSubmit={handleEmailForm} className="space-y-3">

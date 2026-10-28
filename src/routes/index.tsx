@@ -28,6 +28,9 @@ function Home() {
           {signedIn ? "Mon espace" : "Se connecter / S'inscrire"}
         </Link>
       </Button>
+      <Button asChild variant="outline">
+        <Link to="/demo">Essayer la démo sans inscription</Link>
+      </Button>
     </main>
   );
 }
