@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedEspaceRouteImport } from './routes/_authenticated/espace'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
@@ -50,6 +51,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEspaceRoute = AuthenticatedEspaceRouteImport.update({
+  id: '/espace',
+  path: '/espace',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/demo': typeof DemoRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/espace': typeof AuthenticatedEspaceRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/demo': typeof DemoRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/espace': typeof AuthenticatedEspaceRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/demo': typeof DemoRoute
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/espace': typeof AuthenticatedEspaceRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/chat'
     | '/dashboard'
+    | '/espace'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/chat'
     | '/dashboard'
+    | '/espace'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/_authenticated/chat'
     | '/_authenticated/dashboard'
+    | '/_authenticated/espace'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
@@ -209,6 +221,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/espace': {
+      id: '/_authenticated/espace'
+      path: '/espace'
+      fullPath: '/espace'
+      preLoaderRoute: typeof AuthenticatedEspaceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -250,11 +269,13 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedChatRoute: typeof AuthenticatedChatRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEspaceRoute: typeof AuthenticatedEspaceRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEspaceRoute: AuthenticatedEspaceRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
