@@ -47,6 +47,7 @@ export function mountInterfaceLocalization(root: Document): () => void {
       const previous = sources.get(node);
       const original = previous?.applied === current ? previous.original : current;
       const applied = translateInterface(original, language);
+      if (node.parentElement?.tagName === "BUTTON") node.parentElement.setAttribute("data-interface-source", original);
       if (current !== applied) node.nodeValue = applied;
       sources.set(node, { original, applied });
     }
