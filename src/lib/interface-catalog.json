@@ -2728,5 +2728,1955 @@
     "语音消息",
     "Mensaje de voz",
     "Mensagem de voz"
+  ],
+  "Organisation du quotidien": [
+    "Daily organization",
+    "日常组织",
+    "Organización diaria",
+    "Organização do dia a dia"
+  ],
+  "Organiser mes démarches en petites étapes": [
+    "Organize my processes in small steps",
+    "把我的流程分成小步骤进行组织",
+    "Organizar mis trámites en pequeños pasos",
+    "Organizar meus procedimentos em etapas pequenas"
+  ],
+  "Original": [
+    "Original",
+    "原始",
+    "Original",
+    "Original"
+  ],
+  "Oui": [
+    "Yes",
+    "是",
+    "Sí",
+    "Sim"
+  ],
+  "Ouverture du paiement…": [
+    "Opening payment…",
+    "正在打开支付…",
+    "Abriendo el pago…",
+    "Abrindo o pagamento…"
+  ],
+  "Ouvre l'appareil photo du téléphone": [
+    "Open the phone's camera",
+    "打开手机相机",
+    "Abre la cámara del teléfono",
+    "Abra a câmera do telefone"
+  ],
+  "Ouvrir": [
+    "Open",
+    "打开",
+    "Abrir",
+    "Abrir"
+  ],
+  "Ouvrir Documents et télécharger l’attestation.": [
+    "Open Documents and download the attestation.",
+    "打开文档并下载证明",
+    "Abrir Documentos y descargar la certificación.",
+    "Abrir Documentos e baixar o atestado."
+  ],
+  "Ouvrir l'appareil photo": [
+    "Open the camera",
+    "打开相机",
+    "Abrir la cámara",
+    "Abra a câmera"
+  ],
+  "Ouvrir la démo": [
+    "Open the demo",
+    "打开演示",
+    "Abrir la demo",
+    "Abrir a demonstração"
+  ],
+  "Ouvrir le compte ameli officiel et vous connecter vous-même.": [
+    "Open the official ameli account and log in yourself.",
+    "打开官方 ameli 账户并自行登录。",
+    "Abrir la cuenta oficial de ameli e iniciar sesión por ti mismo.",
+    "Abra a conta oficial do ameli e faça login você mesmo."
+  ],
+  "Ouvrir le compte ameli officiel.": [
+    "Open the official ameli account.",
+    "打开官方 ameli 账户。",
+    "Abrir la cuenta oficial de ameli.",
+    "Abrir a conta oficial do ameli."
+  ],
+  "Ouvrir le dashboard": [
+    "Open the dashboard",
+    "打开仪表板",
+    "Abrir el panel",
+    "Abrir o painel"
+  ],
+  "Ouvrir le menu": [
+    "Open the menu",
+    "打开菜单",
+    "Abrir el menú",
+    "Abrir o menu"
+  ],
+  "Ouvrir le scanner": [
+    "Open the scanner",
+    "打开扫描仪",
+    "Abrir el escáner",
+    "Abrir o scanner"
+  ],
+  "Ouvrir votre espace Finances publiques sur le site officiel.": [
+    "Open your Public Finances space on the official site.",
+    "在官方网站打开您的财政空间",
+    "Abrir su espacio Finances publiques en el sitio oficial.",
+    "Abrir seu espaço Finanças públicas no site oficial."
+  ],
+  "Où en êtes-vous ?": [
+    "Where are you at?",
+    "你在哪儿？",
+    "¿En qué punto estás?",
+    "Onde você está?"
+  ],
+  "PDF, JPG, PNG, TXT, MD · cible produit : 20 Mio par fichier. La maquette affiche seulement les noms.": [
+    "PDF, JPG, PNG, TXT, MD · product target: 20 MB per file. The mockup shows only the names.",
+    "PDF, JPG, PNG, TXT, MD · 产品目标：每个文件 20 MB。原型仅显示名称。",
+    "PDF, JPG, PNG, TXT, MD · objetivo del producto: 20 MB por archivo. El diseño solo muestra los nombres.",
+    "PDF, JPG, PNG, TXT, MD · alvo do produto: 20 MB por arquivo. O mockup mostra apenas os nomes."
+  ],
+  "Page": [
+    "Page",
+    "页",
+    "Página",
+    "Página"
+  ],
+  "Page not found": [
+    "Page not found",
+    "未找到页面",
+    "Página no encontrada",
+    "Página não encontrada"
+  ],
+  "Pages de scan": [
+    "Scan pages",
+    "扫描页",
+    "Páginas de escaneo",
+    "Páginas de digitalização"
+  ],
+  "Pages de scan ce mois-ci": [
+    "This month's scan pages",
+    "本月的扫描页",
+    "Páginas de escaneo de este mes",
+    "Páginas de digitalização deste mês"
+  ],
+  "Paiement annulé. Rien n'a été débité.": [
+    "Payment canceled. Nothing has been charged.",
+    "付款已取消。未扣款。",
+    "Pago cancelado. No se ha cobrado.",
+    "Pagamento cancelado. Nada foi cobrado."
+  ],
+  "Paiement reçu, merci ! Ton forfait est activé.": [
+    "Payment received, thank you! Your plan is activated.",
+    "付款已收到，谢谢！您的套餐已激活。",
+    "¡Pago recibido, gracias! Tu plan está activo.",
+    "Pagamento recebido, obrigado! Seu plano está ativado."
+  ],
+  "Paiement sécurisé par Stripe. Vous pouvez annuler à tout moment depuis « Gérer mon abonnement ».": [
+    "Payment secured by Stripe. You can cancel at any time from 'Manage my subscription'.",
+    "交易由 Stripe 安全保护。您可以随时从“管理我的订阅”取消。",
+    "Pago seguro por Stripe. Puede cancelar en cualquier momento desde 'Gestionar mi suscripción'.",
+    "Pagamento seguro via Stripe. Você pode cancelar a qualquer momento em 'Gerenciar minha assinatura'."
+  ],
+  "Papiers d'identité": [
+    "Identity documents",
+    "身份证件",
+    "Documentos de identidad",
+    "Documentos de identidade"
+  ],
+  "Par quoi voulez-vous commencer ?": [
+    "Where would you like to start?",
+    "你想从哪里开始？",
+    "¿Por dónde quieres empezar?",
+    "Por onde quer começar?"
+  ],
+  "Parcours d’organisation conçu pour cette maquette · aucune échéance réelle créée.": [
+    "Organization path designed for this mockup · no real deadline created.",
+    "为此模型设计的组织路径 · 未创建真实截止日期。",
+    "Recorrido de organización diseñado para este prototipo · no se creó ninguna fecha límite real.",
+    "Percurso de organização projetado para este mockup · nenhuma data de vencimento real foi criada."
+  ],
+  "Parent": [
+    "Parent",
+    "父母",
+    "Padre",
+    "Pai"
+  ],
+  "Parole simulée · sans audio": [
+    "Simulated speech · no audio",
+    "模拟语音 · 无音频",
+    "Habla simulada · sin audio",
+    "fala simulada · sem áudio"
+  ],
+  "Pas encore de compte ?": [
+    "No account yet?",
+    "还没有账号？",
+    "¿Aún no tienes cuenta?",
+    "Ainda não tem uma conta?"
+  ],
+  "Passeport, carte d'identité, permis de conduire, carte grise.": [
+    "Passport, identity card, driving license, vehicle registration.",
+    "护照、身份证、驾照、行驶证。",
+    "Pasaporte, documento de identidad, permiso de conducir, tarjeta de registro del vehículo.",
+    "Passaporte, carteira de identidade, carteira de motorista, certidão de veículo."
+  ],
+  "Pause": [
+    "Pause",
+    "暂停",
+    "Pausa",
+    "Pausa"
+  ],
+  "Penser à toute la famille": [
+    "Think of the whole family",
+    "考虑全家人",
+    "Pensar en toda la familia",
+    "Pensar em toda a família"
+  ],
+  "Photo de profil": [
+    "Profile photo",
+    "头像",
+    "Foto de perfil",
+    "Foto de perfil"
+  ],
+  "Photo enregistrée.": [
+    "Photo saved.",
+    "照片已保存。",
+    "Foto guardada.",
+    "Foto salva."
+  ],
+  "Photo ou PDF, plusieurs pages, prêt à classer.": [
+    "Photo or PDF, multiple pages, ready to file.",
+    "照片或 PDF，多页，已准备归档。",
+    "Foto o PDF, varias páginas, listo para archivar.",
+    "Foto ou PDF, várias páginas, pronto para arquivar."
+  ],
+  "Photo ou import, recadrage, amélioration, plusieurs pages, PDF prêt à envoyer.": [
+    "Photo or import, cropping, enhancement, multiple pages, PDF ready to send.",
+    "照片或导入，裁剪，增强，多页，PDF 已准备发送。",
+    "Foto o import, recorte, mejora, varias páginas, PDF listo para enviar.",
+    "Foto ou importação, recorte, melhoria, várias páginas, PDF pronto para enviar."
+  ],
+  "Photo retirée.": [
+    "Photo removed.",
+    "照片已移除。",
+    "Foto eliminada.",
+    "Foto removida."
+  ],
+  "Photographiez vos documents, Klerio lit et range le texte.": [
+    "Photograph your documents, Klerio reads and sorts the text.",
+    "拍摄您的文档，Klerio 读取并整理文本。",
+    "Fotografía tus documentos, Klerio lee y ordena el texto.",
+    "Fotografe seus documentos, o Klerio lê e classifica o texto."
+  ],
+  "Pièces sélectionnées :": [
+    "Selected documents:",
+    "选中的文件：",
+    "Documentos seleccionados:",
+    "Documentos selecionados:"
+  ],
+  "Position de la mascotte réinitialisée": [
+    "Mascot position reset",
+    "吉祥物位置已重置",
+    "Posición de la mascota reiniciada",
+    "Posição da mascote redefinida"
+  ],
+  "Pour démarrer sans payer.": [
+    "To start for free.",
+    "免费开始。",
+    "Para empezar sin pagar.",
+    "Para iniciar sem pagar."
+  ],
+  "Pour une personne qui veut aller vite.": [
+    "For someone who wants to go fast.",
+    "想要快速的人。",
+    "Para alguien que quiere ir rápido.",
+    "Para quem quer ir rápido."
+  ],
+  "Première ouverture": [
+    "First opening",
+    "第一次打开",
+    "Primera apertura",
+    "Primeira abertura"
+  ],
+  "Prendre une photo": [
+    "Take a photo",
+    "拍一张照片",
+    "Tomar una foto",
+    "Tirar uma foto"
+  ],
+  "Prenez une ou plusieurs photos. Klerio recadre, améliore, assemble un PDF et le range dans votre coffre chiffré. Le nombre de pages est toujours affiché avant l'enregistrement.": [
+    "Take one or more photos. Klerio crops, enhances, assembles a PDF and stores it in your encrypted vault. The number of pages is always shown before saving.",
+    "拍摄一张或多张照片。Klerio 会裁剪、增强、组装成 PDF，并将其存入您加密的保险库。保存前总是显示页数。",
+    "Toma una o varias fotos. Klerio recorta, mejora, arma un PDF y lo guarda en tu bóveda cifrada. El número de páginas siempre se muestra antes de guardar.",
+    "Tire uma ou mais fotos. O Klerio recorta, melhora, monta um PDF e o armazena em seu cofre criptografado. O número de páginas é sempre exibido antes de salvar."
+  ],
+  "Prenez-le en photo. Klerio vous explique la suite en quelques secondes, sans jargon.": [
+    "Take a photo of it. Klerio explains the next steps in a few seconds, without jargon.",
+    "给它拍照。Klerio 会在几秒钟内用简单语言解释后续步骤。",
+    "Tómalo en una foto. Klerio te explica los siguientes pasos en unos segundos, sin jerga.",
+    "Tire uma foto dele. O Klerio explica o que fazer em alguns segundos, sem jargão."
+  ],
+  "Prestations sociales": [
+    "Social benefits",
+    "社会福利",
+    "Prestaciones sociales",
+    "Prestações sociais"
+  ],
+  "Prix TTC · résiliable en ligne": [
+    "Prices VAT included · cancellable online",
+    "含税价格 · 可在线取消",
+    "Precio con impuestos incluidos · cancelable en línea",
+    "Preço com IVA incluído · cancelável online"
+  ],
+  "Prix total": [
+    "Total price",
+    "总价",
+    "Precio total",
+    "Preço total"
+  ],
+  "Pro": [
+    "Pro",
+    "专业版",
+    "Pro",
+    "Pro"
+  ],
+  "Pro Famille": [
+    "Pro Family",
+    "专业家庭版",
+    "Pro Familia",
+    "Pro Família"
+  ],
+  "Prochain renouvellement le": [
+    "Next renewal on",
+    "下次续订日期",
+    "Próxima renovación el",
+    "Próxima renovação em"
+  ],
+  "Profil": [
+    "Profile",
+    "个人资料",
+    "Perfil",
+    "Perfil"
+  ],
+  "Profil enregistré.": [
+    "Profile saved.",
+    "个人资料已保存。",
+    "Perfil guardado.",
+    "Perfil salvo."
+  ],
+  "Progression": [
+    "Progress",
+    "进度",
+    "Progreso",
+    "Progresso"
+  ],
+  "Projet Logement": [
+    "Housing Project",
+    "住房项目",
+    "Proyecto de Vivienda",
+    "Projeto de Habitação"
+  ],
+  "Protection des données et exercice de vos droits.": [
+    "Data protection and exercising your rights.",
+    "数据保护及行使您的权利。",
+    "Protección de datos y ejercicio de sus derechos.",
+    "Proteção de dados e exercício de seus direitos."
+  ],
+  "Protection sociale": [
+    "Social protection",
+    "社会保障",
+    "Protección social",
+    "Proteção social"
+  ],
+  "Protection sociale / CAF": [
+    "Social protection / CAF",
+    "社会保障 / CAF",
+    "Protección social / CAF",
+    "Proteção social / CAF"
+  ],
+  "Protection sociale agricole.": [
+    "Agricultural social protection.",
+    "农业社会保障",
+    "Protección social agrícola.",
+    "Proteção social agrícola."
+  ],
+  "Préciser les dates concernées.": [
+    "Specify the relevant dates.",
+    "请说明相关日期。",
+    "Especifique las fechas relevantes.",
+    "Especifique as datas relevantes."
+  ],
+  "Préciser votre objectif — exemple": [
+    "Specify your objective — example",
+    "请说明您的目标 — 例子",
+    "Especifique su objetivo — ejemplo",
+    "Especifique seu objetivo — exemplo"
+  ],
+  "Préférences": [
+    "Preferences",
+    "偏好设置",
+    "Preferencias",
+    "Preferências"
+  ],
+  "Message à envoyer": [
+    "Message to send",
+    "要发送的消息",
+    "Mensaje para enviar",
+    "Mensagem para enviar"
+  ],
+  "Messages de la conversation": [
+    "Conversation messages",
+    "会话消息",
+    "Mensajes de la conversación",
+    "Mensagens da conversa"
+  ],
+  "Messages mémorisés": [
+    "Saved messages",
+    "已保存的消息",
+    "Mensajes guardados",
+    "Mensagens salvas"
+  ],
+  "Mettre en pause": [
+    "Pause",
+    "暂停",
+    "Pausar",
+    "Pausar"
+  ],
+  "Microphone startup failed": [
+    "Microphone startup failed",
+    "麦克风启动失败",
+    "Fallo al iniciar el micrófono",
+    "Falha ao iniciar o microfone"
+  ],
+  "Ministère de l'Intérieur": [
+    "Ministry of the Interior",
+    "内政部",
+    "Ministerio del Interior",
+    "Ministério do Interior"
+  ],
+  "Missing voice session offer": [
+    "Missing voice session offer",
+    "缺少语音会话的提供",
+    "Oferta de sesión de voz ausente",
+    "Oferta de sessão de voz ausente"
+  ],
+  "Mo": [
+    "Mo",
+    "Mo",
+    "Mo",
+    "Mo"
+  ],
+  "Mode": [
+    "Mode",
+    "模式",
+    "Modo",
+    "Modo"
+  ],
+  "Mode Texte. Maintenez et glissez : vocal à gauche, documents à droite. Flèches au clavier.": [
+    "Text Mode. Hold and drag: voice on the left, documents on the right. Keyboard arrows.",
+    "文本模式。按住并拖动：左边是语音，右边是文档。键盘箭头。",
+    "Modo de texto. Mantén y arrastra: voz a la izquierda, documentos a la derecha. Flechas del teclado.",
+    "Modo de Texto. Mantenha e arraste: voz à esquerda, documentos à direita. Setas do teclado."
+  ],
+  "Mode clair": [
+    "Light mode",
+    "明亮模式",
+    "Modo claro",
+    "Modo claro"
+  ],
+  "Mode démo · sans inscription": [
+    "Demo mode · no signup",
+    "演示模式 · 无需注册",
+    "Modo de demostración · sin registro",
+    "Modo de Demonstração · sem cadastro"
+  ],
+  "Mode sombre": [
+    "Dark mode",
+    "夜间模式",
+    "Modo oscuro",
+    "Modo escuro"
+  ],
+  "Mode vocal — appuyez sur Envoyer pour parler…": [
+    "Voice mode — press Send to talk…",
+    "语音模式 — 按发送以讲话…",
+    "Modo de voz — presione Enviar para hablar…",
+    "Modo de voz — pressione Enviar para falar…"
+  ],
+  "Mode vocal — démonstration": [
+    "Voice mode — demonstration",
+    "语音模式 — 演示",
+    "Modo de voz — demostración",
+    "Modo de voz — demonstração"
+  ],
+  "Moins de paperasse. Plus de clarté.": [
+    "Less paperwork. More clarity.",
+    "少些文书工作。更清晰。",
+    "Menos papeleo. Más claridad.",
+    "Menos papelada. Mais clareza."
+  ],
+  "Mon Parcours Handicap": [
+    "My Disability Journey",
+    "我的残障之旅",
+    "Mi Trayectoria de Discapacidad",
+    "Minha Jornada de Deficiência"
+  ],
+  "Mon compte": [
+    "My account",
+    "我的账户",
+    "Mi cuenta",
+    "Minha conta"
+  ],
+  "Mon compte — Klerio": [
+    "My account — Klerio",
+    "我的账户 — Klerio",
+    "Mi cuenta — Klerio",
+    "Minha conta — Klerio"
+  ],
+  "Mon critère est :": [
+    "My criterion is:",
+    "我的标准是：",
+    "Mi criterio es:",
+    "Meu critério é:"
+  ],
+  "Mon espace": [
+    "My space",
+    "我的空间",
+    "Mi espacio",
+    "Meu espaço"
+  ],
+  "Montant": [
+    "Amount",
+    "金额",
+    "Monto",
+    "Montante"
+  ],
+  "Montant : non indiqué dans l’extrait, pas « 0 € ».": [
+    "Amount: not indicated in the excerpt, not '€0'.",
+    "金额：在摘录中未指明，不是“0 €”。",
+    "Monto: no indicado en el extracto, no '0 €'.",
+    "Montante: não indicado no excerto, não « 0 € »."
+  ],
+  "Montant d’exemple : 2 400 €": [
+    "Example amount: 2 400 €",
+    "示例金额：2 400 €",
+    "Monto de ejemplo: 2 400 €",
+    "Montante de exemplo: 2 400 €"
+  ],
+  "Montant et date": [
+    "Amount and date",
+    "金额和日期",
+    "Monto y fecha",
+    "Montante e data"
+  ],
+  "Mot de passe": [
+    "Password",
+    "密码",
+    "Contraseña",
+    "Senha"
+  ],
+  "Médiateur national de l’énergie · comprendre une facture": [
+    "National Energy Mediator · understand an invoice",
+    "国家能源调解人 · 了解发票",
+    "Mediador Nacional de la Energía · entender una factura",
+    "Mediação Nacional de Energia · entender uma fatura"
+  ],
+  "Mémoire": [
+    "Memory",
+    "内存/记忆",
+    "Memoria",
+    "Memória"
+  ],
+  "Mémoire injoignable": [
+    "Unreachable memory",
+    "内存无法访问",
+    "Memoria inalcanzable",
+    "Memória inacessível"
+  ],
+  "Mémoire injoignable pour le moment.": [
+    "Memory is currently unreachable.",
+    "当前无法访问内存。",
+    "La memoria no es alcanzable en este momento.",
+    "Memória indisponível no momento."
+  ],
+  "Mémoire reliée — exemple": [
+    "Linked memory — example",
+    "相关内存 — 示例",
+    "Memoria vinculada — ejemplo",
+    "Memória ligada — exemplo"
+  ],
+  "M’aider à commencer": [
+    "Help me get started",
+    "帮助我开始",
+    "Ayúdame a empezar",
+    "Ajude-me a começar"
+  ],
+  "M’aider étape par étape": [
+    "Help me step by step",
+    "请一步步帮我",
+    "Ayúdame paso a paso",
+    "Ajude-me passo a passo"
+  ],
+  "Nadia Lefèvre": [
+    "Nadia Lefèvre",
+    "Nadia Lefèvre",
+    "Nadia Lefèvre",
+    "Nadia Lefèvre"
+  ],
+  "Navigation du site": [
+    "Site navigation",
+    "站点导航",
+    "Navegación del sitio",
+    "Navegação do site"
+  ],
+  "Navigation principale": [
+    "Main navigation",
+    "主导航",
+    "Navegación principal",
+    "Navegação principal"
+  ],
+  "Navigation rapide": [
+    "Quick navigation",
+    "快速导航",
+    "Navegación rápida",
+    "Navegação rápida"
+  ],
+  "Naviguez librement dans Klerio, sans inscription. Aucune donnée réelle n'est utilisée.": [
+    "Browse Klerio freely, without signing up. No real data is used.",
+    "在Klerio自由浏览，无需注册。不使用真实数据。",
+    "Navega libremente en Klerio, sin registrarte. No se utiliza datos reales.",
+    "Navegue livremente no Klerio, sem se inscrever. Não são usados dados reais."
+  ],
+  "Ne pas ajouter de mot de passe. Ce brouillon n’a été transmis à aucun organisme.": [
+    "Do not add a password. This draft has not been transmitted to any organization.",
+    "不要添加密码。此草稿未提交给任何机构。",
+    "No añadir una contraseña. Este borrador no ha sido enviado a ninguna organización.",
+    "Não adicione uma senha. Este rascunho não foi transmitido a nenhuma organização."
+  ],
+  "Ne plus rien oublier": [
+    "Never forget anything again",
+    "再也不忘记任何事",
+    "Ya no olvidar nada",
+    "Nunca mais esquecer de nada"
+  ],
+  "Ne plus rien oublier.": [
+    "Forget nothing anymore",
+    "再也不忘记任何事。",
+    "Ya no olvidar nada.",
+    "Esquecer de tudo a partir de agora"
+  ],
+  "Nom": [
+    "Last name",
+    "姓",
+    "Apellido",
+    "Sobrenome"
+  ],
+  "Nom affiché": [
+    "Displayed name",
+    "显示的名称",
+    "Nombre mostrado",
+    "Nome exibido"
+  ],
+  "Nommer une démarche.": [
+    "Name a démarche.",
+    "为一个 démarche 命名",
+    "Nombrar una démarche",
+    "Nomear uma démarche"
+  ],
+  "Non": [
+    "No",
+    "否",
+    "No",
+    "Não"
+  ],
+  "Non classé": [
+    "Unclassified",
+    "未分类",
+    "No clasificado",
+    "Não classificado"
+  ],
+  "Non connecté dans la maquette": [
+    "Not connected in the mockup",
+    "在模型中未连接",
+    "No conectado en el prototipo",
+    "Não conectado no mockup"
+  ],
+  "Non consulté. Aucune décision d’organisme inventée.": [
+    "Not consulted. No agency decision invented.",
+    "未咨询。未虚构任何机构决定。",
+    "No consultado. Ninguna decisión de organismo inventada.",
+    "Não consultado. Nenhuma decisão de órgão inventada."
+  ],
+  "Non indiqué": [
+    "Not indicated",
+    "未指明",
+    "No indicado",
+    "Não indicado"
+  ],
+  "Non indiquée": [
+    "Not indicated",
+    "未指明",
+    "No indicada",
+    "Não indicada"
+  ],
+  "Non indiqués dans cet extrait. Aucune somme à zéro ni échéance déduite.": [
+    "Not shown in this extract. No amount of zero nor due date deducted.",
+    "在此摘录中未显示。未扣除零金额或到期日。",
+    "No indicados en este extracto. Ninguna cantidad en cero ni vencimiento deducido.",
+    "Não indicados neste trecho. Nenhum valor zero nem data de vencimento deduzida."
+  ],
+  "Non vérifiée": [
+    "Not verified",
+    "未验证",
+    "No verificado",
+    "Não verificado"
+  ],
+  "Non vérifiée. Consulter le site officiel par un accès de confiance.": [
+    "Not verified. Please consult the official site with a trusted access.",
+    "未验证。请通过可信访问查询官方网站。",
+    "No verificado. Consulta el sitio oficial con un acceso de confianza.",
+    "Não verificado. Consultar o site oficial com um acesso de confiança."
+  ],
+  "Note": [
+    "Note",
+    "注",
+    "Nota",
+    "Notas"
+  ],
+  "Note (facultatif)": [
+    "Note (optional)",
+    "注（可选）",
+    "Nota (opcional)",
+    "Observação (opcional)"
+  ],
+  "Notez les proches qui vous aident ou que vous aidez. Klerio s'en sert pour comprendre vos démarches.": [
+    "Note the relatives who help you or whom you help. Klerio uses this to understand your steps.",
+    "请标注帮助你或你帮助的亲属。Klerio 用它来了解您的流程。",
+    "Indica a los familiares que te ayudan o a quienes ayudas. Klerio lo usa para entender tus trámites.",
+    "Note os parentes que ajudam você ou a quem você ajuda. A Klerio usa isso para entender suas démarche."
+  ],
+  "Notifications quand une tâche se termine": [
+    "Notifications when a task ends",
+    "任务结束时通知",
+    "Notificaciones cuando una tarea termina",
+    "Notificações quando uma tarefa termina"
+  ],
+  "OCR simulé · version 1 · page 1": [
+    "Simulated OCR · version 1 · page 1",
+    "模拟 OCR · 版本 1 · 第 1 页",
+    "OCR simulado · versión 1 · página 1",
+    "OCR simulado · versão 1 · página 1"
+  ],
+  "Objet": [
+    "Subject",
+    "主题",
+    "Asunto",
+    "Assunto"
+  ],
+  "Obtenir une attestation de droits": [
+    "Obtain a rights attestation",
+    "获取权利证明",
+    "Obtener un certificado de derechos",
+    "Obter um certificado de direitos"
+  ],
+  "Occupation du logement": [
+    "Housing occupancy",
+    "住房占用",
+    "Ocupación de la vivienda",
+    "Ocupação da moradia"
+  ],
+  "On commence simplement.": [
+    "We start simply.",
+    "我们只是简单开始。",
+    "Empezamos simplemente.",
+    "Começamos simplesmente."
+  ],
+  "On me demande des pièces": [
+    "I am asked for documents",
+    "需要我提供文件",
+    "Se me piden piezas/documentos",
+    "Peças são solicitadas"
+  ],
+  "On me demande mon attestation de droits à l’Assurance maladie. Je ne la trouve pas.": [
+    "I am asked for my rights attestation for health insurance. I can't find it.",
+    "需要我的健康保险权利证明。我找不到。",
+    "Se me solicita mi certificado de derechos para el seguro médico. No lo encuentro.",
+    "Pede-se o meu certificado de direitos para o seguro de saúde. Não o encontro."
+  ],
+  "On vérifie avant vous.": [
+    "We verify before you.",
+    "在你之前核实。",
+    "Verificamos antes de ti.",
+    "Nós verificamos antes de você."
+  ],
+  "Fiscalité immobilière": [
+    "Property taxation",
+    "房地产税",
+    "Fiscalidad inmobiliaria",
+    "Tributação imobiliária"
+  ],
+  "Fonctionnalités": [
+    "Features",
+    "功能",
+    "Funciones",
+    "Funcionalidades"
+  ],
+  "Forfait Gratuit": [
+    "Free Plan",
+    "免费套餐",
+    "Plan Gratuito",
+    "Plano Gratuito"
+  ],
+  "Forfait Gratuit. Les quotas inclus et les crédits sont deux compteurs séparés. Rien ne se déclenche sans votre accord.": [
+    "Free plan. Included quotas and credits are two separate counters. Nothing will trigger without your consent.",
+    "免费套餐。包含的配额和信用是两个独立的计数器。未经您的同意，任何操作都不会触发。",
+    "Plan gratuito. Las cuotas y créditos incluidos son dos contadores separados. Nada se activa sin su consentimiento.",
+    "Plano Gratuito. As quotas incluídos e os créditos são dois contadores separados. Nada será ativado sem seu consentimento."
+  ],
+  "Forfait actuel": [
+    "Current plan",
+    "当前套餐",
+    "Plan actual",
+    "Plano atual"
+  ],
+  "Forfait et crédits": [
+    "Plan and credits",
+    "套餐与信用",
+    "Plan y créditos",
+    "Plano e créditos"
+  ],
+  "Forfait et crédits — Klerio": [
+    "Plan and credits — Klerio",
+    "Klerio 的套餐和信用",
+    "Plan y créditos — Klerio",
+    "Plano e créditos — Klerio"
+  ],
+  "Forfaits": [
+    "Plans",
+    "套餐",
+    "Planes",
+    "Planos"
+  ],
+  "Formats adaptatifs": [
+    "Adaptive formats",
+    "自适应格式",
+    "Formatos adaptables",
+    "Formatos adaptáveis"
+  ],
+  "France Travail": [
+    "France Travail",
+    "法国工作",
+    "Francia Trabajo",
+    "França Trabalho"
+  ],
+  "Français": [
+    "French",
+    "法语",
+    "Francés",
+    "Francês"
+  ],
+  "Geste annulé · votre message reste dans le champ": [
+    "Gesture cancelled · your message remains in the field",
+    "手势取消 · 您的消息仍在字段中",
+    "Gesto cancelado · su mensaje permanece en el campo",
+    "Gestos cancelado · sua mensagem permanece no campo"
+  ],
+  "Glissez encore vers la gauche": [
+    "Slide further to the left",
+    "向左再滑动",
+    "Desliza aún más a la izquierda",
+    "Deslize ainda mais para a esquerda"
+  ],
+  "Glissez la tête où vous le souhaitez sur l’interface. Position mémorisée sur cet appareil. Au clavier : flèches ; touche Début pour réinitialiser.": [
+    "Drag the header wherever you want on the interface. Position memorized on this device. On keyboard: arrows; Home key to reset.",
+    "在界面上将头部拖到你想要的位置。该位置在此设备上已记忆。按键盘：箭头；Home 键重置。",
+    "Arrastra la cabecera donde desees en la interfaz. La posición se memoriza en este dispositivo. En el teclado: flechas; tecla Inicio para restablecer.",
+    "Arraste o cabeçalho para onde quiser na interface. A posição é lembrada neste dispositivo. No teclado: setas; tecla Início para redefinir."
+  ],
+  "Glissez le bouton jusqu’à « Vocal » pour activer le micro.": [
+    "Slide the button to 'Vocal' to activate the microphone.",
+    "将按钮滑动到“Vocal”以激活麦克风。",
+    "Desliza el botón hasta 'Vocal' para activar el micrófono.",
+    "Deslize o botão até 'Vocal' para ativar o microfone."
+  ],
+  "Go": [
+    "Go",
+    "去",
+    "Ir",
+    "Ir"
+  ],
+  "Go home": [
+    "Go home",
+    "去首页",
+    "Ir a inicio",
+    "Ir para casa"
+  ],
+  "Grands boutons, contraste AA, mode sombre, langage simple et traduction gratuite.": [
+    "Large buttons, AA contrast, dark mode, simple language and free translation.",
+    "大按钮、AA对比、深色模式、简单语言和免费翻译。",
+    "Botones grandes, contraste AA, modo oscuro, lenguaje sencillo y traducción gratuita.",
+    "Botões grandes, contraste AA, modo escuro, linguagem simples e tradução gratuita."
+  ],
+  "Gratuit": [
+    "Free",
+    "免费",
+    "Gratis",
+    "Gratuito"
+  ],
+  "Gratuit pour commencer · sans carte bancaire": [
+    "Free to start · no credit card",
+    "开始即可免费 · 无需信用卡",
+    "Gratis para comenzar · sin tarjeta",
+    "Gratuito para começar · sem cartão de crédito"
+  ],
+  "Gratuit, sans carte bancaire": [
+    "Free, no credit card",
+    "免费，无需信用卡",
+    "Gratis, sin tarjeta",
+    "Gratuito, sem cartão de crédito"
+  ],
+  "Général": [
+    "General",
+    "通用",
+    "General",
+    "Geral"
+  ],
+  "Gérer": [
+    "Manage",
+    "管理",
+    "Gestionar",
+    "Gerenciar"
+  ],
+  "Gérer mon abonnement": [
+    "Manage my subscription",
+    "管理我的订阅",
+    "Gestionar mi suscripción",
+    "Gerenciar minha assinatura"
+  ],
+  "Historique": [
+    "History",
+    "历史",
+    "Historial",
+    "Histórico"
+  ],
+  "Hébergement UE": [
+    "EU hosting",
+    "欧盟托管",
+    "Alojamiento UE",
+    "Hospedagem UE"
+  ],
+  "Hébergement UE · chiffrement renforcé · aucune donnée utilisée pour entraîner l'IA": [
+    "EU hosting · enhanced encryption · no data used to train AI",
+    "欧盟托管 · 加强加密 · 不用于训练 AI 的数据",
+    "Alojamiento UE · cifrado reforzado · ninguna data utilizada para entrenar IA",
+    "Hospedagem UE · criptografia aprimorada · nenhum dado usado para treinar IA"
+  ],
+  "IA connectée": [
+    "Connected AI",
+    "连接的 AI",
+    "IA conectada",
+    "IA conectada"
+  ],
+  "Identifier l’interlocuteur": [
+    "Identify the interlocutor",
+    "识别对话者",
+    "Identificar al interlocutor",
+    "Identificar o interlocutor"
+  ],
+  "Identifier l’organisme et la prestation concernée.": [
+    "Identify the organization and the service concerned.",
+    "识别相关机构和服务。",
+    "Identificar la organización y el servicio concernido.",
+    "Identificar o organismo e o serviço em questão."
+  ],
+  "Identifier l’organisme et l’objet du courrier.": [
+    "Identify the organization and the subject of the letter.",
+    "识别机构和信件主题。",
+    "Identificar la organización y el asunto de la carta.",
+    "Identificar o organismo e o assunto da correspondência."
+  ],
+  "Identifier si le dépôt était en ligne ou papier.": [
+    "Identify whether the submission was online or paper.",
+    "识别提交是在线还是纸质。",
+    "Identificar si la entrega fue en línea o en papel.",
+    "Identificar se o depósito foi online ou em papel."
+  ],
+  "Identifier votre employeur ou le service compétent dans votre situation.": [
+    "Identify your employer or the competent service in your situation.",
+    "识别您的雇主或在您情况下的主管部门。",
+    "Identificar su empleador o el servicio competente en su situación.",
+    "Identificar o empregador ou o serviço competente na sua situação."
+  ],
+  "Identité": [
+    "Identity",
+    "身份",
+    "Identidad",
+    "Identidade"
+  ],
+  "Illustrations originales fournies par le propriétaire. Les expressions accompagnent les états écrits ; elles ne prouvent pas qu’une démarche est terminée.": [
+    "Original illustrations provided by the owner. The captions accompany the written states; they do not prove that a process is finished.",
+    "图片由所有者提供。说明随附书面状态；它们不能证明某个过程已完成。",
+    "Ilustraciones originales proporcionadas por el propietario. Las expresiones acompañan a los estados escritos; no prueban que un trámite esté terminado.",
+    "Ilustrações originais fornecidas pelo proprietário. As legendas acompanham os estados escritos; não provam que um procedimento tenha sido concluído."
+  ],
+  "Image illisible": [
+    "Unreadable image",
+    "图片无法辨认",
+    "Imagen ilegible",
+    "Imagem ilegível"
+  ],
+  "Images, PDF ou texte · 10 Mo max · 10 fichiers par envoi": [
+    "Images, PDF or text · max 10 MB · 10 files per upload",
+    "图片、PDF 或文本 · 最大 10 MB · 每次发送 10 个文件",
+    "Imágenes, PDF o texto · máximo 10 MB · 10 archivos por envío",
+    "Imagens, PDF ou texto · máximo 10 MB · 10 arquivos por envio"
+  ],
+  "Importer des fichiers": [
+    "Import files",
+    "导入文件",
+    "Importar archivos",
+    "Importar arquivos"
+  ],
+  "Importez ou scannez votre premier papier.": [
+    "Import or scan your first document.",
+    "导入或扫描第一份文件。",
+    "Importa o escanea tu primer papel.",
+    "Importe ou digitalize seu primeiro papel."
+  ],
+  "Impossible de lire ton forfait.": [
+    "Unable to read your plan.",
+    "无法读取您的套餐。",
+    "Imposible leer tu plan.",
+    "Impossível ler seu plano."
+  ],
+  "Impossible de transmettre la photo. Réessayez.": [
+    "Unable to transmit the photo. Please try again.",
+    "无法传输照片。请再试一次。",
+    "Imposible transmitir la foto. Inténtalo de nuevo.",
+    "Impossível transmitir a foto. Tente novamente."
+  ],
+  "Impôts": [
+    "Taxes",
+    "税务",
+    "Impuestos",
+    "Impostos"
+  ],
+  "Incident et reprise": [
+    "Incident and recovery",
+    "事件与恢复",
+    "Incidente y recuperación",
+    "Incidente e retomada"
+  ],
+  "Indiquer la période prévue.": [
+    "Indicate the planned period.",
+    "指明预定期间。",
+    "Indicar el periodo previsto.",
+    "Indicar o período previsto."
+  ],
+  "Information économique et droits des consommateurs.": [
+    "Economic information and consumer rights.",
+    "经济信息与消费者权利。",
+    "Información económica y derechos de los consumidores.",
+    "Informação econômica e direitos dos consumidores."
+  ],
+  "Informations légales": [
+    "Legal information",
+    "法律信息",
+    "Información legal",
+    "Informações legais"
+  ],
+  "Informations sur le logement, la location et la copropriété.": [
+    "Information about housing, renting and co-ownership.",
+    "住房、租赁和共同所有权信息。",
+    "Información sobre vivienda, alquiler y copropiedad.",
+    "Informações sobre moradia, aluguel e copropriedade."
+  ],
+  "Inscription gratuite. Vos documents sont chiffrés et restent privés.": [
+    "Free registration. Your documents are encrypted and remain private.",
+    "免费注册。您的文档经过加密并保持私密。",
+    "Registro gratuito. Sus documentos están cifrados y permanecen privados.",
+    "Cadastro gratuito. Seus documentos são criptografados e permanecem privados."
+  ],
+  "Inscription scolaire, bourses, vie scolaire.": [
+    "School enrollment, scholarships, school life.",
+    "入学、奖学金、校园生活。",
+    "Inscripción escolar, becas, vida escolar.",
+    "Matrícula escolar, bolsas de estudo, vida escolar."
+  ],
+  "Insérer un formulaire": [
+    "Insert a form",
+    "插入表单",
+    "Insertar un formulario",
+    "Inserir um formulário"
+  ],
+  "Insérer un tableau": [
+    "Insert a table",
+    "插入表格",
+    "Insertar una tabla",
+    "Inserir uma tabela"
+  ],
+  "Invalid voice connection URL.": [
+    "Invalid voice connection URL.",
+    "无效的语音连接URL。",
+    "URL de conexión de voz no válida.",
+    "URL de conexão de voz inválida"
+  ],
+  "Invalid voice event": [
+    "Invalid voice event",
+    "无效的语音事件",
+    "Evento de voz inválido",
+    "Evento de voz inválido"
+  ],
+  "Invalid voice session answer": [
+    "Invalid voice session answer",
+    "无效的语音会话回答",
+    "Respuesta de sesión de voz inválida",
+    "Resposta de sessão de voz inválida"
+  ],
+  "Invalid voice session event": [
+    "Invalid voice session event",
+    "无效的语音会话事件",
+    "Evento de sesión de voz inválido",
+    "Evento de sessão de voz inválido"
+  ],
+  "J'accepte les conditions d'utilisation et la politique de confidentialité.": [
+    "I accept the terms of use and the privacy policy.",
+    "我接受使用条款和隐私政策。",
+    "Acepto los términos de uso y la política de privacidad.",
+    "Eu aceito os termos de uso e a política de privacidade."
+  ],
+  "J'ai un document à comprendre": [
+    "I have a document to understand",
+    "我有一个需要理解的文档",
+    "Tengo un documento por entender",
+    "Tenho um documento para entender"
+  ],
+  "J'ai un document à scanner": [
+    "I have a document to scan",
+    "我有一个需要扫描的文档",
+    "Tengo un documento para escanear",
+    "Tenho um documento para digitalizar"
+  ],
+  "Je cherche les pièces": [
+    "I'm looking for the pieces",
+    "我在找零件",
+    "Busco las piezas",
+    "Procuro as peças"
+  ],
+  "Je commence": [
+    "I start",
+    "我开始",
+    "Comienzo",
+    "Eu começo"
+  ],
+  "Je dois prévenir l’école de l’absence de mon enfant. Aide-moi à préparer un message.": [
+    "I must inform the school of my child's absence. Help me prepare a message.",
+    "我必须通知学校我孩子的缺勤。帮我准备一条消息。",
+    "Debo avisar a la escuela de la ausencia de mi hijo. Ayúdame a preparar un mensaje.",
+    "Preciso avisar à escola sobre a ausência do meu filho. Ajuda-me a preparar uma mensagem."
+  ],
+  "Je ne comprends pas où en est le remboursement de ma mutuelle. Je voudrais préparer une relance.": [
+    "I don't understand where my mutual insurance reimbursement stands. I would like to prepare a follow-up.",
+    "我不明白我的互助保险报销进展到哪儿。我想准备一个催促。",
+    "No entiendo en qué punto está el reembolso de mi mutua. Quisiera preparar un recordatorio.",
+    "Não entendo em que ponto está o reembolso do meu seguro mutual. Gostaria de preparar um lembrete."
+  ],
+  "Je ne sais plus": [
+    "I don't know anymore",
+    "我再也不知道了",
+    "Ya no sé",
+    "Não sei mais"
+  ],
+  "Je ne suis pas sûr": [
+    "I'm not sure",
+    "我不确定",
+    "No estoy seguro",
+    "Não tenho certeza"
+  ],
+  "Je suis Klerio. Qu’est-ce qui vous bloque aujourd’hui ?": [
+    "I am Klerio. What's blocking you today?",
+    "我是 Klerio。今天有什么让你卡住？",
+    "Soy Klerio. ¿Qué te bloquea hoy?",
+    "Eu sou o Klerio. O que está bloqueando você hoje?"
+  ],
+  "Préférences — démonstration": [
+    "Preferences — demonstration",
+    "偏好设置 — 演示",
+    "Preferencias — demostración",
+    "Preferências — demonstração"
+  ],
+  "Prénom et nom": [
+    "First name and last name",
+    "名字和姓氏",
+    "Nombre y apellido",
+    "Nome e sobrenome"
+  ],
+  "Préparation…": [
+    "Preparation…",
+    "准备中…",
+    "Preparación…",
+    "Preparação…"
+  ],
+  "Préparer la demande avec le modèle officiel adapté.": [
+    "Prepare the request with the appropriate official template.",
+    "使用适当的官方模板准备申请。",
+    "Prepare la solicitud con la plantilla oficial adecuada.",
+    "Prepare o pedido com o modelo oficial apropriado."
+  ],
+  "Préparer les informations demandées.": [
+    "Prepare the requested information.",
+    "准备所需信息。",
+    "Prepare la información solicitada.",
+    "Prepare as informações solicitadas."
+  ],
+  "Préparer les justificatifs demandés par le formulaire adapté.": [
+    "Prepare the supporting documents requested by the adapted form.",
+    "准备由改编表格要求的证明材料。",
+    "Prepare los justificantes solicitados por el formulario adaptado.",
+    "Prepare os documentos comprovatórios solicitados pelo formulário adaptado."
+  ],
+  "Préparer les éléments concernés et conserver la confirmation administrative.": [
+    "Prepare the relevant items and keep the administrative confirmation.",
+    "准备相关要素并保存行政确认。",
+    "Prepare los elementos relevantes y conserve la confirmación administrativa.",
+    "Prepare os itens relevantes e mantenha a confirmação administrativa."
+  ],
+  "Préparer ma demande CAF": [
+    "Prepare my CAF application",
+    "准备我的 CAF 申请",
+    "Prepare mi solicitud de CAF",
+    "Prepare meu pedido CAF"
+  ],
+  "Préparer ma feuille de soins": [
+    "Prepare my care sheet",
+    "准备我的就诊单",
+    "Prepare mi ficha de atención médica",
+    "Prepare a minha folha de cuidados"
+  ],
+  "Préparer seulement les pièces réellement demandées.": [
+    "Prepare only the documents actually requested.",
+    "仅准备实际要求的材料。",
+    "Prepare solo los documentos solicitados realmente.",
+    "Prepare apenas os documentos realmente solicitados."
+  ],
+  "Préparer un brouillon": [
+    "Prepare a draft",
+    "准备一个草稿",
+    "Prepare un borrador",
+    "Prepare um rascunho"
+  ],
+  "Préparer un brouillon de demande et les justificatifs utiles.": [
+    "Prepare a draft of the request and the useful supporting documents.",
+    "准备申请草稿及有用的证明材料。",
+    "Prepare un borrador de la solicitud y los justificantes útiles.",
+    "Prepare um rascunho da solicitação e os comprovantes úteis."
+  ],
+  "Préparer un voyage": [
+    "Prepare a trip",
+    "准备一次旅行",
+    "Prepare un viaje",
+    "Prepare uma viagem"
+  ],
+  "Préparer une demande": [
+    "Prepare a request",
+    "准备一个申请",
+    "Prepare una solicitud",
+    "Prepare um pedido"
+  ],
+  "Préparer une demande CAF / logement": [
+    "Prepare a CAF / housing request",
+    "准备 CAF/住房申请",
+    "Prepare una solicitud CAF / vivienda",
+    "Prepare uma solicitação CAF / moradia"
+  ],
+  "Préparer une demande de C2S": [
+    "Prepare a C2S request",
+    "准备 C2S 申请",
+    "Prepare una solicitud de C2S",
+    "Prepare uma solicitação de C2S"
+  ],
+  "Préparer une demande d’état d’avancement puis la relire.": [
+    "Prepare a progress status request and then review it.",
+    "准备进度状态的申请，然后再校对。",
+    "Prepare una solicitud de estado de avance y luego revisarla.",
+    "Prepare um pedido de estado de andamento e revisá-lo."
+  ],
+  "Préparer une question à la CAF si le statut reste incompréhensible.": [
+    "Prepare a question for CAF if the status remains unclear.",
+    "如果状态仍然不清楚，向 CAF 提出一个问题。",
+    "Prepare una pregunta para la CAF si el estado continúa siendo ambiguo.",
+    "Prepare uma pergunta para a CAF se o status permanecer pouco claro."
+  ],
+  "Préparer une relance": [
+    "Prepare a follow-up",
+    "准备一次催促",
+    "Prepare un seguimiento",
+    "Prepare um acompanhamento"
+  ],
+  "Prévenir l’école d’une absence": [
+    "Notify the school of an absence",
+    "通知学校缺勤",
+    "Notificar a la escuela sobre una ausencia",
+    "Notificar a escola sobre uma ausência"
+  ],
+  "Prévoir le choix de l’organisme gestionnaire.": [
+    "Plan the choice of the managing organization.",
+    "预选管理机构的选择。",
+    "Prever la elección de la organización gestora.",
+    "Prever a escolha da organização gestora."
+  ],
+  "Que pouvez-vous vérifier actuellement ?": [
+    "What can you check at the moment?",
+    "您当前可以检查什么？",
+    "¿Qué puedes verificar actualmente?",
+    "O que você pode verificar no momento?"
+  ],
+  "Que préférez-vous faire maintenant ?": [
+    "What would you prefer to do now?",
+    "您现在更愿意做什么？",
+    "¿Qué prefieres hacer ahora?",
+    "O que você prefere fazer agora?"
+  ],
+  "Que voulez-vous faire ?": [
+    "What would you like to do?",
+    "您想做什么？",
+    "¿Qué quieres hacer?",
+    "O que você gostaria de fazer?"
+  ],
+  "Que voulez-vous vérifier ?": [
+    "What would you like to check?",
+    "您想检查什么？",
+    "¿Qué quieres verificar?",
+    "O que você gostaria de verificar?"
+  ],
+  "Quel est votre besoin immédiat ?": [
+    "What is your immediate need?",
+    "您当前的紧急需求是什么？",
+    "¿Cuál es su necesidad inmediata?",
+    "Qual é a sua necessidade imediata?"
+  ],
+  "Quelle aide vous serait la plus utile ?": [
+    "What help would be the most useful for you?",
+    "哪种帮助对您最有用？",
+    "¿Qué ayuda sería la más útil para usted?",
+    "Qual ajuda seria a mais útil para você?"
+  ],
+  "Quitter": [
+    "Exit",
+    "退出",
+    "Salir",
+    "Sair"
+  ],
+  "Rappels": [
+    "Reminders",
+    "提醒",
+    "Recordatorios",
+    "Lembretes"
+  ],
+  "Rappels avancés, crédits à l'unité": [
+    "Advanced reminders, unit credits",
+    "高级提醒、单位积分",
+    "Recordatorios avanzados, créditos por unidad",
+    "Lembretes avançados, créditos por unidade"
+  ],
+  "Rappels de base et liens officiels": [
+    "Basic reminders and official links",
+    "基础提醒及官方链接",
+    "Recordatorios básicos y enlaces oficiales",
+    "Lembretes básicos e links oficiais"
+  ],
+  "Rappels et notifications": [
+    "Reminders and notifications",
+    "提醒与通知",
+    "Recordatorios y notificaciones",
+    "Lembretes e notificações"
+  ],
+  "Rappels individuels et familiaux": [
+    "Individual and family reminders",
+    "个人和家庭提醒",
+    "Recordatorios individuales y familiares",
+    "Lembretes individuais e familiares"
+  ],
+  "Rappels — Klerio": [
+    "Reminders — Klerio",
+    "Klerio 提醒",
+    "Recordatorios — Klerio",
+    "Lembretes — Klerio"
+  ],
+  "Rassembler le décompte et les justificatifs utiles à votre cas.": [
+    "Gather the statement and the supporting documents useful to your case.",
+    "收集对您案件有用的结算和证明材料。",
+    "Recopile el estado de cuenta y los justificantes útiles para su caso.",
+    "Reúna o extrato e os comprovantes úteis para o seu caso."
+  ],
+  "Ravi de vous revoir.": [
+    "Nice to see you again.",
+    "很高兴再次见到您。",
+    "Encantado de verte de nuevo.",
+    "Feliz em vê-lo novamente."
+  ],
+  "Recherche d'emploi, allocation chômage, formation.": [
+    "Job search, unemployment benefits, training.",
+    "求职、失业救济、培训。",
+    "Búsqueda de empleo, prestaciones de desempleo, formación.",
+    "Procura de emprego, benefícios de desemprego, formação."
+  ],
+  "Rechercher une session": [
+    "Search a session",
+    "搜索一个会话",
+    "Buscar una sesión",
+    "Procurar uma sessão"
+  ],
+  "Recherchez par titre, mot-clé ou contenu.": [
+    "Search by title, keyword, or content.",
+    "按标题、关键词或内容搜索。",
+    "Busca por título, palabra clave o contenido.",
+    "Pesquise por título, palavra-chave ou conteúdo."
+  ],
+  "Recommandation : ne payez pas, ne cliquez pas. Vérifiez sur service-public.fr ou cybermalveillance.gouv.fr.": [
+    "Recommendation: do not pay, do not click. Check on service-public.fr or cybermalveillance.gouv.fr.",
+    "建议：不要付钱，不要点击。请在 service-public.fr 或 cybermalveillance.gouv.fr 上核实。",
+    "Recomendación: no pague, no haga clic. Verifique en service-public.fr o cybermalveillance.gouv.fr.",
+    "Recomendação: não pague, não clique. Verifique em service-public.fr ou cybermalveillance.gouv.fr."
+  ],
+  "Reconnaître et signaler une tentative d'escroquerie.": [
+    "Recognize and report an attempted scam.",
+    "识别并举报诈骗尝试。",
+    "Reconocer y reportar un intento de estafa.",
+    "Reconhecer e reportar uma tentativa de golpe."
+  ],
+  "Refuser": [
+    "Decline",
+    "拒绝",
+    "Rechazar",
+    "Recusar"
+  ],
+  "Relance mutuelle": [
+    "Mutual follow-up",
+    "互相提醒",
+    "Seguimiento mutuo",
+    "Acompanhamento mútuo"
+  ],
+  "Relancer un remboursement mutuelle": [
+    "Follow up on a mutual insurance reimbursement",
+    "跟进互助保险的报销",
+    "Dar seguimiento a un reembolso mutuo",
+    "Acompanhar reembolso de mutualidade"
+  ],
+  "Relever l’échéance exacte ; si elle manque, ne pas en inventer.": [
+    "Note the exact due date; if missing, do not invent it.",
+    "记下确切的到期日；如缺失，不要编造。",
+    "Anote la fecha de vencimiento exacta; si falta, no la invente.",
+    "Anote a data de vencimento exata; se faltar, não invente."
+  ],
+  "Relevé de carrière et simulation de retraite.": [
+    "Career summary and retirement simulation.",
+    "职业记录及退休模拟。",
+    "Resumen de carrera y simulación de jubilación.",
+    "Resumo de carreira e simulação de aposentadoria."
+  ],
+  "Relire puis valider vous-même.": [
+    "Read again and validate by yourself.",
+    "自行再次校对并验证。",
+    "Leer de nuevo y validar por usted mismo.",
+    "Leia novamente e valide por si mesmo."
+  ],
+  "Relâchez pour envoyer": [
+    "Release to send",
+    "放行以发送",
+    "Libérese para enviar",
+    "Liberar para enviar"
+  ],
+  "Remboursement de soins": [
+    "Reimbursement for medical care",
+    "医疗费用报销",
+    "Reembolso de atención médica",
+    "Reembolso de cuidados médicos"
+  ],
+  "Renommer": [
+    "Rename",
+    "重命名",
+    "Renombrar",
+    "Renomear"
+  ],
+  "Renseigner le motif utile, sans ajouter de diagnostic inventé.": [
+    "Enter the useful reason, without adding invented diagnosis.",
+    "填写有用理由，不要添加虚构的诊断。",
+    "Rellene la motivo útil, sin añadir un diagnóstico inventado.",
+    "Informe o motivo útil, sem adicionar diagnóstico inventado."
+  ],
+  "Reprendre": [
+    "Resume",
+    "重新开始",
+    "Reanudar",
+    "Retomar"
+  ],
+  "Reprendre une démarche — exemples": [
+    "Resume an approach — examples",
+    "继续一个流程 — 例子",
+    "Reanudar un procedimiento — ejemplos",
+    "Retomar um procedimento — exemplos"
+  ],
+  "Reprise — simulation": [
+    "Restart — simulation",
+    "重新开始 — 模拟",
+    "Reinicio — simulación",
+    "Retomada — simulação"
+  ],
+  "Repérer la période facturée.": [
+    "Identify the billed period.",
+    "识别被计费的时期。",
+    "Identificar el periodo facturado.",
+    "Identificar o período faturado."
+  ],
+  "Repérer les arnaques": [
+    "Spot scams",
+    "识别诈骗",
+    "Identificar estafas",
+    "Identificar golpes"
+  ],
+  "Repérer taxes et total.": [
+    "Identify taxes and total.",
+    "识别税费和总额",
+    "Identificar impuestos y total.",
+    "Identificar impostos e total."
+  ],
+  "Retirer": [
+    "Remove",
+    "移除",
+    "Eliminar",
+    "Remover"
+  ],
+  "Retirer la page": [
+    "Remove the page",
+    "移除该页",
+    "Eliminar la página",
+    "Remover a página"
+  ],
+  "Retour à l’accueil": [
+    "Back to Home",
+    "返回首页",
+    "Volver a Inicio",
+    "Voltar à Home"
+  ],
+  "Retraite": [
+    "Retirement",
+    "退休",
+    "Jubilación",
+    "Aposentadoria"
+  ],
+  "Retrouver la session": [
+    "Retrieve the session",
+    "找回会话",
+    "Recuperar la sesión",
+    "Recuperar a sessão"
+  ],
+  "Retrouver le passage original avant d’agir.": [
+    "Restore the original wording before acting.",
+    "在行动前找回原文",
+    "Recuperar el pasaje original antes de actuar.",
+    "Restaurar a redação original antes de agir."
+  ],
+  "Retrouver une confirmation de dépôt ou une copie de déclaration.": [
+    "Find a deposit confirmation or a copy of the declaration.",
+    "找回提交确认或申告副本",
+    "Encontrar una confirmación de depósito o una copia de la declaración.",
+    "Encontrar uma confirmação de depósito ou uma cópia da declaração."
+  ],
+  "Retrouver une confirmation ou un reçu.": [
+    "Find a confirmation or a receipt.",
+    "找回确认或收据",
+    "Encontrar una confirmación o un recibo.",
+    "Encontrar uma confirmação ou um recibo."
+  ],
+  "Revenir au gratuit": [
+    "Back to Free",
+    "返回免费计划",
+    "Volver a la versión gratuita",
+    "Voltar para a versão gratuita"
+  ],
+  "Risque élevé": [
+    "High risk",
+    "高风险",
+    "Riesgo alto",
+    "Alto risco"
+  ],
+  "Réactiver la voix": [
+    "Reactivate voice",
+    "重新启用语音",
+    "Reactivar la voz",
+    "Reativar a voz"
+  ],
+  "Réactiver mon micro": [
+    "Reactivate my mic",
+    "重新启用我的麦克风",
+    "Reactivar mi micrófono",
+    "Reativar meu microfone"
+  ],
+  "Récupérer le formulaire depuis la page officielle.": [
+    "Retrieve the form from the official page.",
+    "从官方网站获取表格。",
+    "Recuperar el formulario desde la página oficial.",
+    "Recuperar o formulário da página oficial."
+  ],
+  "Récurrence": [
+    "Recurrence",
+    "重复性",
+    "Recurrencia",
+    "Recorrência"
+  ],
+  "Récurrent": [
+    "Recurring",
+    "重复的",
+    "Recurrente",
+    "Recorrente"
+  ],
+  "Réessayer": [
+    "Retry",
+    "重试",
+    "Reintentar",
+    "Tentar novamente"
+  ],
+  "Référence officielle consultée le 27 octobre 2026 · à revérifier lors de la démarche.": [
+    "Official reference consulted on October 27, 2026 · to be rechecked during the process.",
+    "官方参考于2026年10月27日查询 · 在进行过程中需再次核对。",
+    "Referencia oficial consultada el 27 de octubre de 2026 · a revisar durante el proceso.",
+    "Referência oficial consultada em 27 de outubro de 2026 · a ser verificada durante o procedimento."
+  ],
+  "Références": [
+    "References",
+    "参考文献",
+    "Referencias",
+    "Referências"
+  ],
+  "Références officielles": [
+    "Official references",
+    "官方参考",
+    "Referencias oficiales",
+    "Referências oficiais"
+  ],
+  "Référentiel documentaire privé · à configurer dans le produit.": [
+    "Private documentary reference framework · to configure in the product.",
+    "私有文档参考框架 · 在产品中配置。",
+    "Referenciales documentales privados · configurar en el producto.",
+    "Referencial documental privado · configurar no produto."
+  ],
+  "Réinitialiser la position": [
+    "Reset position",
+    "重置位置",
+    "Restablecer la posición",
+    "Redefinir a posição"
+  ],
+  "Réservés aux forfaits Pro": [
+    "Reserved for Pro plans",
+    "仅限 Pro 计划使用",
+    "Reservado para planes Pro",
+    "Reservado para planos Pro"
+  ],
+  "Rétablir l’accès ou contacter votre caisse selon le parcours indiqué.": [
+    "Restore access or contact your health insurance fund according to the indicated path.",
+    "根据所示路径恢复访问或联系您的医保基金。",
+    "Restablecer el acceso o contactar su caja de seguro de salud según la ruta indicada.",
+    "Restabelecer o acesso ou contatar sua caisse de acordo com o caminho indicado."
+  ],
+  "Santé": [
+    "Health",
+    "健康",
+    "Salud",
+    "Saúde"
+  ],
+  "Santé / Remboursements": [
+    "Health / Reimbursements",
+    "健康 / 退款",
+    "Salud / Reembolsos",
+    "Saúde / Reembolsos"
+  ],
+  "Scan": [
+    "Scan",
+    "扫描",
+    "Escanear",
+    "Digitalizar"
+  ],
+  "Scan simulé ajouté : 3 pages. Aucun appareil photo utilisé.": [
+    "Simulated scan added: 3 pages. No camera used.",
+    "已添加模拟扫描：3页。未使用任何相机。",
+    "Escaneo simulado agregado: 3 páginas. No se utilizó ninguna cámara.",
+    "Digitalização simulada adicionada: 3 páginas. Nenhuma câmera utilizada."
+  ],
+  "Scan → PDF": [
+    "Scan → PDF",
+    "扫描 → PDF",
+    "Escanear → PDF",
+    "Digitalizar → PDF"
+  ],
+  "Scanner": [
+    "Scanner",
+    "扫描仪",
+    "Escáner",
+    "Scanner"
+  ],
+  "Scanner en un geste": [
+    "Scanner in one gesture",
+    "一键扫描",
+    "Escanear en un gesto",
+    "Digitalizar em um gesto"
+  ],
+  "Scanner un document": [
+    "Scan a document",
+    "扫描一个文档",
+    "Escanear un documento",
+    "Digitalizar um documento"
+  ],
+  "Scanner — Klerio": [
+    "Scanner — Klerio",
+    "扫描仪 — Klerio",
+    "Escáner — Klerio",
+    "Scanner — Klerio"
+  ],
+  "Scanner — aperçu du parcours": [
+    "Scanner — journey overview",
+    "扫描仪 — 路线概览",
+    "Escáner — visión general del recorrido",
+    "Scanner — visão geral do percurso"
+  ],
+  "Scannez votre premier document : il sera chiffré et rangé en quelques secondes.": [
+    "Scan your first document: it will be encrypted and stored in a few seconds.",
+    "扫描您的第一份文档：它将在几秒钟内被加密并存储。",
+    "Escanee su primer documento: estará cifrado y guardado en unos segundos.",
+    "Digitalize seu primeiro documento: será criptografado e armazenado em alguns segundos."
+  ],
+  "Scannez, c'est tout.": [
+    "Scan, that's it.",
+    "只需扫描，完成。",
+    "Escanee, eso es todo.",
+    "Digitalize, é isso."
+  ],
+  "Scolarité": [
+    "Schooling",
+    "学业",
+    "Escolaridad",
+    "Escolaridade"
+  ],
+  "Se connecter": [
+    "Log in",
+    "登录",
+    "Iniciar sesión",
+    "Entrar"
+  ],
+  "Se connecter — Klerio": [
+    "Log in — Klerio",
+    "登录 — Klerio",
+    "Iniciar sesión — Klerio",
+    "Entrar — Klerio"
+  ],
+  "Se déconnecter": [
+    "Log out",
+    "登出",
+    "Cerrar sesión",
+    "Sair"
+  ],
+  "Se termine le": [
+    "Ends on the",
+    "在结束于",
+    "Termina el",
+    "Termina em"
+  ],
+  "Service Public propose un modèle de demande à l’employeur pour l’organisation des visites. Aucun rendez-vous ni créneau de votre agenda n’est consulté ici.": [
+    "Public Service provides a template for a request to the employer for organizing visits. No appointment or time slot from your calendar is consulted here.",
+    "公共服务提供雇主请愿模板，用于安排探视。此处不会查询您日历中的任何预约或时段。",
+    "El Servicio Público ofrece un modelo de solicitud al empleador para la organización de las visitas. Aquí no se consulta ninguna cita ni franja de su agenda.",
+    "O Serviço Público oferece um modelo de pedido ao empregador para a organização das visitas. Nenhum agendamento nem intervalo de sua agenda é consultado aqui."
+  ],
+  "Service Public · absence scolaire": [
+    "Public Service · school absence",
+    "公共服务 · 学校缺勤",
+    "Servicio Público · ausencia escolar",
+    "Serviço Público · ausência escolar"
+  ],
+  "Service Public · couverture complémentaire": [
+    "Public Service · supplementary coverage",
+    "公共服务 · 保障覆盖补充",
+    "Servicio Público · cobertura complementaria",
+    "Serviço Público · cobertura complementar"
+  ],
+  "Service Public · demander l’organisation des visites médicales": [
+    "Public Service · request the organization of medical visits",
+    "公共服务 · 请求组织体检",
+    "Servicio Público · pedir la organización de visitas médicas",
+    "Serviço Público · solicitar a organização de visitas médicas"
+  ],
+  "Service-public — arnaques": [
+    "Service-public — scams",
+    "Service-public — 钓鱼/诈骗",
+    "Service-public — estafas",
+    "Service-public — golpes"
+  ],
+  "Service-public — particuliers": [
+    "Service-public — individuals",
+    "Service-public — 个人",
+    "Service-public — particulares",
+    "Service-public — particulares"
+  ],
+  "Session, question et référence reliées. Aucun archivage sécurisé effectué par cette maquette.": [
+    "Session, question and reference linked. No secure archiving performed by this mock-up.",
+    "会话、问题与引用相关联。本模拟件未进行安全归档。",
+    "Sesión, pregunta y referencia relacionadas. Ningún archivo seguro realizado por este prototipo.",
+    "Sessão, pergunta e referência ligadas. Nenhum arquivamento seguro realizado por este modelo."
+  ],
+  "Si vous n’avez pas accès au compte, la fiche officielle indique les possibilités d’aide. Ne communiquez pas vos identifiants dans ce chat.": [
+    "If you don’t have access to the account, the official sheet indicates the help options. Do not share your credentials in this chat.",
+    "如果你无法访问账户，官方资料会指出帮助选项。请勿在此聊天中透露你的凭证。",
+    "Si no tienes acceso a la cuenta, la ficha oficial indica las posibilidades de ayuda. No compartas tus credenciales en este chat.",
+    "Se você não tiver acesso à conta, o formulário oficial indica as possibilidades de ajuda. Não compartilhe suas credenciais neste chat."
+  ],
+  "Signer puis transmettre à votre caisse.": [
+    "Sign and then transmit to your caisse.",
+    "签字后再传送给您的 caisse。",
+    "Firmar y luego enviar a su caja.",
+    "Assinar e depois transmitir à sua caisse."
+  ],
+  "Simulation : micro": [
+    "Simulation : mic",
+    "仿真：麦克风",
+    "Simulación: micrófono",
+    "Simulação: microfone"
+  ],
+  "Simulation, aucune caméra activée": [
+    "Simulation, no camera activated",
+    "仿真，未启用任何相机",
+    "Simulación, ninguna cámara activada",
+    "Simulação, nenhuma câmera ativada"
+  ],
+  "Social": [
+    "Social",
+    "社交",
+    "Social",
+    "Social"
+  ],
+  "Something went wrong on our end. You can try refreshing or head back home.": [
+    "Something went wrong on our end. You can try refreshing or head back home.",
+    "我们的端出现了问题。你可以尝试刷新或返回首页。",
+    "Algo salió mal de nuestro lado. Puedes intentar actualizar o volver a la página de inicio.",
+    "Algo deu errado do nosso lado. Você pode tentar atualizar ou voltar para a página inicial."
+  ],
+  "Sources": [
+    "Sources",
+    "来源",
+    "Fuentes",
+    "Fontes"
+  ],
+  "Sources fictives · aucune recommandation fondée sur vos documents.": [
+    "Fictitious sources · no recommendation based on your documents.",
+    "虚构来源 · 无基于你的文档的推荐。",
+    "Fuentes ficticias · ninguna recomendación basada en sus documentos.",
+    "Fontes fictícias · nenhuma recomendação com base em seus documentos."
+  ],
+  "Standard": [
+    "Standard",
+    "标准",
+    "Estándar",
+    "Padrão"
+  ],
+  "Statut administratif": [
+    "Administrative status",
+    "行政状态",
+    "Estado administrativo",
+    "Estado administrativo"
+  ],
+  "Stockage": [
+    "Storage",
+    "存储",
+    "Almacenamiento",
+    "Armazenamento"
+  ],
+  "Stockage du coffre": [
+    "Safe storage",
+    "保险箱存储",
+    "Almacenamiento del cofre",
+    "Armazenamento do cofre"
+  ],
+  "Stockage du coffre-fort": [
+    "Safe deposit storage",
+    "保险箱存放",
+    "Almacenamiento de la caja fuerte",
+    "Armazenamento do cofre-forte"
+  ],
+  "Stockage personnel": [
+    "Personal storage",
+    "个人存储",
+    "Almacenamiento personal",
+    "Armazenamento pessoal"
+  ],
+  "Stockage privé": [
+    "Private storage",
+    "私有存储",
+    "Almacenamiento privado",
+    "Armazenamento privado"
+  ],
+  "Stockage utilisé": [
+    "Storage used",
+    "使用的存储",
+    "Almacenamiento utilizado",
+    "Armazenamento utilizado"
+  ],
+  "Suivi de remboursement et correspondance": [
+    "Refund tracking and correspondence",
+    "退款跟踪与通信",
+    "Seguimiento de reembolsos y correspondencia",
+    "Acompanhamento de reembolso e correspondência"
+  ],
+  "Suivre la demande de Complémentaire santé solidaire et les pièces demandées.": [
+    "Track the Solidarité Santé complementary request and the required documents.",
+    "跟踪综合健康互助申请及所需材料。",
+    "Seguir la solicitud de Complementary health solidarity y las piezas solicitadas.",
+    "Acompanhar a solicitação de Complementar Saúde Solidária e as peças solicitadas."
+  ],
+  "Sujets": [
+    "Subjects",
+    "主题",
+    "Temas",
+    "Assuntos"
+  ],
+  "Sujets suivis": [
+    "Tracked subjects",
+    "关注主题",
+    "Temas seguidos",
+    "Assuntos acompanhados"
+  ],
+  "Supprimer": [
+    "Delete",
+    "删除",
+    "Eliminar",
+    "Excluir"
+  ],
+  "Supprimer un fichier Git courant n’efface pas son historique. L’audio brut est désactivé par défaut.": [
+    "Deleting a current Git file does not erase its history. Raw audio is disabled by default.",
+    "删除当前Git文件不会擦除其历史。原始音频默认禁用。",
+    "Eliminar un archivo Git actual no borra su historial. El audio sin procesar está desactivado por defecto.",
+    "Excluir um arquivo Git atual não apaga seu histórico. Áudio bruto está desativado por padrão."
+  ],
+  "Supprimer «": [
+    "Delete «",
+    "删除«",
+    "Eliminar «",
+    "Excluir «"
+  ],
+  "Sur": [
+    "On",
+    "在",
+    "En",
+    "Em"
+  ],
+  "Sur papier": [
+    "On paper",
+    "纸上",
+    "En papel",
+    "Em papel"
+  ],
+  "Sécurité": [
+    "Security",
+    "安全",
+    "Seguridad",
+    "Segurança"
   ]
 }
