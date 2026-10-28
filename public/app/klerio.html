@@ -313,7 +313,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
       var tk=r.tokens||{};
       if(userMeta)userMeta.innerHTML=meta(true,r.model,tk.input);
       say(r.reply,false,r.model,tk.output);glow('green',Math.min(8000,1500+r.reply.length*30));
-      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons · '+' · sujet : '+(r.topic||'')+' · '+(r.saved?'sauvegardé sur GitHub':'⚠️ sauvegarde GitHub en échec'));});
+      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'sauvegardé sur GitHub':'⚠️ sauvegarde GitHub en échec'));});
   };
 })();
 </script></body></html>
