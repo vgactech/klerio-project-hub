@@ -21,8 +21,14 @@ import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
 import { Route as AuthenticatedEspaceIndexRouteImport } from './routes/_authenticated/espace.index'
 import { Route as AuthenticatedEspaceAssistantRouteImport } from './routes/_authenticated/espace.assistant'
+import { Route as AuthenticatedEspaceCoffreRouteImport } from './routes/_authenticated/espace.coffre'
+import { Route as AuthenticatedEspaceCompteRouteImport } from './routes/_authenticated/espace.compte'
+import { Route as AuthenticatedEspaceFamilleRouteImport } from './routes/_authenticated/espace.famille'
+import { Route as AuthenticatedEspaceForfaitRouteImport } from './routes/_authenticated/espace.forfait'
 import { Route as AuthenticatedEspaceLiensRouteImport } from './routes/_authenticated/espace.liens'
+import { Route as AuthenticatedEspaceQuotasRouteImport } from './routes/_authenticated/espace.quotas'
 import { Route as AuthenticatedEspaceRappelsRouteImport } from './routes/_authenticated/espace.rappels'
+import { Route as AuthenticatedEspaceScannerRouteImport } from './routes/_authenticated/espace.scanner'
 import { Route as ApiDocumentsIdRouteImport } from './routes/api/documents.$id'
 import { Route as ApiEspaceCollectionRouteImport } from './routes/api/espace.$collection'
 
@@ -87,16 +93,52 @@ const AuthenticatedEspaceAssistantRoute =
     path: '/assistant',
     getParentRoute: () => AuthenticatedEspaceRoute,
   } as any)
+const AuthenticatedEspaceCoffreRoute =
+  AuthenticatedEspaceCoffreRouteImport.update({
+    id: '/coffre',
+    path: '/coffre',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceCompteRoute =
+  AuthenticatedEspaceCompteRouteImport.update({
+    id: '/compte',
+    path: '/compte',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceFamilleRoute =
+  AuthenticatedEspaceFamilleRouteImport.update({
+    id: '/famille',
+    path: '/famille',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceForfaitRoute =
+  AuthenticatedEspaceForfaitRouteImport.update({
+    id: '/forfait',
+    path: '/forfait',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
 const AuthenticatedEspaceLiensRoute =
   AuthenticatedEspaceLiensRouteImport.update({
     id: '/liens',
     path: '/liens',
     getParentRoute: () => AuthenticatedEspaceRoute,
   } as any)
+const AuthenticatedEspaceQuotasRoute =
+  AuthenticatedEspaceQuotasRouteImport.update({
+    id: '/quotas',
+    path: '/quotas',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
 const AuthenticatedEspaceRappelsRoute =
   AuthenticatedEspaceRappelsRouteImport.update({
     id: '/rappels',
     path: '/rappels',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceScannerRoute =
+  AuthenticatedEspaceScannerRouteImport.update({
+    id: '/scanner',
+    path: '/scanner',
     getParentRoute: () => AuthenticatedEspaceRoute,
   } as any)
 const ApiDocumentsIdRoute = ApiDocumentsIdRouteImport.update({
@@ -121,8 +163,14 @@ export interface FileRoutesByFullPath {
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
   '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
+  '/espace/compte': typeof AuthenticatedEspaceCompteRoute
+  '/espace/famille': typeof AuthenticatedEspaceFamilleRoute
+  '/espace/forfait': typeof AuthenticatedEspaceForfaitRoute
   '/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/espace/quotas': typeof AuthenticatedEspaceQuotasRoute
   '/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
+  '/espace/scanner': typeof AuthenticatedEspaceScannerRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/espace/$collection': typeof ApiEspaceCollectionRoute
   '/espace/': typeof AuthenticatedEspaceIndexRoute
@@ -137,8 +185,14 @@ export interface FileRoutesByTo {
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
   '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
+  '/espace/compte': typeof AuthenticatedEspaceCompteRoute
+  '/espace/famille': typeof AuthenticatedEspaceFamilleRoute
+  '/espace/forfait': typeof AuthenticatedEspaceForfaitRoute
   '/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/espace/quotas': typeof AuthenticatedEspaceQuotasRoute
   '/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
+  '/espace/scanner': typeof AuthenticatedEspaceScannerRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/espace/$collection': typeof ApiEspaceCollectionRoute
   '/espace': typeof AuthenticatedEspaceIndexRoute
@@ -156,8 +210,14 @@ export interface FileRoutesById {
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
   '/_authenticated/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/_authenticated/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
+  '/_authenticated/espace/compte': typeof AuthenticatedEspaceCompteRoute
+  '/_authenticated/espace/famille': typeof AuthenticatedEspaceFamilleRoute
+  '/_authenticated/espace/forfait': typeof AuthenticatedEspaceForfaitRoute
   '/_authenticated/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/_authenticated/espace/quotas': typeof AuthenticatedEspaceQuotasRoute
   '/_authenticated/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
+  '/_authenticated/espace/scanner': typeof AuthenticatedEspaceScannerRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/espace/$collection': typeof ApiEspaceCollectionRoute
   '/_authenticated/espace/': typeof AuthenticatedEspaceIndexRoute
@@ -175,8 +235,14 @@ export interface FileRouteTypes {
     | '/api/documents'
     | '/api/memory'
     | '/espace/assistant'
+    | '/espace/coffre'
+    | '/espace/compte'
+    | '/espace/famille'
+    | '/espace/forfait'
     | '/espace/liens'
+    | '/espace/quotas'
     | '/espace/rappels'
+    | '/espace/scanner'
     | '/api/documents/$id'
     | '/api/espace/$collection'
     | '/espace/'
@@ -191,8 +257,14 @@ export interface FileRouteTypes {
     | '/api/documents'
     | '/api/memory'
     | '/espace/assistant'
+    | '/espace/coffre'
+    | '/espace/compte'
+    | '/espace/famille'
+    | '/espace/forfait'
     | '/espace/liens'
+    | '/espace/quotas'
     | '/espace/rappels'
+    | '/espace/scanner'
     | '/api/documents/$id'
     | '/api/espace/$collection'
     | '/espace'
@@ -209,8 +281,14 @@ export interface FileRouteTypes {
     | '/api/documents'
     | '/api/memory'
     | '/_authenticated/espace/assistant'
+    | '/_authenticated/espace/coffre'
+    | '/_authenticated/espace/compte'
+    | '/_authenticated/espace/famille'
+    | '/_authenticated/espace/forfait'
     | '/_authenticated/espace/liens'
+    | '/_authenticated/espace/quotas'
     | '/_authenticated/espace/rappels'
+    | '/_authenticated/espace/scanner'
     | '/api/documents/$id'
     | '/api/espace/$collection'
     | '/_authenticated/espace/'
@@ -313,6 +391,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedEspaceAssistantRouteImport
       parentRoute: typeof AuthenticatedEspaceRoute
     }
+    '/_authenticated/espace/coffre': {
+      id: '/_authenticated/espace/coffre'
+      path: '/coffre'
+      fullPath: '/espace/coffre'
+      preLoaderRoute: typeof AuthenticatedEspaceCoffreRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/compte': {
+      id: '/_authenticated/espace/compte'
+      path: '/compte'
+      fullPath: '/espace/compte'
+      preLoaderRoute: typeof AuthenticatedEspaceCompteRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/famille': {
+      id: '/_authenticated/espace/famille'
+      path: '/famille'
+      fullPath: '/espace/famille'
+      preLoaderRoute: typeof AuthenticatedEspaceFamilleRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/forfait': {
+      id: '/_authenticated/espace/forfait'
+      path: '/forfait'
+      fullPath: '/espace/forfait'
+      preLoaderRoute: typeof AuthenticatedEspaceForfaitRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
     '/_authenticated/espace/liens': {
       id: '/_authenticated/espace/liens'
       path: '/liens'
@@ -320,11 +426,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedEspaceLiensRouteImport
       parentRoute: typeof AuthenticatedEspaceRoute
     }
+    '/_authenticated/espace/quotas': {
+      id: '/_authenticated/espace/quotas'
+      path: '/quotas'
+      fullPath: '/espace/quotas'
+      preLoaderRoute: typeof AuthenticatedEspaceQuotasRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
     '/_authenticated/espace/rappels': {
       id: '/_authenticated/espace/rappels'
       path: '/rappels'
       fullPath: '/espace/rappels'
       preLoaderRoute: typeof AuthenticatedEspaceRappelsRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/scanner': {
+      id: '/_authenticated/espace/scanner'
+      path: '/scanner'
+      fullPath: '/espace/scanner'
+      preLoaderRoute: typeof AuthenticatedEspaceScannerRouteImport
       parentRoute: typeof AuthenticatedEspaceRoute
     }
     '/api/documents/$id': {
@@ -346,15 +466,27 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedEspaceRouteChildren {
   AuthenticatedEspaceAssistantRoute: typeof AuthenticatedEspaceAssistantRoute
+  AuthenticatedEspaceCoffreRoute: typeof AuthenticatedEspaceCoffreRoute
+  AuthenticatedEspaceCompteRoute: typeof AuthenticatedEspaceCompteRoute
+  AuthenticatedEspaceFamilleRoute: typeof AuthenticatedEspaceFamilleRoute
+  AuthenticatedEspaceForfaitRoute: typeof AuthenticatedEspaceForfaitRoute
   AuthenticatedEspaceLiensRoute: typeof AuthenticatedEspaceLiensRoute
+  AuthenticatedEspaceQuotasRoute: typeof AuthenticatedEspaceQuotasRoute
   AuthenticatedEspaceRappelsRoute: typeof AuthenticatedEspaceRappelsRoute
+  AuthenticatedEspaceScannerRoute: typeof AuthenticatedEspaceScannerRoute
   AuthenticatedEspaceIndexRoute: typeof AuthenticatedEspaceIndexRoute
 }
 
 const AuthenticatedEspaceRouteChildren: AuthenticatedEspaceRouteChildren = {
   AuthenticatedEspaceAssistantRoute: AuthenticatedEspaceAssistantRoute,
+  AuthenticatedEspaceCoffreRoute: AuthenticatedEspaceCoffreRoute,
+  AuthenticatedEspaceCompteRoute: AuthenticatedEspaceCompteRoute,
+  AuthenticatedEspaceFamilleRoute: AuthenticatedEspaceFamilleRoute,
+  AuthenticatedEspaceForfaitRoute: AuthenticatedEspaceForfaitRoute,
   AuthenticatedEspaceLiensRoute: AuthenticatedEspaceLiensRoute,
+  AuthenticatedEspaceQuotasRoute: AuthenticatedEspaceQuotasRoute,
   AuthenticatedEspaceRappelsRoute: AuthenticatedEspaceRappelsRoute,
+  AuthenticatedEspaceScannerRoute: AuthenticatedEspaceScannerRoute,
   AuthenticatedEspaceIndexRoute: AuthenticatedEspaceIndexRoute,
 }
 

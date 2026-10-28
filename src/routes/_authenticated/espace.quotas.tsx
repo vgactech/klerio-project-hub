@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { formatBytes, FREE_PLAN } from "@/lib/espace/api";
 import { Card, ErrorNote, PageHeader, Progress } from "@/components/espace/ui";
-import { useEspaceData } from "./espace.index";
+import { useEspaceData } from "@/lib/espace/use-data";
 
 export const Route = createFileRoute("/_authenticated/espace/quotas")({
   head: () => ({

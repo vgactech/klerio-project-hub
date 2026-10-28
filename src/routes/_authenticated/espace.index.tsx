@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { ArrowRight, Bell, Clock3, FolderLock, ScanLine, Sparkles, CheckCircle2 } from "lucide-react";
-import { api, dueLabel, formatBytes, formatDate, FREE_PLAN, type Doc, type MemEvent, type Reminder } from "@/lib/espace/api";
+import { dueLabel, formatBytes, formatDate, FREE_PLAN } from "@/lib/espace/api";
+import { useEspaceData } from "@/lib/espace/use-data";
 import { Card, Empty, ErrorNote, StatCard, btnPrimary } from "@/components/espace/ui";
 
 export const Route = createFileRoute("/_authenticated/espace/")({
@@ -17,19 +17,6 @@ export const Route = createFileRoute("/_authenticated/espace/")({
   }),
   component: Accueil,
 });
-
-export function useEspaceData() {
-  const [docs, setDocs] = useState<Doc[] | null>(null);
-  const [reminders, setReminders] = useState<Reminder[] | null>(null);
-  const [events, setEvents] = useState<MemEvent[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    api<{ documents: Doc[] }>("/api/documents").then((r) => setDocs(r.documents)).catch((e: Error) => (setError(e.message), setDocs([])));
-    api<{ data: Reminder[] }>("/api/espace/reminders").then((r) => setReminders(Array.isArray(r.data) ? r.data : [])).catch((e: Error) => (setError(e.message), setReminders([])));
-    api<{ events: MemEvent[] }>("/api/memory?all=1").then((r) => setEvents(r.events)).catch(() => setEvents([]));
-  }, []);
-  return { docs, reminders, events, error, setReminders };
-}
 
 function Accueil() {
   const { user } = Route.useRouteContext();
