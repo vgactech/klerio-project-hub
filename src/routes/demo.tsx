@@ -24,7 +24,7 @@ function DemoPage() {
         </Link>
       </div>
       <iframe
-        src="/demo/klerio.html"
+        src="/demo/klerio.html?v=20261028-9"
         title="Démonstration Klerio"
         className="w-full flex-1 border-0"
         allow="autoplay"

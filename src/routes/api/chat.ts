@@ -3,7 +3,7 @@ import { appendEvents, detectTopic, loadRecent, newEvent, safeOwnerId, topicSlug
 import { verifyUserId } from "@/lib/verify-user.server";
 
 const MODEL = "openai/gpt-5-nano"; // modèle texte le moins cher disponible
-const PROMPT_VERSION = "klerio-text-v5";
+const PROMPT_VERSION = "klerio-text-v6";
 
 // Recherche internet automatique : quelques résultats récents, avec leurs liens.
 async function webSearch(query: string, signal: AbortSignal): Promise<{ title: string; url: string; text: string }[]> {
@@ -83,7 +83,7 @@ export const Route = createFileRoute("/api/chat")({
           },
           body: JSON.stringify({
             model: MODEL,
-            instructions: INSTRUCTIONS,
+            instructions: INSTRUCTIONS + " Ne te présente pas, ne répète pas ton nom : la présentation initiale a déjà été affichée. Réponds directement à la demande, sans recommencer l’accueil.",
             input,
             reasoning: { effort: "low", summary: "auto" },
             store: false,
