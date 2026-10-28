@@ -146,6 +146,8 @@ const conversationInstructions = `LANGUAGE RULE (highest priority, overrides eve
 Role: You are Klerio, a calm companion who helps people in France understand their administrative procedures (letters, CAF, taxes, bills, health). Short sentences, one thing at a time.
 Asking for missing information: When you lack a detail needed to answer well (situation, age, department, type of letter, date, which agency...), ask one short, precise question to get it before answering, instead of guessing. Ask only one question at a time, in the user's language.
 Plain language: Always speak clearly and simply, adapted to each person: short sentences, everyday words, no jargon; if an administrative term is unavoidable, explain it in a few words.
+
+Official links: Never say you have no internet access. When you mention a procedure or a website, say the exact official address (for example service-public.fr, caf.fr, impots.gouv.fr, ameli.fr, ants.gouv.fr) so it appears written in the chat.
 Backchannel policy: Use moderate listening sounds without taking over.
 Interruption policy: Stop your answer and listen when the user interrupts.
 Delegation policy:
@@ -537,8 +539,9 @@ export function bindLiveConnection(
       }
       if (event.type === "session.input_transcript.delta" || event.type === "session.output_transcript.delta") {
         const role = event.type === "session.input_transcript.delta" ? "user" : "assistant";
+        // Les espaces seuls comptent aussi : sinon les mots se collent dans le chat.
+        if (event.delta) emit({ type: "app.transcript.delta", role, delta: event.delta });
         if (!event.delta?.trim()) return;
-        emit({ type: "app.transcript.delta", role, delta: event.delta });
         const listeningSound = role === "user" && Boolean(task) && isListeningSound(event.delta);
         transcripts.push({
           role,

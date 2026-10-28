@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { formatBytes, FREE_PLAN } from "@/lib/espace/api";
+import { formatBytes, FREE_PLAN, scansThisMonth } from "@/lib/espace/api";
 import { Card, ErrorNote, PageHeader, Progress } from "@/components/espace/ui";
 import { useEspaceData } from "@/lib/espace/use-data";
 
@@ -20,12 +20,12 @@ export const Route = createFileRoute("/_authenticated/espace/quotas")({
 function Quotas() {
   const { docs, events, error } = useEspaceData();
   const month = new Date().toISOString().slice(0, 7);
-  const scans = (docs ?? []).filter((d) => d.text !== undefined).length;
+  const scans = scansThisMonth(docs);
   const expl = (events ?? []).filter((e) => e.kind === "message.assistant" && e.at.startsWith(month)).length;
   const used = (docs ?? []).reduce((a, d) => a + d.size, 0);
   const monthTokens = (events ?? []).filter((e) => e.at.startsWith(month)).reduce((a, e) => a + (e.tokens?.total ?? 0), 0);
   const rows = [
-    { label: "Pages de scan", used: scans, limit: FREE_PLAN.scanPages, text: `${scans} / ${FREE_PLAN.scanPages} à vie` },
+    { label: "Pages de scan ce mois-ci", used: scans, limit: FREE_PLAN.scanPagesPerMonth, text: `${scans} / ${FREE_PLAN.scanPagesPerMonth} par mois` },
     { label: "Explications IA ce mois-ci", used: expl, limit: FREE_PLAN.explanationsPerMonth, text: `${expl} / ${FREE_PLAN.explanationsPerMonth}` },
     { label: "Stockage du coffre-fort", used, limit: FREE_PLAN.storageBytes, text: `${formatBytes(used)} / ${formatBytes(FREE_PLAN.storageBytes)}` },
   ];

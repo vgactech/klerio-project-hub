@@ -11,6 +11,7 @@ declare global {
     klerioSend?: (text: string, topic?: string) => Promise<{ reply?: string; error?: string; model?: string; tokens?: { input?: number; output?: number; total?: number }; saved?: boolean; topic?: string }>;
     klerioMemory?: () => Promise<{ events?: { kind: string; content: string; model?: string; at: string; topic?: string; tokens?: { total?: number } }[]; error?: string }>;
     klerioLogVoice?: (role: "user" | "assistant", text: string) => void;
+    klerioVoiceUsage?: (seconds: number) => void;
     klerioTopic?: string;
     klerioVoiceEvent?: (type: string) => void;
     klerioVoice?: {
@@ -50,7 +51,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261028-6";
+const PAGE_VERSION = "20261028-7";
 
 function ChatRoute() {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ function ChatRoute() {
     turnRef.current = null;
     if (!t) return;
     if (t.timer) clearTimeout(t.timer);
-    const text = t.text.replace(/\s+/g, " ").trim();
+    const text = t.text.replace(/\s+/g, " ").replace(/^[\s.,;:!?…-]+/, "").trim();
     if (!text) return;
     window.klerioVoiceCaption?.(t.role, text);
     window.klerioLogVoice?.(t.role, text);
@@ -87,8 +88,13 @@ function ChatRoute() {
         const cur = turnRef.current ?? (turnRef.current = { role, text: "" });
         cur.text += delta;
         if (cur.timer) clearTimeout(cur.timer);
-        cur.timer = setTimeout(flushTurn, 1500);
+        // On attend une vraie pause avant d'afficher, pour ne pas couper une phrase en morceaux.
+        cur.timer = setTimeout(flushTurn, role === "user" ? 3500 : 3000);
         return;
+      }
+      if (event.type === "session.usage.updated" || event.type === "session.closed") {
+        const sec = (event as { usage?: { seconds?: unknown } }).usage?.seconds;
+        if (typeof sec === "number" && Number.isFinite(sec) && sec >= 0) window.klerioVoiceUsage?.(Math.max(15, sec));
       }
       if (event.type === "app.stopping" || event.type === "app.closed") flushTurn();
       const c = captionFrom(event);

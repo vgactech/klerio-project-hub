@@ -2,7 +2,7 @@ import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { Bell, BookOpen, Brain, CreditCard, FolderLock, Home, MessageCircle, ScanLine, ShieldCheck, Sparkles, UserRound, Users } from "lucide-react";
 import { Logo, Progress } from "@/components/espace/klerio";
 import { UserMenu } from "@/components/espace/user-menu";
-import { formatBytes, FREE_PLAN } from "@/lib/espace/api";
+import { formatBytes, FREE_PLAN, scansThisMonth } from "@/lib/espace/api";
 import { useEspaceData } from "@/lib/espace/use-data";
 import { cn } from "@/lib/utils";
 
@@ -31,8 +31,8 @@ function EspaceLayout() {
   const used = (docs ?? []).reduce((s, d) => s + (d.size || 0), 0);
   const limit = FREE_PLAN.storageBytes;
   const storagePct = (used / limit) * 100;
-  const scanLimit = FREE_PLAN.scanPages;
-  const scanRemaining = Math.max(0, scanLimit - (docs ?? []).length);
+  const scanLimit = FREE_PLAN.scanPagesPerMonth;
+  const scanRemaining = Math.max(0, scanLimit - scansThisMonth(docs));
   const unread = (reminders ?? []).filter((r) => !r.done && new Date(r.dueAt) <= new Date()).length;
 
   return (

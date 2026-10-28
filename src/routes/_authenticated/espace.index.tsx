@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BellRing, CheckCircle2, Clock3, FileText, FolderLock, ScanLine, ShieldAlert, Sparkles } from "lucide-react";
-import { api, dueLabel, formatBytes, formatDate, FREE_PLAN, type Doc } from "@/lib/espace/api";
+import { api, dueLabel, formatBytes, formatDate, FREE_PLAN, scansThisMonth, type Doc } from "@/lib/espace/api";
 import { useEspaceData } from "@/lib/espace/use-data";
 import { Alert, Badge, Card, EmptyState, Progress, SectionHeader, StatCard } from "@/components/espace/klerio";
 
@@ -44,7 +44,7 @@ function DashboardPage() {
   const firstName = raw.charAt(0).toUpperCase() + raw.slice(1);
   const today = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
   const month = new Date().toISOString().slice(0, 7);
-  const scanRemaining = Math.max(0, FREE_PLAN.scanPages - (docs ?? []).length);
+  const scanRemaining = Math.max(0, FREE_PLAN.scanPagesPerMonth - scansThisMonth(docs));
   const explRemaining = Math.max(0, FREE_PLAN.explanationsPerMonth - (events ?? []).filter((e) => e.kind === "message.assistant" && e.at.startsWith(month)).length);
   const used = (docs ?? []).reduce((a, d) => a + (d.size || 0), 0);
   const limit = FREE_PLAN.storageBytes;
@@ -80,7 +80,7 @@ function DashboardPage() {
 
       <section aria-label="Vos compteurs">
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          <StatCard label="Pages de scan" value={docs ? `${scanRemaining} restantes` : "…"} hint={`Sur ${FREE_PLAN.scanPages} à vie — jamais réinitialisées`} icon={<ScanLine className="h-5 w-5" aria-hidden="true" />} />
+          <StatCard label="Pages de scan" value={docs ? `${scanRemaining} restantes` : "…"} hint={`Sur ${FREE_PLAN.scanPagesPerMonth} par mois — remis à zéro le 1er du mois`} icon={<ScanLine className="h-5 w-5" aria-hidden="true" />} />
           <StatCard label="Explications IA" value={events ? `${explRemaining} restantes` : "…"} hint={`Sur ${FREE_PLAN.explanationsPerMonth} · renouvellement ${formatDate(resetAt)}`} icon={<Sparkles className="h-5 w-5" aria-hidden="true" />} tone="violet" />
           <StatCard label="Stockage du coffre" value={`${formatBytes(used)} / ${formatBytes(limit)}`} hint="Espace personnel" icon={<FolderLock className="h-5 w-5" aria-hidden="true" />} tone="sky" />
           <StatCard label="Crédits" value="0 crédits" hint="Réservés aux forfaits Pro" icon={<Sparkles className="h-5 w-5" aria-hidden="true" />} tone="amber" />
@@ -178,7 +178,7 @@ function DashboardPage() {
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-800"><BellRing className="h-5 w-5" aria-hidden="true" /></span>
             <div>
               <p className="font-bold">Forfait Gratuit</p>
-              <p className="mt-1 text-sm text-ink-600">0 € / mois. {FREE_PLAN.scanPages} pages de scan à vie et {FREE_PLAN.explanationsPerMonth} explications par mois.</p>
+              <p className="mt-1 text-sm text-ink-600">0 € / mois. {FREE_PLAN.scanPagesPerMonth} pages de scan par mois et {FREE_PLAN.explanationsPerMonth} explications par mois.</p>
               <Link to="/espace/forfait" className="btn-ghost mt-3 px-0">Voir mon forfait <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             </div>
           </div>
