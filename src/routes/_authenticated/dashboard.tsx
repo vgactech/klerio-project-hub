@@ -117,7 +117,7 @@ function Dashboard() {
 
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: 20, display: "grid", gap: 18 }}>
         <p style={{ margin: 0, color: C.soft }}>Bonjour {user.email ?? user.name ?? ""} · votre mémoire est sauvegardée en continu.</p>
-        {error && <p role="alert" style={{ margin: 0, color: "#f3a3a3" }}>⚠️ {error}</p>}
+        {error && <p role="alert" style={{ margin: 0, color: "#c33109" }}>⚠️ {error}</p>}
 
         <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 12 }}>
           {[
@@ -154,7 +154,7 @@ function Dashboard() {
               {shown.map((e) => {
                 const mine = e.kind.endsWith(".user");
                 return (
-                  <li key={e.event_id} style={{ borderLeft: `3px solid ${mine ? "#3498db" : "#2ecc71"}`, paddingLeft: 10 }}>
+                  <li key={e.event_id} style={{ borderLeft: `3px solid ${mine ? "#fb5f12" : "#226d68"}`, paddingLeft: 10 }}>
                     <div style={{ fontSize: 12, color: C.soft }}>
                       {mine ? "Vous" : "Klerio"} · {fmt(e.at)} · {e.channel === "voice" ? "🎙️ vocal" : "💬 texte"}
                       {e.model ? ` · ${e.model}` : ""}
@@ -183,8 +183,8 @@ function btn(primary: boolean) {
   return {
     padding: "8px 16px",
     borderRadius: 999,
-    border: `1px solid ${primary ? "#edc493aa" : C.line}`,
-    background: primary ? "linear-gradient(135deg,#cd7f32,#8a5226)" : "transparent",
+    border: `1px solid ${primary ? "#fb5f12" : C.line}`,
+    background: primary ? "linear-gradient(135deg,#fb5f12,#ec4408)" : "transparent",
     color: C.text,
     fontWeight: 700,
     fontSize: 14,
@@ -203,7 +203,7 @@ function chip(active: boolean) {
     marginBottom: 6,
     borderRadius: 10,
     border: `1px solid ${active ? C.bronze : C.line}`,
-    background: active ? "#7a4a2c" : "transparent",
+    background: active ? "#d6ede8" : "transparent",
     color: C.text,
     cursor: "pointer",
     fontSize: 14,
