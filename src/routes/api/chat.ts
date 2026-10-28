@@ -80,7 +80,7 @@ export const Route = createFileRoute("/api/chat")({
             } catch {}
           }
         }
-        return Response.json({ reply: reply.trim() || "Je n'ai pas pu formuler de réponse." });
+        return Response.json({ reply: reply.trim() || "Je n'ai pas pu formuler de réponse.", model: "openai/gpt-6-astra" });
       },
     },
   },
