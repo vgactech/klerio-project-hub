@@ -8,6 +8,8 @@ Source de la demande : rapport Bob « Audit complet Klerio », avancement annonc
 
 ## 0. Règle de priorité
 
+**Mise à jour visuelle du 28 octobre 2026 :** les captures chat.png et espace.png de Gabriel remplacent toutes les anciennes consignes de thème marron/bronze ci-dessous. Seule la palette KLERIO actuelle est autorisée : crème #f6f4ee, blanc #ffffff, encre #161c2c, vert-bleu #1e5754, orange #fb5f12 et leurs teintes de support visibles sur les captures. Préserver les mascottes et les indicateurs vocaux vert/bleu. Ne pas afficher GitHub ou le lieu de stockage dans l’interface.
+
 1. Ne pas casser l’authentification actuelle : e-mail, Google, Lovable, page `/auth`, accès protégé `/dashboard`.
 2. Ne mettre aucun secret dans Git, dans les journaux, dans les commentaires ou dans les messages de commit.
 3. Ne pas forcer l’historique de `main` : pas de force-push, rebase, amend ou squash sur des commits déjà publiés.
