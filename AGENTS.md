@@ -18,3 +18,5 @@
 - Log application prompts, actions and available explanations without secrets; never claim private model reasoning was captured.
 - Client memory is stored on the `klerio-memory` orphan branch of the private GitHub repo (one folder per auth user id, append-only JSONL); never write client data to `main`, which is the Lovable-synced code branch.
 - The client space (/espace/*) stores reminders, family, profile and documents under clients/<id>/espace and clients/<id>/documents on the same memory branch via server routes; never add a database for this data.
+- Public entry follows Klerio-26/KLERIO: landing at `/`, sign-in at `/login`, sign-up at `/register`, then `/espace` (dashboard) with the chat at `/chat`; never re-add a separate `/auth` page, to avoid duplicate sign-in screens.
+- The chat iframe (`public/app/klerio.html`) navigates the app via `postMessage({klerioNavigate})` handled in `chat.tsx`, because `target="_top"` is blocked inside the preview; bump `PAGE_VERSION` when that HTML changes so browsers drop the cached copy.
