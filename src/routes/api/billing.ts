@@ -20,7 +20,7 @@ async function stripe(path: string, method: "GET" | "POST", params?: Record<stri
   const res = await fetch(`https://api.stripe.com/v1/${path}${qs}`, {
     method,
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/x-www-form-urlencoded", "Stripe-Version": "2025-08-27.basil" },
-    body: method === "POST" ? body : undefined,
+    body: method === "POST" ? (body ?? null) : null,
   });
   const json = (await res.json()) as Record<string, unknown>;
   if (!res.ok) {
