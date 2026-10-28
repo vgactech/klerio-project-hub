@@ -4678,5 +4678,1421 @@
     "安全",
     "Seguridad",
     "Segurança"
+  ],
+  "Sécurité et vie privée": [
+    "Security and Privacy",
+    "安全与隐私",
+    "Seguridad y privacidad",
+    "Segurança e privacidade"
+  ],
+  "Sélecteur réel · aucun transfert": [
+    "Real selector · no transfer",
+    "实际选择器 · 无转让",
+    "Selector real · sin transferencia",
+    "Seletor real · sem transferência"
+  ],
+  "Séparer lire, préparer et transmettre.": [
+    "Separate reading, preparation and transmission.",
+    "将阅读、准备和传输分开。",
+    "Separar lectura, preparación y transmisión.",
+    "Separe leitura, preparação e transmissão."
+  ],
+  "Tableau de bord": [
+    "Dashboard",
+    "仪表板",
+    "Tablero",
+    "Painel de controle"
+  ],
+  "Tableau de bord — Klerio": [
+    "The dashboard — Klerio",
+    "Klerio 仪表板",
+    "Tablero — Klerio",
+    "Painel — Klerio"
+  ],
+  "Tester la bouche · sans audio": [
+    "Test mouth · no audio",
+    "测试口腔 · 无音频",
+    "Probar la boca · sin audio",
+    "Testar a boca · sem áudio"
+  ],
+  "Tester l’animation · sans audio": [
+    "Test animation · without audio",
+    "测试动画 · 无音频",
+    "Probar la animación · sin audio",
+    "Testar a animação · sem áudio"
+  ],
+  "Testez Klerio librement : profils fictifs, aucune donnée envoyée.": [
+    "Try Klerio freely: fictitious profiles, no data sent.",
+    "自由试用 Klerio：虚构档案，不发送任何数据",
+    "Prueba Klerio libremente: perfiles ficticios, no se envían datos",
+    "Experimente o Klerio livremente: perfis fictícios, nenhum dado é enviado"
+  ],
+  "Testez sans créer de compte.": [
+    "Try without creating an account.",
+    "无需创建账户即可试用。",
+    "Prueba sin crear una cuenta.",
+    "Teste sem criar uma conta."
+  ],
+  "Texte": [
+    "Text",
+    "文本",
+    "Texto",
+    "Texto"
+  ],
+  "Texte et vocal, comptés à chaque réponse.": [
+    "Text and voice, counted per response.",
+    "文本和语音，每次回答计数。",
+    "Texto y voz, contados en cada respuesta.",
+    "Texto e voz, contados a cada resposta"
+  ],
+  "Texte ↔": [
+    "Text ↔",
+    "文本 ↔",
+    "Texto ↔",
+    "Texto ↔"
+  ],
+  "Textes de loi et codes en vigueur.": [
+    "Laws and codes in force",
+    "生效的法律和法规",
+    "Textos de leyes y códigos vigentes",
+    "Textos de leis e códigos vigentes"
+  ],
+  "The page you're looking for doesn't exist or has been moved.": [
+    "The page you're looking for doesn't exist or has been moved.",
+    "您查看的页面不存在或已被移动。",
+    "La página que buscas no existe o ha sido movida.",
+    "A página que você procura não existe ou foi movida."
+  ],
+  "The voice call ended after inactivity.": [
+    "The voice call ended after inactivity.",
+    "语音通话在不活跃后结束。",
+    "La llamada de voz terminó por inactividad.",
+    "A chamada de voz terminou por inatividade."
+  ],
+  "The voice call ended unexpectedly. Start a new call to retry.": [
+    "The voice call ended unexpectedly. Start a new call to retry.",
+    "语音通话意外结束。开始新通话重试。",
+    "La llamada de voz terminó inesperadamente. Inicia una nueva llamada para volver a intentar.",
+    "A chamada de voz terminou inesperadamente. Inicie uma nova chamada para tentar novamente."
+  ],
+  "The voice call reached its duration limit. Start a new call to continue.": [
+    "The voice call reached its duration limit. Start a new call to continue.",
+    "语音通话已达到时长上限。开始新通话以继续。",
+    "La llamada de voz alcanzó su límite de duración. Inicia una nueva llamada para continuar.",
+    "A chamada de voz atingiu o limite de duração. Inicie uma nova chamada para continuar."
+  ],
+  "The voice service restarted. Start a new call to reconnect.": [
+    "The voice service restarted. Start a new call to reconnect.",
+    "语音服务已重启。请连线重新开始。",
+    "El servicio de voz se reinició. Inicia una nueva llamada para reconectar.",
+    "O serviço de voz foi reiniciado. Inicie uma nova chamada para reconectar."
+  ],
+  "This page didn't load": [
+    "This page didn't load",
+    "此页面未加载。",
+    "Esta página no cargó",
+    "Esta página não carregou"
+  ],
+  "Titre": [
+    "Title",
+    "标题",
+    "Título",
+    "Título"
+  ],
+  "Touchez le bouton : l'appareil photo s'ouvre. Le téléphone demande l'autorisation la première fois.": [
+    "Tap the button: the camera opens. The phone asks for permission the first time.",
+    "点击按钮：相机打开。手机首次会请求权限。",
+    "Toca el botón: la cámara se abre. El teléfono solicita permiso la primera vez.",
+    "Toque o botão: a câmera abre. O telefone solicita permissão na primeira vez."
+  ],
+  "Tourner": [
+    "Rotate",
+    "旋转",
+    "Girar",
+    "Girar"
+  ],
+  "Tous les exemples →": [
+    "All examples →",
+    "所有示例 →",
+    "Todos los ejemplos →",
+    "Todos os exemplos →"
+  ],
+  "Tous les sujets": [
+    "All topics",
+    "所有主题",
+    "Todos los temas",
+    "Todos os tópicos"
+  ],
+  "Tout au même endroit": [
+    "All in one place",
+    "全都在同一个地方",
+    "Todo en un solo lugar",
+    "Tudo no mesmo lugar"
+  ],
+  "Tout couper": [
+    "Clear all",
+    "全部清除",
+    "Borrar todo",
+    "Limpar tudo"
+  ],
+  "Tout reste accessible depuis la conversation.": [
+    "Everything remains accessible from the conversation.",
+    "所有内容仍可在对话中访问。",
+    "Todo sigue accesible desde la conversación.",
+    "Tudo permanece acessível a partir da conversa."
+  ],
+  "Tout voir": [
+    "See all",
+    "查看全部",
+    "Ver todo",
+    "Ver tudo"
+  ],
+  "Toutes": [
+    "All",
+    "所有",
+    "Todas",
+    "Todas"
+  ],
+  "Traduction gratuite et illimitée": [
+    "Free and unlimited translation",
+    "免费且无限制翻译",
+    "Traducción gratuita e ilimitada",
+    "Tradução gratuita e ilimitada"
+  ],
+  "Transmettre vous-même par le canal officiel adapté.": [
+    "Send yourself via the appropriate official channel.",
+    "通过适当的官方渠道自行发送。",
+    "Envíese a usted mismo por el canal oficial adecuado.",
+    "Transmita você mesmo pelo canal oficial adequado."
+  ],
+  "Transmission": [
+    "Transmission",
+    "传输",
+    "Transmisión",
+    "Transmissão"
+  ],
+  "Transparence": [
+    "Transparency",
+    "透明度",
+    "Transparencia",
+    "Transparência"
+  ],
+  "Transparent, jusqu'au bout.": [
+    "Transparent, to the end.",
+    "透明到底。",
+    "Transparente, hasta el final.",
+    "Transparente, até o fim."
+  ],
+  "Travail": [
+    "Work",
+    "工作",
+    "Trabajo",
+    "Trabalho"
+  ],
+  "Travail / Santé": [
+    "Work / Health",
+    "工作 / 健康",
+    "Trabajo / Salud",
+    "Trabalho / Saúde"
+  ],
+  "Travail en arrière-plan": [
+    "Background work",
+    "后台工作",
+    "Trabajo en segundo plano",
+    "Trabalho em segundo plano"
+  ],
+  "Trois portes d'entrée, pas davantage.": [
+    "Three entry doors, no more.",
+    "只有三个入口，不再增加。",
+    "Tres puertas de entrada, no más.",
+    "Três portas de entrada, nenhuma a mais."
+  ],
+  "Trop volumineux (10 Mo max) :": [
+    "Too large (10 MB max):",
+    "太大（最大10 MB）：",
+    "Demasiado grande (máx. 10 MB):",
+    "Muito volumoso (máx. 10 MB):"
+  ],
+  "Try again": [
+    "Try again",
+    "再试一次",
+    "Inténtalo de nuevo",
+    "Tente novamente"
+  ],
+  "Tâches": [
+    "Tasks",
+    "任务",
+    "Tareas",
+    "Tarefas"
+  ],
+  "Télécharger": [
+    "Download",
+    "下载",
+    "Descargar",
+    "Baixar"
+  ],
+  "Téléchargez toutes vos conversations, documents (liste), rappels et informations de foyer.": [
+    "Download all your conversations, documents (list), reminders and household information.",
+    "下载所有对话、文档（清单）、提醒和家庭信息。",
+    "Descargue todas sus conversaciones, documentos (lista), recordatorios e información del hogar.",
+    "Faça o download de todas as suas conversas, documentos (lista), lembretes e informações da casa."
+  ],
+  "Téléphone": [
+    "Phone",
+    "电话",
+    "Teléfono",
+    "Telefone"
+  ],
+  "Un chat pour parler, joindre vos documents et retrouver votre travail.": [
+    "A chat to talk, attach your documents and find your work.",
+    "聊天以交流、附上文档并找回工作。",
+    "Un chat para hablar, adjuntar tus documentos y recuperar tu trabajo.",
+    "Um chat para conversar, anexar seus documentos e encontrar seu trabalho."
+  ],
+  "Un coffre-fort clair": [
+    "A clear safe",
+    "一个清晰的保险箱",
+    "Una caja fuerte clara",
+    "Um cofre claro"
+  ],
+  "Un compte existe déjà avec cet e-mail.": [
+    "An account already exists with this email.",
+    "使用此电子邮件已存在账户。",
+    "Ya existe una cuenta con este correo electrónico.",
+    "Já existe uma conta com este e-mail."
+  ],
+  "Un compte, un espace privé.": [
+    "One account, a private space.",
+    "一个账户，一个私密空间。",
+    "Una cuenta, un espacio privado.",
+    "Uma conta, um espaço privado."
+  ],
+  "Un courrier me demande de vérifier l’occupation d’un logement. Aide-moi à trouver la bonne démarche.": [
+    "A letter asks me to verify the occupancy of a dwelling. Help me find the right procedure.",
+    "一封信让我核实住宅 occupancy。Klerio 帮我找到正确的做法。",
+    "Una carta me pide verificar la ocupación de una vivienda. Ayúdame a encontrar el procedimiento correcto.",
+    "Uma correspondência me pede para verificar a ocupação de uma moradia. Ajude-me a encontrar o procedimento correto."
+  ],
+  "Un document à comprendre ?": [
+    "A document to understand?",
+    "要理解的文档？",
+    "¿Un documento para entender?",
+    "Um documento para entender?"
+  ],
+  "Un doute sur un courrier ?": [
+    "Doubt about a letter?",
+    "对来信有疑问？",
+    "¿Duda sobre una carta?",
+    "Alguma dúvida sobre uma correspondência?"
+  ],
+  "Un lien reçu par SMS ou e-mail n'est jamais prioritaire sur cette liste. Ne communiquez jamais vos mots de passe, codes SMS ou coordonnées bancaires complètes.": [
+    "A link received by SMS or email is never a priority over this list. Never share your passwords, SMS codes or full banking details.",
+    "通过短信或电子邮件收到的链接永远不优先于此清单。切勿泄露密码、短信验证码或完整的银行信息。",
+    "Un enlace recibido por SMS o correo electrónico nunca tiene prioridad sobre esta lista. Nunca compartas tus contraseñas, códigos SMS o datos bancarios completos.",
+    "Um link recebido por SMS ou e-mail nunca tem prioridade sobre esta lista. Nunca compartilhe suas senhas, códigos SMS ou dados bancários completos."
+  ],
+  "Une chose à la fois.": [
+    "One thing at a time.",
+    "一次只做一件事。",
+    "Una cosa a la vez.",
+    "Uma coisa de cada vez."
+  ],
+  "Une chose à la fois. Voici ce qui compte aujourd'hui — le reste peut attendre.": [
+    "One thing at a time. Here is what matters today — the rest can wait.",
+    "一次只做一件事。今天最重要的是——其余可以等。",
+    "Una cosa a la vez. Aquí está lo que importa hoy, lo demás puede esperar.",
+    "Uma coisa de cada vez. Aqui está o que importa hoje — o restante pode esperar."
+  ],
+  "Une date, une action, un rappel. Klerio vous prévient dans l'application, par e-mail ou en notification.": [
+    "A date, an action, a reminder. Klerio will notify you in the app, by email or in a notification.",
+    "一个日期、一个动作、一个提醒。Klerio 会在应用内、通过电子邮件或通知提醒你。",
+    "Una fecha, una acción, un recordatorio. Klerio te avisa en la aplicación, por correo electrónico o en una notificación.",
+    "Uma data, uma ação, um lembrete. A Klerio irá avisá-lo no aplicativo, por e-mail ou por notificação."
+  ],
+  "Une déclaration papier ne se corrige pas par le service de correction en ligne. La démarche dépend notamment de la date et de la réception de votre avis.": [
+    "A paper declaration can't be corrected by the online correction service. The procedure depends notably on the date and the receipt of your notice.",
+    "纸质申报不能通过在线更正服务纠正。该流程主要取决于日期和通知的接收。",
+    "Una declaración en papel no se corrige mediante el servicio de corrección en línea. El procedimiento depende especialmente de la fecha y de la recepción de su aviso.",
+    "Uma declaração em papel não pode ser corrigida pelo serviço de correção online. O procedimento depende principalmente da data e do recebimento do seu aviso."
+  ],
+  "Une démarche à la fois": [
+    "One step at a time",
+    "一步一步",
+    "Un trámite a la vez",
+    "Um passo de cada vez"
+  ],
+  "Une explication simple": [
+    "A simple explanation",
+    "一个简单的解释",
+    "Una explicación simple",
+    "Uma explicação simples"
+  ],
+  "Une facture comporte notamment abonnement, consommation et taxes. Aucun montant réel ni statut de paiement n’a été fourni dans cette démonstration.": [
+    "An invoice includes subscription, consumption and taxes. No actual amount nor payment status is provided in this demonstration.",
+    "发票包括订阅、消费和税费。在此演示中未提供实际金额或支付状态。",
+    "Una factura incluye, entre otros, suscripción, consumo e impuestos. No se ha proporcionado un monto real ni un estado de pago en esta demostración.",
+    "Uma fatura inclui assinatura, consumo e impostos. Nenhum valor real nem status de pagamento foi fornecido nesta demonstração."
+  ],
+  "Une interface qui s’adapte": [
+    "An interface that adapts",
+    "一个会自适应的界面",
+    "Una interfaz que se adapta",
+    "Uma interface que se adapta"
+  ],
+  "Une interface simple, contrastée, accessible": [
+    "A simple, high-contrast, accessible interface",
+    "一个简单、对比鲜明、可访问的界面",
+    "Una interfaz simple, contrastada y accesible",
+    "Uma interface simples, contrastante e acessível"
+  ],
+  "Une seule fois": [
+    "One time only",
+    "仅一次",
+    "Una sola vez",
+    "Apenas uma vez"
+  ],
+  "Urssaf": [
+    "Urssaf",
+    "Urssaf",
+    "Urssaf",
+    "Urssaf"
+  ],
+  "Utiliser le parcours de simulation ou de demande adapté.": [
+    "Use the appropriate simulation or application path.",
+    "使用适当的仿真或申请路径。",
+    "Utilice el recorrido de simulación o de solicitud adecuado.",
+    "Use o percurso de simulação ou de solicitação adequado."
+  ],
+  "Utilisez le curseur pour changer de mode.": [
+    "Use the slider to switch modes.",
+    "使用滑块切换模式。",
+    "Utilice el control deslizante para cambiar de modo.",
+    "Use o cursor para mudar de modo."
+  ],
+  "Valider": [
+    "Validate",
+    "验证",
+    "Validar",
+    "Validar"
+  ],
+  "Valider la simulation": [
+    "Validate the simulation",
+    "验证仿真",
+    "Validar la simulación",
+    "Validar a simulação"
+  ],
+  "Vie scolaire et rédaction": [
+    "School life and writing",
+    "校园生活与写作",
+    "Vida escolar y redacción",
+    "Vida escolar e redação"
+  ],
+  "Ville": [
+    "City",
+    "城市",
+    "Ciudad",
+    "Cidade"
+  ],
+  "Visite de santé au travail": [
+    "Occupational health visit",
+    "职业健康检查",
+    "Visita de salud ocupacional",
+    "Visita de saúde ocupacional"
+  ],
+  "Vocal": [
+    "Vocal",
+    "语音",
+    "Vocal",
+    "Vocal"
+  ],
+  "Vocal indisponible :": [
+    "Vocal unavailable:",
+    "语音不可用：",
+    "Vocal no disponible:",
+    "Vocal indisponível:"
+  ],
+  "Vocal ↔": [
+    "Vocal ↔",
+    "语音 ↔",
+    "Vocal ↔",
+    "Vocal ↔"
+  ],
+  "Voice connection failed": [
+    "Voice connection failed",
+    "语音连接失败",
+    "La conexión de voz falló",
+    "A conexão de voz falhou"
+  ],
+  "Voice connection was lost. Start a new call to retry.": [
+    "Voice connection was lost. Start a new call to retry.",
+    "语音连接已丢失。请重新开始通话以重试。",
+    "La conexión de voz se perdió. Inicie una nueva llamada para volver a intentar.",
+    "A conexão de voz foi perdida. Inicie uma nova chamada para tentar novamente."
+  ],
+  "Voice control connection closed": [
+    "Voice control connection closed",
+    "语音控制连接已关闭",
+    "La conexión de control de voz se cerró",
+    "A conexão de controle de voz foi fechada"
+  ],
+  "Voice control connection failed": [
+    "Voice control connection failed",
+    "语音控制连接失败",
+    "La conexión de control de voz falló",
+    "A conexão de controle de voz falhou"
+  ],
+  "Voice control connection lost": [
+    "Voice control connection lost",
+    "语音控制连接已丢失",
+    "La conexión de control de voz se perdió",
+    "A conexão de controle de voz foi perdida"
+  ],
+  "Voice media connection closed": [
+    "Voice media connection closed",
+    "语音媒体连接已关闭",
+    "La conexión de medios de voz se cerró",
+    "A conexão de mídia de voz foi fechada"
+  ],
+  "Voice media connection failed": [
+    "Voice media connection failed",
+    "语音媒体连接失败",
+    "La conexión de medios de voz falló",
+    "A conexão de mídia de voz falhou"
+  ],
+  "Voice media connection failed. Start a new call to retry.": [
+    "Voice media connection failed. Start a new call to retry.",
+    "语音媒体连接失败。请重新开始通话以重试。",
+    "La conexión de medios de voz falló. Inicie una nueva llamada para intentar nuevamente.",
+    "A conexão de mídia de voz falhou. Inicie uma nova chamada para tentar novamente."
+  ],
+  "Voice media connection lost": [
+    "Voice media connection lost",
+    "语音媒体连接已丢失",
+    "La conexión de medios de voz se perdió",
+    "A conexão de mídia de voz foi perdida"
+  ],
+  "Voice media did not connect within 12 seconds. Start a new call to retry.": [
+    "Voice media did not connect within 12 seconds. Start a new call to retry.",
+    "语音媒体在12秒内未连接。请重新开始通话以重试。",
+    "La conexión de medios de voz no se conectó dentro de 12 segundos. Inicie una nueva llamada para intentar de nuevo.",
+    "A conexão de mídia de voz não conectou dentro de 12 segundos. Inicie uma nova chamada para tentar novamente."
+  ],
+  "Voice media did not connect. Start a new call to retry.": [
+    "Voice media did not connect. Start a new call to retry.",
+    "语音媒体未连接。请重新开始通话以重试。",
+    "La conexión de medios de voz no se estableció. Inicie una nueva llamada para intentar de nuevo.",
+    "A conexão de mídia de voz não conectou. Inicie uma nova chamada para tentar novamente."
+  ],
+  "Voice media negotiation failed": [
+    "Voice media negotiation failed",
+    "语音媒体协商失败",
+    "La negociación de medios de voz falló",
+    "A negociação de mídia de voz falhou"
+  ],
+  "Voice network setup timed out": [
+    "Voice network setup timed out",
+    "语音网络设置超时",
+    "La configuración de red de voz agotó el tiempo",
+    "A configuração de rede de voz excedeu o tempo"
+  ],
+  "Voice playback is not mounted.": [
+    "Voice playback is not mounted.",
+    "语音回放未挂载。",
+    "La reproducción de voz no está montada.",
+    "A reprodução de voz não está montada."
+  ],
+  "Voice request failed.": [
+    "Voice request failed.",
+    "语音请求失败。",
+    "La solicitud de voz falló.",
+    "A solicitação de voz falhou."
+  ],
+  "Voice session did not start": [
+    "Voice session did not start",
+    "语音会话未开始",
+    "La sesión de voz no comenzó",
+    "A sessão de voz não começou"
+  ],
+  "Voice startup timed out. Start a new call to retry.": [
+    "Voice startup timed out. Start a new call to retry.",
+    "语音启动超时。请重新开始通话以重试。",
+    "La inicialización de voz agotó el tiempo. Inicie una nueva llamada para intentar de nuevo.",
+    "A inicialização de voz excedeu o tempo. Inicie uma nova chamada para tentar novamente."
+  ],
+  "Voici un exemple de présentation de la comparaison. Les valeurs sont fictives ; une version réelle citerait chaque page source.": [
+    "Here is an example of how the comparison is presented. The values are fictitious; a real version would cite each source page.",
+    "以下是比较呈现的一个示例。数值为虚构；实际版本会引用每个页面来源。",
+    "Aquí hay un ejemplo de presentación de la comparación. Los valores son ficticios; una versión real citaría cada página fuente.",
+    "Aqui está um exemplo de apresentação da comparação. Os valores são fictícios; uma versão real citaria cada página fonte."
+  ],
+  "Voir la démo": [
+    "View the demo",
+    "观看演示",
+    "Ver la demo",
+    "Ver a demonstração"
+  ],
+  "Voir le classement": [
+    "View ranking",
+    "查看排名",
+    "Ver el ranking",
+    "Ver o ranking"
+  ],
+  "Voir le coffre-fort": [
+    "View the safe",
+    "查看保险箱",
+    "Ver el cofre",
+    "Ver o cofre"
+  ],
+  "Voir le texte lu": [
+    "View the spoken text",
+    "查看朗读文本",
+    "Ver el texto leído",
+    "Ver o texto lido"
+  ],
+  "Voir les connexions": [
+    "View connections",
+    "查看连接",
+    "Ver las conexiones",
+    "Ver as conexões"
+  ],
+  "Voir les preuves": [
+    "View proofs",
+    "查看证明",
+    "Ver las pruebas",
+    "Ver as provas"
+  ],
+  "Voir les sources": [
+    "View sources",
+    "查看来源",
+    "Ver las fuentes",
+    "Ver as fontes"
+  ],
+  "Voir l’état": [
+    "View status",
+    "查看状态",
+    "Ver el estado",
+    "Ver o estado"
+  ],
+  "Voir mon coffre-fort": [
+    "View my safe",
+    "查看我的保险箱",
+    "Ver mi cofre",
+    "Ver meu cofre"
+  ],
+  "Voir mon forfait": [
+    "View my plan",
+    "查看我的套餐",
+    "Ver mi plan",
+    "Ver meu plano"
+  ],
+  "Voir tous mes quotas": [
+    "View all my quotas",
+    "查看我的所有配额",
+    "Ver todas mis cuotas",
+    "Ver todas as minhas quotas"
+  ],
+  "Voir un exemple": [
+    "View an example",
+    "查看一个示例",
+    "Ver un ejemplo",
+    "Ver um exemplo"
+  ],
+  "Voir une liste simple": [
+    "View a simple list",
+    "查看简单列表",
+    "Ver una lista simple",
+    "Ver uma lista simples"
+  ],
+  "Vos compteurs": [
+    "Your counters",
+    "你的计数器",
+    "Sus contadores",
+    "Seus contadores"
+  ],
+  "Vos compteurs, rappels et documents Klerio en un coup d'œil.": [
+    "Your counters, reminders and Klerio documents at a glance.",
+    "一眼看见你的计数器、提醒和 Klerio 文件。",
+    "Sus contadores, recordatorios y documentos Klerio en una vista",
+    "Seus contadores, lembretes e documentos Klerio de relance"
+  ],
+  "Vos documents chiffrés, hébergés en UE": [
+    "Your encrypted documents, hosted in the EU",
+    "在欧盟托管的加密文档",
+    "Sus documentos cifrados, alojados en la UE",
+    "Seus documentos criptografados, hospedados na UE"
+  ],
+  "Vos documents rangés par domaine, chiffrés, avec échéances et recherche.": [
+    "Your domain-organized, encrypted documents, with due dates and search.",
+    "按域分组、加密、带到期日和搜索的文档。",
+    "Sus documentos ordenados por dominio, cifrados, con fechas de vencimiento y búsqueda.",
+    "Seus documentos organizados por domínio, criptografados, com prazos e pesquisa."
+  ],
+  "Vos documents restent vos documents.": [
+    "Your documents remain your documents.",
+    "你的文档仍然是你的文档。",
+    "Tus documentos siguen siendo tus documentos.",
+    "Seus documentos continuam sendo seus documentos."
+  ],
+  "Vos données": [
+    "Your data",
+    "你的数据",
+    "Tus datos",
+    "Seus dados"
+  ],
+  "Vos papiers rangés et sauvegardés dans votre dossier privé.": [
+    "Your papers stored and backed up in your private folder.",
+    "你的文件保存在你的私人文件夹中并有备份。",
+    "Tus papeles guardados y respaldados en tu carpeta privada.",
+    "Seus papéis armazenados e apoiados em sua pasta privada."
+  ],
+  "Vos rappels": [
+    "Your reminders",
+    "你的提醒",
+    "Tus recordatorios",
+    "Seus lembretes"
+  ],
+  "Vos échéances administratives, rappelées au bon moment.": [
+    "Your administrative deadlines, reminded at the right time.",
+    "适时提醒的行政截止日期。",
+    "Tus fechas límite administrativas, recordadas en el momento adecuado.",
+    "Seus prazos administrativos, lembrados no momento certo."
+  ],
+  "Votre administratif,": [
+    "Your administrative,",
+    "您的行政，",
+    "Tu administrativo,",
+    "Seu administrativo,"
+  ],
+  "Votre assistant Klerio pour les démarches du quotidien.": [
+    "Your Klerio assistant for daily tasks.",
+    "每日事务的 Klerio 助手。",
+    "Tu asistente Klerio para las gestiones diarias.",
+    "Seu assistente Klerio para os procedimentos do dia a dia."
+  ],
+  "Votre budget indicatif": [
+    "Your indicative budget",
+    "您的预算指示性",
+    "Tu presupuesto indicativo",
+    "Seu orçamento indicativo"
+  ],
+  "Votre coffre est vide": [
+    "Your safe is empty",
+    "你的保险箱是空的",
+    "Tu cofre está vacío",
+    "Seu cofre está vazio"
+  ],
+  "Votre dashboard": [
+    "Your dashboard",
+    "你的仪表板",
+    "Tu panel de control",
+    "Seu painel"
+  ],
+  "Votre espace": [
+    "Your space",
+    "你的空间",
+    "Tu espacio",
+    "Seu espaço"
+  ],
+  "Votre espace de conversation": [
+    "Your conversation space",
+    "你的会话空间",
+    "Tu espacio de conversación",
+    "Seu espaço de conversa"
+  ],
+  "Votre espace personnel fiscal.": [
+    "Your personal tax space.",
+    "你的个人税务空间。",
+    "Tu espacio fiscal personal.",
+    "Seu espaço fiscal pessoal."
+  ],
+  "Votre feuille est-elle signée ?": [
+    "Is your form signed?",
+    "你的表格是否已签名？",
+    "¿Tu hoja está firmada?",
+    "Sua planilha está assinada?"
+  ],
+  "Votre forfait": [
+    "Your plan",
+    "你的套餐",
+    "Tu plan",
+    "Seu plano"
+  ],
+  "Votre groupe famille": [
+    "Your family group",
+    "你的家庭组",
+    "Tu grupo familiar",
+    "Seu grupo familiar"
+  ],
+  "Votre mascotte officielle. Le bronze devient le fond de toute l’application, avec des textes crème.": [
+    "Your official mascot. Bronze becomes the background of the whole app, with cream text.",
+    "官方吉祥物。铜色成为应用程序的背景，文字为奶油色。",
+    "Tu mascota oficial. El bronce se convierte en el fondo de toda la aplicación, con textos crema.",
+    "Sua mascote oficial. O bronze passa a ser o fundo de toda a aplicação, com textos creme."
+  ],
+  "Votre message": [
+    "Your message",
+    "你的信息",
+    "Tu mensaje",
+    "Sua mensagem"
+  ],
+  "Votre prochaine étape": [
+    "Your next step",
+    "你的下一步",
+    "Tu siguiente paso",
+    "Seu próximo passo"
+  ],
+  "Votre profil et l'export de vos données Klerio.": [
+    "Your profile and export of your Klerio data.",
+    "你的资料和 Klerio 数据导出。",
+    "Tu perfil y la exportación de tus datos Klerio.",
+    "Seu perfil e a exportação de seus dados Klerio."
+  ],
+  "Votre prénom et nom": [
+    "Your first and last name",
+    "你的名字和姓氏",
+    "Tu nombre y apellido",
+    "Seu nome e sobrenome"
+  ],
+  "Votre tableau de bord Klerio : sujets, conversations et mémoire.": [
+    "Klerio dashboard: topics, conversations and memory.",
+    "Klerio 仪表板：主题、对话与记忆。",
+    "Tablero de Klerio: temas, conversaciones y memoria.",
+    "Painel do Klerio: tópicos, conversas e memória."
+  ],
+  "Vous": [
+    "You",
+    "你",
+    "Tú",
+    "Você"
+  ],
+  "Vous gardez la main": [
+    "You keep control",
+    "你掌握着局势",
+    "Tienes el control",
+    "Você tem o controle"
+  ],
+  "Vous n'avez pas à tout comprendre seul.": [
+    "You don't have to understand everything by yourself.",
+    "你不需要独自全部理解。",
+    "No tienes que entenderlo todo por ti mismo.",
+    "Você não precisa entender tudo sozinho."
+  ],
+  "Vous pouvez continuer tant que la capacité du journal serveur le permet. L’interface ne dira pas « archivé » avant confirmation.": [
+    "You can continue as long as the server log capacity allows. The interface will not say 'archived' before confirmation.",
+    "只要服务器日志容量允许，你可以继续。界面在确认前不会显示“归档”。",
+    "Puedes continuar siempre que la capacidad del diario del servidor lo permita. La interfaz no dirá 'archivado' hasta la confirmación.",
+    "Você pode continuar enquanto a capacidade do log do servidor permitir. A interface não dirá 'arquivado' antes da confirmação."
+  ],
+  "Vous savez toujours ce que vous consommez.": [
+    "You always know what you are consuming.",
+    "你总是知道你在消耗什么。",
+    "Siempre sabes lo que estás consumiendo.",
+    "Você sempre sabe o que está consumindo."
+  ],
+  "Vous voyez toujours ce qui est inclus, ce qui sera débité, et quand le quota repart. Aucun dépassement payant sans votre accord explicite.": [
+    "You always see what is included, what will be charged, and when the quota resets. No paid overages without your explicit consent.",
+    "你始终看到包含的内容、将要被扣费的内容，以及配额何时重置。未经你明确同意，不会有额外付费。",
+    "Siempre ves lo que está incluido, lo que se cobrará y cuándo se reinicia el cupo. Sin recargos de pago sin tu consentimiento explícito.",
+    "Você sempre vê o que está incluído, o que será cobrado e quando o limite será reiniciado. Não haverá excedentes pagos sem o seu consentimento explícito."
+  ],
+  "Voyage": [
+    "Trip",
+    "旅行",
+    "Viaje",
+    "Viagem"
+  ],
+  "Voyage · exemple": [
+    "Trip · example",
+    "旅行 · 例子",
+    "Viaje · ejemplo",
+    "Viagem · exemplo"
+  ],
+  "Vérifier la composition du foyer.": [
+    "Verify the household composition.",
+    "核对家庭成分。",
+    "Verificar la composición del hogar.",
+    "Verificar a composição do agregado familiar."
+  ],
+  "Vérifier la situation de mon logement": [
+    "Check the status of my dwelling",
+    "检查我的住所状况",
+    "Verificar la situación de mi vivienda",
+    "Verificar a situação da minha moradia"
+  ],
+  "Vérifier le PDF avant de le transmettre au destinataire.": [
+    "Verify the PDF before sending it to the recipient.",
+    "在将PDF发送给收件人之前进行核对。",
+    "Verificar el PDF antes de enviarlo al destinatario.",
+    "Verificar o PDF antes de transmitê-lo ao destinatário"
+  ],
+  "Vérifier le canal officiel du fournisseur avant tout règlement.": [
+    "Verify the supplier's official channel before any payment.",
+    "在任何支付前核实供应商的官方渠道。",
+    "Verificar el canal oficial del proveedor antes de cualquier pago.",
+    "Verificar o canal oficial do fornecedor antes de qualquer pagamento."
+  ],
+  "Vérifier le destinataire": [
+    "Verify the recipient",
+    "核实收件人",
+    "Verificar el destinatario",
+    "Verificar o destinatário"
+  ],
+  "Vérifier le destinataire et relire avant transmission.": [
+    "Verify the recipient and proofread before transmission.",
+    "核对收件人并在传输前校对。",
+    "Verificar el destinatario y releer antes de la transmisión.",
+    "Verificar o destinatário e reler antes da transmissão."
+  ],
+  "Vérifier le document, la période et la date indiqués.": [
+    "Verify the document, the period and the indicated date.",
+    "核对所示的文档、期间和日期。",
+    "Verificar el documento, el periodo y la fecha indicados.",
+    "Verificar o documento, o período e a data indicada."
+  ],
+  "Vérifier le parcours applicable dans la référence ci-dessous.": [
+    "Verify the applicable path in the reference below.",
+    "在下方参考中核对适用路径。",
+    "Verificar la ruta aplicable en la referencia abajo.",
+    "Verificar o percurso aplicável na referência abaixo."
+  ],
+  "Vérifier les informations et la signature.": [
+    "Verify the information and the signature.",
+    "核对信息与签名。",
+    "Verificar la información y la firma.",
+    "Verificar as informações e a assinatura."
+  ],
+  "Vérifier les informations puis signer la feuille.": [
+    "Verify the information and then sign the sheet.",
+    "核对信息后再签署表格。",
+    "Verificar la información y luego firmar la hoja.",
+    "Verificar as informações e então assinar a folha."
+  ],
+  "Vérifier les informations sur l’occupation du logement.": [
+    "Verify information about the occupancy of the dwelling.",
+    "核对住房占有信息。",
+    "Verificar la información sobre la ocupación de la vivienda.",
+    "Verificar as informações sobre a ocupação da moradia."
+  ],
+  "Vérifier si une pièce manque.": [
+    "Check if a piece is missing.",
+    "检查是否缺少一件。",
+    "Verificar si falta una pieza.",
+    "Verificar se falta uma peça."
+  ],
+  "Vérifier son échéance réelle si elle existe.": [
+    "Check its real due date if it exists.",
+    "如存在，检查它的实际到期日。",
+    "Verificar su vencimiento real si existe.",
+    "Verificar a sua data de vencimento real, se existir."
+  ],
+  "Vérifier un message": [
+    "Check a message",
+    "检查一条信息",
+    "Verificar un mensaje",
+    "Verificar uma mensagem"
+  ],
+  "Vérifier une convocation": [
+    "Check a summons",
+    "核对传唤",
+    "Verificar una citación",
+    "Verificar uma convocação"
+  ],
+  "Vérifier votre espace privé.": [
+    "Check your private space.",
+    "检查你的私人区域。",
+    "Verificar tu espacio privado.",
+    "Verificar seu espaço privado"
+  ],
+  "Vérifier votre situation par le site officiel.": [
+    "Check your status on the official site.",
+    "通过官方网站核查你的状态。",
+    "Verificar tu situación en el sitio oficial.",
+    "Verificar sua situação no site oficial"
+  ],
+  "Vérifier votre situation sur la fiche officielle.": [
+    "Check your status on the official form.",
+    "在官方表格上核对您的情况。",
+    "Verificar tu situación en la ficha oficial.",
+    "Verificar sua situação na ficha oficial"
+  ],
+  "Vérifions d’abord votre mode de dépôt, sans demander votre mot de passe ni votre numéro fiscal.": [
+    "First, let's verify your deposit method, without asking for your password or tax number.",
+    "首先，我们在不要求你的密码或税号的情况下验证你的存款方式。",
+    "Primero, verifiquemos tu modo de depósito, sin pedir tu contraseña ni tu número fiscal.",
+    "Primeiro, vamos verificar seu modo de depósito, sem pedir sua senha nem seu número fiscal."
+  ],
+  "Vérifié sur les domaines officiels. Vous gardez la main.": [
+    "Verified on official domains. You keep control.",
+    "在官方域名上已验证。你掌控着局势。",
+    "Verificado en dominios oficiales. Tienes el control.",
+    "Verificado em domínios oficiais. Você mantém o controle."
+  ],
+  "Zone de cadrage caméra": [
+    "Camera framing zone",
+    "摄像头取景区",
+    "Zona de encuadre de la cámara",
+    "Zona de enquadramento da câmera"
+  ],
+  "Zone de composition": [
+    "Composition zone",
+    "构图区",
+    "Zona de composición",
+    "Zona de composição"
+  ],
+  "appartient à → Fiscalité / Logement": [
+    "belongs to → Tax / Housing",
+    "属于 → 税务/住房",
+    "pertenece a → Fiscalidad / Vivienda",
+    "pertence a → Fiscalidade / Habitação"
+  ],
+  "aspect-[3/4] w-full object-cover": [
+    "aspect-[3/4] w-full object-cover",
+    "aspect-[3/4] w-full object-cover",
+    "aspect-[3/4] w-full object-cover",
+    "aspect-[3/4] w-full object-cover"
+  ],
+  "btn-accent mt-5 w-full": [
+    "btn-accent mt-5 w-full",
+    "btn-accent mt-5 w-full",
+    "btn-accent mt-5 w-full",
+    "btn-accent mt-5 w-full"
+  ],
+  "btn-ghost relative h-11 w-11 p-0": [
+    "btn-ghost relative h-11 w-11 p-0",
+    "btn-ghost relative h-11 w-11 p-0",
+    "btn-ghost relative h-11 w-11 p-0",
+    "btn-ghost relative h-11 w-11 p-0"
+  ],
+  "btn-primary hidden sm:inline-flex": [
+    "btn-primary hidden sm:inline-flex",
+    "btn-primary hidden sm:inline-flex",
+    "btn-primary hidden sm:inline-flex",
+    "btn-primary hidden sm:inline-flex"
+  ],
+  "btn-primary w-full": [
+    "btn-primary w-full",
+    "btn-primary w-full",
+    "btn-primary w-full",
+    "btn-primary w-full"
+  ],
+  "btn-secondary hidden sm:inline-flex": [
+    "btn-secondary hidden sm:inline-flex",
+    "btn-secondary hidden sm:inline-flex",
+    "btn-secondary hidden sm:inline-flex",
+    "btn-secondary hidden sm:inline-flex"
+  ],
+  "btn-secondary mt-3": [
+    "btn-secondary mt-3",
+    "btn-secondary mt-3",
+    "btn-secondary mt-3",
+    "btn-secondary mt-3"
+  ],
+  "btn-secondary mt-4": [
+    "btn-secondary mt-4",
+    "btn-secondary mt-4",
+    "btn-secondary mt-4",
+    "btn-secondary mt-4"
+  ],
+  "btn-secondary mt-6 w-full": [
+    "btn-secondary mt-6 w-full",
+    "btn-secondary mt-6 w-full",
+    "btn-secondary mt-6 w-full",
+    "btn-secondary mt-6 w-full"
+  ],
+  "btn-secondary w-full": [
+    "btn-secondary w-full",
+    "btn-secondary w-full",
+    "btn-secondary w-full",
+    "btn-secondary w-full"
+  ],
+  "bubble think": [
+    "bubble think",
+    "冒泡思考",
+    "burbuja de pensamiento",
+    "bolha de pensamento"
+  ],
+  "card flex gap-3 p-4": [
+    "card flex gap-3 p-4",
+    "卡片 柔性布局 间距3 内边距4",
+    "tarjeta flex gap-3 p-4",
+    "card flex gap-3 p-4"
+  ],
+  "card p-4": [
+    "card p-4",
+    "卡片 内边距4",
+    "tarjeta p-4",
+    "card p-4"
+  ],
+  "card p-5": [
+    "card p-5",
+    "卡片 内边距5",
+    "tarjeta p-5",
+    "card p-5"
+  ],
+  "card p-5 sm:p-6": [
+    "card p-5 sm:p-6",
+    "卡片 内边距5 小屏6",
+    "tarjeta p-5 sm:p-6",
+    "card p-5 sm:p-6"
+  ],
+  "card-flat p-4": [
+    "card-flat p-4",
+    "扁平卡片 内边距4",
+    "tarjeta plana p-4",
+    "card-flat p-4"
+  ],
+  "contient → Devis A et Devis B": [
+    "contains → Quote A and Quote B",
+    "包含 → 报价A与报价B",
+    "contiene → Presupuesto A y Presupuesto B",
+    "contém → Orçamento A e Orçamento B"
+  ],
+  "coupé": [
+    "cut",
+    "切断",
+    "cortado",
+    "cortado"
+  ],
+  "coupée": [
+    "cut",
+    "切断",
+    "cortada",
+    "cortada"
+  ],
+  "dans le coffre-fort.": [
+    "in the safe.",
+    "在保险箱中。",
+    "en la caja fuerte.",
+    "no cofre."
+  ],
+  "de scan restante": [
+    "remaining scan",
+    "剩余扫描",
+    "escaneo restante",
+    "escaneamento restante"
+  ],
+  "décidé dans → Critère choisi dans le chat": [
+    "decided in → Criterion chosen in chat",
+    "在聊天中选择的标准",
+    "decidido en → Criterio escogido en el chat",
+    "decidido em → Critério escolhido no chat"
+  ],
+  "déclaration": [
+    "declaration",
+    "声明",
+    "declaración",
+    "declaração"
+  ],
+  "déjà protégés,": [
+    "already protected,",
+    "已受保护，",
+    "ya protegidos,",
+    "já protegidos,"
+  ],
+  "en écoute": [
+    "listening",
+    "在听",
+    "escuchando",
+    "ouvindo"
+  ],
+  "explications par mois.": [
+    "explanations per month.",
+    "每月解释。",
+    "explicaciones por mes.",
+    "explicações por mês."
+  ],
+  "fichiers par envoi.": [
+    "files per sending.",
+    "每次发送的文件。",
+    "archivos por envío.",
+    "arquivos por envio"
+  ],
+  "flex items-center gap-1.5": [
+    "flex items-center gap-1.5",
+    "flex  项目居中 间隙1.5",
+    "flex items-center gap-1.5",
+    "flex items-center gap-1.5"
+  ],
+  "flex items-center gap-2": [
+    "flex items-center gap-2",
+    "flex 项目居中 间隙2",
+    "flex items-center gap-2",
+    "flex items-center gap-2"
+  ],
+  "flex items-center gap-3": [
+    "flex items-center gap-3",
+    "flex 项目居中 间隙3",
+    "flex items-center gap-3",
+    "flex items-center gap-3"
+  ],
+  "flex items-center gap-3 lg:hidden": [
+    "flex items-center gap-3 lg:hidden",
+    "flex 项目居中 间隙3 大屏隐藏",
+    "flex items-center gap-3 lg:hidden",
+    "flex items-center gap-3 lg:hidden"
+  ],
+  "flex items-center gap-3 p-4": [
+    "flex items-center gap-3 p-4",
+    "flex 项目居中 间隙3 内边距4",
+    "flex items-center gap-3 p-4",
+    "flex items-center gap-3 p-4"
+  ],
+  "flex items-center justify-between": [
+    "flex items-center justify-between",
+    "flex 项目居中 两端对齐",
+    "flex items-center justify-between",
+    "flex items-center justify-between"
+  ],
+  "flex items-center justify-between gap-2": [
+    "flex items-center justify-between gap-2",
+    "flex 项目居中 两端对齐 间隙2",
+    "flex items-center justify-between gap-2",
+    "flex items-center justify-between gap-2"
+  ],
+  "votre message a été reçu, mais la synchronisation attend.": [
+    "your message has been received, but synchronization is pending.",
+    "您的消息已收到，但正在等待同步。",
+    "su mensaje ha sido recibido, pero la sincronización está pendiente.",
+    "sua mensagem foi recebida, mas a sincronização está pendente."
+  ],
+  "« Dernier avertissement : réglez 49 € sous 24 h via ce lien. » Le message contient un lien hors service-public.fr et une urgence artificielle.": [
+    "« Final warning: pay €49 within 24 hours via this link. » The message contains a link outside service-public.fr and an artificial urgency.",
+    "« 最后警告：请在24小时内通过此链接支付49欧元。 » 该信息包含一个非 service-public.fr 的链接及人为制造的紧迫感。",
+    "« Última advertencia: pague 49 € dentro de 24 horas mediante este enlace. » El mensaje contiene un enlace fuera de service-public.fr y una urgencia artificial.",
+    "« Último aviso: pague €49 dentro de 24 horas através deste link. » A mensagem contém um link fora do service-public.fr e uma urgência artificial."
+  ],
+  "« Urgent, payez maintenant. »": [
+    "« Urgent, pay now. »",
+    "« 紧急，请现在支付。»",
+    "« Urgente, pague ahora. »",
+    "« Urgente, pague agora. »"
+  ],
+  "« Veuillez vérifier la situation d’occupation du logement dans votre espace. »": [
+    "Please verify the occupancy status of the housing in your space.",
+    "请在您的空间中核实住房的占用情况。",
+    "Por favor, verifique la situación de ocupación de la vivienda en su espacio.",
+    "Por favor, verifique a situação de ocupação da moradia em seu espaço."
+  ],
+  "· consommation vocale :": [
+    "· vocal consumption :",
+    "· 语音消耗：",
+    "· consumo vocal:",
+    "· consumo vocal:"
+  ],
+  "· démonstration": [
+    "· demonstration",
+    "· 演示",
+    "· demostración",
+    "· demonstração"
+  ],
+  "· micro coupé": [
+    "· mic muted",
+    "· 麦克风已关闭",
+    "· mic apagado",
+    "· micro desligado"
+  ],
+  "· mémoire active": [
+    "· active memory",
+    "· 活动内存",
+    "· memoria activa",
+    "· memória ativa"
+  ],
+  "· renouvellement": [
+    "· renewal",
+    "· 续订",
+    "· renovación",
+    "· renovação"
+  ],
+  "· simulation": [
+    "· simulation",
+    "· 仿真",
+    "· simulación",
+    "· simulação"
+  ],
+  "· sujet :": [
+    "· subject :",
+    "· 主题：",
+    "· asunto :",
+    "· assunto :"
+  ],
+  "· voix": [
+    "· voice",
+    "· 语音",
+    "· voz",
+    "· voz"
+  ],
+  "· votre mémoire est sauvegardée en continu.": [
+    "· your memory is continuously backed up.",
+    "· 您的内存正在持续备份。",
+    "· su memoria se guarda de forma continua.",
+    "· sua memória está sendo salva continuamente."
+  ],
+  "· vérifié le": [
+    "· checked the",
+    "· 已检查的",
+    "· verificado el",
+    "· verificado o"
+  ],
+  "» comme fait": [
+    "» done",
+    "» 已完成",
+    "» hecho",
+    "» feito"
+  ],
+  "À classer": [
+    "To classify",
+    "待分类",
+    "Para clasificar",
+    "Para classificar"
+  ],
+  "À faire avant le 15 décembre": [
+    "To be done before December 15",
+    "在12月15日之前完成",
+    "A realizar antes del 15 de diciembre",
+    "A fazer antes de 15 de dezembro"
+  ],
+  "À faire bientôt": [
+    "To be done soon",
+    "即将完成",
+    "Para hacer pronto",
+    "A fazer em breve"
+  ],
+  "À votre écoute": [
+    "At your service",
+    "随时为您服务",
+    "A su disposición",
+    "À sua disposição"
+  ],
+  "Ça bloque peut-être, patientez ou réessayez": [
+    "It might be blocked, please wait or try again",
+    "可能被阻止，请稍等或重试",
+    "Puede estar bloqueado, espere o intente de nuevo",
+    "Pode estar bloqueado, aguarde ou tente novamente"
+  ],
+  "Ça prend un peu plus de temps…": [
+    "That may take a little longer…",
+    "这可能需要稍长一些时间…",
+    "Eso puede tardar un poco más…",
+    "Isso pode levar um pouco mais de tempo..."
+  ],
+  "Échanges affichés dans ce fichier, sans archivage distant.": [
+    "Chats exchanged in this file, with no remote archiving.",
+    "在此文件中显示的对话，未进行远程存档。",
+    "Intercambios mostrados en este archivo, sin archivado remoto.",
+    "Trocas exibidas neste arquivo, sem arquivamento remoto."
+  ],
+  "Échanges vocaux": [
+    "Voice exchanges",
+    "语音交流",
+    "Intercambios de voz",
+    "Intercâmbios de voz"
+  ],
+  "Échéance": [
+    "Due date",
+    "到期日",
+    "Vencimiento",
+    "Vencimento"
+  ],
+  "Échéance : non indiquée, à relever dans le document complet.": [
+    "Due date: not indicated, to be noted in the full document.",
+    "到期日：未指明，请在完整文档中标注。",
+    "Vencimiento: no indicado, a destacar en el documento completo.",
+    "Vencimento: não indicado, a ser registrado no documento completo."
+  ],
+  "Écrivez un message… (Entrée pour envoyer)": [
+    "Write a message… (Enter to send)",
+    "写一条消息…（按回车发送）",
+    "Escribe un mensaje… (Enter para enviar)",
+    "Escreva uma mensagem… (Enter para enviar)"
+  ],
+  "Écrivez votre message…": [
+    "Write your message…",
+    "写下你的消息…",
+    "Escribe tu mensaje…",
+    "Escreva sua mensagem…"
+  ],
+  "Éducation nationale": [
+    "National Education",
+    "教育部",
+    "Educación Nacional",
+    "Educação Nacional"
+  ],
+  "Élément": [
+    "Element",
+    "元素",
+    "Elemento",
+    "Elemento"
+  ],
+  "Énergie": [
+    "Energy",
+    "能源",
+    "Energía",
+    "Energia"
+  ],
+  "Étapes et preuves": [
+    "Steps and proofs",
+    "步骤与证据",
+    "Pasos y pruebas",
+    "Etapas e provas"
+  ],
+  "État : démonstration en attente du critère.": [
+    "State: demonstration awaiting the criterion.",
+    "状态：演示正在等待条件。",
+    "Estado: demostración a la espera del criterio.",
+    "Estado: demonstração aguardando o critério."
+  ],
+  "États vocaux simulés · aucun micro utilisé": [
+    "Simulated voice states · no mic used",
+    "模拟的语音状态 · 未使用麦克风",
+    "Estados de voz simulados · ningún micrófono utilizado",
+    "Estados de voz simulados · nenhum microfone utilizado"
+  ],
+  "Êtes-vous propriétaire du logement concerné ?": [
+    "Are you the owner of the dwelling in question?",
+    "您是相关住房的所有者吗？",
+    "¿Es usted el propietario de la vivienda en cuestión?",
+    "Você é o proprietário da habitação em questão?"
+  ],
+  "à préciser et vérifier.": [
+    "to specify and verify.",
+    "需要明确和核实。",
+    "a precisar y verificar.",
+    "a precisar e verificar."
+  ],
+  "éclairé par → référence DGFiP": [
+    "illuminated by → DGFiP reference",
+    "由 → DGFiP 引用",
+    "iluminado por → referencia DGFiP",
+    "iluminado por → referência DGFiP"
+  ],
+  "— page": [
+    "— page",
+    "— 页面",
+    "— página",
+    "— página"
+  ],
+  "€ — exemple": [
+    "€ — example",
+    "€ — 示例",
+    "€ — ejemplo",
+    "€ — exemplo"
+  ],
+  "⚠️ sauvegarde en attente": [
+    "⚠️ backup pending",
+    "⚠️ 备份待处理",
+    "⚠️ copia de seguridad pendiente",
+    "⚠️ backup pendente"
+  ],
+  "🎙️ vocal": [
+    "🎙️ vocal",
+    "🎙️ 语音",
+    "🎙️ vocal",
+    "🎙️ vocal"
+  ],
+  "💬 texte": [
+    "💬 text",
+    "💬 文字",
+    "💬 texto",
+    "💬 texto"
   ]
 }
