@@ -39,14 +39,14 @@ button{background:var(--card);color:var(--ink);border-color:var(--line)}button:h
 
 
 /* Bronze futuriste : la lecture et les commandes restent prioritaires. */
-body{background:radial-gradient(ellipse at 12% 5%,#9b633740,transparent 50%),radial-gradient(ellipse at 90% 90%,#1e575426,transparent 45%),#f6f4ee;background-attachment:fixed}
-.app{background:linear-gradient(160deg,#f6f4eef5,#472a19f5);box-shadow:0 0 90px #1d100a40;border-color:#c89b6e66}
-header,.composer{background:#4d2d1edb;backdrop-filter:blur(18px);border-color:#c89b6e80}
-.bubble,.card{background:linear-gradient(135deg,#70472b80,#482b1ecc);border-color:#b38a6080;box-shadow:inset 0 1px 0 #ffdbb31a,0 8px 25px #1f100a1a}
+body{background:radial-gradient(ellipse at 12% 5%,#2f888040,transparent 50%),radial-gradient(ellipse at 90% 90%,#1e575426,transparent 45%),#f6f4ee;background-attachment:fixed}
+.app{background:linear-gradient(160deg,#f6f4eef5,#fffffff5);box-shadow:0 0 90px #161c2c40;border-color:#b9c1d466}
+header,.composer{background:#ffffffdb;backdrop-filter:blur(18px);border-color:#b9c1d480}
+.bubble,.card{background:linear-gradient(135deg,#eef7f580,#ffffffcc);border-color:#b9c1d480;box-shadow:inset 0 1px 0 #2f88801a,0 8px 25px #161c2c1a}
 button{border-radius:14px;transition:background .18s,box-shadow .18s}button:hover{box-shadow:0 0 16px #1e575429}
-.entry{background:#352015a6;border-color:#d6a67799;box-shadow:0 0 0 4px #1e57540a,inset 0 1px 0 #ffdbb31a}
-.sendknob,.modeknob{background:linear-gradient(145deg,#2f8880,#1e5754);box-shadow:inset 0 1px 1px #ffe3b899,0 3px 15px #1f100a55}
-.mode-track{background:#35201599;border-color:#bd956f80}.brand-portrait{box-shadow:0 0 0 1px #d4a97766,0 0 32px #1e575433}
+.entry{background:#eef0f6a6;border-color:#aedbd399;box-shadow:0 0 0 4px #1e57540a,inset 0 1px 0 #2f88801a}
+.sendknob,.modeknob{background:linear-gradient(145deg,#2f8880,#1e5754);box-shadow:inset 0 1px 1px #ffffff99,0 3px 15px #161c2c55}
+.mode-track{background:#eef0f699;border-color:#b9c1d480}.brand-portrait{box-shadow:0 0 0 1px #aedbd366,0 0 32px #1e575433}
 h1{letter-spacing:-.7px}.banner{background:#dce0ea;color:#607095}
 @media(prefers-reduced-motion:reduce){button{transition:none}}
 
@@ -59,8 +59,8 @@ h1{letter-spacing:-.7px}.banner{background:#dce0ea;color:#607095}
 .head-only{display:block;position:absolute;inset:4px;border-radius:50%;background-image:var(--mascot-sheet);background-size:430% 285%;background-position:7% 0%;background-repeat:no-repeat;overflow:hidden}
 .companion-mouth{position:absolute;left:54%;top:67%;width:10%;height:7%;border-radius:45% 45% 60% 60%;background:#29100b;border:1px solid #fb5f12;transform:translate(-50%,-50%) scaleY(.12);opacity:0;transform-origin:center;pointer-events:none}
 .companion-orb.talking .companion-mouth{opacity:1;animation:talk .38s ease-in-out infinite alternate}
-.companion-orb.talking{box-shadow:inset 0 1px 4px #ffffff5c,0 10px 24px #161c2c88,0 0 44px #edaf6680}
-.companion-label{font-size:11px;line-height:1.4;color:#161c2c;background:#432716e8;border:1px solid #b0875d80;border-radius:20px;padding:5px 12px;text-align:center;max-width:210px}
+.companion-orb.talking{box-shadow:inset 0 1px 4px #ffffff5c,0 10px 24px #161c2c88,0 0 44px #7cc2b880}
+.companion-label{font-size:11px;line-height:1.4;color:#161c2c;background:#ffffffe8;border:1px solid #b9c1d480;border-radius:20px;padding:5px 12px;text-align:center;max-width:210px}
 .avatar .mascot{background-size:430% 285%;background-position:7% 0%}
 .brand-portrait{display:none}.brand-welcome{margin-bottom:12px}
 @keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -73,10 +73,10 @@ h1{letter-spacing:-.7px}.banner{background:#dce0ea;color:#607095}
 .app{margin-top:0!important;height:100dvh!important;border-radius:0;overflow:hidden}
 .floating-companion{top:18px;left:calc(100% - 120px);transform:none;width:96px;display:block;z-index:40}
 .companion-orb{touch-action:none;cursor:grab;user-select:none;animation:none}
-.companion-orb:active,.companion-orb.orb-dragging{cursor:grabbing}.companion-orb.orb-dragging{box-shadow:0 16px 30px #24130999,0 0 36px #e2a76866}
+.companion-orb:active,.companion-orb.orb-dragging{cursor:grabbing}.companion-orb.orb-dragging{box-shadow:0 16px 30px #161c2c99,0 0 36px #7cc2b866}
 .companion-label{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;clip-path:inset(50%);overflow:hidden;white-space:nowrap;border:0!important}
 .entry textarea{padding-right:136px;min-height:112px}.sendknob{right:70px}.sendcue{right:132px}
-.composer-menu{position:absolute;right:10px;top:12px;width:48px;height:52px;min-height:48px;border:0;border-left:1px solid #b38a6066;border-radius:0 16px 16px 0;background:transparent;font-size:26px;padding:0;z-index:3}
+.composer-menu{position:absolute;right:10px;top:12px;width:48px;height:52px;min-height:48px;border:0;border-left:1px solid #b9c1d466;border-radius:0 16px 16px 0;background:transparent;font-size:26px;padding:0;z-index:3}
 .composer-menu:hover{background:#1e575420}.entryhint{max-width:calc(100% - 24px)}
 @media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
 
