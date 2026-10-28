@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { lovable } from "@/integrations/lovable";
 import { useLiveVoice, type LiveEvent } from "@/hooks/use-live-voice";
+import { setPendingScan } from "@/lib/espace/pending-scan";
 
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
 type VoiceCaption = (role: "user" | "assistant", text: string) => void;
@@ -58,9 +59,17 @@ function ChatRoute() {
   useEffect(() => {
     const onMsg = (e: MessageEvent) => {
       if (e.origin !== window.location.origin) return;
-      const to = (e.data as { klerioNavigate?: unknown } | null)?.klerioNavigate;
+      const data = e.data as { klerioNavigate?: unknown; klerioScan?: unknown } | null;
+      const to = data?.klerioNavigate;
       if (to === "/espace") navigate({ to: "/espace" });
       if (to === "/espace/scanner") navigate({ to: "/espace/scanner" });
+      if (Array.isArray(data?.klerioScan)) {
+        const files = (data.klerioScan as unknown[]).filter((f): f is File => f instanceof Blob) as File[];
+        if (files.length) {
+          setPendingScan(files);
+          navigate({ to: "/espace/scanner" });
+        }
+      }
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
