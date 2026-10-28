@@ -4,7 +4,8 @@ import { validLanguage, type AppLanguage } from "@/lib/appearance";
 const translations = catalog as Record<string, string[]>;
 const languageIndex = { en: 0, "zh-CN": 1, es: 2, "pt-BR": 3 };
 const normalize = (text: string) => text.replace(/\s+/g, " ").trim();
-const fragments = Object.keys(translations).filter((key) => key.length > 2).sort((a, b) => b.length - a.length);
+const fragments = Object.keys(translations).sort((a, b) => b.length - a.length);
+const escapePattern = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 export function translateInterface(text: string, language: AppLanguage): string {
   if (language === "fr") return text;
   const index = languageIndex[language];
@@ -19,10 +20,12 @@ export function translateInterface(text: string, language: AppLanguage): string 
     const translated = translations[fragment]?.[index];
     if (!translated) continue;
     const marker = `\u0000${replacements.length}\u0000`;
-    result = result.split(fragment).join(marker);
+    const pattern = new RegExp(`(?<![\\p{L}])${escapePattern(fragment)}(?![\\p{L}])`, "gu");
+    result = result.replace(pattern, marker);
     replacements.push(translated);
   }
-  return result.replace(/\u0000(\d+)\u0000/g, (_, n: string) => replacements[Number(n)] ?? "");
+  const translated = result.replace(/\u0000(\d+)\u0000/g, (_, n: string) => replacements[Number(n)] ?? "");
+  return (text.match(/^\s*/)?.[0] ?? "") + translated + (text.match(/\s*$/)?.[0] ?? "");
 }
 
 export function mountInterfaceLocalization(root: Document): () => void {
