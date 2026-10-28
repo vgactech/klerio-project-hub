@@ -17,6 +17,15 @@
  * All colors use oklch format as required by Tailwind v4.
  */
 
+@theme {
+  --color-ink-50: #f7f8fb; --color-ink-100: #eef0f6; --color-ink-200: #dce0ea; --color-ink-300: #b9c1d4; --color-ink-400: #8894b3;
+  --color-ink-500: #607095; --color-ink-600: #4a5878; --color-ink-700: #3a4560; --color-ink-800: #252d42; --color-ink-900: #161c2c; --color-ink-950: #0d111c;
+  --color-brand-50: #eef7f5; --color-brand-100: #d6ede8; --color-brand-200: #aedbd3; --color-brand-300: #7cc2b8; --color-brand-400: #4aa399;
+  --color-brand-500: #2f8880; --color-brand-600: #226d68; --color-brand-700: #1e5754; --color-brand-800: #1b4544; --color-brand-900: #183a39;
+  --color-accent-100: #ffe9d4; --color-accent-500: #fb5f12; --color-accent-700: #c33109;
+  --color-paper: #f6f4ee;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
