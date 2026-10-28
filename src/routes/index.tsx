@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 });
 
 const PLAN_LIST = [
-  { id: "standard", name: "Standard", tagline: "Pour démarrer sans payer.", priceMonthlyCents: 0, priceYearlyCents: 0, features: ["20 pages de scan au total (à vie)", "Coffre-fort 10 Go, classement manuel", "20 pages d'analyse approfondie par mois", "10 explications de documents par mois", "3 e-mails générés par semaine", "Traduction gratuite et illimitée", "Rappels de base et liens officiels"] },
+  { id: "standard", name: "Standard", tagline: "Pour démarrer sans payer.", priceMonthlyCents: 0, priceYearlyCents: 0, features: ["20 pages de scan par mois", "Coffre-fort 10 Go, classement manuel", "20 pages d'analyse approfondie par mois", "10 explications de documents par mois", "3 e-mails générés par semaine", "Traduction gratuite et illimitée", "Rappels de base et liens officiels"] },
   { id: "pro", name: "Pro", tagline: "Pour une personne qui veut aller vite.", priceMonthlyCents: 799, priceYearlyCents: 7990, features: ["100 pages de scan par mois", "Coffre-fort 15 Go + classement automatique IA", "100 pages d'analyse approfondie par mois", "300 explications par mois", "30 e-mails générés par semaine", "20 remplissages assistés par mois", "Rappels avancés, crédits à l'unité"] },
   { id: "family", name: "Pro Famille", tagline: "Jusqu'à 5 personnes, chacun son espace.", priceMonthlyCents: 1299, priceYearlyCents: 12990, features: ["100 pages de scan par mois et par personne", "Coffre-fort partagé 50 Go (pool unique)", "Documents privés par défaut, partage explicite", "500 pages d'analyse approfondie par mois", "1 000 explications par mois", "Rappels individuels et familiaux", "Crédits partagés, politique de quotas réglable"] },
 ];
@@ -314,7 +314,7 @@ function LandingPage() {
               })}
             </div>
             <p className="mt-5 text-xs leading-relaxed text-ink-500">
-              Les 20 pages de scan du forfait Standard sont cumulatives à vie et ne se réinitialisent jamais.
+              Les 20 pages de scan du forfait Standard repartent à zéro chaque mois.
               Les quotas mensuels repartent à la date anniversaire de l'abonnement ; les quotas hebdomadaires le lundi à
               00h00 (Europe/Paris). Crédits achetables de 2 € à 20 €, sans reconduction.
             </p>
@@ -352,7 +352,7 @@ function LandingPage() {
             <p className="mt-2 text-sm text-brand-100/90">
               {showDemo
                 ? "Naviguez librement dans Klerio, sans inscription. Aucune donnée réelle n'est utilisée."
-                : "Créez votre compte en quelques secondes. 20 pages de scan offertes à vie, sans carte bancaire."}
+                : "Créez votre compte en quelques secondes. 20 pages de scan offertes chaque mois, sans carte bancaire."}
             </p>
                           <div className="mt-4 rounded-xl bg-white/10 p-3 text-sm text-brand-100/90">
                 Inscription gratuite. Vos documents sont chiffrés et restent privés.

@@ -32,7 +32,8 @@ export const CATEGORIES = ["À classer", "Impôts", "CAF", "Santé", "Logement",
 export function formatBytes(n: number) {
   if (n < 1024) return `${n} o`;
   if (n < 1024 ** 2) return `${(n / 1024).toFixed(0)} Ko`;
-  return `${(n / 1024 ** 2).toFixed(1)} Mo`;
+  if (n < 1024 ** 3) return `${(n / 1024 ** 2).toFixed(1)} Mo`;
+  return `${Number((n / 1024 ** 3).toFixed(1))} Go`;
 }
 export function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
@@ -45,5 +46,11 @@ export function dueLabel(iso: string) {
   return `Dans ${d} jours`;
 }
 
-/** Quotas du forfait gratuit (repris du dépôt Klerio). */
-export const FREE_PLAN = { scanPages: 20, explanationsPerMonth: 30, storageBytes: 200 * 1024 * 1024 };
+/** Quotas du forfait gratuit Standard : 20 pages de scan par mois, 10 explications par mois, coffre-fort 10 Go. */
+export const FREE_PLAN = { scanPagesPerMonth: 20, explanationsPerMonth: 10, storageBytes: 10 * 1024 ** 3 };
+
+/** Pages scannées pendant le mois en cours (le compteur repart à zéro le 1er du mois). */
+export function scansThisMonth(docs: Doc[] | undefined, now = new Date()): number {
+  const month = now.toISOString().slice(0, 7);
+  return (docs ?? []).filter((d) => d.createdAt?.startsWith(month)).length;
+}

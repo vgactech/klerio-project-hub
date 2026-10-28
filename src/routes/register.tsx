@@ -62,7 +62,7 @@ function RegisterPage() {
         <p className="section-title">Gratuit, sans carte bancaire</p>
         <h1 className="mt-2 text-3xl font-black tracking-tight">On commence simplement.</h1>
         <p className="mt-2 text-sm text-ink-600">
-          20 pages de scan offertes à vie, un coffre-fort de 10 Go et 10 explications par mois.
+          20 pages de scan offertes chaque mois, un coffre-fort de 10 Go et 10 explications par mois.
         </p>
         <div className="mt-7 space-y-4">
           <form onSubmit={submit} className="space-y-4">
