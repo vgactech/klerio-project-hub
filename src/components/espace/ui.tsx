@@ -21,7 +21,7 @@ export function PageHeader({ eyebrow, title, description, action }: { eyebrow?: 
 }
 
 export function StatCard({ label, value, hint, icon }: { label: string; value: ReactNode; hint?: string; icon?: ReactNode }) {
-  return <KStat label={label} value={String(value)} hint={hint} icon={icon} />;
+  return <KStat label={label} value={String(value)} {...(hint ? { hint } : {})} icon={icon} />;
 }
 
 /** value entre 0 et 1. */
