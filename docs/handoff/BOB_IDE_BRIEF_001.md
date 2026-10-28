@@ -155,4 +155,7 @@ Chaque action doit produire des événements immuables :
 ## Images de référence
 
 - `docs/handoff/assets/mascotte-bronze-reference.png` : référence visuelle de la mascotte chat-pingouin bronze (à reproduire en SVG, Q-K-03).
+- `docs/handoff/assets/mascotte-bronze-fourni.png` : variante bronze fournie par Gabriel, à considérer comme référence prioritaire avec la précédente.
+- `docs/handoff/assets/mascotte-variantes-12-fourni.png` : planche de 12 variantes fournies par Gabriel (6 rendus réalistes + 6 pixel art : Le classique, Le joyeux, Le cool, Le dormeur, Le pirate, L'explorateur) — base pour les états/humeurs de la mascotte.
+- `docs/handoff/assets/mascotte-poses-6-fourni.png` : collage de 6 poses fournies par Gabriel (assis, écharpe, saut, lunettes/hoodie, dormeur, poisson) — base pour les poses de la mascotte.
 - `docs/handoff/assets/maquette-chat-reference.jpg` : référence d'ambiance de l'écran /chat (clients, conversation, documents catégorisés, journal horodaté). Les noms et chiffres affichés sont fictifs.
