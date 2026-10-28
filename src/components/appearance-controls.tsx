@@ -18,9 +18,12 @@ export function AppearanceControls() {
   useEffect(() => {
     let dispose: (() => void) | undefined;
     let active = true;
-    void import("@/lib/interface-localization").then(({ mountInterfaceLocalization }) => {
-      if (active) dispose = mountInterfaceLocalization(document);
-    });
+    // Nested streamed routes can hydrate after the root effect. Do not mutate their SSR text before that commit.
+    const mountTimer = window.setTimeout(() => {
+      void import("@/lib/interface-localization").then(({ mountInterfaceLocalization }) => {
+        if (active) dispose = mountInterfaceLocalization(document);
+      });
+    }, 1000);
     const sync = () => {
       const next = validLanguage(localStorage.getItem("klerio-language"));
       const dark = localStorage.getItem("klerio-theme") === "dark";
@@ -34,7 +37,7 @@ export function AppearanceControls() {
     sync();
     window.addEventListener("storage", sync);
     window.addEventListener("klerio-appearance", sync);
-    return () => { active = false; dispose?.(); window.removeEventListener("storage", sync); window.removeEventListener("klerio-appearance", sync); };
+    return () => { active = false; window.clearTimeout(mountTimer); dispose?.(); window.removeEventListener("storage", sync); window.removeEventListener("klerio-appearance", sync); };
   }, []);
   const save = (key: string, value: string) => {
     localStorage.setItem(key, value);
