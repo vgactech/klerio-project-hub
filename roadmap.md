@@ -1,8 +1,8 @@
 # Transmission Klerio à Bob IDE
 
 ## Vidéo et post LinkedIn — 28 octobre
-- [ ] Version 2 : exactement 30 secondes, narration française et dialogue client–Klerio simulé avec voix distinctes.
-- [ ] Vérifier les paroles, les images et leur synchronisation ; publier un nouveau post avec la vidéo version 2.
+- [x] Version 2 : fichier de 30,000 secondes, narration française et dialogue client–Klerio simulé avec trois voix distinctes.
+- [x] Paroles vérifiées par retranscription automatique, images contrôlées, synchronisation par réplique (mots estimés) ; nouveau post LinkedIn accepté HTTP 201. Pas d'écoute humaine ; LinkedIn indique 30,016 s après conversion.
 - [x] Vidéo dynamique de 30 secondes montrant Klerio, avec invitation à tester et signaler les bugs (musique, textes, sans voix ; contrôle d'images, pas de lecture continue).
 - [x] Post LinkedIn français de 2 924 caractères / 3 000 maximum, lien de démo et consignes de retour sans données privées.
 - [x] Contrôler les livrables et les remettre ; publication vidéo + post acceptée sur le profil Gabriel Chaves (HTTP 201).
