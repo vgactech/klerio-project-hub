@@ -185,7 +185,7 @@ function btn(primary: boolean) {
     borderRadius: 999,
     border: `1px solid ${primary ? "#fb5f12" : C.line}`,
     background: primary ? "linear-gradient(135deg,#fb5f12,#ec4408)" : "transparent",
-    color: C.text,
+    color: primary ? "#ffffff" : C.text,
     fontWeight: 700,
     fontSize: 14,
     textDecoration: "none",
