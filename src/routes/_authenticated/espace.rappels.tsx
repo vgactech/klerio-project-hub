@@ -88,8 +88,8 @@ function Rappels() {
                     <Clock3 className="h-3 w-3" />{r.done ? "Fait" : dueLabel(r.dueAt)}
                   </span>
                   {r.recurrence !== "none" && <span className="ml-2 rounded-full bg-ink-100 px-2 py-0.5 text-xs font-semibold text-ink-600">{r.recurrence === "monthly" ? "Mensuel" : "Annuel"}</span>}
-                  <p className={`mt-2 font-bold ${r.done ? "line-through" : ""}`}>{r.title}</p>
-                  {r.notes && <p className="text-sm text-ink-600">{r.notes}</p>}
+                  <p translate="no" className={`mt-2 font-bold ${r.done ? "line-through" : ""}`}>{r.title}</p>
+                  {r.notes && <p translate="no" className="text-sm text-ink-600">{r.notes}</p>}
                   <p className="text-xs text-ink-500">{formatDate(r.dueAt)}</p>
                 </div>
                 <div className="flex shrink-0 gap-1">

@@ -26,7 +26,7 @@ export function DocumentCard({ doc }: { doc: Doc }) {
         <FileText className="h-5 w-5" aria-hidden="true" />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="line-clamp-2 text-sm font-bold leading-snug group-hover:text-brand-800">{doc.name}</span>
+        <span translate="no" className="line-clamp-2 text-sm font-bold leading-snug group-hover:text-brand-800">{doc.name}</span>
         <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-500">
           <span>{doc.category || "Non classé"}</span>
           <span aria-hidden="true">·</span>
@@ -128,8 +128,8 @@ function DashboardPage() {
                           <Badge tone={late ? "danger" : "warning"}><Clock3 className="h-3 w-3" aria-hidden="true" />{dueLabel(r.dueAt)}</Badge>
                           {r.recurrence !== "none" && <Badge>Récurrent</Badge>}
                         </div>
-                        <p className="mt-2 font-bold leading-snug">{r.title}</p>
-                        {r.notes && <p className="mt-1 line-clamp-2 text-sm text-ink-600">{r.notes}</p>}
+                        <p translate="no" className="mt-2 font-bold leading-snug">{r.title}</p>
+                        {r.notes && <p translate="no" className="mt-1 line-clamp-2 text-sm text-ink-600">{r.notes}</p>}
                         <p className="mt-1 text-xs text-ink-500">{formatDate(r.dueAt)}</p>
                       </div>
                       <button type="button" onClick={() => void complete(r.id)} className="btn-ghost h-10 shrink-0 px-3 text-xs" aria-label={`Marquer « ${r.title} » comme fait`}>

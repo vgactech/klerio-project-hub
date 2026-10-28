@@ -14,6 +14,7 @@ declare global {
     klerioLogVoice?: (role: "user" | "assistant", text: string) => void;
     klerioVoiceUsage?: (seconds: number) => void;
     klerioTopic?: string;
+    klerioUserId?: string;
     klerioVoiceEvent?: (type: string) => void;
     klerioVoice?: {
       start: () => void;
@@ -55,6 +56,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
 const PAGE_VERSION = "20261028-9";
 
 function ChatRoute() {
+  const { user } = Route.useRouteContext();
   const navigate = useNavigate();
   useEffect(() => {
     const onMsg = (e: MessageEvent) => {
@@ -187,6 +189,7 @@ function ChatRoute() {
   }, [voice.status, voice.error, voice.muted, voice.playbackBlocked]);
 
   useEffect(() => {
+    window.klerioUserId = user.id;
     window.klerioVoice = {
       start: () => voiceRef.current.start(),
       stop: () => voiceRef.current.stop(),

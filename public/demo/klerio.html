@@ -81,8 +81,16 @@ h1{letter-spacing:-.7px}.banner{background:#dce0ea;color:#607095}
 @media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
 
 </style>
-</head>
-<body data-theme="dark">
+<style>
+/* Explicit theme selected by the shared application controls. */
+html[data-theme="dark"] body{color-scheme:dark;--bg:#141a1a;--card:#202828;--ink:#f4f7f3;--muted:#b3c2bd;--line:#3d4b49;--accent:#35786b;--soft:#25423e}
+html[data-theme="dark"] .app,html[data-theme="dark"] header,html[data-theme="dark"] .composer,html[data-theme="dark"] .dialoghead,html[data-theme="dark"] textarea,html[data-theme="dark"] .entry,html[data-theme="dark"] dialog{background:var(--bg)!important;color:var(--ink)!important}
+html[data-theme="dark"] .bubble,html[data-theme="dark"] .card,html[data-theme="dark"] button,html[data-theme="dark"] .pose-card{background:var(--card);color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .user .bubble,html[data-theme="dark"] .modeknob,html[data-theme="dark"] .sendknob{background:var(--accent);color:#ffffff}
+html[data-theme="dark"] .banner,html[data-theme="dark"] .voice{background:var(--soft);color:var(--ink)}
+html[data-theme="dark"] .small,html[data-theme="dark"] .meta,html[data-theme="dark"] .sub,html[data-theme="dark"] .entryhint,html[data-theme="dark"] .gesturehint{color:var(--muted)}
+</style></head>
+<body data-theme="light">
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
 <main class="app">
 <div class="banner">DÉMONSTRATION · démarches officielles sourcées · profils fictifs · aucun envoi externe</div>

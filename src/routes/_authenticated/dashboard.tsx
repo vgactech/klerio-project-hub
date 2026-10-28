@@ -30,12 +30,12 @@ type Ev = {
 };
 
 const C = {
-  bg: "#f6f4ee",
-  card: "#ffffff",
-  line: "#d6ede8",
-  text: "#161c2c",
-  soft: "#4a5878",
-  bronze: "#fb5f12",
+  bg: "var(--background)",
+  card: "var(--card)",
+  line: "var(--border)",
+  text: "var(--foreground)",
+  soft: "var(--muted-foreground)",
+  bronze: "var(--accent)",
 };
 
 function fmt(iso: string) {
@@ -154,7 +154,7 @@ function Dashboard() {
                       {e.model ? ` · ${e.model}` : ""}
                       {e.tokens?.total || e.tokens?.output ? ` · ${e.tokens.total ?? e.tokens.output} jetons` : ""}
                     </div>
-                    <div style={{ whiteSpace: "pre-line", fontSize: 14, lineHeight: 1.5 }}>
+                    <div translate="no" style={{ whiteSpace: "pre-line", fontSize: 14, lineHeight: 1.5 }}>
                       {e.content.length > 400 ? `${e.content.slice(0, 400)}…` : e.content}
                     </div>
                   </li>
