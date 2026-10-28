@@ -142,7 +142,7 @@ export async function loadRecent(ownerId: string, limit = 40): Promise<MemoryEve
   await ensureBranch();
   const tree = await gh(`git/trees/${BRANCH}?recursive=1`);
   if (!tree.ok) throw new Error(`GitHub arbre ${tree.status}: ${await tree.text()}`);
-  const prefix = `clients/${ownerId}/sujets/`;
+  const prefix = `clients/${ownerId}/`;
   const files = ((await tree.json()) as { tree: { path: string; type: string }[] }).tree
     .filter((f) => f.type === "blob" && f.path.startsWith(prefix) && f.path.endsWith(".jsonl"))
     .sort((a, b) => a.path.slice(-16).localeCompare(b.path.slice(-16)))
