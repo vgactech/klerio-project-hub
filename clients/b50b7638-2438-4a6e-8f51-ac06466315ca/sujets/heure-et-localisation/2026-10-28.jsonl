@@ -1,0 +1,1 @@
+{"event_id":"e6dc563a-3af4-4b5e-999c-30296bd557f4","schema_version":1,"owner_id":"b50b7638-2438-4a6e-8f51-ac06466315ca","at":"2026-10-28T21:29:49.720Z","kind":"voice.user","channel":"voice","topic":"heure-et-localisation","content":"Quelle heure est-il aujourd'hui Et où nous sommes","model":"openai/gpt-live-1"}
