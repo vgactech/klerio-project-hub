@@ -286,6 +286,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   $('allmute').onclick=function(){micMuted=true;soundOff=true;P.klerioVoice&&P.klerioVoice.setMuted(true);var a=audioEl();if(a)a.muted=true;voiceText();};
   $('endvoice').onclick=function(){setMode(1);};
   // Lueur : bleu quand le client parle, vert quand Klerio parle
+  window.addEventListener('message',function(e){if(e.source===P&&e.data&&'klerioGlow' in e.data)glow(e.data.klerioGlow);});
   P.klerioVoiceEvent=function(t){
     if(t==='input_audio_buffer.speech_started')glow('blue');
     else if(t==='input_audio_buffer.speech_stopped')glow(null);

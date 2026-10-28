@@ -62,7 +62,67 @@ function ChatRoute() {
     },
   });
   const voiceRef = useRef(voice);
+  const frameRef = useRef<HTMLIFrameElement>(null);
   voiceRef.current = voice;
+
+  // Lueur de la mascotte d'après le volume réel : vert = Klerio parle, bleu = le client parle.
+  useEffect(() => {
+    if (voice.status !== "connected") {
+      frameRef.current?.contentWindow?.postMessage({ klerioGlow: null }, "*");
+      return;
+    }
+    let stopped = false;
+    let raf = 0;
+    let mic: MediaStream | null = null;
+    const ctx = new AudioContext();
+    void ctx.resume();
+    const level = (an: AnalyserNode | null, buf: Uint8Array<ArrayBuffer>) => {
+      if (!an) return 0;
+      an.getByteTimeDomainData(buf);
+      let sum = 0;
+      for (const v of buf) sum += (v - 128) * (v - 128);
+      return Math.sqrt(sum / buf.length);
+    };
+    const make = (stream: MediaStream) => {
+      const an = ctx.createAnalyser();
+      an.fftSize = 512;
+      ctx.createMediaStreamSource(stream).connect(an);
+      return an;
+    };
+    let outAn: AnalyserNode | null = null;
+    let inAn: AnalyserNode | null = null;
+    const buf = new Uint8Array(512);
+    void navigator.mediaDevices
+      .getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } })
+      .then((st) => {
+        if (stopped) return st.getTracks().forEach((t) => t.stop());
+        mic = st;
+        inAn = make(st);
+      })
+      .catch(() => {});
+    let last: string | null = "x";
+    const tick = () => {
+      if (stopped) return;
+      const src = voiceRef.current.audioRef.current?.srcObject;
+      if (!outAn && src instanceof MediaStream && src.getAudioTracks().length) outAn = make(src);
+      const out = level(outAn, buf);
+      const inp = voiceRef.current.muted ? 0 : level(inAn, buf);
+      const color = out > 4 ? "green" : inp > 6 ? "blue" : null;
+      if (color !== last) {
+        last = color;
+        frameRef.current?.contentWindow?.postMessage({ klerioGlow: color }, "*");
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    return () => {
+      stopped = true;
+      cancelAnimationFrame(raf);
+      mic?.getTracks().forEach((t) => t.stop());
+      void ctx.close();
+      frameRef.current?.contentWindow?.postMessage({ klerioGlow: null }, "*");
+    };
+  }, [voice.status]);
 
   useEffect(() => {
     window.klerioVoiceUI?.({
@@ -128,6 +188,7 @@ function ChatRoute() {
     <>
       <audio ref={voice.audioRef} className="hidden" />
       <iframe
+        ref={frameRef}
         src="/app/klerio.html"
         title="Klerio"
         className="fixed inset-0 h-full w-full border-0"
