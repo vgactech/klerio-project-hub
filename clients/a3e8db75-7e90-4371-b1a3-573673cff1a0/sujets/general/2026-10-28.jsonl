@@ -1,1 +1,2 @@
 {"event_id":"434cf6d8-e8b1-40f6-9838-3567cb75069b","schema_version":1,"owner_id":"a3e8db75-7e90-4371-b1a3-573673cff1a0","at":"2026-10-28T19:21:43.982Z","kind":"voice.assistant","channel":"voice","topic":"general","content":"Bonjour,","model":"openai/gpt-live-1"}
+{"event_id":"514313a7-c07e-42dd-ae45-3726021a408b","schema_version":1,"owner_id":"a3e8db75-7e90-4371-b1a3-573673cff1a0","at":"2026-10-28T19:21:48.361Z","kind":"voice.user","channel":"voice","topic":"general","content":"Aamaar kaaj korte","model":"openai/gpt-live-1"}
