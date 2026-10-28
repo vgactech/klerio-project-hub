@@ -255,7 +255,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 </script>
 <script>
 (function(){
-  var P=window.parent;if(!P||P===window||!P.klerioSend)return;
+  var P=window.parent;if(!P||P===window)return;
   var hist=[];
   var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté · exemples guidés disponibles';
   var st=document.getElementById('status');if(st)st.textContent='Connecté · réponses générées par l’IA Klerio';
@@ -264,7 +264,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   var prev=document.getElementById('form').onsubmit;
   document.getElementById('form').onsubmit=function(e){
     e.preventDefault();var ta=document.getElementById('prompt');var t=ta.value.trim();
-    if(!t){return prev&&prev(e);}
+    if(!t||!P.klerioSend){return prev&&prev(e);}
     ta.value='';orig(t,true);hist.push({role:'user',content:t});
     var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble">Klerio réfléchit…</div>';document.getElementById('feed').append(w);
     P.klerioSend(hist).then(function(r){w.remove();if(r.error){orig('⚠️ '+r.error);hist.pop();return;}hist.push({role:'assistant',content:r.reply});orig(r.reply);});
