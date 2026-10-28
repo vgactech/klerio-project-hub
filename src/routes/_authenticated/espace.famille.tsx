@@ -54,7 +54,7 @@ function Famille() {
           <input className={input} placeholder="Prénom et nom" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-label="Nom" required />
           <input className={input} type="email" placeholder="E-mail (facultatif)" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-label="E-mail" />
           <select className={input} value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} aria-label="Lien">
-            {["Conjoint(e)", "Enfant", "Parent", "Aidant(e)", "Autre"].map((r) => <option key={r}>{r}</option>)}
+            {["Conjoint(e)", "Enfant", "Parent", "Aidant(e)", "Autre"].map((r) => <option key={r} value={r}>{r}</option>)}
           </select>
           <button className={btnPrimary} disabled={fam === null}>Ajouter</button>
         </form>
@@ -64,7 +64,7 @@ function Famille() {
           {members.map((m) => (
             <li key={m.id}><Card className="flex items-center gap-3 p-4">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-100 text-brand-800"><Users className="h-5 w-5" /></span>
-              <div className="min-w-0 flex-1"><p className="font-bold">{m.name}</p><p className="text-xs text-ink-500">{m.role}{m.email ? ` · ${m.email}` : ""}</p></div>
+              <div className="min-w-0 flex-1"><p translate="no" className="font-bold">{m.name}</p><p className="text-xs text-ink-500">{m.role}{m.email ? ` · ${m.email}` : ""}</p></div>
               <button aria-label={`Retirer ${m.name}`} className="grid h-9 w-9 place-items-center rounded-lg hover:bg-accent-100" onClick={() => void save({ ...fam, members: members.filter((x) => x.id !== m.id) })}><Trash2 className="h-4 w-4" /></button>
             </Card></li>
           ))}

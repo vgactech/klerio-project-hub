@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { lovable } from "@/integrations/lovable";
 import { useLiveVoice, type LiveEvent } from "@/hooks/use-live-voice";
 import { setPendingScan } from "@/lib/espace/pending-scan";
+import { shouldIntroduce } from "@/lib/appearance";
 
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
 type VoiceCaption = (role: "user" | "assistant", text: string) => void;
@@ -14,6 +15,8 @@ declare global {
     klerioLogVoice?: (role: "user" | "assistant", text: string) => void;
     klerioVoiceUsage?: (seconds: number) => void;
     klerioTopic?: string;
+    klerioUserId?: string;
+    klerioShouldIntroduce?: typeof shouldIntroduce;
     klerioVoiceEvent?: (type: string) => void;
     klerioVoice?: {
       start: () => void;
@@ -52,9 +55,10 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261028-8";
+const PAGE_VERSION = "20261028-9";
 
 function ChatRoute() {
+  const { user } = Route.useRouteContext();
   const navigate = useNavigate();
   useEffect(() => {
     const onMsg = (e: MessageEvent) => {
@@ -187,6 +191,8 @@ function ChatRoute() {
   }, [voice.status, voice.error, voice.muted, voice.playbackBlocked]);
 
   useEffect(() => {
+    window.klerioUserId = user.id;
+    window.klerioShouldIntroduce = shouldIntroduce;
     window.klerioVoice = {
       start: () => voiceRef.current.start(),
       stop: () => voiceRef.current.stop(),

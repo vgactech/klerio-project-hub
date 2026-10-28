@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BellRing, CheckCircle2, Clock3, FileText, FolderLock, ScanLine, ShieldAlert, Sparkles } from "lucide-react";
 import { api, dueLabel, formatBytes, formatDate, FREE_PLAN, scansThisMonth, type Doc } from "@/lib/espace/api";
 import { useEspaceData } from "@/lib/espace/use-data";
+import { useAppLanguage } from "@/lib/use-app-language";
 import { Alert, Badge, Card, EmptyState, Progress, SectionHeader, StatCard } from "@/components/espace/klerio";
 
 // Reprise à l'identique de Klerio-26/KLERIO : src/app/app/page.tsx
@@ -26,7 +27,7 @@ export function DocumentCard({ doc }: { doc: Doc }) {
         <FileText className="h-5 w-5" aria-hidden="true" />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="line-clamp-2 text-sm font-bold leading-snug group-hover:text-brand-800">{doc.name}</span>
+        <span translate="no" className="line-clamp-2 text-sm font-bold leading-snug group-hover:text-brand-800">{doc.name}</span>
         <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-500">
           <span>{doc.category || "Non classé"}</span>
           <span aria-hidden="true">·</span>
@@ -38,11 +39,12 @@ export function DocumentCard({ doc }: { doc: Doc }) {
 }
 
 function DashboardPage() {
+  const language = useAppLanguage();
   const { user } = Route.useRouteContext() as { user: { email?: string | null; name?: string | null } };
   const { docs, reminders, events, error, setReminders } = useEspaceData();
   const raw = (user?.name ?? user?.email ?? "bonjour").split(/[ @.]/)[0] || "bonjour";
   const firstName = raw.charAt(0).toUpperCase() + raw.slice(1);
-  const today = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
+  const today = new Intl.DateTimeFormat(language, { weekday: "long", day: "numeric", month: "long" }).format(new Date());
   const month = new Date().toISOString().slice(0, 7);
   const scanRemaining = Math.max(0, FREE_PLAN.scanPagesPerMonth - scansThisMonth(docs));
   const explRemaining = Math.max(0, FREE_PLAN.explanationsPerMonth - (events ?? []).filter((e) => e.kind === "message.assistant" && e.at.startsWith(month)).length);
@@ -128,8 +130,8 @@ function DashboardPage() {
                           <Badge tone={late ? "danger" : "warning"}><Clock3 className="h-3 w-3" aria-hidden="true" />{dueLabel(r.dueAt)}</Badge>
                           {r.recurrence !== "none" && <Badge>Récurrent</Badge>}
                         </div>
-                        <p className="mt-2 font-bold leading-snug">{r.title}</p>
-                        {r.notes && <p className="mt-1 line-clamp-2 text-sm text-ink-600">{r.notes}</p>}
+                        <p translate="no" className="mt-2 font-bold leading-snug">{r.title}</p>
+                        {r.notes && <p translate="no" className="mt-1 line-clamp-2 text-sm text-ink-600">{r.notes}</p>}
                         <p className="mt-1 text-xs text-ink-500">{formatDate(r.dueAt)}</p>
                       </div>
                       <button type="button" onClick={() => void complete(r.id)} className="btn-ghost h-10 shrink-0 px-3 text-xs" aria-label={`Marquer « ${r.title} » comme fait`}>

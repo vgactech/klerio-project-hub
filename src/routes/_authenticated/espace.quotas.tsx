@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { formatBytes, FREE_PLAN, scansThisMonth } from "@/lib/espace/api";
 import { Card, ErrorNote, PageHeader, Progress } from "@/components/espace/ui";
 import { useEspaceData } from "@/lib/espace/use-data";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/espace/quotas")({
   head: () => ({
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/_authenticated/espace/quotas")({
 });
 
 function Quotas() {
+  const language = useAppLanguage();
   const { docs, events, error } = useEspaceData();
   const month = new Date().toISOString().slice(0, 7);
   const scans = scansThisMonth(docs);
@@ -40,7 +42,7 @@ function Quotas() {
             <Progress value={r.used / r.limit} />
           </Card>
         ))}
-        <Card><p className="font-bold">Jetons IA utilisés ce mois-ci</p><p className="mt-1 text-2xl font-black">{monthTokens.toLocaleString("fr-FR")}</p><p className="text-xs text-ink-500">Texte et vocal, comptés à chaque réponse.</p></Card>
+        <Card><p className="font-bold">Jetons IA utilisés ce mois-ci</p><p className="mt-1 text-2xl font-black">{monthTokens.toLocaleString(language)}</p><p className="text-xs text-ink-500">Texte et vocal, comptés à chaque réponse.</p></Card>
       </div>
     </div>
   );

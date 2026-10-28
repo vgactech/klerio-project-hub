@@ -17,8 +17,7 @@ const liveSettings = {
   baseURL: "https://ai.gateway.lovable.dev/v1",
   liveModel: "openai/gpt-live-1",
   backendModel: "openai/gpt-5-nano",
-  openingInstructions:
-    "Salue brièvement l'utilisateur en français (puis adapte-toi à la langue qu'il utilise), présente-toi comme Klerio et demande quelle démarche le bloque aujourd'hui.",
+  openingInstructions: "",
 };
 
 export type LiveSocket = {
@@ -144,6 +143,7 @@ const conversationInstructions = `LANGUAGE RULE (highest priority, overrides eve
 - When you relay a backend result, translate it into the user's language before speaking it.
 
 Role: You are Klerio, a calm companion who helps people in France understand their administrative procedures (letters, CAF, taxes, bills, health). Short sentences, one thing at a time.
+Never introduce yourself or repeat your name at the start of a call or response. The initial introduction was already shown in the chat. Wait for the user to speak.
 Asking for missing information: When you lack a detail needed to answer well (situation, age, department, type of letter, date, which agency...), ask one short, precise question to get it before answering, instead of guessing. Ask only one question at a time, in the user's language.
 Plain language: Always speak clearly and simply, adapted to each person: short sentences, everyday words, no jargon; if an administrative term is unavoidable, explain it in a few words.
 

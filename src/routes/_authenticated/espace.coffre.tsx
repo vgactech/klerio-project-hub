@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Download, FileText, Trash2, Upload } from "lucide-react";
 import { api, authHeaders, CATEGORIES, fileToBase64, formatBytes, formatDate, type Doc } from "@/lib/espace/api";
 import { Card, Empty, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/espace/coffre")({
   head: () => ({
@@ -27,6 +28,7 @@ async function openDoc(d: Doc) {
 }
 
 function Coffre() {
+  useAppLanguage();
   const [docs, setDocs] = useState<Doc[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -67,7 +69,7 @@ function Coffre() {
       <ErrorNote error={error} />
       <Card className="mb-6 flex flex-wrap items-center gap-3">
         <select className={`${input} max-w-[200px]`} value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Catégorie du document">
-          {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+          {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         <input ref={fileRef} type="file" multiple accept="image/png,image/jpeg,image/webp,application/pdf,text/plain" className="hidden" onChange={(e) => void upload(e.target.files)} />
         <button className={btnPrimary} disabled={busy} onClick={() => fileRef.current?.click()}><Upload className="h-4 w-4" />{busy ? "Envoi en cours…" : "Importer des fichiers"}</button>
@@ -88,7 +90,7 @@ function Coffre() {
                 <div className="flex items-start gap-3">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-800"><FileText className="h-5 w-5" /></span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate font-bold">{d.name}</p>
+                    <p translate="no" className="truncate font-bold">{d.name}</p>
                     <p className="text-xs text-ink-500">{formatDate(d.createdAt)} · {formatBytes(d.size)}</p>
                     <select className="mt-2 rounded-lg border border-ink-200 px-2 py-1 text-xs" value={d.category} aria-label="Changer la catégorie"
                       onChange={(e) => {
@@ -97,7 +99,7 @@ function Coffre() {
                           .then(() => setDocs((x) => (x ?? []).map((y) => (y.id === d.id ? { ...y, category } : y))))
                           .catch((er: Error) => setError(er.message));
                       }}>
-                      {[...new Set([d.category, ...CATEGORIES])].map((c) => <option key={c}>{c}</option>)}
+                      {[...new Set([d.category, ...CATEGORIES])].map((c) => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
                   <button aria-label={`Ouvrir ${d.name}`} className="grid h-9 w-9 place-items-center rounded-lg hover:bg-ink-100" onClick={() => void openDoc(d).catch((e: Error) => setError(e.message))}><Download className="h-4 w-4" /></button>
@@ -109,7 +111,7 @@ function Coffre() {
                 {d.text && (
                   <div className="mt-3">
                     <button className="text-xs font-semibold text-brand-700" onClick={() => setOpen(open === d.id ? null : d.id)}>{open === d.id ? "Masquer le texte lu" : "Voir le texte lu"}</button>
-                    {open === d.id && <pre className="mt-2 max-h-60 overflow-auto whitespace-pre-wrap rounded-lg bg-ink-50 p-3 text-xs">{d.text}</pre>}
+                    {open === d.id && <pre translate="no" className="mt-2 max-h-60 overflow-auto whitespace-pre-wrap rounded-lg bg-ink-50 p-3 text-xs">{d.text}</pre>}
                   </div>
                 )}
               </Card>

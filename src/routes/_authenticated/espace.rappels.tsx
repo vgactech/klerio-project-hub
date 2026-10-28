@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Check, Clock3, Trash2 } from "lucide-react";
 import { api, dueLabel, formatDate, type Reminder } from "@/lib/espace/api";
 import { Card, Empty, ErrorNote, PageHeader, btnPrimary, input } from "@/components/espace/ui";
+import { useAppLanguage } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/espace/rappels")({
   head: () => ({
@@ -27,6 +28,7 @@ function next(r: Reminder): Reminder | null {
 }
 
 function Rappels() {
+  useAppLanguage();
   const [list, setList] = useState<Reminder[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -88,8 +90,8 @@ function Rappels() {
                     <Clock3 className="h-3 w-3" />{r.done ? "Fait" : dueLabel(r.dueAt)}
                   </span>
                   {r.recurrence !== "none" && <span className="ml-2 rounded-full bg-ink-100 px-2 py-0.5 text-xs font-semibold text-ink-600">{r.recurrence === "monthly" ? "Mensuel" : "Annuel"}</span>}
-                  <p className={`mt-2 font-bold ${r.done ? "line-through" : ""}`}>{r.title}</p>
-                  {r.notes && <p className="text-sm text-ink-600">{r.notes}</p>}
+                  <p translate="no" className={`mt-2 font-bold ${r.done ? "line-through" : ""}`}>{r.title}</p>
+                  {r.notes && <p translate="no" className="text-sm text-ink-600">{r.notes}</p>}
                   <p className="text-xs text-ink-500">{formatDate(r.dueAt)}</p>
                 </div>
                 <div className="flex shrink-0 gap-1">

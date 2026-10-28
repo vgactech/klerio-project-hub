@@ -1,5 +1,12 @@
 # Transmission Klerio à Bob IDE
 
+## Langues et apparence — demande du 28 octobre
+- [x] Présentation uniquement lors de la première conversation ; pas de présentation vocale répétée.
+- [x] Sélecteur français, anglais, chinois, espagnol, portugais brésilien sur toutes les pages.
+- [x] Bouton de thème sombre, y compris chat et démo.
+- [x] Vérifier les langues, les menus et les choix persistants dans les pages publiques et l'espace connecté (15 pages, ordinateur et téléphone).
+- [ ] Validation linguistique exhaustive à 100 % des fenêtres, états d'erreur et réponses des services — toutes les combinaisons ne sont pas encore exercées.
+
 - [x] Rédiger le dossier de transmission et répondre aux six questions de l’audit.
 - [x] Définir les limites du stockage GitHub, la sécurité et les contrats de journalisation.
 - [x] Ajouter la liste des livrables et contrôles de retour dans Lovable.

@@ -20,3 +20,4 @@
 - The client space (/espace/*) stores reminders, family, profile and documents under clients/<id>/espace and clients/<id>/documents on the same memory branch via server routes; never add a database for this data.
 - Public entry follows Klerio-26/KLERIO: landing at `/`, sign-in at `/login`, sign-up at `/register`, then `/espace` (dashboard) with the chat at `/chat`; never re-add a separate `/auth` page, to avoid duplicate sign-in screens.
 - The chat iframe (`public/app/klerio.html`) navigates the app via `postMessage({klerioNavigate})` handled in `chat.tsx`, because `target="_top"` is blocked inside the preview; bump `PAGE_VERSION` when that HTML changes so browsers drop the cached copy.
+- Global appearance controls own persistent interface language/theme; a shared catalog and legacy DOM adapter translate existing React/iframe UI without changing stable action values or private conversation/document content.

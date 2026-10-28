@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Camera, ImagePlus, Trash2 } from "lucide-react";
 import { api, CATEGORIES, fileToBase64, type Doc } from "@/lib/espace/api";
 import { takePendingScan } from "@/lib/espace/pending-scan";
+import { useAppLanguage } from "@/lib/use-app-language";
 import { Card, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
 
 export const Route = createFileRoute("/_authenticated/espace/scanner")({
@@ -26,11 +27,14 @@ async function compress(file: File): Promise<Blob> {
   const c = document.createElement("canvas");
   c.width = Math.round(img.width * scale);
   c.height = Math.round(img.height * scale);
-  c.getContext("2d")!.drawImage(img, 0, 0, c.width, c.height);
+  const context = c.getContext("2d");
+  if (!context) throw new Error("Image illisible");
+  context.drawImage(img, 0, 0, c.width, c.height);
   return new Promise((res) => c.toBlob((b) => res(b ?? file), "image/jpeg", 0.85));
 }
 
 function Scanner() {
+  useAppLanguage();
   const [pages, setPages] = useState<{ file: File; url: string }[]>([]);
   const [category, setCategory] = useState("À classer");
   const [busy, setBusy] = useState(false);
@@ -83,7 +87,7 @@ function Scanner() {
         <button className={btnPrimary} onClick={() => camRef.current?.click()}><Camera className="h-4 w-4" /> Prendre une photo</button>
         <button className={btnSecondary} onClick={() => galRef.current?.click()}><ImagePlus className="h-4 w-4" /> Choisir des images</button>
         <select className={`${input} max-w-[200px]`} value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Catégorie">
-          {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+          {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
       </Card>
       {pages.length > 0 && (

@@ -3,6 +3,7 @@ import { UserMenu } from "@/components/espace/user-menu";
 import { useEffect, useMemo, useState } from "react";
 import { lovable } from "@/integrations/lovable";
 import mascot from "@/assets/mascotte.png.asset.json";
+import { useAppLanguage, interfaceLocale } from "@/lib/use-app-language";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -30,16 +31,16 @@ type Ev = {
 };
 
 const C = {
-  bg: "#f6f4ee",
-  card: "#ffffff",
-  line: "#d6ede8",
-  text: "#161c2c",
-  soft: "#4a5878",
-  bronze: "#fb5f12",
+  bg: "var(--background)",
+  card: "var(--card)",
+  line: "var(--border)",
+  text: "var(--foreground)",
+  soft: "var(--muted-foreground)",
+  bronze: "var(--accent)",
 };
 
 function fmt(iso: string) {
-  return new Date(iso).toLocaleString("fr-FR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+  return new Date(iso).toLocaleString(interfaceLocale(), { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
 }
 function label(t?: string) {
   const s = (t ?? "general").replace(/-/g, " ");
@@ -47,6 +48,7 @@ function label(t?: string) {
 }
 
 function Dashboard() {
+  const language = useAppLanguage();
   const { user } = Route.useRouteContext();
   const [events, setEvents] = useState<Ev[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -118,7 +120,7 @@ function Dashboard() {
             ["Messages mémorisés", stats.messages],
             ["Sujets suivis", stats.topics.length],
             ["Échanges vocaux", stats.voice],
-            ["Jetons utilisés", stats.tokens.toLocaleString("fr-FR")],
+            ["Jetons utilisés", stats.tokens.toLocaleString(language)],
           ].map(([k, v]) => (
             <div key={k} style={card()}>
               <div style={{ color: C.soft, fontSize: 13 }}>{k}</div>
@@ -154,7 +156,7 @@ function Dashboard() {
                       {e.model ? ` · ${e.model}` : ""}
                       {e.tokens?.total || e.tokens?.output ? ` · ${e.tokens.total ?? e.tokens.output} jetons` : ""}
                     </div>
-                    <div style={{ whiteSpace: "pre-line", fontSize: 14, lineHeight: 1.5 }}>
+                    <div translate="no" style={{ whiteSpace: "pre-line", fontSize: 14, lineHeight: 1.5 }}>
                       {e.content.length > 400 ? `${e.content.slice(0, 400)}…` : e.content}
                     </div>
                   </li>
