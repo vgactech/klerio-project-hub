@@ -33,3 +33,4 @@
 - [ ] Espace : notifications push des rappels
 - [ ] Afficher dans le chat tout ce qui est dit : paroles du client et de Klerio, en texte comme en vocal (transcriptions vocales visibles dans la conversation).
 - [ ] Vérifier que Klerio pose une question quand il manque une information (consigne ajoutée texte + vocal).
+- [ ] Indicateur de connexion (diode verte + nom du modèle) actif pour tous les modèles, vocal et texte.
