@@ -147,12 +147,12 @@ Role: You are Klerio, a calm companion who helps people in France understand the
 Asking for missing information: When you lack a detail needed to answer well (situation, age, department, type of letter, date, which agency...), ask one short, precise question to get it before answering, instead of guessing. Ask only one question at a time, in the user's language.
 Plain language: Always speak clearly and simply, adapted to each person: short sentences, everyday words, no jargon; if an administrative term is unavoidable, explain it in a few words.
 
-Official links: Never say you have no internet access. When you mention a procedure or a website, say the exact official address (for example service-public.fr, caf.fr, impots.gouv.fr, ameli.fr, ants.gouv.fr) so it appears written in the chat.
+Internet: You can search the internet live through the backend; delegate to the backend whenever current or online information or a link is needed, and read the exact address it found. Official links: Never say you have no internet access. When you mention a procedure or a website, say the exact official address (for example service-public.fr, caf.fr, impots.gouv.fr, ameli.fr, ants.gouv.fr) so it appears written in the chat.
 Backchannel policy: Use moderate listening sounds without taking over.
 Interruption policy: Stop your answer and listen when the user interrupts.
 Delegation policy:
 Backend tools: Careful reasoning about French administrative procedures.
-Delegate to the backend when: The user asks how to do a procedure, what a letter means, or needs precise steps,
+Delegate to the backend when: The user needs anything from the internet (current info, links, websites), asks how to do a procedure, what a letter means, or needs precise steps,
 or a correction changes a question already being worked on.
 Do not delegate to the backend when: Greeting, clarifying a question, or repeating
 a still-current answer. Wait for the backend result before presenting its answer.
@@ -239,9 +239,16 @@ async function answerQuestion(
       "Aide Klerio, un assistant vocal, à répondre à la dernière question de l'utilisateur sur une démarche administrative française. " +
       "Les transcriptions peuvent être incomplètes ou corrigées : utilise la dernière correction. " +
       "Réponds impérativement dans la langue de la dernière question de l'utilisateur (pas forcément le français), en 120 mots maximum, avec des étapes simples à dire à voix haute, sans Markdown. " +
-      "N'invente jamais de montant ni de date ; indique ce qui doit être vérifié sur le site officiel. Tu n'as aucun outil.",
+      "N'invente jamais de montant ni de date ; indique ce qui doit être vérifié sur le site officiel. " +
+      "Utilise toujours l'outil web_search pour vérifier l'information à jour sur internet, puis cite l'adresse complète (https://...) de la page officielle trouvée.",
     messages,
-    tools: {},
+    tools: {
+      web_search: tool({
+        description: "Recherche sur internet des pages à jour (sites officiels en priorité).",
+        inputSchema: z.object({ query: z.string().min(3).max(300) }),
+        execute: async ({ query }) => voiceWebSearch(query, signal),
+      }),
+    },
   });
   let completed = false;
   let stepCompleted = false;
@@ -262,6 +269,24 @@ async function answerQuestion(
   const answer = await result.text;
   if (!answer.trim()) throw new Error("The backend response had no answer");
   return answer;
+}
+
+async function voiceWebSearch(query: string, signal: AbortSignal) {
+  const lk = process.env["LOVABLE_API_KEY"], fk = process.env["FIRECRAWL_API_KEY"];
+  if (!lk || !fk) return { results: [], note: "search unavailable" };
+  try {
+    const r = await fetch("https://connector-gateway.lovable.dev/firecrawl/v2/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${lk}`, "X-Connection-Api-Key": fk },
+      body: JSON.stringify({ query, limit: 4 }),
+      signal,
+    });
+    if (!r.ok) { console.error("[voice-web]", r.status, await r.text().catch(() => "")); return { results: [] }; }
+    const j = (await r.json()) as { data?: unknown };
+    const d = j.data as { web?: { title?: string; url?: string; description?: string }[] } | { title?: string; url?: string; description?: string }[] | undefined;
+    const list = Array.isArray(d) ? d : d?.web ?? [];
+    return { results: list.filter((x) => x.url).map((x) => ({ title: x.title ?? "", url: x.url!, text: (x.description ?? "").slice(0, 400) })) };
+  } catch (e) { console.error("[voice-web]", e); return { results: [] }; }
 }
 
 function* commentaryChunks(content: string) {
