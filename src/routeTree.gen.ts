@@ -19,6 +19,10 @@ import { Route as AuthenticatedEspaceRouteImport } from './routes/_authenticated
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
+import { Route as AuthenticatedEspaceIndexRouteImport } from './routes/_authenticated/espace.index'
+import { Route as AuthenticatedEspaceAssistantRouteImport } from './routes/_authenticated/espace.assistant'
+import { Route as AuthenticatedEspaceLiensRouteImport } from './routes/_authenticated/espace.liens'
+import { Route as AuthenticatedEspaceRappelsRouteImport } from './routes/_authenticated/espace.rappels'
 import { Route as ApiDocumentsIdRouteImport } from './routes/api/documents.$id'
 import { Route as ApiEspaceCollectionRouteImport } from './routes/api/espace.$collection'
 
@@ -71,6 +75,30 @@ const ApiMemoryRoute = ApiMemoryRouteImport.update({
   path: '/api/memory',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedEspaceIndexRoute =
+  AuthenticatedEspaceIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceAssistantRoute =
+  AuthenticatedEspaceAssistantRouteImport.update({
+    id: '/assistant',
+    path: '/assistant',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceLiensRoute =
+  AuthenticatedEspaceLiensRouteImport.update({
+    id: '/liens',
+    path: '/liens',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceRappelsRoute =
+  AuthenticatedEspaceRappelsRouteImport.update({
+    id: '/rappels',
+    path: '/rappels',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
 const ApiDocumentsIdRoute = ApiDocumentsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -88,12 +116,16 @@ export interface FileRoutesByFullPath {
   '/demo': typeof DemoRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/espace': typeof AuthenticatedEspaceRoute
+  '/espace': typeof AuthenticatedEspaceRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/espace/$collection': typeof ApiEspaceCollectionRoute
+  '/espace/': typeof AuthenticatedEspaceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,12 +133,15 @@ export interface FileRoutesByTo {
   '/demo': typeof DemoRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/espace': typeof AuthenticatedEspaceRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/espace/$collection': typeof ApiEspaceCollectionRoute
+  '/espace': typeof AuthenticatedEspaceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,12 +151,16 @@ export interface FileRoutesById {
   '/demo': typeof DemoRoute
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/espace': typeof AuthenticatedEspaceRoute
+  '/_authenticated/espace': typeof AuthenticatedEspaceRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/_authenticated/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/_authenticated/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/_authenticated/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/espace/$collection': typeof ApiEspaceCollectionRoute
+  '/_authenticated/espace/': typeof AuthenticatedEspaceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -135,8 +174,12 @@ export interface FileRouteTypes {
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
+    | '/espace/assistant'
+    | '/espace/liens'
+    | '/espace/rappels'
     | '/api/documents/$id'
     | '/api/espace/$collection'
+    | '/espace/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,12 +187,15 @@ export interface FileRouteTypes {
     | '/demo'
     | '/chat'
     | '/dashboard'
-    | '/espace'
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
+    | '/espace/assistant'
+    | '/espace/liens'
+    | '/espace/rappels'
     | '/api/documents/$id'
     | '/api/espace/$collection'
+    | '/espace'
   id:
     | '__root__'
     | '/'
@@ -162,8 +208,12 @@ export interface FileRouteTypes {
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
+    | '/_authenticated/espace/assistant'
+    | '/_authenticated/espace/liens'
+    | '/_authenticated/espace/rappels'
     | '/api/documents/$id'
     | '/api/espace/$collection'
+    | '/_authenticated/espace/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -249,6 +299,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMemoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/espace/': {
+      id: '/_authenticated/espace/'
+      path: '/'
+      fullPath: '/espace/'
+      preLoaderRoute: typeof AuthenticatedEspaceIndexRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/assistant': {
+      id: '/_authenticated/espace/assistant'
+      path: '/assistant'
+      fullPath: '/espace/assistant'
+      preLoaderRoute: typeof AuthenticatedEspaceAssistantRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/liens': {
+      id: '/_authenticated/espace/liens'
+      path: '/liens'
+      fullPath: '/espace/liens'
+      preLoaderRoute: typeof AuthenticatedEspaceLiensRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/rappels': {
+      id: '/_authenticated/espace/rappels'
+      path: '/rappels'
+      fullPath: '/espace/rappels'
+      preLoaderRoute: typeof AuthenticatedEspaceRappelsRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
     '/api/documents/$id': {
       id: '/api/documents/$id'
       path: '/$id'
@@ -266,16 +344,33 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedEspaceRouteChildren {
+  AuthenticatedEspaceAssistantRoute: typeof AuthenticatedEspaceAssistantRoute
+  AuthenticatedEspaceLiensRoute: typeof AuthenticatedEspaceLiensRoute
+  AuthenticatedEspaceRappelsRoute: typeof AuthenticatedEspaceRappelsRoute
+  AuthenticatedEspaceIndexRoute: typeof AuthenticatedEspaceIndexRoute
+}
+
+const AuthenticatedEspaceRouteChildren: AuthenticatedEspaceRouteChildren = {
+  AuthenticatedEspaceAssistantRoute: AuthenticatedEspaceAssistantRoute,
+  AuthenticatedEspaceLiensRoute: AuthenticatedEspaceLiensRoute,
+  AuthenticatedEspaceRappelsRoute: AuthenticatedEspaceRappelsRoute,
+  AuthenticatedEspaceIndexRoute: AuthenticatedEspaceIndexRoute,
+}
+
+const AuthenticatedEspaceRouteWithChildren =
+  AuthenticatedEspaceRoute._addFileChildren(AuthenticatedEspaceRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedChatRoute: typeof AuthenticatedChatRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedEspaceRoute: typeof AuthenticatedEspaceRoute
+  AuthenticatedEspaceRoute: typeof AuthenticatedEspaceRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedEspaceRoute: AuthenticatedEspaceRoute,
+  AuthenticatedEspaceRoute: AuthenticatedEspaceRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =
