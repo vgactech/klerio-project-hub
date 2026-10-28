@@ -15,8 +15,22 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedEspaceRouteImport } from './routes/_authenticated/espace'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
+import { Route as AuthenticatedEspaceIndexRouteImport } from './routes/_authenticated/espace.index'
+import { Route as AuthenticatedEspaceAssistantRouteImport } from './routes/_authenticated/espace.assistant'
+import { Route as AuthenticatedEspaceCoffreRouteImport } from './routes/_authenticated/espace.coffre'
+import { Route as AuthenticatedEspaceCompteRouteImport } from './routes/_authenticated/espace.compte'
+import { Route as AuthenticatedEspaceFamilleRouteImport } from './routes/_authenticated/espace.famille'
+import { Route as AuthenticatedEspaceForfaitRouteImport } from './routes/_authenticated/espace.forfait'
+import { Route as AuthenticatedEspaceLiensRouteImport } from './routes/_authenticated/espace.liens'
+import { Route as AuthenticatedEspaceQuotasRouteImport } from './routes/_authenticated/espace.quotas'
+import { Route as AuthenticatedEspaceRappelsRouteImport } from './routes/_authenticated/espace.rappels'
+import { Route as AuthenticatedEspaceScannerRouteImport } from './routes/_authenticated/espace.scanner'
+import { Route as ApiDocumentsIdRouteImport } from './routes/api/documents.$id'
+import { Route as ApiEspaceCollectionRouteImport } from './routes/api/espace.$collection'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -47,14 +61,94 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEspaceRoute = AuthenticatedEspaceRouteImport.update({
+  id: '/espace',
+  path: '/espace',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDocumentsRoute = ApiDocumentsRouteImport.update({
+  id: '/api/documents',
+  path: '/api/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiMemoryRoute = ApiMemoryRouteImport.update({
   id: '/api/memory',
   path: '/api/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedEspaceIndexRoute =
+  AuthenticatedEspaceIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceAssistantRoute =
+  AuthenticatedEspaceAssistantRouteImport.update({
+    id: '/assistant',
+    path: '/assistant',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceCoffreRoute =
+  AuthenticatedEspaceCoffreRouteImport.update({
+    id: '/coffre',
+    path: '/coffre',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceCompteRoute =
+  AuthenticatedEspaceCompteRouteImport.update({
+    id: '/compte',
+    path: '/compte',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceFamilleRoute =
+  AuthenticatedEspaceFamilleRouteImport.update({
+    id: '/famille',
+    path: '/famille',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceForfaitRoute =
+  AuthenticatedEspaceForfaitRouteImport.update({
+    id: '/forfait',
+    path: '/forfait',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceLiensRoute =
+  AuthenticatedEspaceLiensRouteImport.update({
+    id: '/liens',
+    path: '/liens',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceQuotasRoute =
+  AuthenticatedEspaceQuotasRouteImport.update({
+    id: '/quotas',
+    path: '/quotas',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceRappelsRoute =
+  AuthenticatedEspaceRappelsRouteImport.update({
+    id: '/rappels',
+    path: '/rappels',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const AuthenticatedEspaceScannerRoute =
+  AuthenticatedEspaceScannerRouteImport.update({
+    id: '/scanner',
+    path: '/scanner',
+    getParentRoute: () => AuthenticatedEspaceRoute,
+  } as any)
+const ApiDocumentsIdRoute = ApiDocumentsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiDocumentsRoute,
+} as any)
+const ApiEspaceCollectionRoute = ApiEspaceCollectionRouteImport.update({
+  id: '/api/espace/$collection',
+  path: '/api/espace/$collection',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -64,8 +158,22 @@ export interface FileRoutesByFullPath {
   '/demo': typeof DemoRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/espace': typeof AuthenticatedEspaceRouteWithChildren
   '/api/chat': typeof ApiChatRoute
+  '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
+  '/espace/compte': typeof AuthenticatedEspaceCompteRoute
+  '/espace/famille': typeof AuthenticatedEspaceFamilleRoute
+  '/espace/forfait': typeof AuthenticatedEspaceForfaitRoute
+  '/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/espace/quotas': typeof AuthenticatedEspaceQuotasRoute
+  '/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
+  '/espace/scanner': typeof AuthenticatedEspaceScannerRoute
+  '/api/documents/$id': typeof ApiDocumentsIdRoute
+  '/api/espace/$collection': typeof ApiEspaceCollectionRoute
+  '/espace/': typeof AuthenticatedEspaceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -74,7 +182,20 @@ export interface FileRoutesByTo {
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
+  '/espace/compte': typeof AuthenticatedEspaceCompteRoute
+  '/espace/famille': typeof AuthenticatedEspaceFamilleRoute
+  '/espace/forfait': typeof AuthenticatedEspaceForfaitRoute
+  '/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/espace/quotas': typeof AuthenticatedEspaceQuotasRoute
+  '/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
+  '/espace/scanner': typeof AuthenticatedEspaceScannerRoute
+  '/api/documents/$id': typeof ApiDocumentsIdRoute
+  '/api/espace/$collection': typeof ApiEspaceCollectionRoute
+  '/espace': typeof AuthenticatedEspaceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -84,8 +205,22 @@ export interface FileRoutesById {
   '/demo': typeof DemoRoute
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/espace': typeof AuthenticatedEspaceRouteWithChildren
   '/api/chat': typeof ApiChatRoute
+  '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/_authenticated/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
+  '/_authenticated/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
+  '/_authenticated/espace/compte': typeof AuthenticatedEspaceCompteRoute
+  '/_authenticated/espace/famille': typeof AuthenticatedEspaceFamilleRoute
+  '/_authenticated/espace/forfait': typeof AuthenticatedEspaceForfaitRoute
+  '/_authenticated/espace/liens': typeof AuthenticatedEspaceLiensRoute
+  '/_authenticated/espace/quotas': typeof AuthenticatedEspaceQuotasRoute
+  '/_authenticated/espace/rappels': typeof AuthenticatedEspaceRappelsRoute
+  '/_authenticated/espace/scanner': typeof AuthenticatedEspaceScannerRoute
+  '/api/documents/$id': typeof ApiDocumentsIdRoute
+  '/api/espace/$collection': typeof ApiEspaceCollectionRoute
+  '/_authenticated/espace/': typeof AuthenticatedEspaceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -95,8 +230,22 @@ export interface FileRouteTypes {
     | '/demo'
     | '/chat'
     | '/dashboard'
+    | '/espace'
     | '/api/chat'
+    | '/api/documents'
     | '/api/memory'
+    | '/espace/assistant'
+    | '/espace/coffre'
+    | '/espace/compte'
+    | '/espace/famille'
+    | '/espace/forfait'
+    | '/espace/liens'
+    | '/espace/quotas'
+    | '/espace/rappels'
+    | '/espace/scanner'
+    | '/api/documents/$id'
+    | '/api/espace/$collection'
+    | '/espace/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -105,7 +254,20 @@ export interface FileRouteTypes {
     | '/chat'
     | '/dashboard'
     | '/api/chat'
+    | '/api/documents'
     | '/api/memory'
+    | '/espace/assistant'
+    | '/espace/coffre'
+    | '/espace/compte'
+    | '/espace/famille'
+    | '/espace/forfait'
+    | '/espace/liens'
+    | '/espace/quotas'
+    | '/espace/rappels'
+    | '/espace/scanner'
+    | '/api/documents/$id'
+    | '/api/espace/$collection'
+    | '/espace'
   id:
     | '__root__'
     | '/'
@@ -114,8 +276,22 @@ export interface FileRouteTypes {
     | '/demo'
     | '/_authenticated/chat'
     | '/_authenticated/dashboard'
+    | '/_authenticated/espace'
     | '/api/chat'
+    | '/api/documents'
     | '/api/memory'
+    | '/_authenticated/espace/assistant'
+    | '/_authenticated/espace/coffre'
+    | '/_authenticated/espace/compte'
+    | '/_authenticated/espace/famille'
+    | '/_authenticated/espace/forfait'
+    | '/_authenticated/espace/liens'
+    | '/_authenticated/espace/quotas'
+    | '/_authenticated/espace/rappels'
+    | '/_authenticated/espace/scanner'
+    | '/api/documents/$id'
+    | '/api/espace/$collection'
+    | '/_authenticated/espace/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -124,7 +300,9 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DemoRoute: typeof DemoRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiDocumentsRoute: typeof ApiDocumentsRouteWithChildren
   ApiMemoryRoute: typeof ApiMemoryRoute
+  ApiEspaceCollectionRoute: typeof ApiEspaceCollectionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -171,11 +349,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/espace': {
+      id: '/_authenticated/espace'
+      path: '/espace'
+      fullPath: '/espace'
+      preLoaderRoute: typeof AuthenticatedEspaceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
       fullPath: '/api/chat'
       preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/documents': {
+      id: '/api/documents'
+      path: '/api/documents'
+      fullPath: '/api/documents'
+      preLoaderRoute: typeof ApiDocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/memory': {
@@ -185,21 +377,148 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMemoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/espace/': {
+      id: '/_authenticated/espace/'
+      path: '/'
+      fullPath: '/espace/'
+      preLoaderRoute: typeof AuthenticatedEspaceIndexRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/assistant': {
+      id: '/_authenticated/espace/assistant'
+      path: '/assistant'
+      fullPath: '/espace/assistant'
+      preLoaderRoute: typeof AuthenticatedEspaceAssistantRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/coffre': {
+      id: '/_authenticated/espace/coffre'
+      path: '/coffre'
+      fullPath: '/espace/coffre'
+      preLoaderRoute: typeof AuthenticatedEspaceCoffreRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/compte': {
+      id: '/_authenticated/espace/compte'
+      path: '/compte'
+      fullPath: '/espace/compte'
+      preLoaderRoute: typeof AuthenticatedEspaceCompteRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/famille': {
+      id: '/_authenticated/espace/famille'
+      path: '/famille'
+      fullPath: '/espace/famille'
+      preLoaderRoute: typeof AuthenticatedEspaceFamilleRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/forfait': {
+      id: '/_authenticated/espace/forfait'
+      path: '/forfait'
+      fullPath: '/espace/forfait'
+      preLoaderRoute: typeof AuthenticatedEspaceForfaitRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/liens': {
+      id: '/_authenticated/espace/liens'
+      path: '/liens'
+      fullPath: '/espace/liens'
+      preLoaderRoute: typeof AuthenticatedEspaceLiensRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/quotas': {
+      id: '/_authenticated/espace/quotas'
+      path: '/quotas'
+      fullPath: '/espace/quotas'
+      preLoaderRoute: typeof AuthenticatedEspaceQuotasRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/rappels': {
+      id: '/_authenticated/espace/rappels'
+      path: '/rappels'
+      fullPath: '/espace/rappels'
+      preLoaderRoute: typeof AuthenticatedEspaceRappelsRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/_authenticated/espace/scanner': {
+      id: '/_authenticated/espace/scanner'
+      path: '/scanner'
+      fullPath: '/espace/scanner'
+      preLoaderRoute: typeof AuthenticatedEspaceScannerRouteImport
+      parentRoute: typeof AuthenticatedEspaceRoute
+    }
+    '/api/documents/$id': {
+      id: '/api/documents/$id'
+      path: '/$id'
+      fullPath: '/api/documents/$id'
+      preLoaderRoute: typeof ApiDocumentsIdRouteImport
+      parentRoute: typeof ApiDocumentsRoute
+    }
+    '/api/espace/$collection': {
+      id: '/api/espace/$collection'
+      path: '/api/espace/$collection'
+      fullPath: '/api/espace/$collection'
+      preLoaderRoute: typeof ApiEspaceCollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
+
+interface AuthenticatedEspaceRouteChildren {
+  AuthenticatedEspaceAssistantRoute: typeof AuthenticatedEspaceAssistantRoute
+  AuthenticatedEspaceCoffreRoute: typeof AuthenticatedEspaceCoffreRoute
+  AuthenticatedEspaceCompteRoute: typeof AuthenticatedEspaceCompteRoute
+  AuthenticatedEspaceFamilleRoute: typeof AuthenticatedEspaceFamilleRoute
+  AuthenticatedEspaceForfaitRoute: typeof AuthenticatedEspaceForfaitRoute
+  AuthenticatedEspaceLiensRoute: typeof AuthenticatedEspaceLiensRoute
+  AuthenticatedEspaceQuotasRoute: typeof AuthenticatedEspaceQuotasRoute
+  AuthenticatedEspaceRappelsRoute: typeof AuthenticatedEspaceRappelsRoute
+  AuthenticatedEspaceScannerRoute: typeof AuthenticatedEspaceScannerRoute
+  AuthenticatedEspaceIndexRoute: typeof AuthenticatedEspaceIndexRoute
+}
+
+const AuthenticatedEspaceRouteChildren: AuthenticatedEspaceRouteChildren = {
+  AuthenticatedEspaceAssistantRoute: AuthenticatedEspaceAssistantRoute,
+  AuthenticatedEspaceCoffreRoute: AuthenticatedEspaceCoffreRoute,
+  AuthenticatedEspaceCompteRoute: AuthenticatedEspaceCompteRoute,
+  AuthenticatedEspaceFamilleRoute: AuthenticatedEspaceFamilleRoute,
+  AuthenticatedEspaceForfaitRoute: AuthenticatedEspaceForfaitRoute,
+  AuthenticatedEspaceLiensRoute: AuthenticatedEspaceLiensRoute,
+  AuthenticatedEspaceQuotasRoute: AuthenticatedEspaceQuotasRoute,
+  AuthenticatedEspaceRappelsRoute: AuthenticatedEspaceRappelsRoute,
+  AuthenticatedEspaceScannerRoute: AuthenticatedEspaceScannerRoute,
+  AuthenticatedEspaceIndexRoute: AuthenticatedEspaceIndexRoute,
+}
+
+const AuthenticatedEspaceRouteWithChildren =
+  AuthenticatedEspaceRoute._addFileChildren(AuthenticatedEspaceRouteChildren)
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedChatRoute: typeof AuthenticatedChatRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEspaceRoute: typeof AuthenticatedEspaceRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEspaceRoute: AuthenticatedEspaceRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+interface ApiDocumentsRouteChildren {
+  ApiDocumentsIdRoute: typeof ApiDocumentsIdRoute
+}
+
+const ApiDocumentsRouteChildren: ApiDocumentsRouteChildren = {
+  ApiDocumentsIdRoute: ApiDocumentsIdRoute,
+}
+
+const ApiDocumentsRouteWithChildren = ApiDocumentsRoute._addFileChildren(
+  ApiDocumentsRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -207,7 +526,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DemoRoute: DemoRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiDocumentsRoute: ApiDocumentsRouteWithChildren,
   ApiMemoryRoute: ApiMemoryRoute,
+  ApiEspaceCollectionRoute: ApiEspaceCollectionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -12,7 +12,7 @@
 const GATEWAY = "https://connector-gateway.lovable.dev/github";
 const OWNER = "vgactech";
 const REPO = "klerio-project-hub";
-const BRANCH = "klerio-memory";
+export const BRANCH = "klerio-memory";
 
 export type MemoryEvent = {
   event_id: string;
@@ -47,24 +47,24 @@ function headers() {
   };
 }
 
-async function gh(path: string, init?: RequestInit) {
+export async function gh(path: string, init?: RequestInit) {
   return fetch(`${GATEWAY}/repos/${OWNER}/${REPO}/${path}`, { ...init, headers: headers() });
 }
 
-function b64encode(text: string) {
+export function b64encode(text: string) {
   const bytes = new TextEncoder().encode(text);
   let bin = "";
   for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
   return btoa(bin);
 }
-function b64decode(b64: string) {
+export function b64decode(b64: string) {
   const bin = atob(b64.replace(/\n/g, ""));
   const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
   return new TextDecoder().decode(bytes);
 }
 
 let branchReady = false;
-async function ensureBranch() {
+export async function ensureBranch() {
   if (branchReady) return;
   const ref = await gh(`git/ref/heads/${BRANCH}`);
   if (ref.ok) {
