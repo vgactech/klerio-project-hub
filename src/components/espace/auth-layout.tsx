@@ -50,7 +50,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
   );
 }
 
-export function ErrorBox({ message }: { message?: string }) {
+export function ErrorBox({ message }: { message?: string | undefined }) {
   if (!message) return null;
   return (
     <p className="flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-3.5 py-3 text-sm text-red-900" role="alert">

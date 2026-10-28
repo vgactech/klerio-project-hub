@@ -16,7 +16,7 @@ const SESSION_KEY = "klerio_session";
 export type KlerioSession = {
   access_token: string;
   refresh_token?: string;
-  expires_at?: number; // secondes epoch
+  expires_at?: number | undefined; // secondes epoch
   user: {
     id: string;
     email?: string;
@@ -31,7 +31,7 @@ function save(session: KlerioSession) {
 
 function jwtExp(token: string): number | undefined {
   try {
-    const payload = JSON.parse(atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))) as { exp?: number };
+    const payload = JSON.parse(atob((token.split(".")[1] ?? "").replace(/-/g, "+").replace(/_/g, "/"))) as { exp?: number };
     return payload.exp;
   } catch {
     return undefined;
@@ -112,7 +112,7 @@ export const lovable = {
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/login`,
-          data: name ? { name } : undefined,
+          data: name ? { name } : {},
         },
       });
       if (error) return { error: error.message };

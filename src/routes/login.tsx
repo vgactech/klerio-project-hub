@@ -6,7 +6,10 @@ import { AuthLayout, ErrorBox, SocialButtons } from "@/components/espace/auth-la
 
 export const Route = createFileRoute("/login")({
   validateSearch: (s: Record<string, unknown>): { next?: string } =>
-    typeof s.next === "string" && s.next.startsWith("/") ? { next: s.next } : {},
+    {
+    const n = s["next"];
+    return typeof n === "string" && n.startsWith("/") ? { next: n } : {};
+  },
   head: () => ({
     meta: [
       { title: "Se connecter — Klerio" },
