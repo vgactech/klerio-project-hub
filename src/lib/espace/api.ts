@@ -50,7 +50,7 @@ export function dueLabel(iso: string) {
 export const FREE_PLAN = { scanPagesPerMonth: 20, explanationsPerMonth: 10, storageBytes: 10 * 1024 ** 3 };
 
 /** Pages scannées pendant le mois en cours (le compteur repart à zéro le 1er du mois). */
-export function scansThisMonth(docs: Doc[] | undefined, now = new Date()): number {
+export function scansThisMonth(docs: Doc[] | null | undefined, now = new Date()): number {
   const month = now.toISOString().slice(0, 7);
   return (docs ?? []).filter((d) => d.createdAt?.startsWith(month)).length;
 }
