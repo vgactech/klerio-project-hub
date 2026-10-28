@@ -16,7 +16,10 @@ import { Route as DemoRouteImport } from './routes/demo'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
+import { Route as ApiDocumentsIdRouteImport } from './routes/api/documents.$id'
+import { Route as ApiEspaceCollectionRouteImport } from './routes/api/espace.$collection'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,9 +55,24 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDocumentsRoute = ApiDocumentsRouteImport.update({
+  id: '/api/documents',
+  path: '/api/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiMemoryRoute = ApiMemoryRouteImport.update({
   id: '/api/memory',
   path: '/api/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocumentsIdRoute = ApiDocumentsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiDocumentsRoute,
+} as any)
+const ApiEspaceCollectionRoute = ApiEspaceCollectionRouteImport.update({
+  id: '/api/espace/$collection',
+  path: '/api/espace/$collection',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -65,7 +83,10 @@ export interface FileRoutesByFullPath {
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/api/documents/$id': typeof ApiDocumentsIdRoute
+  '/api/espace/$collection': typeof ApiEspaceCollectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -74,7 +95,10 @@ export interface FileRoutesByTo {
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/api/documents/$id': typeof ApiDocumentsIdRoute
+  '/api/espace/$collection': typeof ApiEspaceCollectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -85,7 +109,10 @@ export interface FileRoutesById {
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/api/documents/$id': typeof ApiDocumentsIdRoute
+  '/api/espace/$collection': typeof ApiEspaceCollectionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,7 +123,10 @@ export interface FileRouteTypes {
     | '/chat'
     | '/dashboard'
     | '/api/chat'
+    | '/api/documents'
     | '/api/memory'
+    | '/api/documents/$id'
+    | '/api/espace/$collection'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -105,7 +135,10 @@ export interface FileRouteTypes {
     | '/chat'
     | '/dashboard'
     | '/api/chat'
+    | '/api/documents'
     | '/api/memory'
+    | '/api/documents/$id'
+    | '/api/espace/$collection'
   id:
     | '__root__'
     | '/'
@@ -115,7 +148,10 @@ export interface FileRouteTypes {
     | '/_authenticated/chat'
     | '/_authenticated/dashboard'
     | '/api/chat'
+    | '/api/documents'
     | '/api/memory'
+    | '/api/documents/$id'
+    | '/api/espace/$collection'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -124,7 +160,9 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DemoRoute: typeof DemoRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiDocumentsRoute: typeof ApiDocumentsRouteWithChildren
   ApiMemoryRoute: typeof ApiMemoryRoute
+  ApiEspaceCollectionRoute: typeof ApiEspaceCollectionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -178,11 +216,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/documents': {
+      id: '/api/documents'
+      path: '/api/documents'
+      fullPath: '/api/documents'
+      preLoaderRoute: typeof ApiDocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/memory': {
       id: '/api/memory'
       path: '/api/memory'
       fullPath: '/api/memory'
       preLoaderRoute: typeof ApiMemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/documents/$id': {
+      id: '/api/documents/$id'
+      path: '/$id'
+      fullPath: '/api/documents/$id'
+      preLoaderRoute: typeof ApiDocumentsIdRouteImport
+      parentRoute: typeof ApiDocumentsRoute
+    }
+    '/api/espace/$collection': {
+      id: '/api/espace/$collection'
+      path: '/api/espace/$collection'
+      fullPath: '/api/espace/$collection'
+      preLoaderRoute: typeof ApiEspaceCollectionRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -201,13 +260,27 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface ApiDocumentsRouteChildren {
+  ApiDocumentsIdRoute: typeof ApiDocumentsIdRoute
+}
+
+const ApiDocumentsRouteChildren: ApiDocumentsRouteChildren = {
+  ApiDocumentsIdRoute: ApiDocumentsIdRoute,
+}
+
+const ApiDocumentsRouteWithChildren = ApiDocumentsRoute._addFileChildren(
+  ApiDocumentsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   DemoRoute: DemoRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiDocumentsRoute: ApiDocumentsRouteWithChildren,
   ApiMemoryRoute: ApiMemoryRoute,
+  ApiEspaceCollectionRoute: ApiEspaceCollectionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
