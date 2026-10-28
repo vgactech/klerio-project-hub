@@ -68,13 +68,25 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 @media(max-height:700px){.app{margin-top:116px;height:calc(100dvh - 116px)}.floating-companion{top:8px;gap:4px}.companion-orb{width:72px;height:72px;min-height:72px}.companion-label{font-size:10px;padding:3px 9px}}
 @media(prefers-reduced-motion:reduce){.companion-orb,.companion-orb.talking .companion-mouth{animation:none}.companion-orb.talking .companion-mouth{opacity:1;transform:translate(-50%,-50%) scaleY(.5)}}
 
+
+/* V6 : compagnon en surimpression libre, commandes rassemblées dans la saisie. */
+.app{margin-top:0!important;height:100dvh!important;border-radius:0;overflow:hidden}
+.floating-companion{top:18px;left:calc(100% - 120px);transform:none;width:96px;display:block;z-index:40}
+.companion-orb{touch-action:none;cursor:grab;user-select:none;animation:none}
+.companion-orb:active,.companion-orb.orb-dragging{cursor:grabbing}.companion-orb.orb-dragging{box-shadow:0 16px 30px #24130999,0 0 36px #e2a76866}
+.companion-label{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;clip-path:inset(50%);overflow:hidden;white-space:nowrap;border:0!important}
+.entry textarea{padding-right:136px;min-height:112px}.sendknob{right:70px}.sendcue{right:132px}
+.composer-menu{position:absolute;right:10px;top:12px;width:48px;height:52px;min-height:48px;border:0;border-left:1px solid #b38a6066;border-radius:0 16px 16px 0;background:transparent;font-size:26px;padding:0;z-index:3}
+.composer-menu:hover{background:#cd7f3220}.entryhint{max-width:calc(100% - 24px)}
+@media(max-height:700px){.floating-companion{width:72px}.app{margin-top:0!important;height:100dvh!important}}
+
 </style>
 </head>
 <body data-theme="dark">
-<aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Tester l’animation de parole de la mascotte, sans audio" aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
+<aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
 <main class="app">
 <div class="banner">DÉMONSTRATION · démarches officielles sourcées · profils fictifs · aucun envoi externe</div>
-<header><div class="avatar"><span class="mascot" id="header-mascot" data-pose="classic" role="img" aria-label="Mascotte officielle Klerio : chat-pingouin"></span></div><div><h1>Klerio</h1><div class="sub" id="topstatus">Votre espace de conversation</div></div><div class="spacer"></div><button id="theme" aria-label="Découvrir la mascotte officielle">Mascotte</button><button id="menu" aria-label="Ouvrir le menu">•••</button></header>
+<header><div class="avatar"><span class="mascot" id="header-mascot" data-pose="classic" role="img" aria-label="Mascotte officielle Klerio : chat-pingouin"></span></div><div><h1>Klerio</h1><div class="sub" id="topstatus">Votre espace de conversation</div></div><div class="spacer"></div></header>
 <section class="feed" id="feed" aria-label="Conversation">
 <div class="date">Démarches du quotidien · références vérifiées le 27 octobre 2026</div>
 <article class="message"><div class="bubble"><div class="brand-welcome"><div class="brand-portrait"><span class="mascot" data-pose="classic" role="img" aria-label="Le chat-pingouin vous accueille"></span></div><div><strong>Une chose à la fois.</strong><p>Klerio vous accompagne, à votre rythme.</p></div></div>Bonjour. Qu’est-ce qui vous bloque aujourd’hui ?<p class="small">Choisissez un exemple réel de démarche. Les échanges sont simulés, sans données personnelles.</p><div class="scenario-list"><button class="scenario" data-scenario="document">Comprendre un courrier</button><button class="scenario" data-scenario="apl">Préparer ma demande CAF</button><button class="scenario" data-scenario="energy">Comprendre une facture</button><button class="scenario" data-view="examples">Tous les exemples →</button></div></div><div class="meta">Klerio · démonstration</div></article>
@@ -82,7 +94,7 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 <footer class="composer">
 <div id="voice" class="voice hidden"><strong id="voicestate">Mode vocal — démonstration</strong><p class="small">Aucun micro utilisé. Les états ci-dessous sont simulés.</p><div class="choices"><button id="mic" aria-pressed="false">Couper mon micro</button><button id="sound" aria-pressed="false">Couper la voix</button><button id="allmute">Tout couper</button><button id="endvoice">Quitter</button></div></div>
 <div id="attachments" class="small" aria-live="polite"></div>
-<form id="form" class="entry"><textarea id="prompt" rows="2" placeholder="Écrivez votre message…" aria-label="Votre message"></textarea><span class="sendcue" aria-hidden="true">←</span><button id="sendknob" class="sendknob" type="submit" aria-label="Envoyer : maintenez puis glissez vers la gauche, ou cliquez">←</button><span class="entryhint">Maintenez le bouton ← et glissez à gauche pour envoyer</span></form>
+<form id="form" class="entry"><textarea id="prompt" rows="2" placeholder="Écrivez votre message…" aria-label="Votre message"></textarea><span class="sendcue" aria-hidden="true">←</span><button id="sendknob" class="sendknob" type="submit" aria-label="Envoyer : maintenez puis glissez vers la gauche, ou cliquez">←</button><button id="menu" class="composer-menu" type="button" aria-label="Ouvrir le menu">⋮</button><span class="entryhint">Maintenez le bouton ← et glissez à gauche pour envoyer</span></form>
 <div class="mode-track" id="modetrack" role="group" aria-label="Choisir le mode"><button type="button" class="mode-end left" data-mode="0">Vocal</button><button type="button" class="mode-end right" data-mode="2">Documents</button><button type="button" id="modeknob" class="modeknob" aria-label="Mode Texte. Maintenez et glissez : vocal à gauche, documents à droite. Flèches au clavier.">Texte ↔</button></div>
 <input id="slider" type="hidden" value="1"><p class="gesturehint">C’est le bouton qui bouge · relâchez au centre pour revenir au texte</p>
 <div class="status" id="status" role="status">Démonstration locale · aucune connexion aux services</div>
@@ -94,7 +106,7 @@ h1{letter-spacing:-.7px}.banner{background:#382215;color:#e0c6aa}
 <script>
 const $=id=>document.getElementById(id);
 const views={
-menu:{title:"Votre espace",body:'<p class="small">Tout reste accessible depuis la conversation.</p><div class="grid">'+[['history','Historique'],['categories','Catégories'],['memory','Carte mémoire'],['journal','Actions et sources'],['tasks','Tâches'],['settings','Préférences'],['connections','Connexions'],['privacy','Confidentialité'],['components','Formats adaptatifs'],['examples','Exemples administratifs'],['sources','Références officielles'],['onboarding','Première ouverture'],['auth','Connexion'],['incident','Incident et reprise']].map(x=>'<button data-view="'+x[0]+'">'+x[1]+'</button>').join('')+'</div>'},
+menu:{title:"Votre espace",body:'<p class="small">Tout reste accessible depuis la conversation.</p><div class="grid">'+[['mascot','Mascotte'],['history','Historique'],['categories','Catégories'],['memory','Carte mémoire'],['journal','Actions et sources'],['tasks','Tâches'],['settings','Préférences'],['connections','Connexions'],['privacy','Confidentialité'],['components','Formats adaptatifs'],['examples','Exemples administratifs'],['sources','Références officielles'],['onboarding','Première ouverture'],['auth','Connexion'],['incident','Incident et reprise']].map(x=>'<button data-view="'+x[0]+'">'+x[1]+'</button>').join('')+'</div>'},
 documents:{title:"Ajouter un document",body:'<p>Choisissez comment joindre votre document.</p><div class="grid"><button id="scan">Scanner un document<br><span class="small">Aperçu du parcours caméra</span></button><button id="pick">Choisir un fichier local<br><span class="small">Sélecteur réel · aucun transfert</span></button></div><p class="small">PDF, JPG, PNG, TXT, MD · cible produit : 20 Mio par fichier. La maquette affiche seulement les noms.</p>'},
 scanner:{title:"Scanner — aperçu du parcours",body:'<div class="card" style="min-height:180px;display:grid;place-items:center;border:2px dashed var(--ink)">Zone de cadrage caméra<br>Simulation, aucune caméra activée</div><p>1. Cadrer → 2. Capturer → 3. Recadrer → 4. Ajouter des pages → 5. Valider.</p><div class="choices"><button data-demo="Rotation simulée">Tourner</button><button data-demo="Nouvelle page simulée">Ajouter une page</button><button id="scanvalidate" class="primary">Valider la simulation</button></div>'},
 history:{title:"Historique",body:'<label>Rechercher une session<input id="historysearch" placeholder="Ex. devis" style="width:100%;padding:12px"></label><div id="historyitems"><div class="item" data-search="devis logement"><strong>Comparer mes devis</strong><span class="small">Logement · 27 octobre 2026 · exemple</span><button data-demo="Reprise simulée : comparaison des devis">Reprendre</button></div><div class="item" data-search="voyage transport"><strong>Préparer un voyage</strong><span class="small">Voyage · exemple</span><button data-demo="Reprise simulée : voyage">Reprendre</button></div></div>'},
@@ -147,7 +159,7 @@ bindDrag($('sendknob'),'send');bindDrag($('modeknob'),'mode');positionMode(1);
 window.addEventListener('resize',()=>positionMode(Number($('slider').value)));
 $('modeknob').addEventListener('keydown',e=>{let n=Number($('slider').value);if(e.key==='ArrowLeft')n=Math.max(0,n-1);else if(e.key==='ArrowRight')n=Math.min(2,n+1);else if(e.key==='Home'||e.key==='Escape')n=1;else return;e.preventDefault();setMode(n);});
 $('modeknob').addEventListener('click',()=>notify('Maintenez ce bouton et faites-le glisser. Au clavier : flèches gauche et droite.'));
-$('theme').onclick=()=>{const dark=document.body.dataset.theme==='dark';document.body.dataset.theme=dark?'light':'dark';$('theme').textContent=dark?'Noir':'Blanc';$('theme').setAttribute('aria-label',dark?'Passer au thème noir':'Passer au thème blanc');};
+
 const refs={tax:{name:'DGFiP · corriger une déclaration',url:'https://www.impots.gouv.fr/particulier/questions/je-veux-corriger-la-declaration-que-jai-deja-deposee-comment-proceder'},rights:{name:'Assurance Maladie · attestation de droits',url:'https://www.ameli.fr/assure/adresses-et-contacts/l-obtention-d-un-document/obtenir-une-attestation/obtenir-une-attestation-de-droits'},care:{name:'Assurance Maladie · feuille de soins papier',url:'https://www.ameli.fr/assure/remboursements/etre-bien-rembourse/feuille-soins-papier'},css:{name:'Assurance Maladie · demander la C2S',url:'https://www.ameli.fr/assure/droits-demarches/difficultes-acces-droits-soins/complementaire-sante/complementaire-sante-solidaire-demande'}};
 const scenarioData={
 tax:{title:'Corriger ma déclaration',user:'J’ai oublié un élément dans ma déclaration de revenus. Je ne sais pas comment corriger.',domain:'Démarches fiscales',question:'Comment avez-vous déposé votre déclaration ?',choices:[['online','En ligne'],['paper','Sur papier'],['unsure','Je ne sais plus']]},
@@ -212,7 +224,7 @@ showTable=function(){addCard('<h2>Lire mon courrier : informations à repérer</
 
 
 views.mascot={title:'Le chat-pingouin de Klerio',body:'<p>Votre mascotte officielle. Le bronze devient le fond de toute l’application, avec des textes crème.</p><div class="gallery">'+[['classic','Accueil'],['joy','Encouragement'],['curious','À votre écoute'],['cool','Exploration'],['sleep','En veille'],['comfort','Accompagnement']].map(x=>'<figure class="pose-card"><div class="pose-picture"><span class="mascot" data-pose="'+x[0]+'" role="img" aria-label="Chat-pingouin : '+x[1]+'"></span></div><figcaption>'+x[1]+'</figcaption></figure>').join('')+'</div><p class="small">Illustrations originales fournies par le propriétaire. Les expressions accompagnent les états écrits ; elles ne prouvent pas qu’une démarche est terminée.</p>'};
-$('theme').onclick=()=>openView('mascot');
+
 
 
 let companionTimer;
@@ -221,6 +233,24 @@ $('companion-orb').onclick=()=>{if($('companion-orb').classList.contains('talkin
 const companionBaseSetMode=setMode;
 setMode=function(n){stopCompanion();companionBaseSetMode(n);};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCompanion();});
+
+
+// Position libre persistée uniquement sur cet appareil ; aucune donnée de conversation.
+const orbElement=$('companion-orb'),orbLayer=document.querySelector('.floating-companion');
+const orbPositionKey='klerio-mascot-position-v1';let orbDrag=null,orbSkipClick=false;
+function orbBounds(){return {x:Math.max(0,window.innerWidth-orbLayer.offsetWidth),y:Math.max(0,window.innerHeight-orbElement.offsetHeight)};}
+function placeOrb(x,y,save=false){const b=orbBounds();x=Math.max(0,Math.min(b.x,x));y=Math.max(0,Math.min(b.y,y));orbLayer.style.left=x+'px';orbLayer.style.top=y+'px';if(save){try{localStorage.setItem(orbPositionKey,JSON.stringify({x:b.x?x/b.x:0,y:b.y?y/b.y:0}));}catch{}}}
+function restoreOrb(){let p=null;try{p=JSON.parse(localStorage.getItem(orbPositionKey));}catch{}const b=orbBounds();if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))placeOrb(p.x*b.x,p.y*b.y);else placeOrb(b.x-20,90);}
+function resetOrb(){const b=orbBounds();placeOrb(b.x-20,90,true);notify('Position de la mascotte réinitialisée');}
+const orbDemoClick=orbElement.onclick;orbElement.onclick=e=>{if(orbSkipClick){e.preventDefault();return;}orbDemoClick(e);};
+orbElement.addEventListener('pointerdown',e=>{if(e.button!==0)return;const r=orbLayer.getBoundingClientRect();orbDrag={id:e.pointerId,startX:e.clientX,startY:e.clientY,x:r.left,y:r.top,moved:false};orbElement.setPointerCapture(e.pointerId);});
+orbElement.addEventListener('pointermove',e=>{if(!orbDrag||e.pointerId!==orbDrag.id)return;const dx=e.clientX-orbDrag.startX,dy=e.clientY-orbDrag.startY;if(Math.hypot(dx,dy)>5)orbDrag.moved=true;if(orbDrag.moved){orbElement.classList.add('orb-dragging');placeOrb(orbDrag.x+dx,orbDrag.y+dy);}});
+function endOrbDrag(e,cancel=false){if(!orbDrag||e.pointerId!==orbDrag.id)return;const d=orbDrag;orbDrag=null;orbSkipClick=d.moved||cancel;orbElement.classList.remove('orb-dragging');if(cancel)placeOrb(d.x,d.y);else if(d.moved){const r=orbLayer.getBoundingClientRect();placeOrb(r.left,r.top,true);}if(orbElement.hasPointerCapture(e.pointerId))orbElement.releasePointerCapture(e.pointerId);setTimeout(()=>orbSkipClick=false,0);}
+orbElement.addEventListener('pointerup',e=>endOrbDrag(e));orbElement.addEventListener('pointercancel',e=>endOrbDrag(e,true));orbElement.addEventListener('lostpointercapture',e=>{if(orbDrag)endOrbDrag(e,true);});
+orbElement.addEventListener('keydown',e=>{const step=e.shiftKey?1:10;const r=orbLayer.getBoundingClientRect();const delta={ArrowLeft:[-step,0],ArrowRight:[step,0],ArrowUp:[0,-step],ArrowDown:[0,step]}[e.key];if(delta){e.preventDefault();placeOrb(r.left+delta[0],r.top+delta[1],true);}else if(e.key==='Home'){e.preventDefault();resetOrb();}else if(e.key==='Escape'&&orbDrag){e.preventDefault();endOrbDrag({pointerId:orbDrag.id},true);}});
+window.addEventListener('resize',restoreOrb);restoreOrb();
+views.mascot.body+='<div class="choices"><button id="orb-reset">Réinitialiser la position</button><button id="orb-animation">Tester la bouche · sans audio</button></div><p class="small">Glissez la tête où vous le souhaitez sur l’interface. Position mémorisée sur cet appareil. Au clavier : flèches ; touche Début pour réinitialiser.</p>';
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='orb-reset')resetOrb();if(b.id==='orb-animation'){$('dialog').close();orbDemoClick();}});
 
 </script>
 </body></html>
