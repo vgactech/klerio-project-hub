@@ -6,3 +6,6 @@
 - [x] Vérifier la disponibilité des documents et la cohérence avec le projet.
 - [x] Ajouter la consigne Doppler limitée au projet Klerio.
 - [ ] Confirmer la présence des changements sur GitHub `main` — bloqué : statut de synchronisation non visible depuis cette session.
+- [ ] Vocal réel en direct avec l'IA (panneau visible seulement après glissement sur Vocal)
+- [ ] Diode verte + "Vous · HH:MM · modèle" prouvant la connexion IA réelle
+- [ ] Publier
