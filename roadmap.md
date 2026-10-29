@@ -1,5 +1,10 @@
 # Transmission Klerio à Bob IDE
 
+## Documents scannés — 29 octobre
+- [x] Classement automatique et vérification des doublons exacts avant sauvegarde chiffrée avec relecture ; même texte relu dans une autre photo signalé pour vérification.
+- [x] Confirmation courte avec emplacement et question suivante dans le scanner et le chat, sans explication automatique ; aucune réussite annoncée après erreur.
+- [x] 17 tests ciblés réussis ; scan fictif classé Impôts depuis le chat connecté, doublon refusé, document retrouvé dans le coffre. Détection visuelle de toutes les variantes de scan non garantie.
+
 ## Navigation assistée et diode internet — 29 octobre
 - [x] Navigation depuis les réponses texte et vocal, pages affichées au-dessus du chat conservé ; micro temporairement coupé puis état précédent restauré.
 - [x] Catalogue de neuf pages autorisées, priorité à la demande explicite ; aucune modification, suppression ou paiement automatique. Un simple bonjour ne navigue pas.
