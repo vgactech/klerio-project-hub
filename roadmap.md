@@ -71,3 +71,5 @@
 - [x] Recherche internet automatique avec liens (texte) via Firecrawl
 - [ ] Recherche internet en vocal
 - [x] Vidéo v3 + post publiés sans phrase méta
+
+- [ ] Remplacer la mascotte par le visage seul du modèle "Le classique" (présentation + vidéo)
