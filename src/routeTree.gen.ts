@@ -20,6 +20,7 @@ import { Route as AuthenticatedEspaceRouteImport } from './routes/_authenticated
 import { Route as ApiBillingRouteImport } from './routes/api/billing'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
+import { Route as ApiInternetRouteImport } from './routes/api/internet'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
 import { Route as ApiVoiceRouteImport } from './routes/api/voice'
 import { Route as AuthenticatedEspaceIndexRouteImport } from './routes/_authenticated/espace.index'
@@ -87,6 +88,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
 const ApiDocumentsRoute = ApiDocumentsRouteImport.update({
   id: '/api/documents',
   path: '/api/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternetRoute = ApiInternetRouteImport.update({
+  id: '/api/internet',
+  path: '/api/internet',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiMemoryRoute = ApiMemoryRouteImport.update({
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/api/billing': typeof ApiBillingRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
+  '/api/internet': typeof ApiInternetRoute
   '/api/memory': typeof ApiMemoryRoute
   '/api/voice': typeof ApiVoiceRoute
   '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
@@ -206,6 +213,7 @@ export interface FileRoutesByTo {
   '/api/billing': typeof ApiBillingRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
+  '/api/internet': typeof ApiInternetRoute
   '/api/memory': typeof ApiMemoryRoute
   '/api/voice': typeof ApiVoiceRoute
   '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
@@ -234,6 +242,7 @@ export interface FileRoutesById {
   '/api/billing': typeof ApiBillingRoute
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
+  '/api/internet': typeof ApiInternetRoute
   '/api/memory': typeof ApiMemoryRoute
   '/api/voice': typeof ApiVoiceRoute
   '/_authenticated/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
@@ -262,6 +271,7 @@ export interface FileRouteTypes {
     | '/api/billing'
     | '/api/chat'
     | '/api/documents'
+    | '/api/internet'
     | '/api/memory'
     | '/api/voice'
     | '/espace/assistant'
@@ -287,6 +297,7 @@ export interface FileRouteTypes {
     | '/api/billing'
     | '/api/chat'
     | '/api/documents'
+    | '/api/internet'
     | '/api/memory'
     | '/api/voice'
     | '/espace/assistant'
@@ -314,6 +325,7 @@ export interface FileRouteTypes {
     | '/api/billing'
     | '/api/chat'
     | '/api/documents'
+    | '/api/internet'
     | '/api/memory'
     | '/api/voice'
     | '/_authenticated/espace/assistant'
@@ -339,6 +351,7 @@ export interface RootRouteChildren {
   ApiBillingRoute: typeof ApiBillingRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiDocumentsRoute: typeof ApiDocumentsRouteWithChildren
+  ApiInternetRoute: typeof ApiInternetRoute
   ApiMemoryRoute: typeof ApiMemoryRoute
   ApiVoiceRoute: typeof ApiVoiceRoute
   ApiEspaceCollectionRoute: typeof ApiEspaceCollectionRoute
@@ -421,6 +434,13 @@ declare module '@tanstack/react-router' {
       path: '/api/documents'
       fullPath: '/api/documents'
       preLoaderRoute: typeof ApiDocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internet': {
+      id: '/api/internet'
+      path: '/api/internet'
+      fullPath: '/api/internet'
+      preLoaderRoute: typeof ApiInternetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/memory': {
@@ -589,6 +609,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiBillingRoute: ApiBillingRoute,
   ApiChatRoute: ApiChatRoute,
   ApiDocumentsRoute: ApiDocumentsRouteWithChildren,
+  ApiInternetRoute: ApiInternetRoute,
   ApiMemoryRoute: ApiMemoryRoute,
   ApiVoiceRoute: ApiVoiceRoute,
   ApiEspaceCollectionRoute: ApiEspaceCollectionRoute,
