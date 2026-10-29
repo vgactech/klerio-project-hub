@@ -19,10 +19,10 @@ export async function documentTextFingerprint(text: string) {
 }
 export function validatedClassification(value: unknown) {
   const obj = value && typeof value === "object" ? value as Record<string, unknown> : {};
-  const text = typeof obj.text === "string" ? obj.text.slice(0, 40000) : "";
-  const category = obj.uncertain === false && DOCUMENT_CATEGORIES.some(c => c === obj.category)
-    ? String(obj.category) : "À classer";
-  const title = typeof obj.title === "string" ? obj.title.replace(/[\r\n\/\\<>]/g, " ").trim().slice(0, 100) : "";
+  const text = typeof obj["text"] === "string" ? obj["text"].slice(0, 40000) : "";
+  const category = obj["uncertain"] === false && DOCUMENT_CATEGORIES.some(c => c === obj["category"])
+    ? String(obj["category"]) : "À classer";
+  const title = typeof obj["title"] === "string" ? obj["title"].replace(/[\r\n\/\\<>]/g, " ").trim().slice(0, 100) : "";
   return { text, category, title, uncertain: category === "À classer" };
 }
 export function documentAcknowledgement(doc: IntakeDocument, duplicate: boolean, language: unknown, verified = true) {

@@ -63,8 +63,9 @@ export const Route = createFileRoute("/api/documents")({
             // A different photo may depict the same document. Ask for review rather than silently discarding it.
             const possibleDuplicate = textFingerprint ? (await listDocs(owner)).find(d => d.textFingerprint === textFingerprint) : undefined;
             if (possibleDuplicate) return Response.json({ error: "Ce scan semble déjà présent dans Mes documents. Vérifiez le document existant avant d'ajouter une autre photo.", possibleDuplicate: { id: possibleDuplicate.id, name: possibleDuplicate.name, category: possibleDuplicate.category } }, { status: 409 });
-            doc = await addDoc(owner, { name: classification.title ? `${classification.title}${name.match(/\.[a-z0-9]+$/i)?.[0] ?? ""}` : name, type, size, category: classification.category, fingerprint, textFingerprint, ...(classification.text ? { text: classification.text } : {}) }, data);
-            duplicate = doc.createdAt < new Date(Date.now() - 60000).toISOString();
+            const intakeStarted = new Date().toISOString();
+            doc = await addDoc(owner, { name: classification.title ? `${classification.title}${name.match(/\.[a-z0-9]+$/i)?.[0] ?? ""}` : name, type, size, category: classification.category, fingerprint, ...(textFingerprint ? { textFingerprint } : {}), ...(classification.text ? { text: classification.text } : {}) }, data);
+            duplicate = doc.createdAt < intakeStarted;
           }
           await verifyDocument(owner, doc);
           const reply = documentAcknowledgement(doc, duplicate, body.language);

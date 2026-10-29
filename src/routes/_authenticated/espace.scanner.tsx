@@ -6,7 +6,7 @@ import type { DocumentReceipt } from "@/lib/document-intake";
 import { Button } from "@/components/ui/button";
 import { takePendingScan } from "@/lib/espace/pending-scan";
 import { useAppLanguage } from "@/lib/use-app-language";
-import { Card, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
+import { Card, ErrorNote, PageHeader } from "@/components/espace/ui";
 
 export const Route = createFileRoute("/_authenticated/espace/scanner")({
   head: () => ({

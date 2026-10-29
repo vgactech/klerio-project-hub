@@ -6,7 +6,6 @@ import { ASSISTANT_PAGES, safeAssistantPage, type AssistantPage } from "@/lib/as
 import { lovable } from "@/integrations/lovable";
 import { type LiveEvent } from "@/hooks/use-live-voice";
 import { useMistralVoice } from "@/hooks/use-mistral-voice";
-import { setPendingScan } from "@/lib/espace/pending-scan";
 import { uploadScan } from "@/lib/espace/scan-upload";
 import { shouldIntroduce } from "@/lib/appearance";
 
