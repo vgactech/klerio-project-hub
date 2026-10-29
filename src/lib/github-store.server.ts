@@ -1,4 +1,5 @@
 import { encryptStored, decryptStored } from "./storage-crypto.server";
+import { documentFingerprint } from "./document-intake";
 /**
  * Données de l'espace client (rappels, famille, documents…) sur GitHub,
  * branche `klerio-memory`, dossier privé clients/<identifiant>/.
@@ -17,6 +18,8 @@ export type DocMeta = {
   createdAt: string;
   pages?: number;
   text?: string;
+  fingerprint?: string;
+  textFingerprint?: string;
   path: string;
 };
 
@@ -26,7 +29,12 @@ async function getFile(path: string): Promise<{ sha: string; content: string } |
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`GitHub lecture ${r.status}: ${await r.text()}`);
   const file = (await r.json()) as { sha: string; content: string };
-  if (file.content) file.content = await decryptStored(file.content, path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "");
+  if (!file.content) {
+    const blob = await gh(`git/blobs/${file.sha}`);
+    if (!blob.ok) throw new Error("Lecture du fichier indisponible.");
+    file.content = ((await blob.json()) as { content: string }).content;
+  }
+  file.content = await decryptStored(file.content, path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "");
   return file;
 }
 
@@ -73,7 +81,7 @@ export async function listDocs(owner: string): Promise<DocMeta[]> {
   try {
     return JSON.parse(b64decode(v.content)) as DocMeta[];
   } catch {
-    return [];
+    throw new Error("Index documentaire illisible ; aucun classement modifié.");
   }
 }
 
@@ -82,15 +90,62 @@ async function saveIndex(owner: string, docs: DocMeta[]) {
 }
 
 export async function addDoc(owner: string, meta: Omit<DocMeta, "id" | "createdAt" | "path">, dataBase64: string) {
-  const id = crypto.randomUUID();
+  const fingerprint = await documentFingerprint(dataBase64);
+  const existing = await findExactDocument(owner, fingerprint);
+  if (existing) return existing;
+  const id = fingerprint;
   const ext = (meta.name.match(/\.[a-z0-9]{1,5}$/i)?.[0] ?? "").toLowerCase();
   const path = `${base(owner)}/documents/files/${id}${ext}`;
   await putRaw(path, dataBase64, `document ajouté · ${new Date().toISOString()}`);
-  const doc: DocMeta = { ...meta, id, createdAt: new Date().toISOString(), path };
-  const docs = await listDocs(owner);
-  docs.unshift(doc);
-  await saveIndex(owner, docs);
+  const doc: DocMeta = { ...meta, fingerprint, id, createdAt: new Date().toISOString(), path };
+  const indexPath = `${base(owner)}/documents/index.json`;
+  let saved = false;
+  // Recompute the merged index after every conflict; never overwrite a concurrent upload.
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const current = await getFile(indexPath);
+    const docs = current ? JSON.parse(b64decode(current.content)) as DocMeta[] : [];
+    const matched = docs.find(d => d.fingerprint === fingerprint);
+    if (matched) { await verifyDocument(owner, matched); return matched; }
+    const content = await encryptStored(b64encode(JSON.stringify([doc, ...docs])), indexPath, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "");
+    const response = await gh(`contents/${indexPath}`, { method: "PUT", body: JSON.stringify({
+      message: `documents index · ${new Date().toISOString()}`, content, branch: BRANCH, ...(current ? { sha: current.sha } : {}),
+    }) });
+    if (response.ok) { saved = true; break; }
+    if (response.status !== 409 && response.status !== 422) throw new Error("Classement non confirmé. Réessayez avec le même document.");
+  }
+  if (!saved) throw new Error("Classement non confirmé. Réessayez avec le même document.");
+  await verifyDocument(owner, doc);
   return doc;
+}
+
+export async function findExactDocument(owner: string, fingerprint: string) {
+  for (const doc of await listDocs(owner)) {
+    if (doc.fingerprint === fingerprint) { await verifyDocument(owner, doc); return doc; }
+    // Legacy documents have no fingerprint: compare original bytes, not filenames.
+    if (!doc.fingerprint) {
+      const file = await getDocFile(owner, doc.id);
+      if (file && await documentFingerprint(file.base64) === fingerprint) {
+        await verifyDocument(owner, { ...doc, fingerprint });
+        return doc;
+      }
+    }
+  }
+  return null;
+}
+
+export async function verifyDocument(owner: string, doc: DocMeta) {
+  const file = await getDocFile(owner, doc.id);
+  if (!file || (doc.fingerprint && await documentFingerprint(file.base64) !== doc.fingerprint)) throw new Error("Sauvegarde du document non vérifiée.");
+  // Re-encrypt legacy duplicate copies too before promising encryption.
+  const raw = await gh(`git/blobs/${(await getFile(doc.path))?.sha}`);
+  if (!raw.ok) throw new Error("Chiffrement non vérifié.");
+  const content = ((await raw.json()) as { content: string }).content;
+  if (!b64decode(content).startsWith("KLERIO_ENCRYPTED_V1:")) {
+    await putRaw(doc.path, file.base64, `document protégé · ${new Date().toISOString()}`);
+    await saveIndex(owner, await listDocs(owner));
+    const reread = await getDocFile(owner, doc.id);
+    if (!reread || await documentFingerprint(reread.base64) !== await documentFingerprint(file.base64)) throw new Error("Chiffrement non vérifié.");
+  }
 }
 
 export async function getDocFile(owner: string, id: string) {
