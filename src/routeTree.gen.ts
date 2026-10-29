@@ -21,6 +21,7 @@ import { Route as ApiBillingRouteImport } from './routes/api/billing'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiDocumentsRouteImport } from './routes/api/documents'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
+import { Route as ApiVoiceRouteImport } from './routes/api/voice'
 import { Route as AuthenticatedEspaceIndexRouteImport } from './routes/_authenticated/espace.index'
 import { Route as AuthenticatedEspaceAssistantRouteImport } from './routes/_authenticated/espace.assistant'
 import { Route as AuthenticatedEspaceCoffreRouteImport } from './routes/_authenticated/espace.coffre'
@@ -91,6 +92,11 @@ const ApiDocumentsRoute = ApiDocumentsRouteImport.update({
 const ApiMemoryRoute = ApiMemoryRouteImport.update({
   id: '/api/memory',
   path: '/api/memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiVoiceRoute = ApiVoiceRouteImport.update({
+  id: '/api/voice',
+  path: '/api/voice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedEspaceIndexRoute =
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/api/voice': typeof ApiVoiceRoute
   '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
   '/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
   '/espace/compte': typeof AuthenticatedEspaceCompteRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/api/voice': typeof ApiVoiceRoute
   '/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
   '/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
   '/espace/compte': typeof AuthenticatedEspaceCompteRoute
@@ -227,6 +235,7 @@ export interface FileRoutesById {
   '/api/chat': typeof ApiChatRoute
   '/api/documents': typeof ApiDocumentsRouteWithChildren
   '/api/memory': typeof ApiMemoryRoute
+  '/api/voice': typeof ApiVoiceRoute
   '/_authenticated/espace/assistant': typeof AuthenticatedEspaceAssistantRoute
   '/_authenticated/espace/coffre': typeof AuthenticatedEspaceCoffreRoute
   '/_authenticated/espace/compte': typeof AuthenticatedEspaceCompteRoute
@@ -254,6 +263,7 @@ export interface FileRouteTypes {
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
+    | '/api/voice'
     | '/espace/assistant'
     | '/espace/coffre'
     | '/espace/compte'
@@ -278,6 +288,7 @@ export interface FileRouteTypes {
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
+    | '/api/voice'
     | '/espace/assistant'
     | '/espace/coffre'
     | '/espace/compte'
@@ -304,6 +315,7 @@ export interface FileRouteTypes {
     | '/api/chat'
     | '/api/documents'
     | '/api/memory'
+    | '/api/voice'
     | '/_authenticated/espace/assistant'
     | '/_authenticated/espace/coffre'
     | '/_authenticated/espace/compte'
@@ -328,6 +340,7 @@ export interface RootRouteChildren {
   ApiChatRoute: typeof ApiChatRoute
   ApiDocumentsRoute: typeof ApiDocumentsRouteWithChildren
   ApiMemoryRoute: typeof ApiMemoryRoute
+  ApiVoiceRoute: typeof ApiVoiceRoute
   ApiEspaceCollectionRoute: typeof ApiEspaceCollectionRoute
 }
 
@@ -415,6 +428,13 @@ declare module '@tanstack/react-router' {
       path: '/api/memory'
       fullPath: '/api/memory'
       preLoaderRoute: typeof ApiMemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/voice': {
+      id: '/api/voice'
+      path: '/api/voice'
+      fullPath: '/api/voice'
+      preLoaderRoute: typeof ApiVoiceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/espace/': {
@@ -570,6 +590,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiChatRoute: ApiChatRoute,
   ApiDocumentsRoute: ApiDocumentsRouteWithChildren,
   ApiMemoryRoute: ApiMemoryRoute,
+  ApiVoiceRoute: ApiVoiceRoute,
   ApiEspaceCollectionRoute: ApiEspaceCollectionRoute,
 }
 export const routeTree = rootRouteImport

@@ -34,7 +34,8 @@ export const Route = createFileRoute("/api/chat")({
         const uid = await verifyUserId(request);
         if (!uid) return Response.json({ error: "Session expirée, reconnecte-toi." }, { status: 401 });
         const owner = safeOwnerId(uid);
-        const body = (await request.json().catch(() => null)) as { text?: string; topic?: string } | null;
+        const body = (await request.json().catch(() => null)) as { text?: string; topic?: string; channel?: string } | null;
+        const channel = body?.channel === "voice" ? "voice" as const : "text" as const;
         const text = typeof body?.text === "string" ? body.text.trim().slice(0, 8000) : "";
         if (!text) return Response.json({ error: "Message vide." }, { status: 400 });
 
@@ -65,10 +66,10 @@ export const Route = createFileRoute("/api/chat")({
 
         // 2. Journal temps réel : message reçu + prompt exact envoyé (sans secret)
         const topic = await topicP;
-        const userEvent = newEvent(owner, { kind: "message.user", channel: "text", topic, content: text, model: MODEL });
+        const userEvent = newEvent(owner, { kind: channel === "voice" ? "voice.user" : "message.user", channel, topic, content: text, model: MODEL });
         const promptEvent = newEvent(owner, {
           kind: "prompt.sent",
-          channel: "text",
+          channel,
           topic,
           model: MODEL,
           content: JSON.stringify({ prompt_version: PROMPT_VERSION, instructions: INSTRUCTIONS, context_messages: past.length, web_results: web.map((w) => w.url), memory_error: memoryNote || undefined }),
@@ -96,10 +97,10 @@ export const Route = createFileRoute("/api/chat")({
         // 3. Journal temps réel : réponse, jetons, explication fournie par le modèle
         await logUser;
         const events = [
-          newEvent(owner, { kind: "message.assistant", channel: "text", topic, content: reply, model: MODEL, tokens, duration_ms: Date.now() - started }),
+          newEvent(owner, { kind: channel === "voice" ? "voice.assistant" : "message.assistant", channel, topic, content: reply, model: MODEL, tokens, duration_ms: Date.now() - started }),
           newEvent(owner, {
             kind: "explanation",
-            channel: "text",
+            channel,
             topic,
             model: MODEL,
             content: explanation.trim() || "capture_unavailable : le fournisseur n'a renvoyé aucun résumé d'explication pour cette réponse.",
