@@ -1,5 +1,11 @@
 # Transmission Klerio à Bob IDE
 
+## Mistral et confidentialité — 29 octobre
+- [ ] Relier API_KEY_MISTRAL et vérifier une réponse réelle ; la clé Doppler n'est pas encore présente dans le coffre du projet.
+- [ ] Adapter le texte et vérifier les possibilités réelles de vocal Mistral, sans substitution silencieuse.
+- [ ] Auditer le chiffrement des conversations, documents et journaux ; documenter les limites sans certification infondée.
+- [ ] Préparer une réponse honnête au commentaire LinkedIn sur les courriers sensibles.
+
 ## Vidéo et post LinkedIn — 28 octobre
 - [x] Version 2 : fichier de 30,000 secondes, narration française et dialogue client–Klerio simulé avec trois voix distinctes.
 - [x] Paroles vérifiées par retranscription automatique, images contrôlées, synchronisation par réplique (mots estimés) ; nouveau post LinkedIn accepté HTTP 201. Pas d'écoute humaine ; LinkedIn indique 30,016 s après conversion.
