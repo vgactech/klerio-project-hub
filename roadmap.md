@@ -1,5 +1,11 @@
 # Transmission Klerio à Bob IDE
 
+## Navigation assistée et diode internet — 29 octobre
+- [ ] Ouvrir les pages pertinentes depuis les réponses texte et vocal, en gardant le chat et son audio actifs.
+- [ ] Limiter l'autonomie à la navigation autorisée ; aucune modification, suppression ou paiement automatique.
+- [ ] Ajouter une diode orange fondée sur une recherche internet réellement réussie, avec état indisponible ou périmé.
+- [ ] Vérifier une demande réelle, la page affichée et le retour au chat.
+
 ## Mistral et confidentialité — 29 octobre
 - [x] Relier API_KEY_MISTRAL dans le coffre et vérifier le catalogue et une réponse réelle ; aucune synchronisation Doppler automatique.
 - [x] Texte et lecture d'images via Mistral ; vocal Voxtral → Mistral → Voxtral testé avec une phrase enregistrée, lecture audio et arrêt. Conversation alternée, pas duplex avec interruption instantanée.
