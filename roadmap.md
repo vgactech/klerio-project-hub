@@ -51,3 +51,4 @@
 - [x] Indicateur de connexion (diode verte + nom du modèle) actif pour tous les modèles, vocal et texte.
 - [x] Recherche internet automatique avec liens (texte) via Firecrawl
 - [ ] Recherche internet en vocal
+- [ ] Vidéo v3 + post : aucune phrase méta décrivant la vidéo (« Dans la vidéo vous découvrez… »)
