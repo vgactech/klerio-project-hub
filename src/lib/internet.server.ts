@@ -10,6 +10,6 @@ export async function checkInternet(lovableKey: string, firecrawlKey: string, si
     const json = await response.json() as { success?: boolean; data?: { web?: { title?: string; url?: string; description?: string }[] } | { title?: string; url?: string; description?: string }[] };
     const list = Array.isArray(json.data) ? json.data : json.data?.web ?? [];
     const results = list.filter(item => item.url?.startsWith("https://")).map(item => ({ title: item.title ?? "", url: item.url ?? "", text: (item.description ?? "").slice(0, 400) }));
-    return { available: json.success !== false, checkedAt: Date.now(), results };
+    return { available: json.success !== false && results.length > 0, checkedAt: Date.now(), results };
   } catch { return { available: false, checkedAt: Date.now(), results: [] }; }
 }

@@ -13,6 +13,12 @@ export type AssistantPage = keyof typeof ASSISTANT_PAGES;
 export function safeAssistantPage(value: unknown): AssistantPage | null {
   return typeof value === "string" && Object.hasOwn(ASSISTANT_PAGES, value) ? value as AssistantPage : null;
 }
+export function allowsNavigation(text: string) {
+  const normalized = text.trim().toLowerCase().replace(/[.!?…]+$/g, "").trim();
+  if (/^(bonjour|salut|merci|hello|hi|thanks|hola|ol[aá]|你好|谢谢)$/.test(normalized)) return false;
+  if (/\b(ne navigue pas|n['’]ouvre|ne .*ouvre|don['’]t open|do not open|sans ouvrir)\b/i.test(text)) return false;
+  return text.trim().length > 3;
+}
 export function internetVerified(value: { available?: boolean; checkedAt?: number } | null, now: number) {
   return value?.available === true && typeof value.checkedAt === "number" && now >= value.checkedAt && now - value.checkedAt < 60000;
 }

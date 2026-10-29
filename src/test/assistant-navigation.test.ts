@@ -1,8 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { ASSISTANT_PAGES, internetVerified, safeAssistantPage } from "@/lib/assistant-navigation";
+import { ASSISTANT_PAGES, allowsNavigation, internetVerified, safeAssistantPage } from "@/lib/assistant-navigation";
 import { readMistralChat } from "@/lib/mistral.server";
 
 describe("Read-only assistant navigation", () => {
+  it("does not open pages for greetings or an explicit refusal", () => {
+    expect(allowsNavigation("Bonjour")).toBe(false);
+    expect(allowsNavigation("Ne navigue pas, réponds sans ouvrir de page")).toBe(false);
+    expect(allowsNavigation("Ouvre mes documents")).toBe(true);
+  });
   it("allows the implemented document page", () => {
     expect(safeAssistantPage("documents")).toBe("documents");
     expect(ASSISTANT_PAGES.documents.path).toBe("/espace/coffre");

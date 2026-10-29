@@ -3,7 +3,7 @@ import { appendEvents, detectTopic, loadRecent, newEvent, safeOwnerId, topicSlug
 import { verifyUserId } from "@/lib/verify-user.server";
 
 import { MISTRAL_CHAT_MODEL, mistralRequest, readMistralChat } from "@/lib/mistral.server";
-import { ASSISTANT_PAGES, safeAssistantPage } from "@/lib/assistant-navigation";
+import { ASSISTANT_PAGES, allowsNavigation, safeAssistantPage } from "@/lib/assistant-navigation";
 import { checkInternet } from "@/lib/internet.server";
 
 const MODEL = MISTRAL_CHAT_MODEL;
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/api/chat")({
             body: JSON.stringify({ model: MODEL, messages: [
               { role: "system", content: system },
               ...input,
-            ], tools: [navigationTool], tool_choice: "auto", stream: true }), signal: request.signal,
+            ], ...(allowsNavigation(text) ? { tools: [navigationTool], tool_choice: "auto" } : {}), stream: true }), signal: request.signal,
           });
           result = await readMistralChat(upstream);
           if (result.toolCalls?.length) {
@@ -89,7 +89,7 @@ export const Route = createFileRoute("/api/chat")({
             const outcomes = calls.map(call => {
               let page = null;
               try { page = safeAssistantPage(JSON.parse(call.function.arguments).page); } catch { /* invalid action refused */ }
-              const allowed = call.function.name === "open_page" && page && !navigation;
+              const allowed = allowsNavigation(text) && call.function.name === "open_page" && page && !navigation;
               if (allowed) navigation = page;
               return { role: "tool", tool_call_id: call.id, name: call.function.name, content: JSON.stringify(allowed ? { status: "navigation_requested", page, note: "Affichage après réception par le client ; aucune donnée modifiée." } : { status: "refused" }) };
             });

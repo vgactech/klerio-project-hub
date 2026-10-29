@@ -68,9 +68,16 @@ function ChatRoute() {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState<AssistantPage | null>(null);
   const [pageLoaded, setPageLoaded] = useState(false);
+  const muteBeforeNavigation = useRef<boolean | null>(null);
+  const closePage = () => {
+    if (muteBeforeNavigation.current !== null) voiceRef.current.setMuted(muteBeforeNavigation.current);
+    muteBeforeNavigation.current = null;
+    setActivePage(null);
+  };
   const openPage = (value: unknown) => {
     const page = safeAssistantPage(value);
     if (!page) return;
+    if (muteBeforeNavigation.current === null) muteBeforeNavigation.current = voiceRef.current.muted;
     voiceRef.current.setMuted(true);
     setPageLoaded(false);
     setActivePage(page);
@@ -287,11 +294,11 @@ function ChatRoute() {
         allow="microphone; camera; autoplay"
       />
       {activePage && (
-        <div role="dialog" aria-modal="true" aria-label="Page Klerio" className="fixed inset-0 z-50 flex flex-col bg-background" onKeyDown={event => { if (event.key === "Escape") setActivePage(null); }}>
+        <div role="dialog" aria-modal="true" aria-label="Page Klerio" className="fixed inset-0 z-50 flex flex-col bg-background" onKeyDown={event => { if (event.key === "Escape") closePage(); }}>
           <div className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-card px-3">
-            <Button variant="ghost" onClick={() => setActivePage(null)}><ArrowLeft />Conversation</Button>
+            <Button variant="ghost" onClick={closePage}><ArrowLeft />Conversation</Button>
             <span role="status" className="text-sm text-muted-foreground">{pageLoaded ? "" : "Chargement…"}</span>
-            <Button variant="ghost" size="icon" aria-label="Fermer la page" onClick={() => setActivePage(null)}><X /></Button>
+            <Button variant="ghost" size="icon" aria-label="Fermer la page" onClick={closePage}><X /></Button>
           </div>
           <iframe key={activePage} src={ASSISTANT_PAGES[activePage].path} title="Page Klerio demandée" className="min-h-0 flex-1 border-0" allow="camera" onLoad={() => setPageLoaded(true)} />
         </div>
