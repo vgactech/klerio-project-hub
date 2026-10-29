@@ -23,6 +23,7 @@ Les échanges sortants utilisent HTTPS ; les documents rendus restent déchiffr�
 - Texte, synthèse française et retranscription d'une phrase parlée : HTTP 200.
 - Chat connecté du propriétaire : réponse Mistral, jetons visibles, mémoire relue avec le modèle Mistral.
 - Routes audio connectées : transcription et audio/mpeg reçus.
+- Essai navigateur connecté avec microphone simulant une vraie phrase française enregistrée : transcription dans le chat, réponse avec jetons, source audio chargée et lecture lancée ; arrêt confirme audio en pause. Ce test ne remplace pas une écoute humaine ni un test de microphone physique sur téléphone.
 - Tests : aller-retour sans perte, absence de contenu lisible, refus autre propriétaire/chemin, refus clé absente, rejet de contenu altéré, modèles/voix et usage. 26 tests ciblés réussis au premier passage.
 
 ## Réponse proposée au commentaire LinkedIn (non publiée)

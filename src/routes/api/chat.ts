@@ -74,7 +74,8 @@ export const Route = createFileRoute("/api/chat")({
           model: MODEL,
           content: JSON.stringify({ prompt_version: PROMPT_VERSION, instructions: INSTRUCTIONS, context_messages: past.length, web_results: web.map((w) => w.url), memory_error: memoryNote || undefined }),
         });
-        const logUser = appendEvents(owner, [userEvent, promptEvent]).catch((e) => console.error("[memory]", e));
+        let userSaved = true;
+        const logUser = appendEvents(owner, [userEvent, promptEvent]).catch(() => { userSaved = false; console.error("[memory] user write failed"); });
 
         const started = Date.now();
         let result;
@@ -106,7 +107,7 @@ export const Route = createFileRoute("/api/chat")({
             content: explanation.trim() || "capture_unavailable : le fournisseur n'a renvoyé aucun résumé d'explication pour cette réponse.",
           }),
         ];
-        let saved = true;
+        let saved = userSaved;
         await appendEvents(owner, events).catch((e) => {
           saved = false;
           console.error("[memory]", e);
