@@ -25,3 +25,5 @@
 - Encrypt new GitHub client payloads with path-bound AES-256-GCM and per-owner HKDF keys; retain legacy reads without claiming historic plaintext was removed, and never silently rotate the storage master key.
 - External web searches must not contain client messages, history or document text; use nonpersonal public administrative queries to prevent sensitive-content disclosure.
 - The chat's auto-hidden navigation is an overlay controlled by the standalone gesture adapter so revealing it never resizes the conversation or interrupts audio.
+- Assistant navigation exposes only a validated page catalog through Mistral tools; display pages above the mounted chat, preserve prior microphone mute state, and never grant data-changing actions through this tool.
+- The orange internet indicator requires a successful server search with usable results and expires after one minute; browser online status or configured credentials alone are not proof.

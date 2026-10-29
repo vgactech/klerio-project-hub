@@ -95,6 +95,9 @@ html[data-theme="dark"] .small,html[data-theme="dark"] .meta,html[data-theme="da
 .app{position:relative;min-height:0}
 .feed{min-height:0}
 .chat-header-edge{position:fixed;top:0;left:0;right:0;height:8px;z-index:7;outline-offset:-3px}
+:root{--internet-status:#fb5f12}
+.internet-dot{display:inline-block;width:8px;height:8px;margin:0 6px 0 1px;border-radius:50%;background:var(--internet-status);vertical-align:middle}
+.internet-dot[data-available="false"]{background:var(--muted);opacity:.45}
 </style></head>
 <body data-theme="light">
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
@@ -279,7 +282,11 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   function hm(d){return (d?new Date(d):new Date()).toLocaleTimeString(document.documentElement.lang,{hour:'2-digit',minute:'2-digit'})}
   function meta(user,model,tokens,at){return '<span class="live-dot" title="IA connectée"></span>'+(user?'Vous':'Klerio')+' · '+hm(at)+' · '+(model||'')+(tokens?' · '+(typeof tokens==='string'?tokens:tokens+' jetons'):'');}
   function say(t,user,model,tokens,at){addText(t,user);var bubbles=document.querySelectorAll("#feed .bubble");var bubble=bubbles[bubbles.length-1];if(bubble)bubble.setAttribute("translate","no");var m=document.querySelectorAll('#feed .meta');var last=m[m.length-1];if(last)last.innerHTML=meta(user,model,tokens,at);return last;}
-  function setStatus(html){var st=$('status');if(st)st.innerHTML=html;}
+  var internetState=null,internetTimer;
+  function internetDot(){return '<span class="internet-dot" data-available="false" title="Internet non vérifié" aria-label="Internet non vérifié"></span>';}
+  function updateInternetDots(){var ok=!!(internetState&&internetState.available&&Date.now()-internetState.checkedAt<60000);document.querySelectorAll('.internet-dot').forEach(function(dot){dot.dataset.available=String(ok);dot.title=ok?'Recherche internet vérifiée':'Internet non vérifié ou indisponible';dot.setAttribute('aria-label',dot.title);});}
+  P.klerioInternet=function(value){internetState=value;clearTimeout(internetTimer);updateInternetDots();internetTimer=setTimeout(updateInternetDots,60000);};
+  function setStatus(html){var st=$('status');if(st){st.innerHTML=html;var green=st.querySelector('.live-dot');if(green)green.insertAdjacentHTML('afterend',internetDot());updateInternetDots();}}
   function glow(color,ms){var o=$('companion-orb');if(!o)return;clearTimeout(glowTimer);o.classList.remove('glow-green','glow-blue');if(color)o.classList.add('glow-'+color);if(ms)glowTimer=setTimeout(function(){o.classList.remove('glow-green','glow-blue')},ms);}
   var banner=document.querySelector('.banner');if(banner)banner.textContent='Klerio · assistant connecté';
   setStatus('<span class="live-dot wait"></span>Récupération de votre mémoire…');
@@ -339,7 +346,8 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
       var tk=r.tokens||{};
       if(userMeta)userMeta.innerHTML=meta(true,r.model,tk.input);
       say(r.reply,false,r.model,tk.output);glow('green',Math.min(8000,1500+r.reply.length*30));
-      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'mémoire sauvegardée':'⚠️ sauvegarde en attente'));});
+      setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'mémoire sauvegardée':'⚠️ sauvegarde en attente'));
+      if(r.navigation&&P.klerioOpenPage)P.klerioOpenPage(r.navigation);});
   };
 })();
 </script><script type="module">import { installChatHeader } from '/app/chat-header.js';installChatHeader(document,window);</script></body></html>

@@ -17,6 +17,7 @@ export async function mistralRequest(path: string, key: string, init: RequestIni
 export async function readMistralChat(response: Response) {
   if (!response.body) throw new Error("Mistral n'a renvoyé aucune réponse.");
   let reply = "";
+  const toolCalls: { id: string; type: "function"; function: { name: string; arguments: string } }[] = [];
   let buffer = "";
   let usage: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number } = {};
   const reader = response.body.getReader();
@@ -34,12 +35,20 @@ export async function readMistralChat(response: Response) {
       if (event.error) throw new Error("Mistral a interrompu la réponse.");
       const content = event.choices?.[0]?.delta?.content;
       if (typeof content === "string") reply += content;
+      for (const call of event.choices?.[0]?.delta?.tool_calls ?? []) {
+        const index = typeof call.index === "number" ? call.index : 0;
+        if (index > 8) throw new Error("Trop d'actions demandées.");
+        const current = toolCalls[index] ?? (toolCalls[index] = { id: "", type: "function", function: { name: "", arguments: "" } });
+        if (call.id) current.id = call.id;
+        if (call.function?.name) current.function.name += call.function.name;
+        if (call.function?.arguments) current.function.arguments += call.function.arguments;
+      }
       if (event.usage) usage = event.usage;
     }
     if (done) break;
   }
-  if (!reply.trim()) throw new Error("Mistral n'a renvoyé aucun texte.");
-  return { reply: reply.trim(), tokens: { input: usage.prompt_tokens, output: usage.completion_tokens, total: usage.total_tokens } };
+  if (!reply.trim() && !toolCalls.length) throw new Error("Mistral n'a renvoyé aucun texte.");
+  return { reply: reply.trim(), tokens: { input: usage.prompt_tokens, output: usage.completion_tokens, total: usage.total_tokens }, ...(toolCalls.length ? { toolCalls } : {}) };
 }
 
 export function speechVoice(language: string) {
