@@ -88,7 +88,8 @@ function ChatRoute() {
     const onMsg = (e: MessageEvent) => {
       if (e.origin !== window.location.origin) return;
       const data = e.data as { klerioNavigate?: unknown; klerioScan?: unknown; klerioDocumentReceipt?: unknown } | null;
-      if (typeof data?.klerioDocumentReceipt === "string") {
+      if (e.source !== frameRef.current?.contentWindow && !activePage) return;
+      if (typeof data?.klerioDocumentReceipt === "string" && activePage === "scanner") {
         window.klerioVoiceCaption?.("assistant", data.klerioDocumentReceipt);
         closePage();
       }
@@ -116,7 +117,7 @@ function ChatRoute() {
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
-  }, [navigate]);
+  }, [navigate, activePage]);
   // Transcription en direct : on regroupe les morceaux par tour de parole,
   // on affiche dans le chat puis on enregistre dans la mémoire.
   const turnRef = useRef<{ role: "user" | "assistant"; text: string; timer?: ReturnType<typeof setTimeout> } | null>(null);

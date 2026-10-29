@@ -137,14 +137,29 @@ export async function verifyDocument(owner: string, doc: DocMeta) {
   const file = await getDocFile(owner, doc.id);
   if (!file || (doc.fingerprint && await documentFingerprint(file.base64) !== doc.fingerprint)) throw new Error("Sauvegarde du document non vérifiée.");
   // Re-encrypt legacy duplicate copies too before promising encryption.
-  const raw = await gh(`git/blobs/${(await getFile(doc.path))?.sha}`);
+  const stored = await getFile(doc.path);
+  if (!stored) throw new Error("Sauvegarde du document non vérifiée.");
+  const raw = await gh(`git/blobs/${stored.sha}`);
   if (!raw.ok) throw new Error("Chiffrement non vérifié.");
   const content = ((await raw.json()) as { content: string }).content;
   if (!b64decode(content).startsWith("KLERIO_ENCRYPTED_V1:")) {
     await putRaw(doc.path, file.base64, `document protégé · ${new Date().toISOString()}`);
-    await saveIndex(owner, await listDocs(owner));
     const reread = await getDocFile(owner, doc.id);
     if (!reread || await documentFingerprint(reread.base64) !== await documentFingerprint(file.base64)) throw new Error("Chiffrement non vérifié.");
+  }
+  const indexPath = `${base(owner)}/documents/index.json`;
+  const index = await getFile(indexPath);
+  if (!index) throw new Error("Classement non vérifié.");
+  const indexRaw = await gh(`git/blobs/${index.sha}`);
+  if (!indexRaw.ok) throw new Error("Classement non vérifié.");
+  const indexContent = ((await indexRaw.json()) as { content: string }).content;
+  if (!b64decode(indexContent).startsWith("KLERIO_ENCRYPTED_V1:")) {
+    // Use the observed SHA so a legacy upgrade never overwrites a newer index.
+    const encrypted = await encryptStored(index.content, indexPath, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "");
+    const response = await gh(`contents/${indexPath}`, { method: "PUT", body: JSON.stringify({ message: `index protégé · ${new Date().toISOString()}`, content: encrypted, sha: index.sha, branch: BRANCH }) });
+    if (!response.ok) throw new Error("Chiffrement du classement non confirmé. Réessayez.");
+    const checked = await getFile(indexPath);
+    if (!checked || checked.content !== index.content) throw new Error("Classement non vérifié.");
   }
 }
 
