@@ -1,5 +1,10 @@
 # Transmission Klerio à Bob IDE
 
+## Documents scannés — 29 octobre
+- [ ] Classement automatique et vérification des doublons avant sauvegarde chiffrée avec relecture.
+- [ ] Confirmation courte avec emplacement et question suivante dans le scanner et le chat.
+- [ ] Tests des règles et parcours connecté réel.
+
 ## Navigation assistée et diode internet — 29 octobre
 - [x] Navigation depuis les réponses texte et vocal, pages affichées au-dessus du chat conservé ; micro temporairement coupé puis état précédent restauré.
 - [x] Catalogue de neuf pages autorisées, priorité à la demande explicite ; aucune modification, suppression ou paiement automatique. Un simple bonjour ne navigue pas.
