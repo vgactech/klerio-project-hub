@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { ASSISTANT_PAGES, allowsNavigation, internetVerified, safeAssistantPage } from "@/lib/assistant-navigation";
+import { ASSISTANT_PAGES, allowsNavigation, explicitNavigation, internetVerified, safeAssistantPage } from "@/lib/assistant-navigation";
 import { readMistralChat } from "@/lib/mistral.server";
 
 describe("Read-only assistant navigation", () => {
+  it("honors an explicit document request over history suggestions", () => {
+    expect(explicitNavigation("Ouvre la page de mes documents dans Klerio pour retrouver mes courriers.")).toBe("documents");
+    expect(explicitNavigation("Bonjour")).toBeNull();
+  });
   it("does not open pages for greetings or an explicit refusal", () => {
     expect(allowsNavigation("Bonjour")).toBe(false);
     expect(allowsNavigation("Ne navigue pas, réponds sans ouvrir de page")).toBe(false);

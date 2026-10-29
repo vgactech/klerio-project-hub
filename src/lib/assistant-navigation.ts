@@ -19,6 +19,12 @@ export function allowsNavigation(text: string) {
   if (/\b(ne navigue pas|n['’]ouvre|ne .*ouvre|don['’]t open|do not open|sans ouvrir)\b/i.test(text)) return false;
   return text.trim().length > 3;
 }
+export function explicitNavigation(text: string): AssistantPage | null {
+  if (!allowsNavigation(text) || !/\b(ouvre|ouvrir|affiche|montre|va|open|show)\b/i.test(text)) return null;
+  const choices: [RegExp, AssistantPage][] = [[/document|courrier|coffre/i, "documents"], [/scan|photo.*courrier/i, "scanner"], [/rappel|reminder|[ée]ch[ée]ance/i, "reminders"], [/famill|family/i, "family"], [/quota|consommation/i, "quotas"], [/forfait|abonn|cr[ée]dit/i, "plan"], [/compte|profil/i, "account"], [/lien|site officiel/i, "links"], [/tableau|dashboard|accueil/i, "dashboard"]];
+  const matches = choices.filter(([pattern]) => pattern.test(text));
+  return matches.length === 1 ? matches[0]?.[1] ?? null : null;
+}
 export function internetVerified(value: { available?: boolean; checkedAt?: number } | null, now: number) {
   return value?.available === true && typeof value.checkedAt === "number" && now >= value.checkedAt && now - value.checkedAt < 60000;
 }
