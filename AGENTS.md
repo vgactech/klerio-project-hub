@@ -27,3 +27,4 @@
 - The chat's auto-hidden navigation is an overlay controlled by the standalone gesture adapter so revealing it never resizes the conversation or interrupts audio.
 - Assistant navigation exposes only a validated page catalog through Mistral tools; display pages above the mounted chat, preserve prior microphone mute state, and never grant data-changing actions through this tool.
 - The orange internet indicator requires a successful server search with usable results and expires after one minute; browser online status or configured credentials alone are not proof.
+- Document intake owns classification, owner-scoped content fingerprints, conflict-aware index insertion and decrypt/readback verification; emit receipts only after verification, keep uncertain OCR in review, and share the scan uploader between chat and scanner to avoid divergent save claims.

@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Camera, ImagePlus, Trash2 } from "lucide-react";
-import { api, CATEGORIES, fileToBase64, type Doc } from "@/lib/espace/api";
+import { uploadScan } from "@/lib/espace/scan-upload";
+import type { DocumentReceipt } from "@/lib/document-intake";
+import { Button } from "@/components/ui/button";
 import { takePendingScan } from "@/lib/espace/pending-scan";
 import { useAppLanguage } from "@/lib/use-app-language";
 import { Card, ErrorNote, PageHeader, btnPrimary, btnSecondary, input } from "@/components/espace/ui";
@@ -20,26 +22,12 @@ export const Route = createFileRoute("/_authenticated/espace/scanner")({
   component: Scanner,
 });
 
-/** Réduit la photo (bords conservés) pour un envoi léger et une lecture nette. */
-async function compress(file: File): Promise<Blob> {
-  const img = await createImageBitmap(file);
-  const scale = Math.min(1, 2000 / Math.max(img.width, img.height));
-  const c = document.createElement("canvas");
-  c.width = Math.round(img.width * scale);
-  c.height = Math.round(img.height * scale);
-  const context = c.getContext("2d");
-  if (!context) throw new Error("Image illisible");
-  context.drawImage(img, 0, 0, c.width, c.height);
-  return new Promise((res) => c.toBlob((b) => res(b ?? file), "image/jpeg", 0.85));
-}
-
 function Scanner() {
-  useAppLanguage();
+  const language = useAppLanguage();
   const [pages, setPages] = useState<{ file: File; url: string }[]>([]);
-  const [category, setCategory] = useState("À classer");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState<Doc[]>([]);
+  const [done, setDone] = useState<DocumentReceipt[]>([]);
   const camRef = useRef<HTMLInputElement>(null);
   const galRef = useRef<HTMLInputElement>(null);
 
@@ -57,16 +45,15 @@ function Scanner() {
   async function send() {
     setBusy(true);
     setError(null);
-    const out: Doc[] = [];
+    const out: DocumentReceipt[] = [];
     try {
-      const stamp = new Date().toISOString().slice(0, 16).replace("T", " ");
-      for (const [i, p] of pages.entries()) {
-        const blob = await compress(p.file);
-        const r = await api<{ document: Doc }>("/api/documents", {
-          method: "POST",
-          body: JSON.stringify({ name: `Scan ${stamp} — page ${i + 1}.jpg`, type: "image/jpeg", category, scan: true, data: await fileToBase64(blob) }),
-        });
-        out.push(r.document);
+      for (const p of pages) {
+        const r = await uploadScan(p.file, language);
+        out.push(r);
+        setDone([...out]);
+        URL.revokeObjectURL(p.url);
+        setPages(current => current.filter(x => x.url !== p.url));
+        if (window.parent !== window) window.parent.postMessage({ klerioDocumentReceipt: r.reply }, window.location.origin);
       }
       setDone(out);
       setPages([]);
@@ -79,16 +66,13 @@ function Scanner() {
 
   return (
     <div>
-      <PageHeader eyebrow="Scan → PDF" title="Scannez, c'est tout." description="Prenez une ou plusieurs photos. Klerio recadre, améliore, assemble un PDF et le range dans votre coffre chiffré. Le nombre de pages est toujours affiché avant l'enregistrement." />
+      <PageHeader eyebrow="Documents" title="Scannez, c'est tout." description="" />
       <ErrorNote error={error} />
       <Card className="mb-6 flex flex-wrap gap-3">
         <input ref={camRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => (add(e.target.files), (e.target.value = ""))} />
         <input ref={galRef} type="file" accept="image/*" multiple className="hidden" onChange={(e) => (add(e.target.files), (e.target.value = ""))} />
-        <button className={btnPrimary} onClick={() => camRef.current?.click()}><Camera className="h-4 w-4" /> Prendre une photo</button>
-        <button className={btnSecondary} onClick={() => galRef.current?.click()}><ImagePlus className="h-4 w-4" /> Choisir des images</button>
-        <select className={`${input} max-w-[200px]`} value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Catégorie">
-          {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
+        <Button disabled={busy} onClick={() => camRef.current?.click()}><Camera /> Prendre une photo</Button>
+        <Button variant="outline" disabled={busy} onClick={() => galRef.current?.click()}><ImagePlus /> Choisir des images</Button>
       </Card>
       {pages.length > 0 && (
         <>
@@ -101,14 +85,13 @@ function Scanner() {
               </li>
             ))}
           </ul>
-          <button className={btnPrimary} disabled={busy} onClick={() => void send()}>{busy ? "Lecture et sauvegarde…" : `Lire et ranger ${pages.length} page${pages.length > 1 ? "s" : ""}`}</button>
+          <Button disabled={busy} onClick={() => void send()}>{busy ? "Vérification et sauvegarde…" : `Ranger ${pages.length} page${pages.length > 1 ? "s" : ""}`}</Button>
         </>
       )}
       {done.length > 0 && (
         <Card className="mt-6">
-          <p className="font-bold">✅ {done.length} page{done.length > 1 ? "s" : ""} rangée{done.length > 1 ? "s" : ""} dans le coffre-fort.</p>
-          {done.map((d) => d.text && <pre key={d.id} className="mt-3 max-h-60 overflow-auto whitespace-pre-wrap rounded-lg bg-ink-50 p-3 text-xs">{d.text}</pre>)}
-          <div className="mt-4 flex gap-3"><Link to="/espace/coffre" className={btnSecondary}>Voir le coffre-fort</Link><Link to="/chat" className={btnPrimary}>Demander à Klerio de l'expliquer</Link></div>
+          {done.map((r, i) => <p key={`${r.document.id}-${i}`} className="mb-3" translate="no">{r.reply}</p>)}
+          <div className="mt-4 flex flex-wrap gap-3"><Button variant="outline" asChild><Link to="/espace/coffre">Mes documents</Link></Button><Button asChild><Link to="/chat">Répondre à Klerio</Link></Button></div>
         </Card>
       )}
     </div>

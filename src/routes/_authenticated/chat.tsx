@@ -7,6 +7,7 @@ import { lovable } from "@/integrations/lovable";
 import { type LiveEvent } from "@/hooks/use-live-voice";
 import { useMistralVoice } from "@/hooks/use-mistral-voice";
 import { setPendingScan } from "@/lib/espace/pending-scan";
+import { uploadScan } from "@/lib/espace/scan-upload";
 import { shouldIntroduce } from "@/lib/appearance";
 
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
@@ -61,13 +62,15 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261029-navigation-3";
+const PAGE_VERSION = "20261029-documents-4";
 
 function ChatRoute() {
   const { user } = Route.useRouteContext();
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState<AssistantPage | null>(null);
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [scanBusy, setScanBusy] = useState(false);
+  const scanLock = useRef(false);
   const muteBeforeNavigation = useRef<boolean | null>(null);
   const closePage = () => {
     if (muteBeforeNavigation.current !== null) voiceRef.current.setMuted(muteBeforeNavigation.current);
@@ -85,15 +88,30 @@ function ChatRoute() {
   useEffect(() => {
     const onMsg = (e: MessageEvent) => {
       if (e.origin !== window.location.origin) return;
-      const data = e.data as { klerioNavigate?: unknown; klerioScan?: unknown } | null;
+      const data = e.data as { klerioNavigate?: unknown; klerioScan?: unknown; klerioDocumentReceipt?: unknown } | null;
+      if (typeof data?.klerioDocumentReceipt === "string") {
+        window.klerioVoiceCaption?.("assistant", data.klerioDocumentReceipt);
+        closePage();
+      }
       const to = data?.klerioNavigate;
       if (to === "/espace") navigate({ to: "/espace" });
       if (to === "/espace/scanner") navigate({ to: "/espace/scanner" });
       if (Array.isArray(data?.klerioScan)) {
         const files = (data.klerioScan as unknown[]).filter((f): f is File => f instanceof Blob) as File[];
-        if (files.length) {
-          setPendingScan(files);
-          navigate({ to: "/espace/scanner" });
+        if (files.length && !scanLock.current) {
+          scanLock.current = true;
+          setScanBusy(true);
+          void (async () => {
+            try {
+              for (const file of files.slice(0, 10)) {
+                const receipt = await uploadScan(file, document.documentElement.lang);
+                window.klerioVoiceCaption?.("assistant", receipt.reply);
+                if (!receipt.memorySaved) window.klerioVoiceCaption?.("assistant", "Le document est sauvegardé, mais cet échange n’a pas pu être ajouté à l’historique.");
+              }
+            } catch (error) {
+              window.klerioVoiceCaption?.("assistant", error instanceof Error ? error.message : "Sauvegarde non confirmée. Réessayez.");
+            } finally { scanLock.current = false; setScanBusy(false); }
+          })();
         }
       }
     };
@@ -286,6 +304,7 @@ function ChatRoute() {
   return (
     <>
       <audio ref={voice.audioRef} className="hidden" />
+      {scanBusy && <div role="status" className="fixed bottom-24 left-1/2 z-40 -translate-x-1/2 rounded-md border border-border bg-card px-4 py-3 text-sm text-foreground shadow">Vérification, classement et sauvegarde…</div>}
       <iframe
         ref={frameRef}
         src={`/app/klerio.html?v=${PAGE_VERSION}`}
