@@ -43,9 +43,11 @@ export function useMistralVoice(options: { auth: () => Record<string, string>; o
         if (!transcript.text.trim() || ended) return;
         // Display before the chat endpoint persists the turn. No duplicate voice-log request.
         current.current.onEvent({ type: "app.voice.caption", role: "user", transcript: transcript.text });
-        const answer = await (await post("/api/chat", JSON.stringify({ text: transcript.text, channel: "voice" }), true)).json() as { reply: string; model: string; tokens: { total?: number }; saved: boolean };
+        const answer = await (await post("/api/chat", JSON.stringify({ text: transcript.text, channel: "voice" }), true)).json() as { reply: string; model: string; tokens: { total?: number }; saved: boolean; navigation?: string; internet?: { available: boolean; checkedAt: number } };
         if (ended) return;
         current.current.onEvent({ type: "app.voice.caption", role: "assistant", transcript: answer.reply, tokens: answer.tokens, model: answer.model, saved: answer.saved });
+        if (answer.internet) window.klerioInternet?.(answer.internet);
+        if (answer.navigation) current.current.onEvent({ type: "app.assistant.navigation", page: answer.navigation });
         const response = await post("/api/voice", JSON.stringify({ text: answer.reply, language: transcript.language || document.documentElement.lang }), true);
         const blob = await response.blob(); if (ended) return;
         if (objectURL) URL.revokeObjectURL(objectURL);
