@@ -1,12 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { lovable } from "@/integrations/lovable";
-import { useLiveVoice, type LiveEvent } from "@/hooks/use-live-voice";
+import { type LiveEvent } from "@/hooks/use-live-voice";
+import { useMistralVoice } from "@/hooks/use-mistral-voice";
 import { setPendingScan } from "@/lib/espace/pending-scan";
 import { shouldIntroduce } from "@/lib/appearance";
 
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
-type VoiceCaption = (role: "user" | "assistant", text: string) => void;
+type VoiceCaption = (role: "user" | "assistant", text: string, tokens?: { input?: number; output?: number; total?: number }) => void;
 
 declare global {
   interface Window {
@@ -30,7 +31,7 @@ declare global {
   }
 }
 
-const LIVE_MODEL = "openai/gpt-live-1";
+const LIVE_MODEL = "Mistral · Voxtral";
 
 export const Route = createFileRoute("/_authenticated/chat")({
   head: () => ({
@@ -55,7 +56,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261028-9";
+const PAGE_VERSION = "20261029-mistral-1";
 
 function ChatRoute() {
   const { user } = Route.useRouteContext();
@@ -91,10 +92,16 @@ function ChatRoute() {
     window.klerioVoiceCaption?.(t.role, text);
     window.klerioLogVoice?.(t.role, text);
   };
-  const voice = useLiveVoice({
-    url: `/api/live?token=${encodeURIComponent(lovable.auth.getSession()?.access_token ?? "")}`,
+  const voice = useMistralVoice({
+    auth: () => ({ Authorization: `Bearer ${lovable.auth.getSession()?.access_token ?? ""}` }),
     onEvent: (event) => {
       window.klerioVoiceEvent?.(event.type);
+      if (event.type === "app.voice.caption") {
+        const role = event["role"] === "user" ? "user" : "assistant";
+        const text = typeof event["transcript"] === "string" ? event["transcript"] : "";
+        if (text) window.klerioVoiceCaption?.(role, text, event["tokens"] as { input?: number; output?: number; total?: number } | undefined);
+        return;
+      }
       if (event.type === "app.transcript.delta") {
         const role = event["role"] === "user" ? "user" : "assistant";
         const delta = typeof event["delta"] === "string" ? (event["delta"] as string) : "";

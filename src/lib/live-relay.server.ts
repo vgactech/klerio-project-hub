@@ -71,6 +71,7 @@ async function loadVoiceMemory(request: Request): Promise<string> {
 }
 
 export function getLiveConfig(request?: Request): LiveConfig {
+  if (process.env["API_KEY_MISTRAL"]) throw new Error("L'ancien vocal est désactivé : utilisez le vocal Mistral du chat.");
   const config: LiveConfig = {
     ...liveSettings,
     key: process.env["LOVABLE_API_KEY"] ?? "",

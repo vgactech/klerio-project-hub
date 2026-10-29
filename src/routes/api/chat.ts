@@ -2,8 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { appendEvents, detectTopic, loadRecent, newEvent, safeOwnerId, topicSlug } from "@/lib/github-memory.server";
 import { verifyUserId } from "@/lib/verify-user.server";
 
-const MODEL = "openai/gpt-5-nano"; // modèle texte le moins cher disponible
-const PROMPT_VERSION = "klerio-text-v6";
+import { MISTRAL_CHAT_MODEL, mistralRequest, readMistralChat } from "@/lib/mistral.server";
+
+const MODEL = MISTRAL_CHAT_MODEL;
+const PROMPT_VERSION = "klerio-text-v7-mistral";
 
 // Recherche internet automatique : quelques résultats récents, avec leurs liens.
 async function webSearch(query: string, signal: AbortSignal): Promise<{ title: string; url: string; text: string }[]> {
@@ -19,7 +21,7 @@ async function webSearch(query: string, signal: AbortSignal): Promise<{ title: s
     if (!r.ok) { console.error("[web]", r.status, await r.text().catch(() => "")); return []; }
     const j = (await r.json()) as { data?: { web?: { title?: string; url?: string; description?: string }[] } | { title?: string; url?: string; description?: string }[] };
     const list = Array.isArray(j.data) ? j.data : j.data?.web ?? [];
-    return list.filter((x) => x.url).map((x) => ({ title: x.title ?? "", url: x.url!, text: (x.description ?? "").slice(0, 400) }));
+    return list.filter((x) => x.url).map((x) => ({ title: x.title ?? "", url: x.url ?? "", text: (x.description ?? "").slice(0, 400) }));
   } catch (e) { console.error("[web]", e); return []; }
 }
 const INSTRUCTIONS =
@@ -32,11 +34,12 @@ export const Route = createFileRoute("/api/chat")({
         const uid = await verifyUserId(request);
         if (!uid) return Response.json({ error: "Session expirée, reconnecte-toi." }, { status: 401 });
         const owner = safeOwnerId(uid);
-        const body = (await request.json().catch(() => null)) as { text?: string; topic?: string } | null;
+        const body = (await request.json().catch(() => null)) as { text?: string; topic?: string; channel?: string } | null;
+        const channel = body?.channel === "voice" ? "voice" as const : "text" as const;
         const text = typeof body?.text === "string" ? body.text.trim().slice(0, 8000) : "";
         if (!text) return Response.json({ error: "Message vide." }, { status: 400 });
 
-        const apiKey = process.env["LOVABLE_API_KEY"];
+        const apiKey = process.env["API_KEY_MISTRAL"];
         if (!apiKey) return Response.json({ error: "Configuration IA manquante." }, { status: 500 });
 
         // 1. Contexte précédent récupéré automatiquement sur GitHub
@@ -54,7 +57,8 @@ export const Route = createFileRoute("/api/chat")({
         } catch (e) {
           memoryNote = e instanceof Error ? e.message : "mémoire indisponible";
         }
-        const web = await webSearch(text, request.signal);
+        // Never send the client message or document contents to the search provider.
+        const web = await webSearch("démarches administratives françaises sites officiels CAF impôts ameli service-public", request.signal);
         const webNote = web.length
           ? "\n\nRésultats de recherche internet trouvés automatiquement pour ce message (utilise-les s'ils sont utiles, et donne les liens complets, en commençant par les sites officiels comme service-public.fr, caf.fr, impots.gouv.fr, ameli.fr) :\n" + web.map((w, i) => `${i + 1}. ${w.title} — ${w.url}\n${w.text}`).join("\n")
           : "";
@@ -62,87 +66,48 @@ export const Route = createFileRoute("/api/chat")({
 
         // 2. Journal temps réel : message reçu + prompt exact envoyé (sans secret)
         const topic = await topicP;
-        const userEvent = newEvent(owner, { kind: "message.user", channel: "text", topic, content: text, model: MODEL });
+        const userEvent = newEvent(owner, { kind: channel === "voice" ? "voice.user" : "message.user", channel, topic, content: text, model: MODEL });
         const promptEvent = newEvent(owner, {
           kind: "prompt.sent",
-          channel: "text",
+          channel,
           topic,
           model: MODEL,
           content: JSON.stringify({ prompt_version: PROMPT_VERSION, instructions: INSTRUCTIONS, context_messages: past.length, web_results: web.map((w) => w.url), memory_error: memoryNote || undefined }),
         });
-        const logUser = appendEvents(owner, [userEvent, promptEvent]).catch((e) => console.error("[memory]", e));
+        let userSaved = true;
+        const logUser = appendEvents(owner, [userEvent, promptEvent]).catch(() => { userSaved = false; console.error("[memory] user write failed"); });
 
         const started = Date.now();
-        const upstream = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-            "Lovable-API-Key": apiKey,
-            "X-Lovable-AIG-SDK": "fetch",
-          },
-          body: JSON.stringify({
-            model: MODEL,
-            instructions: INSTRUCTIONS + " Ne te présente pas, ne répète pas ton nom : la présentation initiale a déjà été affichée. Réponds directement à la demande, sans recommencer l’accueil.",
-            input,
-            reasoning: { effort: "low", summary: "auto" },
-            store: false,
-            stream: true,
-          }),
-          signal: request.signal,
-        });
-        if (!upstream.ok || !upstream.body) {
-          const raw = await upstream.text().catch(() => "");
-          let msg = "Le service IA est momentanément indisponible.";
-          try {
-            const j = JSON.parse(raw);
-            msg = j.error?.message || j.message || msg;
-          } catch {}
+        let result;
+        try {
+          const upstream = await mistralRequest("chat/completions", apiKey, {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ model: MODEL, messages: [
+              { role: "system", content: INSTRUCTIONS + " Ne te présente pas, ne répète pas ton nom. Réponds directement." },
+              ...input,
+            ], stream: true }), signal: request.signal,
+          });
+          result = await readMistralChat(upstream);
+        } catch (error) {
           await logUser;
-          await appendEvents(owner, [newEvent(owner, { kind: "error", channel: "text", topic, content: msg, model: MODEL })]).catch(() => {});
-          return Response.json({ error: msg }, { status: upstream.status || 502 });
+          return Response.json({ error: error instanceof Error ? error.message : "Mistral indisponible." }, { status: 502 });
         }
-
-        let reply = "";
-        let explanation = "";
-        let usage: { input_tokens?: number; output_tokens?: number; total_tokens?: number } = {};
-        let buffer = "";
-        const reader = upstream.body.getReader();
-        const dec = new TextDecoder();
-        for (;;) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += dec.decode(value, { stream: true });
-          const lines = buffer.split("\n");
-          buffer = lines.pop() ?? "";
-          for (const line of lines) {
-            if (!line.startsWith("data:")) continue;
-            const data = line.slice(5).trim();
-            if (!data || data === "[DONE]") continue;
-            try {
-              const ev = JSON.parse(data);
-              if (ev.type === "response.output_text.delta") reply += ev.delta ?? "";
-              else if (ev.type === "response.reasoning_summary_text.delta") explanation += ev.delta ?? "";
-              else if (ev.type === "response.completed") usage = ev.response?.usage ?? {};
-            } catch {}
-          }
-        }
-        reply = reply.trim() || "Je n'ai pas pu formuler de réponse.";
-        const tokens = { input: usage.input_tokens, output: usage.output_tokens, total: usage.total_tokens };
+        const { reply, tokens } = result;
+        const explanation = "";
 
         // 3. Journal temps réel : réponse, jetons, explication fournie par le modèle
         await logUser;
         const events = [
-          newEvent(owner, { kind: "message.assistant", channel: "text", topic, content: reply, model: MODEL, tokens, duration_ms: Date.now() - started }),
+          newEvent(owner, { kind: channel === "voice" ? "voice.assistant" : "message.assistant", channel, topic, content: reply, model: MODEL, tokens, duration_ms: Date.now() - started }),
           newEvent(owner, {
             kind: "explanation",
-            channel: "text",
+            channel,
             topic,
             model: MODEL,
             content: explanation.trim() || "capture_unavailable : le fournisseur n'a renvoyé aucun résumé d'explication pour cette réponse.",
           }),
         ];
-        let saved = true;
+        let saved = userSaved;
         await appendEvents(owner, events).catch((e) => {
           saved = false;
           console.error("[memory]", e);

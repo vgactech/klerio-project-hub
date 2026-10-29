@@ -21,3 +21,6 @@
 - Public entry follows Klerio-26/KLERIO: landing at `/`, sign-in at `/login`, sign-up at `/register`, then `/espace` (dashboard) with the chat at `/chat`; never re-add a separate `/auth` page, to avoid duplicate sign-in screens.
 - The chat iframe (`public/app/klerio.html`) navigates the app via `postMessage({klerioNavigate})` handled in `chat.tsx`, because `target="_top"` is blocked inside the preview; bump `PAGE_VERSION` when that HTML changes so browsers drop the cached copy.
 - Global appearance controls own persistent interface language/theme; a shared catalog and legacy DOM adapter translate existing React/iframe UI without changing stable action values or private conversation/document content.
+- Active chat, image reading and voice use direct server-side Mistral adapters; voice captures complete WAV turns and uses STT → chat → TTS to avoid sending audio or prompts to the legacy Live gateway.
+- Encrypt new GitHub client payloads with path-bound AES-256-GCM and per-owner HKDF keys; retain legacy reads without claiming historic plaintext was removed, and never silently rotate the storage master key.
+- External web searches must not contain client messages, history or document text; use nonpersonal public administrative queries to prevent sensitive-content disclosure.

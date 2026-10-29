@@ -2,38 +2,28 @@ import { createFileRoute } from "@tanstack/react-router";
 import { addDoc, listDocs } from "@/lib/github-store.server";
 import { appendEvents, newEvent, safeOwnerId } from "@/lib/github-memory.server";
 import { verifyUserId } from "@/lib/verify-user.server";
+import { MISTRAL_CHAT_MODEL, mistralRequest, readMistralChat } from "@/lib/mistral.server";
 
 const MAX = 10 * 1024 * 1024;
 const TYPES = /^(image\/(png|jpeg|webp|heic)|application\/pdf|text\/plain)$/;
 
 /** Lecture du texte d'une image par le modèle le moins cher (indique « À vérifier » si doute). */
 async function ocr(type: string, b64: string): Promise<string> {
-  const apiKey = process.env["LOVABLE_API_KEY"];
+  const apiKey = process.env["API_KEY_MISTRAL"];
   if (!apiKey || !type.startsWith("image/")) return "";
-  const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
+  const res = await mistralRequest("chat/completions", apiKey, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}`, "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "fetch" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      model: "openai/gpt-5-nano",
-      instructions:
-        "Transcris fidèlement le texte de ce document administratif. Puis, sur une dernière ligne, écris « Type : » suivi du type de document (facture, courrier CAF, avis d'impôt…). Écris « [À vérifier] » à côté de tout passage illisible ou incertain. N'invente rien.",
-      input: [{ role: "user", content: [{ type: "input_image", image_url: `data:${type};base64,${b64}` }] }],
-      reasoning: { effort: "low" },
-      store: false,
+      model: MISTRAL_CHAT_MODEL,
+      messages: [{ role: "user", content: [
+        { type: "text", text: "Transcris fidèlement ce document. Termine par Type : et son type. Marque [À vérifier] les passages incertains. N'invente rien." },
+        { type: "image_url", image_url: `data:${type};base64,${b64}` },
+      ] }],
       stream: true,
     }),
   });
-  if (!res.ok || !res.body) return "";
-  const raw = await res.text();
-  let out = "";
-  for (const line of raw.split("\n")) {
-    if (!line.startsWith("data:")) continue;
-    try {
-      const ev = JSON.parse(line.slice(5));
-      if (ev.type === "response.output_text.delta") out += ev.delta ?? "";
-    } catch {}
-  }
-  return out.trim();
+  return (await readMistralChat(res)).reply;
 }
 
 export const Route = createFileRoute("/api/documents")({

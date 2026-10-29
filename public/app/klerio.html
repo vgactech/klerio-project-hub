@@ -315,7 +315,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     else if(s.status==='closed'){vs.innerHTML='<span class="live-dot off"></span>Appel terminé';voiceOn=false;glow(null);}
     if(s.playbackBlocked&&!$('playvoice')){var b=document.createElement('button');b.id='playvoice';b.textContent='Activer le son';b.onclick=function(){P.klerioVoice.resume();b.remove();};vs.parentNode.querySelector('.choices').prepend(b);}
   };
-  P.klerioVoiceCaption=function(role,text){say(text,role==='user',(P.klerioVoice&&P.klerioVoice.model)||'',voiceSec?'vocal '+voiceSec+' s':'');};
+  P.klerioVoiceCaption=function(role,text,tokens){say(text,role==='user',(P.klerioVoice&&P.klerioVoice.model)||'',tokens?(role==='user'?tokens.input:tokens.output):'');};
   var voiceSec=0;
   P.klerioVoiceUsage=function(sec){voiceSec=Math.round(sec);setStatus('<span class="live-dot"></span>Vocal connecté · '+((P.klerioVoice&&P.klerioVoice.model)||'')+' · consommation vocale : '+voiceSec+' s · mémoire active');};
   var prev=$('form').onsubmit;
@@ -323,7 +323,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
     e.preventDefault();var ta=$('prompt');var t=ta.value.trim();
     if(!t||!P.klerioSend){return prev&&prev(e);}
     ta.value='';var userMeta=say(t,true,'');glow('blue');
-    var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble think"><span class="tl"><i></i><i></i><i></i></span> <b class="pct">0 %</b> <span class="tlt">Klerio réfléchit</span></div><div class="meta"><span class="live-dot wait"></span>Klerio · '+hm()+' · openai/gpt-5-nano · <span class="pct">0 %</span></div>';$('feed').append(w);w.scrollIntoView({block:'end'});
+    var w=document.createElement('article');w.className='message';w.innerHTML='<div class="bubble think"><span class="tl"><i></i><i></i><i></i></span> <b class="pct">0 %</b> <span class="tlt">Klerio réfléchit</span></div><div class="meta"><span class="live-dot wait"></span>Klerio · '+hm()+' · Mistral · <span class="pct">0 %</span></div>';$('feed').append(w);w.scrollIntoView({block:'end'});
     var t0=Date.now(),thk=setInterval(function(){var sec=(Date.now()-t0)/1000,pc=Math.min(95,Math.round(95*(1-Math.exp(-sec/6)))),st=sec<10?'go':sec<25?'slow':'stuck';w.querySelectorAll('.pct').forEach(function(x){x.textContent=pc+' %'});w.querySelector('.bubble').className='bubble think '+st;w.querySelector('.tlt').textContent=st==='go'?'Klerio réfléchit':st==='slow'?'Ça prend un peu plus de temps…':'Ça bloque peut-être, patientez ou réessayez';},300);
     setStatus('<span class="live-dot wait"></span>Envoi à l’IA…');
     P.klerioSend(t).then(function(r){clearInterval(thk);w.querySelectorAll('.pct').forEach(function(x){x.textContent='100 %'});w.remove();

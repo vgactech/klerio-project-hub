@@ -327,8 +327,8 @@ function LandingPage() {
             <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Vos documents restent vos documents.</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {[
-                { icon: ShieldCheck, title: "Chiffrement renforcé", text: "Chaque fichier a sa propre clé, chiffrée par une clé maître. TLS en transit." },
-                { icon: FolderLock, title: "Hébergement UE", text: "Les fichiers et la base sont hébergés dans l'Union européenne." },
+                { icon: ShieldCheck, title: "Sauvegardes chiffrées", text: "Les nouvelles sauvegardes sont chiffrées avant stockage. Les anciennes copies restent à vérifier." },
+                { icon: FolderLock, title: "Confidentialité", text: "Mistral traite les demandes. La localisation et la conservation chez tous les prestataires restent à confirmer." },
                 { icon: Languages, title: "Accessible", text: "Grands boutons, contraste AA, mode sombre, langage simple et traduction gratuite." },
                 { icon: FileCheck2, title: "Vous gardez la main", text: "Aucune suppression automatique, aucun envoi sans validation, export à tout moment." }
               ].map((item) => (
