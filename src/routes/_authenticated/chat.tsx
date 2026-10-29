@@ -7,7 +7,7 @@ import { setPendingScan } from "@/lib/espace/pending-scan";
 import { shouldIntroduce } from "@/lib/appearance";
 
 type VoiceUI = (s: { status: string; error: string | null; muted: boolean; playbackBlocked: boolean }) => void;
-type VoiceCaption = (role: "user" | "assistant", text: string) => void;
+type VoiceCaption = (role: "user" | "assistant", text: string, tokens?: { input?: number; output?: number; total?: number }) => void;
 
 declare global {
   interface Window {
@@ -99,7 +99,7 @@ function ChatRoute() {
       if (event.type === "app.voice.caption") {
         const role = event["role"] === "user" ? "user" : "assistant";
         const text = typeof event["transcript"] === "string" ? event["transcript"] : "";
-        if (text) window.klerioVoiceCaption?.(role, text);
+        if (text) window.klerioVoiceCaption?.(role, text, event["tokens"] as { input?: number; output?: number; total?: number } | undefined);
         return;
       }
       if (event.type === "app.transcript.delta") {
