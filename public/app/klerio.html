@@ -90,12 +90,20 @@ html[data-theme="dark"] .bubble,html[data-theme="dark"] .card,html[data-theme="d
 html[data-theme="dark"] .user .bubble,html[data-theme="dark"] .modeknob,html[data-theme="dark"] .sendknob{background:var(--accent);color:#ffffff}
 html[data-theme="dark"] .banner,html[data-theme="dark"] .voice{background:var(--soft);color:var(--ink)}
 html[data-theme="dark"] .small,html[data-theme="dark"] .meta,html[data-theme="dark"] .sub,html[data-theme="dark"] .entryhint,html[data-theme="dark"] .gesturehint{color:var(--muted)}
+.chat-header{position:absolute;inset:0 0 auto;z-index:8;background:var(--card)}
+.chat-header[hidden]{display:none}
+.app{position:relative;min-height:0}
+.feed{min-height:0}
+.chat-header-edge{position:fixed;top:0;left:0;right:0;height:8px;z-index:7;outline-offset:-3px}
 </style></head>
 <body data-theme="light">
 <aside class="floating-companion" aria-label="Compagnon Klerio"><button id="companion-orb" class="companion-orb" aria-label="Mascotte déplaçable. Glissez pour la positionner ; cliquez pour tester l’animation sans audio. Flèches pour déplacer au clavier." aria-pressed="false"><span class="head-only" aria-hidden="true"></span><span class="companion-mouth" aria-hidden="true"></span></button><span id="companion-label" class="companion-label" role="status">Tester l’animation · sans audio</span></aside>
 <main class="app">
+<div class="chat-header-edge" tabindex="0" role="button" aria-label="Afficher la barre de navigation" aria-expanded="false" aria-controls="chat-header"></div>
+<div class="chat-header" id="chat-header" hidden>
 <div class="banner">DÉMONSTRATION · démarches officielles sourcées · profils fictifs · aucun envoi externe</div>
 <header><div class="avatar"><span class="mascot" id="header-mascot" data-pose="classic" role="img" aria-label="Mascotte officielle Klerio : chat-pingouin"></span></div><div><h1>Klerio</h1><div class="sub" id="topstatus">Votre espace de conversation</div></div><div class="spacer"></div><a href="/espace" target="_parent" class="dash-btn" aria-label="Ouvrir le dashboard" onclick="try{if(window.parent!==window){window.parent.postMessage({klerioNavigate:'/espace'},location.origin);return false}}catch(e){}">Dashboard</a></header>
+</div>
 <section class="feed" id="feed" aria-label="Conversation">
 <div class="date">Démarches du quotidien · références vérifiées le 27 octobre 2026</div>
 <article class="message" id="initial-welcome" hidden><div class="bubble"><div class="brand-welcome"><div class="brand-portrait"><span class="mascot" data-pose="classic" role="img" aria-label="Le chat-pingouin vous accueille"></span></div><div><strong>Une chose à la fois.</strong><p>Klerio vous accompagne, à votre rythme.</p></div></div>Bonjour. Qu’est-ce qui vous bloque aujourd’hui ?<p class="small">Choisissez un exemple réel de démarche. Posez votre question librement, ou partez d’un exemple guidé.</p><div class="scenario-list"><button class="scenario" data-scenario="document">Comprendre un courrier</button><button class="scenario" data-scenario="apl">Préparer ma demande CAF</button><button class="scenario" data-scenario="energy">Comprendre une facture</button><button class="scenario" data-view="examples">Tous les exemples →</button></div></div><div class="meta">Klerio · démonstration</div></article>
@@ -334,4 +342,4 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
       setStatus('<span class="live-dot"></span>IA connectée · '+r.model+' · '+(tk.total||0)+' jetons'+' · sujet : '+(r.topic||'')+' · '+(r.saved?'mémoire sauvegardée':'⚠️ sauvegarde en attente'));});
   };
 })();
-</script></body></html>
+</script><script type="module">import { installChatHeader } from '/app/chat-header.js';installChatHeader(document,window);</script></body></html>

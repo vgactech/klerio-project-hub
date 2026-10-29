@@ -24,3 +24,4 @@
 - Active chat, image reading and voice use direct server-side Mistral adapters; voice captures complete WAV turns and uses STT → chat → TTS to avoid sending audio or prompts to the legacy Live gateway.
 - Encrypt new GitHub client payloads with path-bound AES-256-GCM and per-owner HKDF keys; retain legacy reads without claiming historic plaintext was removed, and never silently rotate the storage master key.
 - External web searches must not contain client messages, history or document text; use nonpersonal public administrative queries to prevent sensitive-content disclosure.
+- The chat's auto-hidden navigation is an overlay controlled by the standalone gesture adapter so revealing it never resizes the conversation or interrupts audio.
