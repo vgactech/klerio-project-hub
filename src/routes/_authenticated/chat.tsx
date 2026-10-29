@@ -56,7 +56,7 @@ function captionFrom(event: LiveEvent): { role: "user" | "assistant"; text: stri
   return null;
 }
 
-const PAGE_VERSION = "20261029-mistral-1";
+const PAGE_VERSION = "20261029-header-2";
 
 function ChatRoute() {
   const { user } = Route.useRouteContext();
