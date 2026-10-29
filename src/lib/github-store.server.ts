@@ -1,3 +1,4 @@
+import { encryptStored, decryptStored } from "./storage-crypto.server";
 /**
  * Données de l'espace client (rappels, famille, documents…) sur GitHub,
  * branche `klerio-memory`, dossier privé clients/<identifiant>/.
@@ -24,15 +25,18 @@ async function getFile(path: string): Promise<{ sha: string; content: string } |
   const r = await gh(`contents/${path}?ref=${BRANCH}`);
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`GitHub lecture ${r.status}: ${await r.text()}`);
-  return (await r.json()) as { sha: string; content: string };
+  const file = (await r.json()) as { sha: string; content: string };
+  if (file.content) file.content = await decryptStored(file.content, path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "");
+  return file;
 }
 
 async function putRaw(path: string, base64: string, message: string) {
+  const encrypted = await encryptStored(base64, path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "");
   for (let i = 0; i < 3; i++) {
     const cur = await getFile(path);
     const r = await gh(`contents/${path}`, {
       method: "PUT",
-      body: JSON.stringify({ message, content: base64, branch: BRANCH, ...(cur ? { sha: cur.sha } : {}) }),
+      body: JSON.stringify({ message, content: encrypted, branch: BRANCH, ...(cur ? { sha: cur.sha } : {}) }),
     });
     if (r.ok) return;
     if (r.status !== 409 && r.status !== 422) throw new Error(`GitHub écriture ${r.status}: ${await r.text()}`);
@@ -81,7 +85,7 @@ export async function addDoc(owner: string, meta: Omit<DocMeta, "id" | "createdA
   const id = crypto.randomUUID();
   const ext = (meta.name.match(/\.[a-z0-9]{1,5}$/i)?.[0] ?? "").toLowerCase();
   const path = `${base(owner)}/documents/files/${id}${ext}`;
-  await putRaw(path, dataBase64, `document ajouté · ${meta.category} · ${new Date().toISOString()}`);
+  await putRaw(path, dataBase64, `document ajouté · ${new Date().toISOString()}`);
   const doc: DocMeta = { ...meta, id, createdAt: new Date().toISOString(), path };
   const docs = await listDocs(owner);
   docs.unshift(doc);
@@ -92,6 +96,7 @@ export async function addDoc(owner: string, meta: Omit<DocMeta, "id" | "createdA
 export async function getDocFile(owner: string, id: string) {
   const doc = (await listDocs(owner)).find((d) => d.id === id);
   if (!doc) return null;
+  if (!doc.path.startsWith(`${base(owner)}/documents/files/`)) throw new Error("Accès document refusé.");
   await ensureBranch();
   // L'API « contents » ne renvoie pas le contenu au-delà de 1 Mo : on passe par le blob.
   const f = await getFile(doc.path);
@@ -99,7 +104,7 @@ export async function getDocFile(owner: string, id: string) {
   const blob = await gh(`git/blobs/${f.sha}`);
   if (!blob.ok) throw new Error(`GitHub fichier ${blob.status}`);
   const j = (await blob.json()) as { content: string };
-  return { doc, base64: j.content.replace(/\n/g, "") };
+  return { doc, base64: await decryptStored(j.content.replace(/\n/g, ""), doc.path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "") };
 }
 
 export async function updateDoc(owner: string, id: string, patch: Partial<Pick<DocMeta, "category" | "name" | "text">>) {

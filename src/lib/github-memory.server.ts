@@ -1,3 +1,4 @@
+import { encryptStored, decryptStored } from "./storage-crypto.server";
 /**
  * Mémoire Klerio sur GitHub.
  * Dépôt privé vgactech/klerio-project-hub, branche dédiée `klerio-memory`
@@ -111,7 +112,10 @@ function dayFile(ownerId: string, topic: string, iso: string) {
 export async function appendEvents(ownerId: string, events: MemoryEvent[]) {
   if (!events.length) return;
   await ensureBranch();
-  const path = dayFile(ownerId, events[0]!.topic, events[0]!.at);
+  const first = events[0];
+  if (!first) return;
+  if (events.some(event => event.owner_id !== ownerId)) throw new Error("Propriétaire incompatible.");
+  const path = dayFile(ownerId, first.topic, first.at);
   for (let attempt = 0; attempt < 3; attempt++) {
     const cur = await gh(`contents/${path}?ref=${BRANCH}`);
     let sha: string | undefined;
@@ -119,14 +123,14 @@ export async function appendEvents(ownerId: string, events: MemoryEvent[]) {
     if (cur.ok) {
       const j = (await cur.json()) as { sha: string; content: string };
       sha = j.sha;
-      existing = b64decode(j.content);
+      existing = b64decode(await decryptStored(j.content, path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? ""));
     } else if (cur.status !== 404) throw new Error(`GitHub lecture ${cur.status}: ${await cur.text()}`);
     const next = existing + events.map((e) => JSON.stringify(e)).join("\n") + "\n";
     const put = await gh(`contents/${path}`, {
       method: "PUT",
       body: JSON.stringify({
-        message: `${events.map((e) => e.kind).join(", ")} · ${events[0]!.at}`,
-        content: b64encode(next),
+        message: `${events.map((e) => e.kind).join(", ")} · ${first.at}`,
+        content: await encryptStored(b64encode(next), path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? ""),
         branch: BRANCH,
         ...(sha ? { sha } : {}),
       }),
@@ -153,7 +157,7 @@ export async function loadRecent(ownerId: string, limit = 40, maxFiles = 6): Pro
       const r = await gh(`contents/${f.path}?ref=${BRANCH}`);
       if (!r.ok) return;
       const j = (await r.json()) as { content: string };
-      for (const line of b64decode(j.content).split("\n")) {
+      for (const line of b64decode(await decryptStored(j.content, f.path, process.env["KLERIO_STORAGE_ENCRYPTION_KEY"] ?? "")).split("\n")) {
         if (!line.trim()) continue;
         try {
           out.push(JSON.parse(line) as MemoryEvent);
@@ -173,36 +177,9 @@ export async function loadRecent(ownerId: string, limit = 40, maxFiles = 6): Pro
 
 /** Détermine le sujet en cours (2 à 5 mots) avec le modèle le moins cher. */
 export async function detectTopic(text: string, previous: string): Promise<string> {
-  const apiKey = process.env["LOVABLE_API_KEY"];
-  if (!apiKey) return previous || "general";
-  try {
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}`, "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "fetch" },
-      body: JSON.stringify({
-        model: "openai/gpt-5-nano",
-        instructions:
-          "Donne le sujet administratif de ce message en 2 à 5 mots français, sans ponctuation (ex : caf aide au logement, impots declaration revenus). Si le message continue le sujet précédent ou n'en change pas clairement, réponds exactement le sujet précédent. Réponds uniquement par le sujet.",
-        input: `Sujet précédent : ${previous || "aucun"}\nMessage : ${text.slice(0, 1500)}`,
-        reasoning: { effort: "low" },
-        store: false,
-        stream: true,
-      }),
-    });
-    if (!res.ok || !res.body) return previous || "general";
-    const raw = await res.text();
-    let out = "";
-    for (const line of raw.split("\n")) {
-      if (!line.startsWith("data:")) continue;
-      try {
-        const ev = JSON.parse(line.slice(5));
-        if (ev.type === "response.output_text.delta") out += ev.delta ?? "";
-      } catch {}
-    }
-    return topicSlug(out.trim() || previous || "general");
-  } catch {
-    return previous || "general";
-  }
+  // Stable local classification: no extra disclosure of private messages to another model.
+  const categories: [RegExp, string][] = [[/caf|logement|apl/i, "caf-logement"], [/imp[oô]t|fiscal/i, "impots"], [/facture|[ée]nergie/i, "factures"], [/sant[ée]|ameli|mutuelle/i, "sante"]];
+  return categories.find(([pattern]) => pattern.test(text))?.[1] ?? topicSlug(previous || "general");
 }
 
 export function newEvent(ownerId: string, e: Omit<MemoryEvent, "event_id" | "schema_version" | "owner_id" | "at">): MemoryEvent {
