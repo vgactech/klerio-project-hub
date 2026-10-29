@@ -149,11 +149,6 @@ function ChatRoute() {
 
   // Lueur de la mascotte d'après le volume réel : vert = Klerio parle, bleu = le client parle.
   useEffect(() => {
-    window.klerioOpenPage = openPage;
-    const controller = new AbortController();
-    void fetch("/api/internet", { headers: { Authorization: `Bearer ${lovable.auth.getSession()?.access_token ?? ""}` }, signal: controller.signal })
-      .then(r => r.ok ? r.json() : { available: false, checkedAt: Date.now() })
-      .then(status => window.klerioInternet?.(status)).catch(() => {});
     if (voice.status !== "connected") {
       frameRef.current?.contentWindow?.postMessage({ klerioGlow: null }, "*");
       return;
@@ -221,6 +216,11 @@ function ChatRoute() {
   }, [voice.status, voice.error, voice.muted, voice.playbackBlocked]);
 
   useEffect(() => {
+    window.klerioOpenPage = openPage;
+    const controller = new AbortController();
+    void fetch("/api/internet", { headers: { Authorization: `Bearer ${lovable.auth.getSession()?.access_token ?? ""}` }, signal: controller.signal })
+      .then(r => r.ok ? r.json() : { available: false, checkedAt: Date.now() })
+      .then(status => window.klerioInternet?.(status)).catch(() => {});
     window.klerioUserId = user.id;
     window.klerioShouldIntroduce = shouldIntroduce;
     window.klerioVoice = {
