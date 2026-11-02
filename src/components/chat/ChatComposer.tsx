@@ -8,8 +8,8 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { ModeKnob } from "./ModeKnob";
 import { SendKnob } from "./SendKnob";
-import type { ChatMode } from "@/types/klerio";
-import { MAX_FILE_SIZE_BYTES, MAX_FILES_PER_SEND } from "@/types/klerio";
+import type { ChatMode } from "@/types/owly";
+import { MAX_FILE_SIZE_BYTES, MAX_FILES_PER_SEND } from "@/types/owly";
 
 export interface ComposerSubmitPayload {
   text: string;

@@ -6,7 +6,7 @@
  */
 
 import { useRef, useState, useCallback } from "react";
-import type { ChatMode } from "@/types/klerio";
+import type { ChatMode } from "@/types/owly";
 
 const MODE_LABELS: Record<ChatMode, string> = {
   voice: "Vocal",

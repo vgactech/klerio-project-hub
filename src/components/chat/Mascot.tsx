@@ -1,5 +1,5 @@
 /**
- * Mascot — floating companion head (Klerio).
+ * Mascot — floating companion head (OWLY).
  * Draggable orb with animated levitation and talking state.
  * Based on prototype V6 from KLERIO_BRONZE_BULLE_LIBRE.html
  * DEBUG MODE ACTIVE
@@ -35,7 +35,7 @@ const POSE_POSITIONS: Record<MascotPose, string> = {
 export function Mascot({
   talking = false,
   pose = "classic",
-  statusLabel = "Compagnon Klerio",
+  statusLabel = "Maître de quête OWLY",
   className = "",
 }: MascotProps) {
   const orbRef = useRef<HTMLButtonElement>(null);
@@ -98,11 +98,11 @@ export function Mascot({
   return (
     <div
       style={{ position: "fixed", top: pos.y, left: pos.x, zIndex: 40, width: 96 }}
-      aria-label="Compagnon Klerio"
+      aria-label="Maître de quête OWLY"
     >
       <button
         ref={orbRef}
-        aria-label="Mascotte déplaçable. Glissez pour la positionner. Flèches pour déplacer au clavier."
+        aria-label="Mascotte OWLY déplaçable. Glissez pour la positionner. Flèches pour déplacer au clavier."
         aria-pressed={talking}
         className={[
           "mascot-orb",
@@ -127,7 +127,7 @@ export function Mascot({
           touchAction: "none",
           overflow: "visible",
           padding: 0,
-          animation: dragging ? "none" : "klerio-levitate 4s ease-in-out infinite",
+          animation: dragging ? "none" : "owly-levitate 4s ease-in-out infinite",
         }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -166,7 +166,7 @@ export function Mascot({
             opacity: talking ? 1 : 0,
             transformOrigin: "center",
             pointerEvents: "none",
-            animation: talking ? "klerio-talk 0.38s ease-in-out infinite alternate" : "none",
+            animation: talking ? "owly-talk 0.38s ease-in-out infinite alternate" : "none",
           }}
         />
       </button>
@@ -191,11 +191,11 @@ export function Mascot({
 
       {/* Global keyframe styles injected once */}
       <style>{`
-        @keyframes klerio-levitate {
+        @keyframes owly-levitate {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-5px); }
         }
-        @keyframes klerio-talk {
+        @keyframes owly-talk {
           0% { transform: translate(-50%, -50%) scaleY(0.2); }
           45% { transform: translate(-50%, -50%) scaleY(1); }
           100% { transform: translate(-50%, -50%) scaleY(0.45); }
@@ -224,7 +224,7 @@ export function MascotAvatar({
   return (
     <span
       role="img"
-      aria-label="Mascotte Klerio"
+      aria-label="Mascotte OWLY"
       style={{
         display: "inline-block",
         width: size,

@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Connexion — Klerio" },
-      { name: "description", content: "Connecte-toi ou crée ton compte Klerio." },
-      { property: "og:title", content: "Connexion — Klerio" },
-      { property: "og:description", content: "Connecte-toi ou crée ton compte Klerio." },
+      { title: "Connexion — OWLY" },
+      { name: "description", content: "Connecte-toi ou crée ton compte OWLY." },
+      { property: "og:title", content: "Connexion — OWLY" },
+      { property: "og:description", content: "Connecte-toi ou crée ton compte OWLY." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -55,7 +55,7 @@ function AuthPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="w-full max-w-sm space-y-6 rounded-xl border border-border bg-card p-6">
-        <h1 className="text-2xl font-semibold text-card-foreground">Klerio</h1>
+        <h1 className="text-2xl font-semibold text-card-foreground">🦉 OWLY</h1>
 
         <div className="space-y-2">
           <Button variant="outline" className="w-full" onClick={() => social("google")}>

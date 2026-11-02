@@ -22,10 +22,12 @@ const FileItemSchema = z.object({
 
 export const SendMessageSchema = z.object({
   text: z.string(),
-  mode: z.enum(["chat", "memory", "voice"]),
+  mode: z.enum(["quest", "group", "voice"]),
   sessionId: z.string(),
   userId: z.string(),
   userMessageId: z.string(),
+  heroClass: z.string().optional(),
+  archetype: z.string().optional(),
   files: z.array(FileItemSchema).default([]),
 });
 
@@ -75,6 +77,8 @@ async function callOpenAI(text: string, images: ImageInput[]): Promise<string> {
     });
   }
 
+  const heroCtx = (text.includes("heroClass:") || text.includes("archetype:")) ? text : text;
+
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -87,14 +91,22 @@ async function callOpenAI(text: string, images: ImageInput[]): Promise<string> {
         {
           role: "system",
           content:
-            "Tu es Klerio, un assistant personnel organisé, bienveillant et professionnel. " +
-            "Réponds en français sauf si l'utilisateur écrit dans une autre langue. " +
-            "Pour les résultats OCR, indique toujours « À vérifier » si le contenu est incertain.",
+            "Tu es OWLY, un hibou sage et mystérieux — maître de quête d'un RPG de découverte de personnalité. " +
+            "Ton rôle est double : faire vivre des aventures épiques inspirées de Donjon & Dragons, " +
+            "et aider les joueurs à mieux se connaître à travers ces aventures (Jung, Big Five, archétypes). " +
+            "Tu crées des scénarios dynamiques adaptés à la personnalité du joueur, " +
+            "poses des questions subtiles intégrées aux quêtes pour révéler leur archétype, " +
+            "et fais évoluer leur personnage selon leurs choix. " +
+            "Style : narratif, immersif, pixel-art mystique. " +
+            "Utilise des emojis sparingly pour l'atmosphère (⚔️ 🗺️ 🔮 🌙 ✨). " +
+            "Langue : français sauf si le joueur écrit autrement. " +
+            "Ne révèle jamais directement l'analyse psychologique — intègre-la subtilement dans la narration. " +
+            "Chaque réponse doit avancer l'aventure ET révéler quelque chose de la personnalité du joueur.",
         },
         { role: "user", content: userContent },
       ],
-      max_tokens: 1024,
-      temperature: 0.7,
+      max_tokens: 1200,
+      temperature: 0.85,
     }),
   });
 
@@ -158,13 +170,15 @@ async function callElevenLabs(text: string): Promise<string | undefined> {
  */
 export async function sendMessageHandler(raw: unknown): Promise<MessageResponse> {
   const data = SendMessageSchema.parse(raw);
-  const { text, mode, sessionId, userId, userMessageId, files } = data;
+  const { text, mode, sessionId, userId, userMessageId, heroClass, archetype, files } = data;
 
   console.debug("[DEBUG][messages] sendMessageHandler", {
     mode,
     sessionId,
     userId,
     userMessageId,
+    heroClass,
+    archetype,
     fileCount: files.length,
   });
 
@@ -176,13 +190,18 @@ export async function sendMessageHandler(raw: unknown): Promise<MessageResponse>
       ? "Les documents joints ont été transmis. Le contenu extrait est « À vérifier »."
       : undefined;
 
+  // Enrichir le texte du contexte héros pour le prompt OWLY
+  const contextualText = heroClass
+    ? `[Héros: ${heroClass}${archetype ? `, Archétype: ${archetype}` : ""}]\n${text}`
+    : text;
+
   const reply = await callOpenAI(
-    text,
+    contextualText,
     imageFiles.map((f) => ({ data: f.dataBase64, type: f.type })),
   );
 
   let audioUrl: string | undefined;
-  if (mode === "voice") {
+  if (mode === "voice" || mode === "group") {
     audioUrl = await callElevenLabs(reply);
   }
 

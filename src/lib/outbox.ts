@@ -4,9 +4,9 @@
  * DEBUG MODE ACTIVE
  */
 
-import type { ChatMessage, OutboxEntry, OutboxStatus } from "@/types/klerio";
+import type { ChatMessage, OutboxEntry, OutboxStatus } from "@/types/owly";
 
-const OUTBOX_KEY = "klerio:outbox";
+const OUTBOX_KEY = "owly:outbox";
 
 function readEntries(): OutboxEntry[] {
   if (typeof localStorage === "undefined") return [];

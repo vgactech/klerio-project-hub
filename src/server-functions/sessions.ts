@@ -1,6 +1,6 @@
 /**
  * Server Function: /api/sessions
- * Validates and creates Klerio user sessions via Lovable cloud auth.
+ * Validates and creates OWLY user sessions via Lovable cloud auth.
  * Secrets (Lovable token) are read server-side only — never exposed to client.
  * DEBUG MODE ACTIVE
  *
@@ -33,7 +33,7 @@ export interface SessionResponse {
 
 /**
  * createSessionHandler — validates a Lovable token server-side and returns a
- * Klerio session object. No token is ever sent back to the client.
+ * OWLY session object. No token is ever sent back to the client.
  *
  * DEBUG: logs session creation without exposing the token.
  */
@@ -49,7 +49,7 @@ export async function createSessionHandler(raw: unknown): Promise<SessionRespons
   }
 
   const workspaceId = `ws_${userId.slice(0, 12)}`;
-  const sessionId = `klerio_sess_${Date.now().toString(36)}`;
+  const sessionId = `owly_sess_${Date.now().toString(36)}`;
   const createdAt = new Date().toISOString();
 
   console.debug("[DEBUG][sessions] Session created for user:", userId, "workspace:", workspaceId);

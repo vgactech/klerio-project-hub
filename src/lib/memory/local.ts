@@ -4,11 +4,11 @@
  * DEBUG MODE ACTIVE
  */
 
-import type { ChatMessage, KlerioChatSession, ChatMode } from "@/types/klerio";
+import type { ChatMessage, OwlyChatSession, ChatMode } from "@/types/owly";
 import type { MemoryRepository } from "./repository";
 
-const PREFIX = "klerio:session:";
-const INDEX_KEY = "klerio:sessions:index";
+const PREFIX = "owly:session:";
+const INDEX_KEY = "owly:sessions:index";
 
 function sessionKey(sessionId: string): string {
   return `${PREFIX}${sessionId}`;
@@ -31,12 +31,12 @@ function writeIndex(index: Record<string, string[]>): void {
 }
 
 export class LocalMemoryRepository implements MemoryRepository {
-  async loadSession(sessionId: string): Promise<KlerioChatSession | null> {
+  async loadSession(sessionId: string): Promise<OwlyChatSession | null> {
     if (typeof localStorage === "undefined") return null;
     const raw = localStorage.getItem(sessionKey(sessionId));
     if (!raw) return null;
     try {
-      return JSON.parse(raw) as KlerioChatSession;
+      return JSON.parse(raw) as OwlyChatSession;
     } catch {
       return null;
     }
@@ -48,7 +48,7 @@ export class LocalMemoryRepository implements MemoryRepository {
     const existing = await this.loadSession(sessionId);
     const now = new Date().toISOString();
 
-    const session: KlerioChatSession = existing ?? {
+    const session: OwlyChatSession = existing ?? {
       sessionId,
       userId: "local",
       workspaceId: "local",

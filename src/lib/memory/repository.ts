@@ -4,11 +4,11 @@
  * DEBUG MODE ACTIVE
  */
 
-import type { ChatMessage, KlerioChatSession } from "@/types/klerio";
+import type { ChatMessage, OwlyChatSession } from "@/types/owly";
 
 export interface MemoryRepository {
   /** Load all messages for a session. Returns [] if session does not exist. */
-  loadSession(sessionId: string): Promise<KlerioChatSession | null>;
+  loadSession(sessionId: string): Promise<OwlyChatSession | null>;
 
   /** Persist a single message into a session (upsert). */
   saveMessage(sessionId: string, message: ChatMessage): Promise<void>;

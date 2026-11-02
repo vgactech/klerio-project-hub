@@ -11,8 +11,8 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { LocalMemoryRepository } from "@/lib/memory/local";
 import { DurableOutbox } from "@/lib/outbox";
-import { MAX_FILE_SIZE_BYTES, MAX_FILES_PER_SEND } from "@/types/klerio";
-import type { ChatMessage } from "@/types/klerio";
+import { MAX_FILE_SIZE_BYTES, MAX_FILES_PER_SEND } from "@/types/owly";
+import type { ChatMessage } from "@/types/owly";
 
 // ─── localStorage mock ────────────────────────────────────────────────────────
 
@@ -50,7 +50,7 @@ function makeMessage(partial: Partial<ChatMessage> = {}): ChatMessage {
   return {
     id: `msg_${Math.random().toString(36).slice(2, 8)}`,
     role: "user",
-    content: "Bonjour Klerio",
+    content: "Bonjour OWLY",
     createdAt: new Date().toISOString(),
     mode: "chat",
     ...partial,
@@ -203,14 +203,14 @@ describe("DurableOutbox", () => {
     box.markSent("old_sent");
 
     // Manually set old createdAt in localStorage
-    const raw = lsMock._store["klerio:outbox"];
+    const raw = lsMock._store["owly:outbox"];
     if (raw) {
       const entries = JSON.parse(raw);
       const entry = entries.find((e: { id: string }) => e.id === "old_sent");
       if (entry) {
         entry.createdAt = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
       }
-      lsMock._store["klerio:outbox"] = JSON.stringify(entries);
+      lsMock._store["owly:outbox"] = JSON.stringify(entries);
     }
 
     box.prune();

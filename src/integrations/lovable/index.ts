@@ -10,9 +10,9 @@ type SignInOptions = {
 };
 
 // Session stored in sessionStorage to survive soft navigation
-const SESSION_KEY = "klerio_session";
+const SESSION_KEY = "owly_session";
 
-export type KlerioSession = {
+export type OwlySession = {
   access_token: string;
   refresh_token?: string;
   user: {
@@ -45,11 +45,11 @@ export const lovable = {
         const userEmail = rawUser["email"] as string | undefined;
         const userName = meta["name"] as string | undefined;
         const userAvatar = meta["avatar_url"] as string | undefined;
-        const sessionUser: KlerioSession["user"] = { id: userId };
+        const sessionUser: OwlySession["user"] = { id: userId };
         if (userEmail !== undefined) sessionUser.email = userEmail;
         if (userName !== undefined) sessionUser.name = userName;
         if (userAvatar !== undefined) sessionUser.avatar_url = userAvatar;
-        const session: KlerioSession = {
+        const session: OwlySession = {
           access_token: result.tokens.access_token,
           refresh_token: result.tokens.refresh_token,
           user: sessionUser,
@@ -59,12 +59,12 @@ export const lovable = {
       return result;
     },
 
-    getSession: (): KlerioSession | null => {
+    getSession: (): OwlySession | null => {
       if (typeof sessionStorage === "undefined") return null;
       const raw = sessionStorage.getItem(SESSION_KEY);
       if (!raw) return null;
       try {
-        return JSON.parse(raw) as KlerioSession;
+        return JSON.parse(raw) as OwlySession;
       } catch {
         return null;
       }
