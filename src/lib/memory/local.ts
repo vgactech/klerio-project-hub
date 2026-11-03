@@ -49,13 +49,15 @@ export class LocalMemoryRepository implements MemoryRepository {
     const now = new Date().toISOString();
 
     const session: OwlyChatSession = existing ?? {
+      id: sessionId,
+      heroId: "local",
+      messages: [],
+      createdAt: now,
+      updatedAt: now,
       sessionId,
       userId: "local",
       workspaceId: "local",
-      messages: [],
       mode: message.mode as ChatMode,
-      createdAt: now,
-      updatedAt: now,
     };
 
     // Deduplicate by id

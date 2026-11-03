@@ -6,7 +6,7 @@
 
 // ─── Chat / Conversation ─────────────────────────────────────────────────────
 
-export type ChatMode = "quest" | "group" | "voice";
+export type ChatMode = "quest" | "group" | "voice" | "chat" | "memory";
 
 export interface ChatMessage {
   id: string;
@@ -23,6 +23,11 @@ export interface OwlyChatSession {
   messages: ChatMessage[];
   createdAt: string;
   updatedAt: string;
+  // Extended fields used by LocalMemoryRepository
+  sessionId?: string;
+  userId?: string;
+  workspaceId?: string;
+  mode?: ChatMode;
 }
 
 // ─── Hero / Personnage ────────────────────────────────────────────────────────
@@ -140,14 +145,23 @@ export interface GroupMember {
 
 // ─── Outbox ───────────────────────────────────────────────────────────────────
 
-export type OutboxStatus = "queued" | "sending" | "sent" | "failed";
+export type OutboxStatus = "queued" | "sending" | "sent" | "failed" | "pending";
 
 export interface OutboxEntry {
   id: string;
-  message: ChatMessage;
+  /** Original message payload */
+  message?: ChatMessage;
+  /** Alias used by DurableOutbox */
+  payload?: ChatMessage;
   status: OutboxStatus;
-  enqueuedAt: string;
+  enqueuedAt?: string;
   sentAt?: string;
+  /** ISO timestamp of last send attempt */
+  lastAttemptAt?: string;
+  /** Number of send attempts */
+  attempts?: number;
+  /** ISO creation timestamp */
+  createdAt?: string;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────

@@ -30,8 +30,8 @@ export type LoginInput = z.infer<typeof LoginSchema>;
 export interface AuthResult {
   ok: boolean;
   sessionToken?: string;
-  user?: { id: string; email: string; name?: string };
-  error?: string;
+  user?: { id: string; email: string; name?: string | undefined };
+  error?: string | undefined;
 }
 
 // ─── Internal types ───────────────────────────────────────────────────────────
@@ -39,7 +39,7 @@ export interface AuthResult {
 interface StoredUser {
   id: string;
   email: string;
-  name?: string;
+  name?: string | undefined;
   passwordHash: string;
   salt: string;
   createdAt: string;
@@ -159,13 +159,22 @@ export async function registerHandler(raw: unknown): Promise<AuthResult> {
   const id = `owly_${randomBytes(8).toString("hex")}`;
   const createdAt = new Date().toISOString();
 
-  const newUser: StoredUser = { id, email, name, passwordHash, salt, createdAt };
+  const newUser: StoredUser = {
+    id,
+    email,
+    ...(name !== undefined ? { name } : {}),
+    passwordHash,
+    salt,
+    createdAt,
+  };
   store.users.push(newUser);
   saveStore(store);
 
   const sessionToken = makeJwt({ sub: id, email, name });
   console.debug("[DEBUG][auth] registerHandler: user created:", id);
-  return { ok: true, sessionToken, user: { id, email, name } };
+  const userOut: AuthResult["user"] = { id, email };
+  if (name !== undefined) userOut!.name = name;
+  return { ok: true, sessionToken, user: userOut };
 }
 
 export async function loginHandler(raw: unknown): Promise<AuthResult> {
@@ -192,5 +201,7 @@ export async function loginHandler(raw: unknown): Promise<AuthResult> {
 
   const sessionToken = makeJwt({ sub: user.id, email: user.email, name: user.name });
   console.debug("[DEBUG][auth] loginHandler: login success:", user.id);
-  return { ok: true, sessionToken, user: { id: user.id, email: user.email, name: user.name } };
+  const userOut: AuthResult["user"] = { id: user.id, email: user.email };
+  if (user.name !== undefined) userOut!.name = user.name;
+  return { ok: true, sessionToken, user: userOut };
 }

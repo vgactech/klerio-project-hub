@@ -26,9 +26,10 @@ function owlyApiDevPlugin(): Plugin {
 
         try {
           // Dynamically import the auth server functions (runs in Node, not browser)
-          const { registerHandler, loginHandler } = await import(
-            "./src/server-functions/auth.ts"
-          ) as { registerHandler: (body: unknown) => Promise<{ ok: boolean; [k: string]: unknown }>, loginHandler: (body: unknown) => Promise<{ ok: boolean; [k: string]: unknown }> };
+          type AuthHandler = (body: unknown) => Promise<{ ok: boolean; [k: string]: unknown }>;
+          const authMod = await import("./src/server-functions/auth.ts") as unknown as
+            { registerHandler: AuthHandler; loginHandler: AuthHandler };
+          const { registerHandler, loginHandler } = authMod;
 
           // Read body
           const chunks: Buffer[] = [];

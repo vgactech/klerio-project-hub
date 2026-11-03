@@ -85,7 +85,7 @@ export class DurableOutbox {
     const e = entries.find((x) => x.id === id);
     if (e) {
       e.status = "failed";
-      e.attempts += 1;
+      e.attempts = (e.attempts ?? 0) + 1;
       e.lastAttemptAt = monotonicIso();
       writeEntries(entries);
     }
@@ -101,7 +101,9 @@ export class DurableOutbox {
     const cutoff = Date.now() - 60 * 60 * 1000;
     const entries = readEntries().filter((e) => {
       if (e.status !== "sent") return true;
-      return new Date(e.createdAt).getTime() > cutoff;
+      const ts = e.createdAt ?? e.enqueuedAt;
+      if (!ts) return false;
+      return new Date(ts).getTime() > cutoff;
     });
     writeEntries(entries);
   }

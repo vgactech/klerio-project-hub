@@ -201,7 +201,7 @@ const SCENARIOS = [
 
 export function getScenarioForGroup(groupCode: string): string {
   const hash = groupCode.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  return SCENARIOS[hash % SCENARIOS.length];
+  return SCENARIOS[hash % SCENARIOS.length] ?? SCENARIOS[0] ?? "Une quête légendaire commence…";
 }
 
 // ─── Invite Code Generator ────────────────────────────────────────────────────

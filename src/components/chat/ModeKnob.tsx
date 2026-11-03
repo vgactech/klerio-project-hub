@@ -12,11 +12,13 @@ const MODE_LABELS: Record<ChatMode, string> = {
   voice: "Vocal",
   chat: "Texte",
   memory: "Documents",
+  quest: "Quête",
+  group: "Groupe",
 };
 
 // Map knob index (0=voice, 1=chat, 2=memory) to ChatMode
 const INDEX_TO_MODE: ChatMode[] = ["voice", "chat", "memory"];
-const MODE_TO_INDEX: Record<ChatMode, number> = { voice: 0, chat: 1, memory: 2 };
+const MODE_TO_INDEX: Record<ChatMode, number> = { voice: 0, chat: 1, memory: 2, quest: 1, group: 1 };
 
 interface ModeKnobProps {
   mode: ChatMode;

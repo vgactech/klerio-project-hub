@@ -48,13 +48,14 @@ function PlayRoute() {
 
   const handleHeroCreate = useCallback(
     (heroClass: HeroClass, animal: HeroAnimal | null, customAnimal: string) => {
+      const heroCustomAnimal = customAnimal || undefined;
       const newHero: Hero = {
         id: nanoid(),
         userId: user.id,
         name: "Mon Héros",
         heroClass,
         animalId: animal?.id ?? "custom",
-        customAnimal: customAnimal || undefined,
+        ...(heroCustomAnimal !== undefined ? { customAnimal: heroCustomAnimal } : {}),
         personalityTraits: {
           openness: 50,
           conscientiousness: 50,

@@ -51,13 +51,14 @@ async function callAuthApi(
 
 function storeEmailSession(result: ApiAuthResponse): void {
   if (!result.ok || !result.sessionToken || !result.user) return;
+  const sessionUser: OwlySession["user"] = {
+    id: result.user.id,
+  };
+  if (result.user.email) sessionUser.email = result.user.email;
+  if (result.user.name) sessionUser.name = result.user.name;
   const session: OwlySession = {
     access_token: result.sessionToken,
-    user: {
-      id: result.user.id,
-      email: result.user.email,
-      name: result.user.name,
-    },
+    user: sessionUser,
   };
   sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
   console.debug("[DEBUG][lovable] session stored for:", result.user.id);
@@ -107,7 +108,9 @@ export const lovable = {
       try {
         const result = await callAuthApi("/api/auth/login", { email, password });
         if (result.ok) storeEmailSession(result);
-        return { ok: result.ok, error: result.error };
+        const out: { ok: boolean; error?: string } = { ok: result.ok };
+        if (result.error !== undefined) out.error = result.error;
+        return out;
       } catch (err) {
         console.error("[DEBUG][lovable] signInWithEmail error:", err);
         return { ok: false, error: "Erreur réseau. Réessaie." };
@@ -123,7 +126,9 @@ export const lovable = {
       try {
         const result = await callAuthApi("/api/auth/register", { email, password, name });
         if (result.ok) storeEmailSession(result);
-        return { ok: result.ok, error: result.error };
+        const out: { ok: boolean; error?: string } = { ok: result.ok };
+        if (result.error !== undefined) out.error = result.error;
+        return out;
       } catch (err) {
         console.error("[DEBUG][lovable] registerWithEmail error:", err);
         return { ok: false, error: "Erreur réseau. Réessaie." };
